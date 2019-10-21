@@ -11,7 +11,7 @@
 
 We try to make room for people's personal lives. We're all adults, it's up to your judgement whether a reason for missing class is justified. However, if you're not present, you won't be engaged and won't be learning. You can quickly fall behind if you miss several classes in succession. The course moves fast, and each topic builds upon the last.
 
-Students can miss 10% of the days at most (6 for the 12-week class, 8 for the 16-week class). The only exceptions are up to five days of excused absence already arranged before the course starts. You can make up classes by coming in additional hours outside of class. You can also make up absences by completing the assignments on your own, and reviewing those solutions with me.
+Students can miss 10% of the days at most (7 for the 14-week class, 8 for the 16-week class). The only exceptions are up to five days of excused absence already arranged before the course starts. You can make up classes by coming in additional hours outside of class. You can also make up absences by completing the assignments on your own, and reviewing those solutions with me.
 
 All participants should arrive on time. The start of the class is the easiest time to make announcements and give lectures because everyone's synchronized. If you arrive late, I have to remember what I said before you came in and make sure to tell you it, and inevitably something gets lost in the shuffle. It's also disruptive, and waiting for late people punishes people who came on time. **Arriving more than 15 minutes late 3 times counts as an absence.**
 
