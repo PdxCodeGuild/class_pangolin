@@ -5,7 +5,7 @@
 
 - all lab solutions- organized, tested, commented
 - a capstone which demonstrates proficiency in each of the five areas we cover
-- not absent more than 10% of the class days (6 for the 12-week class, 8 for the 16-week class)
+- not absent more than 10% of the class days (7 for the 14-week class, 8 for the 16-week class)
 
 ## Attendance & Attention
 
