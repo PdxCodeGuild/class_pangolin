@@ -41,7 +41,7 @@ Git gives you a suite of command line tools. All commands below are run from wit
 
 `git push <remote> <branch>` pushes the changes to the remote repository
 
-`get pull` pulls changes from the remote repository
+`git pull` pulls changes from the remote repository
 
 `git diff` view the difference between the last commit and your working directory
 
