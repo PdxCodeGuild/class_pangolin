@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for post in object_list %}
+    <div class="post-entry">
+      <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
+      <p>{{ post.body }}</p>
+      <p>Posted by: <a href="{% url 'user_post_list' post.author %}">{{ post.author }}</a></p>
+      <p>Posted at: {{ post.created }}</a></p>
+      {% if post.created_updated_differ %}
+        <p>Updated at: {{ post.updated }}</a></p>
+      {% endif %}
+      <p><img src="{{ post.photo.url }}"></p>
+    </div>
+  {% endfor %}
+{% endblock content %}

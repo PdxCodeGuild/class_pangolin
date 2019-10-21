@@ -1,0 +1,13 @@
+body {
+  background-image: url("images/polls.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+li, label {
+  color: darkred;
+}
+
+li a {
+  color: magenta;
+}

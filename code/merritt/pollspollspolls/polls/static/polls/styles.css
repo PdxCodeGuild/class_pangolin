@@ -1,0 +1,8 @@
+li a {
+  color:teal;
+  background-color: coral;
+}
+
+body {
+  background: white url("images/background.gif") repeat;
+}
