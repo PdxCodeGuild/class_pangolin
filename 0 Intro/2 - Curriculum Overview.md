@@ -109,9 +109,11 @@ A program is a series of instructions given to a computer which perform operatio
 
 **Weeks 4, 5:** HTML/CSS
 
-**Weeks 6, 7, 8, 9:** JavaScript
+**Weeks 6, 7:** Basic JavaScript
 
-**Weeks 9, 10, 11:** Django, capstone proposal
+**Weeks 7, 8, 9:** Django, capstone proposal
+
+**Weeks 10, 11:** Vue, Django Rest Framework, capstone proposal
 
 **Weeks 12, 13, 14:** Capstone project
 
