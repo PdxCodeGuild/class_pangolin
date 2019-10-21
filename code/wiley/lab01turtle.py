@@ -21,10 +21,10 @@ forward(60)#back to crotch
 left(90)
 forward(60)#left leg
 left(180)
-forward(60)
+forward(60)#back to crotch
 left(45)
-forward(100)
+forward(100)#up to chest for arms
 left(90)
-forward(100)
-left(180)
-forward(200)
+forward(100)#left arm
+left(180)#turn around
+forward(200)#right arm
