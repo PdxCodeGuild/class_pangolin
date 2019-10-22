@@ -1,12 +1,23 @@
-'''Allow the user to also enter the units. Then depending on the units, convert the distance into meters. The units we'll allow are feet, miles, meters, and kilometers.
 
-1 ft is 0.3048 m
-1 mi is 1609.34 m
-1 m is 1 m
-1 km is 1000 m
+user_unit = input('Enter the type of unit you want to convert?feet, mile, km: ').lower()
+user_number = int(input('Enter the number you would like to convert? '))
 '''
+feet =  user_number *0.3048
+mile = user_number *1609.34
+km = user_number * 1000
+'''
+if user_unit == 'feet':
+    value = user_number * 0.3048
+elif user_unit == 'mile':
+    value = user_number * 1609.34
+elif user_unit == 'km':
+    value = user_number * 1000 
+else:
+    print('enter a valid number')
 
-user_input = int(input('What is the number of feet you would like to convert? '))
-user_input = user_input * 0.3048
+print(value)
 
-print(user_input)
+
+#user_number = user_number * 0.3048
+
+
