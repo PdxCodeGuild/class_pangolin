@@ -29,5 +29,5 @@ elif userUnit == "ft":
 elif userUnit == "m":
     x = float(userDistance)
 elif userUnit == "km":
-    x = aKilo / float(userDistance)
+    x = 1000 * float(userDistance)
 print(x)
