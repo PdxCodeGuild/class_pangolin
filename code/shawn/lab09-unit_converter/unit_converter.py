@@ -10,20 +10,40 @@ kmToMeters = 1000
 
 # get user distance input
 userDistance = input("What is the distance? ")
-userUnits = input("what are the units? ") 
+inputUnits = input("what are the starting units? ") 
+outputUnits = input("What are the desired output units? ")
 
 # initialize output distance/units
 outputDistance = -1
-outputUnits = 'x'
+inputInMeters = -1
 
-# convert to meters
-outputUnits = "m"
+# convert input to meters
+if inputUnits == 'ft':
+    inputInMeters = float(userDistance) * feetToMeters
+elif inputUnits == 'mi':
+    inputInMeters = float(userDistance) * milesToMeters
+elif inputUnits == 'km':
+    inputInMeters = float(userDistance) * kmToMeters
+elif inputUnits == 'm':
+    # do nothing, meters were input
+    inputInMeters = userDistance
+else:
+    print("input unit not recognized, ending")
 
-if userUnits == 'ft':
-    outputDistance = float(userDistance) * feetToMeters
-elif userUnits == 'mi':
-    outputDistance = float(userDistance) * milesToMeters
-elif userUnits == 'km':
-    outputDistance = float(userDistance) * kmToMeters
+# for debugging, checking intermediate step
+# print(f"inputInMeters is {inputInMeters}")
 
-print(f"{userDistance} {userUnits} is {outputDistance} {outputUnits}")
+# convert meters to desired output
+if outputUnits == 'ft':
+    outputDistance = float(inputInMeters) / feetToMeters
+elif outputUnits == 'mi':
+    outputDistance = float(inputInMeters) / milesToMeters
+elif outputUnits == 'km':
+    outputDistance = float(inputInMeters) / kmToMeters
+elif outputUnits == 'm':
+    #do nothing, meters were requested
+    outputDistance = float(inputInMeters)
+else:
+    print("output unit not recognized, ending")
+
+print(f"{userDistance} {inputUnits} is {outputDistance} {outputUnits}")
