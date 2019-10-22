@@ -24,6 +24,7 @@ def cleanUnits(input):
         return 'mi'
     else:
         print("You've broken me...I don't understand your input, please try again!")
+        exit()
 
 # get and clean user distance input
 userDistance = input("What is the distance? ")
