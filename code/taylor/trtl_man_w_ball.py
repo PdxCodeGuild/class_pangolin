@@ -29,7 +29,7 @@ forward(50)
 left(90)
 forward(50)
 
-# Createst the ball
+# Creates the ball
 penup()
 forward(50)
 i = 0
