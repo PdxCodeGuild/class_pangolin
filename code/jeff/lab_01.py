@@ -1,6 +1,6 @@
-# Lab_0.py
+# Lab_01.py
 # Jeff Smith
-# 10.21.19
+# 10.22.19
 
 from turtle import *
 
