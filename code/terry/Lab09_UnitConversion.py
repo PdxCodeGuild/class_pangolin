@@ -3,7 +3,9 @@
 aFoot = 0.3048
 aMile = 1609.34
 aMeter = 1
-aKilo = aFoot * 1000
+aKilo = aMeter * 1000
+aYard = 0.9144
+anInch = 0.0254
 
 # Feet
 # numOfFeet = input("What is the distance in feet? ")
@@ -30,4 +32,8 @@ elif userUnit == "m":
     x = float(userDistance)
 elif userUnit == "km":
     x = 1000 * float(userDistance)
+elif userUnit == "yd":
+    x = aYard * float(userDistance)
+elif userUnit == "in":
+    x = anInch * float(userDistance)
 print(x)
