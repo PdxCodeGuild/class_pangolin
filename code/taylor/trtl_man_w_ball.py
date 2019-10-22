@@ -29,4 +29,13 @@ forward(50)
 left(90)
 forward(50)
 
+# Creates the ball
+penup()
+forward(50)
+i = 0
+pendown()
+while i < 100:
+    forward(2)
+    left(360/100)
+    i = i + 1
 done()
