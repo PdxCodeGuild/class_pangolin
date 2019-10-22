@@ -21,7 +21,8 @@ New Years Day -- January 1st, 2019
 
 ## Python Labs Assigned:
 
- 
+ Lab 01 -- Turtle  
+ Lab 09 -- Unit Converter  
 
 #### Optional Python Labs
 
