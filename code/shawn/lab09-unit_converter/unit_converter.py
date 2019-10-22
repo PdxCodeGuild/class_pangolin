@@ -8,12 +8,31 @@ feetToMeters = 0.3048
 milesToMeters = 1609.34
 kmToMeters = 1000
 
-# get user distance input
+# declare function for handling user input
+def cleanUnits(input):
+    # convert to lowercase
+    input = input.lower()
+
+    # use if statements to check for different ways of spelling/abbreviating units
+    if input == 'feet' or input == 'ft':
+        return 'ft'
+    elif input == 'kilometer' or input == 'km' or input == 'kilometers':
+        return 'km'
+    elif input == 'meters' or input == 'meter' or input == 'm':
+        return 'm'
+    elif input == 'mi' or input == 'miles' or input == 'mile':
+        return 'mi'
+    else:
+        print("You've broken me...I don't understand your input, please try again!")
+
+# get and clean user distance input
 userDistance = input("What is the distance? ")
 inputUnits = input("what are the starting units? ") 
+inputUnits = cleanUnits(inputUnits)
 outputUnits = input("What are the desired output units? ")
+outputUnits = cleanUnits(outputUnits)
 
-# initialize output distance/units
+# initialize output distance/units (using negative number to help with debug)
 outputDistance = -1
 inputInMeters = -1
 
