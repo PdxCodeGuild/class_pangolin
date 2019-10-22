@@ -1,5 +1,5 @@
 unit = input("What unit of measurement would you like to convert to meters?  Feet, miles, or kilometers?:  ").lower()
-num = int(input(f"How many {unit} would you like to convert?  Please give a whole number:  "))
+num = int(input(f"How many {unit} would you like to convert?  Please give a whole number: "))
 
 if unit == "feet":
     result = num * .3048
