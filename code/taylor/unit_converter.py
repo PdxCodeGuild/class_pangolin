@@ -1,5 +1,5 @@
 # Conversions to meters
-ft = 3.6576
+ft = .3048
 mi = 1609.34
 km = 1000
 m = 1
@@ -12,15 +12,15 @@ user_number_input = int(input("Enter the length / distance: > "))
 user_unit_input = input("Enter a unit as (ft, mi, km, m, yd, nchz): > ")
 # Converts user defined unit to meters
 if user_unit_input == "ft":
-     print(f"{ft * user_number_input} meters")
+     print(f"{user_number_input * ft} meters")
 elif user_unit_input == "mi":
-     print(f"{mi * user_number_input} meters")
+     print(f"{user_number_input * mi} meters")
 elif user_unit_input == "km":
-     print(f"{km * user_number_input} meters") 
+     print(f"{user_number_input * km} meters") 
 elif user_unit_input == "yd":
-     print(f"{yd * user_number_input} meters")
+     print(f"{user_number_input * yd} meters")
 elif user_unit_input == "nchz":
-     print(f"{nchz * user_number_input} meters")  
+     print(f"{user_number_input * nchz} meters")  
 else:
  print(f"{user_number_input} meters")
 
