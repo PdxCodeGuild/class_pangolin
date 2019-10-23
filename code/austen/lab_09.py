@@ -1,12 +1,5 @@
 user_unit = input('Enter the type of unit you want to convert? *feet, mile, km, yard, inch*: ').lower()
-user_number = int(input('Enter the number you would like to convert? '))
-
-
-'''
-feet =  user_number *0.3048
-mile = user_number *1609.34
-km = user_number * 1000
-'''
+user_number = float(input('Enter the number you would like to convert? '))
 
 if user_unit == 'feet':
     value = user_number * 0.3048
@@ -20,9 +13,8 @@ elif user_unit == 'inch':
     value = user_number * 0.0254
 else:
     print('enter a valid number')
-
+    
 user_unit2 = input('Enter the type of unit you would like to convert to? *feet, mile, km, yard, inch*: ').lower()
-
 if user_unit2 == 'feet':
     value = value / 0.3048
 elif user_unit2 == 'mile':
@@ -35,7 +27,6 @@ elif user_unit2 == 'inch':
     value = value / 0.0254
 else:
     print('enter a valid number')
-
 
 print (int(user_number), user_unit, 'is', int(value) , user_unit2)
 
