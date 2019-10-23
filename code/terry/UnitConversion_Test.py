@@ -1,9 +1,9 @@
 # Unit conversion.  In version 1, we ask the user for the distance in feet and convert it to meters.
 # Other versions of this program will expand off this one.
 aFoot = 0.3048
-aMile = 1609.34
+aMile = 0.000621
 aMeter = 1.0
-aKilo = 1000.0
+aKilo = 0.001
 aYard = 0.9144
 anInch = 0.0254
 
@@ -35,11 +35,11 @@ else:
     # print(userDistance)
 
     if userUnit == "mi":
-        x = aMile
+        x = 1609.34
     elif userUnit == "ft":
         x = aFoot
     elif userUnit == "m":
-        x = float(userDistance)
+        x = aMeter
     elif userUnit == "km":
         x = aKilo
     elif userUnit == "yd":
@@ -55,9 +55,9 @@ else:
     elif userOutput == "ft":
         y = aFoot
     elif userOutput == "m":
-        y = float(userDistance)
+        y = aMeter
     elif userOutput == "km":
-        y = aKilo
+        y = 1000
     elif userOutput == "yd":
         y = aYard
     elif userOutput == "in":
@@ -66,6 +66,9 @@ else:
     print(x)
     print(y)
     print(userDistance)
-    x = x * int(userDistance)
-    y = y * int(userDistance)
-    print(x / y)
+    # x = x * int(userDistance)
+    # y = y * int(userDistance)
+    # k = (x * y) * int(userDistance)
+    # k = (x * y)
+    # k = str(round(k, 8))
+    # print(k)
