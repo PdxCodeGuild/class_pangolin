@@ -82,4 +82,21 @@ def findWinner(user, comp):
         print('No combination found...exiting')
         exit()
 
-print(findWinner(getUserChoice(), generateComputerAnswer()))
+playAgain = True
+
+# game loop
+while playAgain:
+    # main game
+    print(findWinner(getUserChoice(), generateComputerAnswer()))
+
+    # figure out if user wants to play again
+    userWantsToPlayAgain = input("Play again? Please input \"yes\" or \"no\" ")
+    if(userWantsToPlayAgain == 'yes'):
+        print("Game on!")
+        playAgain = True
+    elif(userWantsToPlayAgain == 'no'):
+        print("Game over...")
+        playAgain = False
+    else:
+        print("You didn't follow directions, play again!")
+        playAgain = True

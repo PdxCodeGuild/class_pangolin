@@ -1,3 +1,8 @@
+# Shawn Stolsig
+# PDX Code Guild 
+# Assignment: Lab 1 - Turtle (extra shapes)
+# Date: 10/22/2019
+
 from turtle import *
 
 # # size of increment
