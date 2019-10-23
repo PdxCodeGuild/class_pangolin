@@ -36,10 +36,11 @@ print("************************")
 
 # use dictionary to define choices
 # key is the choice, value[0] is what beats it, value[1] is what it beats
+# using tuples for each one since n = 0 indicates what beats it, n = 1 indicates what you beat
 choices = {
-    'rock': ['paper', 'scissors'],
-    'paper': ['scissors', 'rock'],
-    'scissors': ['rock', 'paper']
+    'rock': ('paper', 'scissors'),
+    'paper': ('scissors', 'rock'),
+    'scissors': ('rock', 'paper')
 }
 
 # generate random int from 0 to 2 for computer's choice, return as string 'rock', 'paper', or 'scissors'
