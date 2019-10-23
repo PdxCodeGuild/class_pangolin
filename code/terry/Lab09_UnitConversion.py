@@ -2,8 +2,8 @@
 # Other versions of this program will expand off this one.
 aFoot = 0.3048
 aMile = 1609.34
-aMeter = 1
-aKilo = aMeter * 1000
+aMeter = 1.0
+aKilo = 1000.0
 aYard = 0.9144
 anInch = 0.0254
 
@@ -18,9 +18,11 @@ anInch = 0.0254
 #     print("You did not enter a value.")
 
 userUnit = ""
+userOutput = ""
 userDistance = 0
 
-userUnit = input("What is the unit you would like to have converted to meters? ").lower()
+userUnit = input("What is the unit input? ").lower()
+userOutput = input("What is the unit output? ").lower()
 userDistance = input("What is the distance to be converted? ")
 # print(userUnit)
 # print(userDistance)
@@ -36,4 +38,21 @@ elif userUnit == "yd":
     x = aYard * float(userDistance)
 elif userUnit == "in":
     x = anInch * float(userDistance)
+
 print(x)
+#print(userOutput)
+
+if userOutput == "mi":
+    y = aMile * float(userDistance)
+elif userOutput == "ft":
+    y = aFoot * float(userDistance)
+elif userOutput == "m":
+    y = float(userDistance)
+elif userOutput == "km":
+    y = 1000 * float(userDistance)
+elif userOutput == "yd":
+    y = aYard * float(userDistance)
+elif userOutput == "in":
+    y = anInch * float(userDistance)
+
+print(y)
