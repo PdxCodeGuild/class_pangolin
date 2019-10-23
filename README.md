@@ -23,6 +23,8 @@ New Years Day -- January 1st, 2019
 
  Lab 01 -- Turtle  
  Lab 09 -- Unit Converter  
+ Lab 10 -- Average Numbers  
+ Lab 11 -- Simple Calculator  
 
 #### Optional Python Labs
 
