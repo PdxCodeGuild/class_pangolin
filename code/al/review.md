@@ -1,5 +1,10 @@
+#### Run this:
 
-#### Review
+> document.querySelectorAll('li > p > input')
+
+> .forEach(elem => elem.disabled = false)
+
+## Review
 
 Review topics:
 
