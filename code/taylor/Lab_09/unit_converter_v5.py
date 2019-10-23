@@ -50,7 +50,7 @@ for key, value in conversions.items():
          to_meters = value * user_number_input
 
 # Function call inputUnits
-user_unit_conversion_input =inputUnits(message3)
+user_unit_conversion_input = inputUnits(message3)
 
 #Final conversion from meters to desired unit
 for key, value in conversions.items():
