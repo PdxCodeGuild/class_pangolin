@@ -1,3 +1,7 @@
+# Taylor Rebbe
+# PDX Code Guild
+# Lab 09 Complete
+
 # Conversions to meters formula
 ft = .3048
 mi = 1609.34
@@ -33,7 +37,6 @@ while True:
 # Calls the input function for the numerical length / distance     
 user_number_input = inputNumber(message)
 
-# user_number_input = int(input("Enter the length / distance: > "))
 while True:
      user_unit_conversion_input = input("Enter an ending unit as (ft, mi, km, m, yd, nchz): > ")
      if user_unit_conversion_input.lower() not in ("ft", "mi", "km","m", "yd", "nchz"):
