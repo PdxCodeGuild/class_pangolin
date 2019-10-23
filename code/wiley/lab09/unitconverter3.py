@@ -1,5 +1,5 @@
-#lab09 version 2 
-#now adding support for units: feet, miles, meters, and kilometers.
+#lab09 version 3 
+#now adding support for units: yards and inches
 print("Welcome to Unit Converter! \nThis will tell you how many meters are in your distance!")
 
 while True:
@@ -20,6 +20,14 @@ while True:
         elif var2.lower() == "km" or var2.lower() == "kilometers" or var2.lower() == "kilometer":
             var1 *= 1000
             print(str(var1) + " meters")
+            break
+        elif var2.lower() == "y" or var2.lower() == "yard" or var2.lower() == "yards":
+            var1 *= .9144
+            print(str(var1)+ " meters")
+            break
+        elif var2.lower() == "in" or var2.lower() == "inch" or var2.lower() == "inches":
+            var1 *= .0254
+            print(str(var1) + " meters.")
             break
         else:
             print("Not a valid unit in this version, sorry. ")
