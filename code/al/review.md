@@ -99,3 +99,9 @@ Review topics:
   - [ ] setting a flag
 
   - [ ] input validation
+
+- [ ] comprehensions 
+
+    - [ ] if, if/else, why inplace if doesn't work 
+
+    - [ ] translating to for loop, translating from for loop 
