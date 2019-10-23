@@ -2,7 +2,7 @@
 #1 ft = .3048 meters We can get the output of feet in meters by multiplying the input distance by 0.3048
 while True: 
     try:
-        var1 = int(input("What is the distance in feet?  "))
+        var1 = float(input("What is the distance in feet?  "))
         response = var1 * .3048
         print(f"{var1} feet is equal to {response} meters.\n ")
         print("Thanks for converting!")
