@@ -10,7 +10,6 @@ while finish:
     operator = input("What operation do you want to perform? ")
 
     if operator.lower() == 'done':
-        finish = False
         break
     else:
         num1 = input("What is the first number? ")
@@ -26,5 +25,4 @@ while finish:
         elif operator == '/':
             outPut = num1 / num2
         print(outPut)
-#finish = False
-#break
+    finish = False
