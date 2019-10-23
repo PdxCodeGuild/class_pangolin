@@ -12,6 +12,8 @@ for i in nums:
     tot = tot + i
 print(f'The total of the list is {tot}')
 print()
-tot = tot / 7
+tot = tot / 7 
+tot = round(tot, 3)
 print(f'The average number for all the numbers in the list is {tot}')
+
 
