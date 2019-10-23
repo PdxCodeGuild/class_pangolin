@@ -7,10 +7,12 @@ outPut = 0.0
 finish = True
 
 while finish:
-    operator = input("What operation do you want to perform? ")
-
+    operator = input("What operation do you want to perform? Type 'Done' to quit. ")
     if operator.lower() == 'done':
         break
+    elif operator != '+' and operator != '-' and operator != '*' and operator != '/':
+        print("Not a valid operator. Use + - * / ")
+        continue
     else:
         num1 = input("What is the first number? ")
         num2 = input("What is the second number? ")
@@ -25,4 +27,3 @@ while finish:
         elif operator == '/':
             outPut = num1 / num2
         print(outPut)
-    finish = False
