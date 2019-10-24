@@ -3,10 +3,10 @@
 # Lab_11v2
 
 # Message variables
-message1 = "\nWhat is the operation you'd like to perform (+, -, *, /)? >"
-message2 = "\nWhat is the first number? >" 
-message3 = "\nWhat is the second number? >"
-message4 = "\nTo exit type done: >"
+message1 = "\nWhat is the operation you'd like to perform (+, -, *, /)? > "
+message2 = "\nWhat is the first number? > " 
+message3 = "\nWhat is the second number? > "
+message4 = "\nTo exit type done: > "
 
 # Input variables
 get_operator = input(message1)
@@ -25,14 +25,14 @@ math_operators = {
      }
 
 # Functions
-def get_calculation():
+def getCalculation():
     for key, value in math_operators.items():
      if key == get_operator:
          return value
 
 # Program loop
 while game_over != "done":
-    print(get_calculation())
+    print(getCalculation())
 
     game_over = input(message4)
     print("\nBye bye")
