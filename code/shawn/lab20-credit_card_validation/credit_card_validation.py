@@ -4,7 +4,8 @@
 # Date: 10/23/2019
 
 # sample number from lab assignment
-sampleNum = str(4556737586899855)
+# sampleNum = str(4556737586899855)
+sampleNum = input("please input a sample number: ")
 
 # define function for validating credit card info is correct
 def checkCard(numStr):
