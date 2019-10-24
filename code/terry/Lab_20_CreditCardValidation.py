@@ -17,7 +17,7 @@ no alpha needed in this lab
 """
 check_digit = 0
 cc_input = 0
-card_valid = False
+card_valid = True
 cc_input = input("Please input the CC number: ")
 cc_input = [int(i) for i in cc_input]
 print(f"The original list is: {cc_input}")
@@ -28,7 +28,7 @@ print(f"The check digit is: {check_digit}")
 revlst = list(reversed(cc_input))
 print(f"The reversed list is: {revlst}")
 
-doubled = [d * 2 for d in revlst[0::]]
+doubled = [d * 2 if i % 2 == 0 else d for i, d in enumerate(revlst)]
 print(f"The doubled list is: {doubled}")
 
 cc_input = [n - 9 if n > 9 else n for n in doubled]
@@ -36,7 +36,10 @@ print(f"The 'nine' list is: {cc_input}")
 
 inputSum = sum(cc_input)
 print(f"The sum of the list is: {inputSum}")
-inputSum = str(inputSum)
+
+inputSum = [inputSum]
+
+inputSum = [int(x) if x != 0 else x for z in inputSum for x in str(z)]
 
 inputSum = inputSum[1]
 
