@@ -1,6 +1,6 @@
 # Taylor Rebbe
 # PDX Code Guild
-# Lab 09 Complete
+# Lab 20 Complete
 
 # Message variable
 message1 = "\nPlease enter a 16 digit credit card number: >  "
