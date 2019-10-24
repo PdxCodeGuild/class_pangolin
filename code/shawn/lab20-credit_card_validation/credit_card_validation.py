@@ -23,14 +23,11 @@ def checkCard(numStr):
     print(numList)
 
     # 4. Double every other element in the reversed list.
-    for i in range(0, len(numList), 2):
-        numList[i] *= 2
+    numList = [numList[i]*2 if i % 2 == 0 else numList[i] for i in range(0,len(numList))]
     print(numList)
 
     # 5. Subtract nine from numbers over nine.
-    for i in range(len(numList)):
-        if numList[i] > 9:
-            numList[i] -= 9
+    numList = [num-9 if num > 9 else num for num in numList]
     print(numList)
 
     # 6. Sum all values.
