@@ -27,8 +27,12 @@ print(f"The check digit is {check_digit}")
 cc_input = list(reversed(cc_input))
 print(f"The reversed list {cc_input}")
 
-cc_input = [x * 2 for x in cc_input]
+cc_input = [d * 2 for d in cc_input]
 print(f"The doubled list is {cc_input}")
 
-cc_input = [(nine - 9) for nine in cc_input]
-print(f"The 'nine' list is {cc_input}")
+nine = [n - 9 if n > 9 else n for n in cc_input]
+print(f"The 'nine' list is {nine}")
+
+# for i in range(len(card_number_list)):
+# 		if card_number_list[i] > 9:
+# 			card_number_list[i] -= 9
