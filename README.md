@@ -25,6 +25,7 @@ New Years Day -- January 1st, 2019
  Lab 09 -- Unit Converter  
  Lab 10 -- Average Numbers  
  Lab 11 -- Simple Calculator  
+ Lab 20 -- Credit Card Validation  
 
 #### Optional Python Labs
 
