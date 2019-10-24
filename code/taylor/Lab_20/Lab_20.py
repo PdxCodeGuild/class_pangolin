@@ -1,12 +1,13 @@
-message1 = "Please enter a credit card number: >  "
-
-# cc_num = input(message1)
-
-# cc_num_tst = [4, 5, 5, 6, 7, 3, 7, 5, 8, 6, 8, 9, 9, 8, 5, 5]
+message1 = "Please enter a 16 digit credit card number: >  "
 
 cc_num_tst = [4, 5, 5, 6, 7, 3, 7, 5, 8, 6, 8, 9, 9, 8, 5, 9999]
+print(len(cc_num_tst))
 
 #Convert the input string into a list of ints
+user_input1 = list(input(message1))
+cc_num_usr = [int(i) for i in user_input1]
+
+print(cc_num_usr)
 
 #Slice off the last digit. That is the check digit.
 cc_num_slc = cc_num_tst.pop(-1)
