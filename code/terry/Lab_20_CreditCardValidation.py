@@ -25,13 +25,13 @@ print(f"The original list is: {cc_input}")
 check_digit = cc_input.pop()
 print(f"The check digit is: {check_digit}")
 
-cc_input = list(reversed(cc_input))
-print(f"The reversed list is: {cc_input}")
+revlst = list(reversed(cc_input))
+print(f"The reversed list is: {revlst}")
 
-cc_input = [d * 2 for d in cc_input]
-print(f"The doubled list is: {cc_input}")
+doubled = [d * 2 for d in revlst[0::]]
+print(f"The doubled list is: {doubled}")
 
-cc_input = [n - 9 if n > 9 else n for n in cc_input]
+cc_input = [n - 9 if n > 9 else n for n in doubled]
 print(f"The 'nine' list is: {cc_input}")
 
 inputSum = sum(cc_input)
