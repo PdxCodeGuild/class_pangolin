@@ -11,7 +11,7 @@ first = 0
 second = 0
 
 def stop():
-    if str(op) == "done" or str(first) == "done" or str(second) == "done":
+    if op == "done" or first == "done" or second == "done":
         print("Sayonara!")
         quit()
     else:
