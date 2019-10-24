@@ -1,35 +1,45 @@
 # Taylor Rebbe
 # PDX Coed Guild
-# Lab_10v1
+# Lab_10v2
 
-message1 = "\nenter a number, or "
-message2 = "enter a number, or 'done': >"
-message4 = "\nTo exit type done: >"
+# Module
+import os
 
-nums = [5, 0, 8, 3, 4, 1, 6]
+# Message variables
+message1 = "\nEnter a number, or 'done': > "
 
-sums = 0
+# List variables
+num_list_user = []
 
-game_over = ""
-
-
-while game_over != "done":
-    for i in range(len(nums)):
-        sums += nums[i]
-        average = sums / len(nums)
-
-    print(sums)
-    print(average)
-
-
-  
-
-    game_over = input(message4)
+# Functions
+def findListAverage(num_list):
     sums = 0
-    print("\nBye bye")
+    for i in range(len(num_list)):
+        sums += num_list[i]
+    average = sums / len(num_list)
+    return average
+        
+def genUserDefinedList(user_num):
+    num_list_user.append(user_num)
+    return num_list_user
 
+# Fresh console
+os.system('cls' if os.name == 'nt' else 'clear')
 
-    nums = []
-nums.append(5)
-print(nums)
+# Main program loop
+while True:
+    
+    user_input = input(message1)
+    if user_input != 'done':
+        genUserDefinedList(int(user_input))
+        average = round(findListAverage(num_list_user))
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(f"\nNumber List: > {num_list_user}\nAverage: > {average}")
 
+    else:
+        print("\nBye bye")
+        break
+
+    
+  
+    
