@@ -27,6 +27,8 @@ print(f"The check digit is {check_digit}")
 cc_input = list(reversed(cc_input))
 print(f"The reversed list {cc_input}")
 
-doubles = [x * 2 for x in cc_input]
-print(f"The doubled list is {doubles}")
+cc_input = [x * 2 for x in cc_input]
+print(f"The doubled list is {cc_input}")
 
+cc_input = [(nine - 9) for nine in cc_input]
+print(f"The 'nine' list is {cc_input}")
