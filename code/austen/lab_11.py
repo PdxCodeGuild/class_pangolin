@@ -29,4 +29,12 @@ while True:
     else:
         print ('please enter a valid option * yes or no * ')
    
-        
+
+# on the second line of the while loop you could have put a if statemnt that looks like 
+# if op == 'done':
+  #  break
+ # elif op not in ops:
+  #    continue
+
+
+  # try taking out line 8 and see if it will still run 

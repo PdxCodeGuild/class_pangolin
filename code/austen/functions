@@ -1,0 +1,98 @@
+#-a method sees what is left of the dot.
+
+def() is like putting it in your head and using it later within code
+- you have to call it later so that it works "taking it from the past and using it"
+
+PARAMETERS
+
+def hello(first,last):
+    print(f'hello {first} {last}!')
+ex:2
+first = 'bob'
+last = 'jones'
+hello(first,last)
+
+
+ex:1
+hello('merritt', 'lawrensen')
+
+varible lookups can go out but cant go inside the function 
+if you have a, b, c, d in your function
+and print abcd
+
+but you have 
+
+thing 
+thing
+thing
+thing
+print thing thing thing d
+
+it will read left to right and if you dont put that last thing you will just print d
+
+if arguments are optional and only optional you can enter them 
+
+hello(thing1, c= 'mystuf')
+
+keyword argumets dont look it up by definition
+
+*args is defined as a tuple of the poitoinal arguments and passedto the fnction that dont have explicit names in our functon 
+**kwargs is defined as a dictionary of any keyword arguments passed to the function that don’t match keywords in the function signature. You can find more information about both here.
+
+the star is only used to MAKE a function
+
+*args go first the the **kwargs
+
+RETURNING
+a return is like a break but no return value
+
+you dont need a else becasue a return is just going to end it 
+
+def add(a, b):
+    return a+b (use this becasue you may             want to print it or                  change it out later but              you cant if you just use             it as a print statemnt )
+
+print(add(2,3) + 1)
+
+is 6 
+
+this is a pure transformation 
+
+x= add(2,3) this can now be stored.
+
+use the return insted 
+
+in adtion you can use:
+
+def my_print(a,b):
+    print(f'the answer is {add(a,b)}')
+            
+___________________________________________________________
+
+def noisy_add(num1,num2):
+    print(f"ADDING {num1} AND {num2}!!!:d")
+    return num1 +num2 # it is bad if you dont return anything you need to have a return to see                      what is left behing 
+
+# the plus is a function within the parinthatese
+noisy_add(3+1) + (-2+4)  # addint 3 and 1
+noisy_add(4) + (2)      # adding 4 and 2
+#equals 6
+
+
+print('a', 'b', 'c')
+
+# this is the same with a *args
+
+def m_print(*args, end= '\n', sep=' '):
+    for arg in args:
+        print(arg + sep, end='', sep='')
+    print(end, sep='', end='')
+
+
+print(end=*1*100) # this gives you 100 stars after your statment 
+
+___________________________________________________________
+
+
+
+
+
