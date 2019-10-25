@@ -13,8 +13,10 @@ userInputLst = [int(x) if x != 0 else x for z in userInputStr for x in str(z)]
 print(userInputLst)
 
 print(len(userInputStr))
+print(len(userInputLst))
 
-for x in range(len(userInputStr)):
+for userInputInt in userInputLst:
+    num1 = int(userInputLst[0])
     if userInputInt in num_dict:
         outPut.append(num_dict[userInputInt])
 
