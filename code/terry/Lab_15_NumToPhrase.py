@@ -9,7 +9,9 @@ isSpecial = False
 isOne = False
 isLarge = False
 
+
 userInput = list(toBeConverted)
+
 userInput = [int(x) if x != 0 else x for z in userInput for x in str(z)]
 
 if int(toBeConverted) >= 10:
@@ -19,13 +21,13 @@ else:
     num1 = int(userInput[0])
 
 isTen = int(toBeConverted)
-if isTen <= 19 and isTen > 9:
+if isTen <= 9:
+    isOne = True
+    num1 = int(userInput[0])
+elif isTen <= 19 and isTen > 9:
     isSpecial = True
     num2 = int(userInput[0])
     num1 = int(userInput[1])
-elif isTen <= 9:
-    isOne = True
-    num1 = int(userInput[0])
 elif isTen >= 20:
     isLarge = True
     isOne = True
@@ -91,14 +93,15 @@ if isOne:
         outputOnes = "Eight"
     elif num1 == 9:
         outputOnes = "Nine"
+    elif num1 == 0:
+        outputOnes = "Zero"
 
 if outputSpecial:
     print(outputSpecial)
-
 if isLarge:
-    if outputOnes != "":
-        print(f"{outputTens}-{outputOnes}")
-    elif outputOnes == "":
+    if outputOnes == "" or outputOnes == "Zero":
         print(outputTens)
+    elif outputOnes != "Zero":
+        print(f"{outputTens}-{outputOnes}")
 elif isOne:
     print(outputOnes)
