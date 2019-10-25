@@ -4,4 +4,18 @@ num_dict = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "
             60: "Sixty", 70: "Seventy", 80: "Eighty", 90: "Ninety", 100: "Hundred"}
 
 userInput = input("Enter the number to be converted to English. ")
+userInputInt = int(userInput)
+outPut = []
 
+userInputStr = list(userInput)
+print(userInputStr)
+userInputLst = [int(x) if x != 0 else x for z in userInputStr for x in str(z)]
+print(userInputLst)
+
+print(len(userInputStr))
+
+for x in range(len(userInputStr)):
+    if userInputInt in num_dict:
+        outPut.append(num_dict[userInputInt])
+
+print(outPut)
