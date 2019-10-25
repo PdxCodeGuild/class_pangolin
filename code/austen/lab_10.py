@@ -16,6 +16,12 @@ print('sum is', total)
 average = total / len(nums)
 print('the average is', average)
 
+
+# check if they are done first then go and continue so switch line 7 and 8 and get rid of the break
+
+# on line 17 you need to put str(average) so that you can concatinate if you leave it as a float then it just adds it. also you should have put a + insted of the , 
+
+# another example of line 17 is print(f'average: {average}')
     
 
 

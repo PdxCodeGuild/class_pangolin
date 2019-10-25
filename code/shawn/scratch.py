@@ -1,0 +1,1 @@
+print('shortcut test')

@@ -29,11 +29,11 @@ cardnums_list = [num*2 if spot%2 == 0 else num for spot, num in enumerate(cardnu
 cardnums_list = [num-9 if num>9 else num for num in cardnums_list]
 
 #sum all the values
-cardnums_list_sum = [sum(cardnums_list[:])]
+cardnums_list_sum = sum(cardnums_list)
 
 #take the second digit of that sum
 #turning the list into a string, and then back into a list, thus making the digits split up
-cardnums_string = str(cardnums_list_sum[0]) 
+cardnums_string = str(cardnums_list_sum) 
 cardnums_string = [nums for nums in cardnums_string] 
 
 #check if second digit is same as the check digit

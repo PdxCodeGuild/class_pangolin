@@ -10,7 +10,6 @@ import ast
 # main loop
 while True:
 
-    ############################### Version 2
     # get operator input
     op = input("What is the operation you'd like to perform? ")
 
@@ -18,24 +17,26 @@ while True:
     if op == "done":
         break
 
-    # get number input
-    num1 = float(input("What is the first number? "))
-    num2 = float(input("What is the second number? "))
+    # conduct operation if acceptable input operation
+    elif op in ['+','/','-','*','%','**']:
+        # get number input
+        num1 = float(input("What is the first number? "))
+        num2 = float(input("What is the second number? "))
 
-    # otherwise, print operation
-    if op == '+':
-        print(f"{num1} {op} {num2} = {num1 + num2}")
-    elif op == '-':
-        print(f"{num1} {op} {num2} = {num1 - num2}")
-    elif op == '/':
-        print(f"{num1} {op} {num2} = {num1 / num2}")
-    elif op == '*':
-        print(f"{num1} {op} {num2} = {num1 * num2}")
-    elif op == '%':
-        print(f"{num1} {op} {num2} = {num1 % num2}")
-    elif op == '**':
-        print(f"{num1} {op} {num2} = {num1 ** num2}")
-    else:
-        print("unknown operator, restarting")
+        # otherwise, print operation
+        if op == '+':
+            print(f"{num1} {op} {num2} = {num1 + num2}")
+        elif op == '-':
+            print(f"{num1} {op} {num2} = {num1 - num2}")
+        elif op == '/':
+            print(f"{num1} {op} {num2} = {num1 / num2}")
+        elif op == '*':
+            print(f"{num1} {op} {num2} = {num1 * num2}")
+        elif op == '%':
+            print(f"{num1} {op} {num2} = {num1 % num2}")
+        elif op == '**':
+            print(f"{num1} {op} {num2} = {num1 ** num2}")
+        else:
+            print("unknown operator, restarting")
 
 print('goodbye!')
