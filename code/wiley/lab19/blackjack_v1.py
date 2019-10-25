@@ -9,7 +9,7 @@
 #Over 21, advise "Already Busted"
 
 def blackjack():
-    #take user card input
+    #take user card input, upper() on all to match dictionary keys
     card1= input("What is your first card?\n").upper()
     card2= input("What is your second card?\n").upper()
     card3= input("What is your third card?\n").upper()
