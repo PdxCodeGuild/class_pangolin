@@ -25,5 +25,9 @@ while finish:
         elif operator == '*':
             outPut = num1 * num2
         elif operator == '/':
-            outPut = num1 / num2
+            if num2 == 0:
+                print("You can not divide by zero.")
+                continue
+            else:
+                outPut = num1 / num2
         print(outPut)

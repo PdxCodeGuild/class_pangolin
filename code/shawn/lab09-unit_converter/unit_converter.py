@@ -7,6 +7,8 @@
 feetToMeters = 0.3048
 milesToMeters = 1609.34
 kmToMeters = 1000
+inToMeters = 0.0254
+ydToMeters = 0.9144
 
 # declare function for handling user input
 def cleanUnits(input):
@@ -22,6 +24,10 @@ def cleanUnits(input):
         return 'm'
     elif input == 'mi' or input == 'miles' or input == 'mile':
         return 'mi'
+    elif input == 'in' or input == 'inch' or input == 'inches':
+        return 'in'
+    elif input == 'yd' or input == 'yard' or input == 'yards':
+        return 'yd'
     else:
         print("You've broken me...I don't understand your input, please try again!")
         exit()
@@ -44,6 +50,10 @@ elif inputUnits == 'mi':
     inputInMeters = float(userDistance) * milesToMeters
 elif inputUnits == 'km':
     inputInMeters = float(userDistance) * kmToMeters
+elif inputUnits == 'in':
+    inputInMeters = float(userDistance) * inToMeters
+elif inputUnits == 'yd':
+    inputInMeters = float(userDistance) * ydToMeters
 elif inputUnits == 'm':
     # do nothing, meters were input
     inputInMeters = userDistance
@@ -60,6 +70,10 @@ elif outputUnits == 'mi':
     outputDistance = float(inputInMeters) / milesToMeters
 elif outputUnits == 'km':
     outputDistance = float(inputInMeters) / kmToMeters
+elif outputUnits == 'in':
+    outputDistance = float(inputInMeters) / inToMeters
+elif outputUnits == 'yd':
+    outputDistance = float(inputInMeters) / ydToMeters
 elif outputUnits == 'm':
     #do nothing, meters were requested
     outputDistance = float(inputInMeters)
