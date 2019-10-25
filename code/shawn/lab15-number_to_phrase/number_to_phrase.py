@@ -43,6 +43,38 @@ num_translated = {
     '90': 'ninty'
 }
 
+# declare dictionarey for number/roman numeral translation
+num_roman = {
+    '0': '',       # empty string for edge case
+    '1': 'I',
+    '2': 'II', 
+    '3': 'III',
+    '4': 'IV',
+    '5': 'V',
+    '6': 'VI',
+    '7': 'VII', 
+    '8': 'VIII', 
+    '9': 'IX',
+    '10': 'X', 
+    '20': 'XX',
+    '30': 'XXX',
+    '40': 'XL',
+    '50': 'L', 
+    '60': 'LX',
+    '70': 'LXX',
+    '80': 'LXXX',
+    '90': 'XC',
+    '100': 'C', 
+    '200': 'CC', 
+    '300': 'CCC',
+    '400': 'CD', 
+    '500': 'D',
+    '600': 'DC',
+    '700': 'DCC',
+    '800': 'DCCC',
+    '900': 'CM'  
+}
+
 # function for returning ones place
 def return_ones_digit(num):
     ''' takes in a int, returns string '''
@@ -84,6 +116,23 @@ def print_english_num():
     elif num >=100 and num <= 999:
         print(f'\n***** Your number is {num_translated[return_hundreds_digit(num)]} hundred {num_translated[return_tens_digit(num % 100)]} {num_translated[return_ones_digit(num)]} *****\n')
 
+# function for printing roman numeral version of number
+def print_roman_num():
+    ''' this function takes no arguments, but will print roman numeral version of a number entered by user '''
+
+    # get input 
+    num = get_number_input()
+
+    # use if statements to figure out which functions to call based on size of num
+    if num == 0:
+        print('\n***** There is no roman numeral for zero *****\n')  # edge case based on how dictionary is set up
+    elif num < 10:
+        print(f'\n***** Your number is {num_roman[str(num)]} *****\n')
+    elif num >=10 and num <= 99:
+        print(f'\n***** Your number is {num_roman[return_tens_digit(num)]}{num_roman[return_ones_digit(num)]} *****\n')
+    # elif num >=100 and num <= 999:
+    #     print(f'\n***** Your number is {num_roman[return_hundreds_digit(num)]} hundred {num_roman[return_tens_digit(num % 100)]} {num_roman[return_ones_digit(num)]} *****\n')
+
 # main loop
 while True:
 
@@ -93,6 +142,8 @@ while True:
         print('Invalid command, try again')
     elif mode_select == '1':
         print_english_num()
+    elif mode_select == '2':
+        print_roman_num()
     elif mode_select == '4':
         break
 
