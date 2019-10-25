@@ -11,7 +11,6 @@ isLarge = False
 
 userInput = list(toBeConverted)
 userInput = [int(x) if x != 0 else x for z in userInput for x in str(z)]
-print(userInput)
 
 if int(toBeConverted) >= 10:
     num2 = int(userInput[0])
@@ -97,7 +96,9 @@ if outputSpecial:
     print(outputSpecial)
 
 if isLarge:
-    print(f"Tens is: {outputTens} + Ones is: {outputOnes}")
-    print(f"{outputTens}-{outputOnes}")
+    if outputOnes != "":
+        print(f"{outputTens}-{outputOnes}")
+    elif outputOnes == "":
+        print(outputTens)
 elif isOne:
     print(outputOnes)
