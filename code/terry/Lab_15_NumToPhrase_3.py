@@ -6,18 +6,23 @@ num_dict = {1: "One", 2: "Two", 3: "Three", 4: "Four", 5: "Five", 6: "Six", 7: "
 userInput = input("Enter the number to be converted to English. ")
 userInputInt = int(userInput)
 outPut = []
+ifTen = False
+if100 = False
 
 userInputStr = list(userInput)
 print(userInputStr)
 userInputLst = [int(x) if x != 0 else x for z in userInputStr for x in str(z)]
 print(userInputLst)
 
-print(len(userInputStr))
-print(len(userInputLst))
+if userInputInt >= 100:
+    if100 = True
 
 for userInputInt in userInputLst:
     num1 = int(userInputLst[0])
     if userInputInt in num_dict:
         outPut.append(num_dict[userInputInt])
+
+if if100:
+    outPut.insert(1, "Hundred")
 
 print(outPut)
