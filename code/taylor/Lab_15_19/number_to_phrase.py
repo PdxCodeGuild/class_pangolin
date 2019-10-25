@@ -50,14 +50,17 @@ num_tns = {
 # Get lenghth of the input string
 def getInpLen(num_str):
     return len(str(num_str))
+
 # Converts the inputs into a list
 def numToList(usr_inp1):
     return list(usr_inp1)
+
 # Compares the dictionary and list for Key matches
 def getNumDict(num_dict, num):
     for key, value in num_dict.items():
      if key == num:
          return value
+
 # Gents the value for double digits
 def getTensValue(usr_inp1):
     if numToList(usr_inp1)[0] == "1":
@@ -70,6 +73,7 @@ def getTensValue(usr_inp1):
     else:
         pos1 = getNumDict(num_tns, numToList(usr_inp1)[0])
         print(pos1)
+
 # Gets the value for 3 digits
 def getHunValue(usr_inp1):
     if numToList(usr_inp1)[1] == "0":
