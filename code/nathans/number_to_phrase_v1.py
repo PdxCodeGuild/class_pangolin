@@ -9,7 +9,7 @@ objectives
 #### 1. Create user input for number
 user_num = int(input("Enter a number between 0 and 99: "))
 
-#### 2. Parse user input into usable numbers
+#### 2. Turn user input into usable numbers
 tens_digit = user_num//10
 ones_digit = user_num%10
 
@@ -23,7 +23,7 @@ ones_list = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight',
 tens_list = ['ten', 'twenty', 'thirty','fourty','fifty', 'sixty', 'seventy', 'eighty', 'ninety']
 teen_list = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
 
-#### 4. Use parsed numbers to pull from list/dict
+#### 4. Use numbers to pull from list/dict
 if user_num == 0:
     print(ones_list[0])
 if user_num in range(1,10):
