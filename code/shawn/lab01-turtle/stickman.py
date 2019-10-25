@@ -1,4 +1,7 @@
-# Draw stick figure
+# Shawn Stolsig
+# PDX Code Guild 
+# Assignment: Lab 1 - Turtle (stickman)
+# Date: 10/22/2019
 
 from turtle import *
 import time
