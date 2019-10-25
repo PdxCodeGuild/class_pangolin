@@ -5,20 +5,35 @@ toBeConverted = input("Type a number to be converted to English. ")
 outputSpecial = ""
 outputTens = ""
 outputOnes = ""
+isSpecial = False
+isOne = False
+isLarge = False
 
 userInput = list(toBeConverted)
 userInput = [int(x) if x != 0 else x for z in userInput for x in str(z)]
 print(userInput)
-#for i in userInput:
+
 if int(toBeConverted) >= 10:
     num2 = int(userInput[0])
     num1 = int(userInput[1])
 else:
-    num2 = int(userInput[0])
+    num1 = int(userInput[0])
 
 isTen = int(toBeConverted)
-
 if isTen <= 19 and isTen > 9:
+    isSpecial = True
+    num2 = int(userInput[0])
+    num1 = int(userInput[1])
+elif isTen <= 9:
+    isOne = True
+    num1 = int(userInput[0])
+elif isTen >= 20:
+    isLarge = True
+    isOne = True
+    num2 = int(userInput[0])
+    num1 = int(userInput[1])
+
+if isSpecial:
     if isTen == 10:
         outputSpecial = "Ten"
     elif isTen == 11:
@@ -39,20 +54,8 @@ if isTen <= 19 and isTen > 9:
         outputSpecial = "Eighteen"
     elif isTen == 19:
         outputSpecial = "Nineteen"
-elif isTen >= 20:
-    # userInput = list(userInput)
-    # userInput = [int(x) if x != 0 else x for z in userInput for x in str(z)]
-    # print(userInput)
-    #
-    # for i in userInput:
-    #     num2 = int(userInput[0])
-    #     num1 = int(userInput[1])
 
-    # print(num2)
-    # print(num1)
-
-# num1 is the Tens, num2 is the Single
-
+if isLarge:
     if num2 == 2:
         outputTens = "Twenty"
     elif num2 == 3:
@@ -70,26 +73,31 @@ elif isTen >= 20:
     elif num2 == 9:
         outputTens = "Ninety"
 
-elif isTen <= 9:
-    if num2 == 1:
+if isOne:
+    if num1 == 1:
         outputOnes = "One"
-    elif num2 == 2:
+    elif num1 == 2:
         outputOnes = "Two"
-    elif num2 == 3:
+    elif num1 == 3:
         outputOnes = "Three"
-    elif num2 == 4:
+    elif num1 == 4:
         outputOnes = "Four"
-    elif num2 == 5:
+    elif num1 == 5:
         outputOnes = "Five"
-    elif num2 == 6:
+    elif num1 == 6:
         outputOnes = "Six"
-    elif num2 == 7:
+    elif num1 == 7:
         outputOnes = "Seven"
-    elif num2 == 8:
+    elif num1 == 8:
         outputOnes = "Eight"
-    elif num2 == 9:
+    elif num1 == 9:
         outputOnes = "Nine"
 
-print(outputSpecial)
-print(outputTens)
-print(outputOnes)
+if outputSpecial:
+    print(outputSpecial)
+
+if isLarge:
+    print(f"Tens is: {outputTens} + Ones is: {outputOnes}")
+    print(f"{outputTens}-{outputOnes}")
+elif isOne:
+    print(outputOnes)
