@@ -1,7 +1,7 @@
 # Shawn Stolsig
 # PDX Code Guild 
 # Assignment: Lab 15 - Number to Phrase
-# Date: 10/24/2019
+# Date: 10/25/2019
 
 # use modulus or string operations to break things up to digits
 # use the digit as an index for a list of strings or as a key for a dict of digit:phrase pairs
