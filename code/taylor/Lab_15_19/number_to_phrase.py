@@ -89,10 +89,15 @@ def getHunValue(usr_inp1):
         pos2 = getNumDict(num_dbl, numToList(usr_inp1)[2])
         print(f"{pos1}-Hundred-{pos2}")
     elif numToList(usr_inp1)[1] != "1":
-        pos1 = getNumDict(num_sgl, numToList(usr_inp1)[0])
-        pos2 = getNumDict(num_tns, numToList(usr_inp1)[1])
-        pos3 = getNumDict(num_sgl, numToList(usr_inp1)[2])
-        print(f"{pos1}-Hundred-{pos2}-{pos3}")
+            if numToList(usr_inp1)[2] != "0":
+                pos1 = getNumDict(num_sgl, numToList(usr_inp1)[0])
+                pos2 = getNumDict(num_tns, numToList(usr_inp1)[1])
+                pos3 = getNumDict(num_sgl, numToList(usr_inp1)[2])
+                print(f"{pos1}-Hundred-{pos2}-{pos3}")
+            else:
+                pos1 = getNumDict(num_sgl, numToList(usr_inp1)[0])
+                pos2 = getNumDict(num_tns, numToList(usr_inp1)[1])
+                print(f"{pos1}-Hundred-{pos2}")
 
 # Main program
 if getInpLen(usr_inp1) == 1:
