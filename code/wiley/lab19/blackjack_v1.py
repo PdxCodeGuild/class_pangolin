@@ -13,7 +13,7 @@ def blackjack():
     card1= input("What is your first card?\n").upper()
     card2= input("What is your second card?\n").upper()
     card3= input("What is your third card?\n").upper()
-    #rane for stay to make it easy
+    #range for stay to make it easy
     stay_range = range(17,21)
     #made a dictionary of card values, reassign values from dictionary
     card_values_dict = {'A': 1, '2': 2, '3':3, '4':4,'5':5,'6':6,'7':7,'8':8,'9':9}
@@ -22,8 +22,9 @@ def blackjack():
     card2_value = card_values_dict.get(card2)
     card3_value = card_values_dict.get(card3)
     #print to test values are correct
-    print(card1_value, card2_value, card3_value)
-    if card1 or card2 or card3 not in card_values_dict: #'error' message for when user gives improper input
+    #print(card1_value, card2_value, card3_value)
+    
+    if card1 not in card_values_dict.keys() or card2 not in card_values_dict.keys() or card3 not in card_values_dict.keys(): # Fix the 'or's.  Causing invalid response. Truthy ors.
         print("Not a valid card.")
         return
     else: #begin evaluation
