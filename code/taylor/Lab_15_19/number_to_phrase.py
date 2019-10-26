@@ -6,7 +6,7 @@
 
 # Variables
 msg1 = "\nEnter a number (0 - 999): > "
-msg2 = "Ctrl^C to exit\n"
+msg2 = "Ctrl + C to exit\n"
 msg3 = "I can't count that high :("
 msg4 = "Error: Invalid number"
 h = "-Hundred"
@@ -21,67 +21,70 @@ def inpLen(n_str):
     return len(str(n_str))
 
 # Converts the inputs into a list
-def numLst(inpS):
-    return list(inpS)
+def numLst(inp1):
+    return list(inp1)
 
 # Compares the dictionary and list for Key matches
 def getDct(dct, num):
-    for x, y in dct.items():
-     if x == num:
-         return y
+    for key, value in dct.items():
+     if key == num:
+         return value
 
-# Sources the dictionary given the position of the digit         
+# Sources the dictionary dependent on position of the digit         
 def pGet(dct, i):
-    return getDct(dct, numLst(inpS)[i])
+    return getDct(dct, numLst(inp1)[i])
 
-# Get the value for 2 digits
-def twoDig(inpS):
-    if numLst(inpS)[0] == "1":
+# Get the value for double digits
+def twoDig(inp1):
+    if numLst(inp1)[0] == "1":
         p1 = pGet(dbl, 1)
         print(p1)
-    elif numLst(inpS)[1] != "0":
+    elif numLst(inp1)[1] != "0":
         p1 = pGet(tns, 0)
         p2 = pGet(sgl, 1)
         print(f"{p1}-{p2}")
-    p1 = pGet(tns, 0)
-    print(p1)
+    else:
+        p1 = pGet(tns, 0)
+        print(p1)
 
 # Get the value for 3 digits
-def thrDig(inpS):
-    if numLst(inpS)[1] == "0":
-        if numLst(inpS)[2] == "0":
+def thrDig(inp1):
+    if numLst(inp1)[1] == "0":
+        if numLst(inp1)[2] == "0":
             p1 = pGet(sgl, 0)
             print(f"{p1}{h}")
-        p1 = pGet(sgl, 0)
-        p3 = pGet(sgl, 2)
-        print(f"{p1}{h}-{p3}")
-    elif numLst(inpS)[1] == "1":
+        else:
+            p1 = pGet(sgl, 0)
+            p3 = pGet(sgl, 2)
+            print(f"{p1}{h}-{p3}")
+    elif numLst(inp1)[1] == "1":
         p1 = pGet(sgl, 0)
         p2 = pGet(dbl, 2)
         print(f"{p1}{h}-{p2}")
-    elif numLst(inpS)[1] != "1":
-            if numLst(inpS)[2] != "0":
+    elif numLst(inp1)[1] != "1":
+            if numLst(inp1)[2] != "0":
                 p1 = pGet(sgl, 0)
                 p2 = pGet(tns, 1)
                 p3 = pGet(sgl, 2)
                 print(f"{p1}{h}-{p2}-{p3}")
-            p1 = pGet(sgl, 0)
-            p2 = pGet(tns, 1)
-            print(f"{p1}{h}-{p2}")
+            else:
+                p1 = pGet(sgl, 0)
+                p2 = pGet(tns, 1)
+                print(f"{p1}{h}-{p2}")
 
 # Main loop
 while True:
     try:
         inp = abs(int(input(msg1)))
-        inpS = str(inp)
+        inp1 = str(inp)
         print(msg2)
         if inp > 999:
             print(msg3)
-        elif inpLen(inpS) == 1:
-            print(getDct(sgl, inpS))
-        elif inpLen(inpS) == 2:
-            twoDig(inpS)
-        elif inpLen(inpS) == 3:
-            thrDig(inpS)
+        elif inpLen(inp1) == 1:
+            print(getDct(sgl, inp1))
+        elif inpLen(inp1) == 2:
+            twoDig(inp1)
+        elif inpLen(inp1) == 3:
+            thrDig(inp1)
     except ValueError:
         print(msg4)
