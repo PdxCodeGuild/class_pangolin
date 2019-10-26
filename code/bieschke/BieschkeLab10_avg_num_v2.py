@@ -17,15 +17,14 @@ while tiger is True:
     if lion == '':
         tiger = False
         break
-
-    else:
-        lion = int(lion)
-        nums.append(lion)
+    #no need for an 'else' here because of the break 
+    lion = int(lion)
+    nums.append(lion)
 
 for num in nums:
     avg.append(num)
     sum(avg)
-    bears = (sum(avg)) / (len(avg))
+    #bears = (sum(avg)) / (len(avg))
 
 print(f"The sum of your entries is {sum(avg)}")
 print(f"The average value of your entries is {(sum(avg)) / (len(avg))}")
