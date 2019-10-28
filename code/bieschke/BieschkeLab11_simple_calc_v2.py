@@ -27,7 +27,7 @@ while tiger == True:
         pass
     else:
         print("Just the 4 basics operands plz")
-        quit()
+        continue
 
     first = (input("What is the first number?"))
     stop()
