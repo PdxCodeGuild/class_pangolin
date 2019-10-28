@@ -8,9 +8,6 @@
 # ver 3 and 4 are optional
 # make function to do this, then call the function
 
-# for clearing screen
-import os
-
 # declare dictionary for number/english equivalents 
 num_translated = {
     '0': '',        # will hardcode input of zero, but the empty string is needed for multiples of 10
@@ -91,13 +88,41 @@ def return_hundreds_digit(num):
     return str(num // 100)
 
 # function for get input
-def get_number_input():
-    ''' returns user number input as an int'''
-    while True:
-        input_number = int(input("Please input number from 0 to 100: "))
-        if input_number >= 0 and input_number < 1000:
-            return input_number
-        print("Please try different input")
+def get_number_input(mode = 'number'):
+    ''' returns user number input as an int.  optional arugment will turn function into time input format instead of a single int'''
+    
+    # number input
+    if mode == 'number':
+        while True:
+            input_number = int(input("Please input number from 0 to 1000: "))
+            if input_number >= 0 and input_number < 1000:
+                return input_number
+            print("Please try different input")
+    # time input
+    else:
+        while True:
+            input_time = input("Please input time in following format HH:MM am/pm: ")
+
+            # adjust input_hour/min depending if one digit hour
+            if input_time[1] == ':':
+                input_hour = int(input_time[:1:])                                    # slice off first number for single digit hour
+                input_min = int(input_time[2:4:])                                    # slice off minutes digits
+            # adjust input_hour/min depending if two digit hour
+            elif input_time[2] == ':':
+                input_hour = int(input_time[:2:])                                    # slice off first two numbers, for two digit hour              
+                input_min = int(input_time[3:5:])                                    # slice off minutes digits
+            input_ampm = input_time[len(input_time)-2:len(input_time):1].lower()     # slice off am or pm
+
+            # validation to ensure hours/min/am/pm are entered correctly
+            if input_hour > 12 or input_hour < 1:
+                print("Please input hour between 1 and 12")
+            elif input_min > 59 or input_min < 0:
+                print("Please input min between 0 and 59")
+            elif input_ampm not in ['am', 'pm']:
+                print("Please make sure last two digits are either 'am' or 'pm'")
+            else:
+                # return tuple (hour, min, am/pm)
+                return input_hour, input_min, input_ampm
 
 # function for printing english version of number
 def print_english_num():
@@ -130,21 +155,35 @@ def print_roman_num():
         print(f'\n***** Your number is {num_roman[str(num)]} *****\n')
     elif num >=10 and num <= 99:
         print(f'\n***** Your number is {num_roman[return_tens_digit(num)]}{num_roman[return_ones_digit(num)]} *****\n')
-    # elif num >=100 and num <= 999:
-    #     print(f'\n***** Your number is {num_roman[return_hundreds_digit(num)]} hundred {num_roman[return_tens_digit(num % 100)]} {num_roman[return_ones_digit(num)]} *****\n')
+    elif num >=100 and num <= 999:
+        hundred_string = return_hundreds_digit(num) + '00'  # have to add 0's to make this compatable with funtions used for regular numbers
+        print(f'\n***** Your number is {num_roman[hundred_string]}{num_roman[return_tens_digit(num % 100)]}{num_roman[return_ones_digit(num)]} *****\n')
+
+# function for printing english version of time
+def print_time():
+    ''' this function takes no arguments, but will print roman numeral version of a number entered by user '''
+
+    # get input 
+    hours, minutes, ampm = get_number_input('time')   # pass optional parameter to trigger for time input
+    # print(get_number_input('time') )
+    # print time in english
+    print(f'\n******* Your time is {num_translated[str(hours)]} {num_translated[return_tens_digit(minutes)]} {num_translated[return_ones_digit(minutes)]} {ampm} *******\n')
 
 # main loop
 while True:
 
+    # select different mode for program 
     prompt = 'Please type number for mode: \n (1) Number to English conversion \n (2) Number to Roman numeral conversion \n (3) Time to English \n (4) Exit \n Input: '
     mode_select = input(prompt)
     if mode_select not in ['1','2','3','4']:
         print('Invalid command, try again')
-    elif mode_select == '1':
+    elif mode_select == '1':        # time mode
         print_english_num()
-    elif mode_select == '2':
+    elif mode_select == '2':        # roman numeral mode
         print_roman_num()
-    elif mode_select == '4':
+    elif mode_select == '3':        # time mode
+        print_time()
+    elif mode_select == '4':        # quit
         break
 
 print("Program Exiting")
