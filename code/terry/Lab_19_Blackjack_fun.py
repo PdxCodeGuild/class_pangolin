@@ -7,6 +7,9 @@ Greater than or equal to 17, but less than 21, advise to "Stay"
 Exactly 21, advise "Blackjack!"
 Over 21, advise "Already Busted"
 """
+
+
+# This function's job is to determine if the input is done, ace, jack, queen or king and if so, return a value to user_hand.
 def findUserHand():
     if user_input == "done":
         return False
@@ -17,6 +20,9 @@ def findUserHand():
     else:
         return user_hand.append(int(user_input))
 
+
+# This function's job is to determine if the user should Hit, Stay, has a Blackjack, or Busted based on the value in
+# int().
 def printUserHand():
     if user_hand < 17:
         return f"{user_hand} You should Hit."
@@ -28,13 +34,13 @@ def printUserHand():
         return f"{user_hand} Busted"
 
 
-# This dictionary contains the card face as a string and the card's value as an integer.
-card_opt = {"2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, }
-
+# Sets the input to a blank string
 user_input = ""
-
+# Sets the hand list to a blank list
 user_hand = []
-
+# A while loop is used to ask the user about which cards they have in their hand.
+# Calls the findUserHand function, converts the list of strings to integers
+# Sums the list of integers and calls the printUserHand function to determine the results.
 while user_input != "done":
     user_input = input("Which cards do you have? Type 'done' to stop. ")
     findUserHand()
