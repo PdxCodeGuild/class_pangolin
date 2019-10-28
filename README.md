@@ -28,6 +28,8 @@ New Years Day -- January 1st, 2019
  Lab 20 -- Credit Card Validation  
  Lab 15 -- Number to Phrase  
  Lab 19 -- Blackjack  
+ Lab 13 -- ROT13  
+ Lab 17 -- Palindrome/Anagram  
 
 #### Optional Python Labs
 
