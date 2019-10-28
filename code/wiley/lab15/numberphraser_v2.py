@@ -1,5 +1,5 @@
 #Make a function to convert a given number into its english representation.
-#For example: 67 becomes 'sixty-seven'. Handle numbers from 0-99.
+#For example: 67 becomes 'sixty-seven'. Handle numbers from 0-999.
 #Hint: you can use modulus to extract the ones and tens digit.
 #Hint 2: use the digit as an index for a list of strings OR as a key for a dict of digit:phrase pairs.
 #Version 2: Handle numbers from 100-999.
@@ -25,7 +25,7 @@ def phraser ():
     if a ==0: #0 = zero
         return print("zero")
         
-    if hundreds_digit in hundreds_digit_dict.keys(): #not working, figure out how to apply teens 
+    if hundreds_digit in hundreds_digit_dict.keys(): 
         hundreds = hundreds_digit_dict.get(hundreds_digit) #finds the hundreds digit in the dictionary
         #print(hundreds) #hundreds test print
         if hunds_tens_digit in teens_range: #check for teens
