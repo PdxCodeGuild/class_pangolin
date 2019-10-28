@@ -11,11 +11,9 @@ PDX Code Guild doesn't hold class sessions on the following holidays. Holidays d
 
 * Independence Day
 * Labor Day
-* Veterans Day
 * Thanksgiving Weekend
 * Christmas Weekend
 * New Years Day
-* Martin Luther King Jr. Day
 * Memorial Day
 
 ## Contact
