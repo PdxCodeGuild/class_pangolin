@@ -9,6 +9,6 @@ Write a program that prompts the user for a string, and encodes it with ROT13. F
 | ROT+13  | n| o| p| q| r| s| t| u| v| w| x| y| z| a| b| c| d| e| f| g| h| i| j| k| l| m|
 
 
-## Version 2 (optional)
+## Version 2
 
 Allow the user to input the amount of rotation used in the encryption / decryption.

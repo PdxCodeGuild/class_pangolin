@@ -1,7 +1,7 @@
 '''
 Lab 11: Simple Calculator - Version 1
 
-Purpose/goal: Write a simple REPL (read evaluate print loop) calculator that can handle addition, subtraction, multiplication, and division. Ask the user for an operator and each operand. 
+Purpose/goal: Write a simple REPL (read evaluate print loop) calculator that can handle addition, subtraction, multiplication, and division. Ask the user for an operator and each operand. - D
 
 '''
 

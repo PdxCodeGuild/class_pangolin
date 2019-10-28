@@ -9,11 +9,10 @@ Purpose/goal: Write a program that allows the user to convert a number between u
 '''
 
 # user greeting
-print("Greetings!\nThis is a simple distance unit converter.")
+print("\nGreetings!\nThis is a simple distance unit converter.")
 
 # define user input
-user_input = input("Type a number of feet to receive the equivalent in meters: ")
-x = int(user_input)
+x = float(input("Type a number of feet to receive the equivalent in meters: "))
 
 # convert
 y = x * 0.3048
