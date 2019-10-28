@@ -1,7 +1,7 @@
 '''
 Lab 11: Simple Calculator - Version 2
 
-Purpose/goal: Allow the user to keep performing operations until they say 'done'. Use while True and break. Below is some sample input/output.
+Purpose/goal: Allow the user to keep performing operations until they say 'done'. Use while True and break. Below is some sample input/output. - D
 
 '''
 
