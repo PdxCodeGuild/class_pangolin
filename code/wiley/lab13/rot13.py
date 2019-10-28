@@ -33,7 +33,7 @@ def encryption():
     user_message = input("What do you want to be encrypted?\n").lower()
     message_list = [x for x in user_message]
     #print(message_list)
-    k = int(input("How many encryption rotations would you like? This must be a positive integer.\n"))
+    k = int(input("How many encryption rotations would you like? Use negative to decrypt an excrypted message.\n"))
     #makes a list of the values of user input
     for i in message_list:
         index = alphabet_dict.get(i)
