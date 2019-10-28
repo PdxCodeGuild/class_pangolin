@@ -38,19 +38,7 @@ nums_tens = {2: "twenty",
 8: "eighty",
 9: "ninety"
 }
-'''
-can you do this with nums_singles plus the word hundred? I think I might
-nums_hundreds = {1: 
-2: 
-3: 
-4: 
-5: 
-6: 
-7: 
-8:
-9:
-}
-'''
+
 def cheq():
     if x == '':
         print("Sayonara!")
