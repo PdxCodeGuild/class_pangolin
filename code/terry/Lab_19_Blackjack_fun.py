@@ -7,7 +7,9 @@ Greater than or equal to 17, but less than 21, advise to "Stay"
 Exactly 21, advise "Blackjack!"
 Over 21, advise "Already Busted"
 """
-# This function's job is to determine if the input is done, ace, jack, queen or king and if so, return a value
+
+
+# This function's job is to determine if the input is done, ace, jack, queen or king and if so, return a value to user_hand.
 def findUserHand():
     if user_input == "done":
         return False
