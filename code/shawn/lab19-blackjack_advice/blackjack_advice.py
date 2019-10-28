@@ -40,15 +40,25 @@ def get_hand_value(cards):
 
     # add up all the cards
     sum = 0
+    ace_counter = 0
     for card in cards:
         # need to handle 10 different since it's key has two characters
         if card[0] == '1':
             sum += card_values['10']
+        # need to handle Aces different since they can have two values
+        elif card[0] == 'A':
+            ace_counter += 1
+            sum += card_values[card[0]]
         else:
             sum += card_values[card[0]]
     values.append(sum)
-    
-    # add code to handle aces 
+
+    # add code to handle aces.  duplicate all current values, and add 10 (you would only ever count one ace as 11)
+    if ace_counter >= 1:
+        counter = len(values) - 1   # breaking out an index here to prevent infinite loop
+        while counter >= 0:
+            values.append(values[counter] + 10)
+            counter -= 1
 
     # return value of cards
     return values
@@ -80,6 +90,7 @@ def deal(players):
     for i in range(0,players + 1):
         delt_cards.append( [get_card(), get_card()]  )
 
+    #delt_cards.append( ['AC', '3C'])                ####### extra player with aces every time
     return delt_cards
 
 # function for one player to take hits or stand
@@ -97,7 +108,7 @@ def play_hand(player_id, dealt_cards):
 
         # print dealer's advice
         dealer_action = get_deal_advice(hand_value_list)
-        print(f"Dealer thinks he should {dealer_action}")
+        print(f"Dealer will {dealer_action}")
         
         # continue to loop while not given input of 'stay' or 'hold' 
         while dealer_action not in ['stay', 'bust', 'blackjack!']:
@@ -117,30 +128,34 @@ def play_hand(player_id, dealt_cards):
         print(f"{dealt_cards[player_id]} with value(s) of {hand_value_list}")
 
         # print dealer's advice
-        print(f"Dealer's advice is to {get_deal_advice(hand_value_list)}")
+        print(f"Dealer says: {get_deal_advice(hand_value_list)}")
 
         # get user's input on next action
         user_choice = input("Tell dealer what to do: ")
         
         # continue to loop while not given input of 'stay' or 'hold' 
-        while user_choice not in ['stay', 'Stay', 's', 'hold', 'Hold', 'h', 'bust']:
+        while user_choice not in ['stay', 'Stay', 's', 'hold', 'Hold', 'h', 'bust', 'stand']:
             dealt_cards[player_id].append(get_card())
             hand_value_list = get_hand_value(dealt_cards[player_id])
             print(f"{dealt_cards[player_id]} with value(s) of {hand_value_list}")
-            print(f"Dealer's advice is to {get_deal_advice(hand_value_list)}")
-            user_choice = input("Now what? ")
-
+            print(f"Dealer says: {get_deal_advice(hand_value_list)}")
+            if get_deal_advice(hand_value_list) == 'bust':
+                break
+            else:
+                user_choice = input("Now what? ")
 
 # function to return advice from the dealer to the player
 def get_deal_advice(hand_value):
     ''' function will recieve a list of hand value and return a string regarding what the player should do '''
 
+
+
     # if only one potential value in hand (ie, no aces)
-    if hand_value[0] < 17:
+    if get_best_value(hand_value) < 17:
         return 'hit!'
-    elif hand_value[0] >= 17 and hand_value[0] < 21:
+    elif get_best_value(hand_value) >= 17 and get_best_value(hand_value) < 21:
         return 'stay'
-    elif hand_value[0] == 21:
+    elif get_best_value(hand_value) == 21:
         return 'blackjack!'
     else:
         return 'bust'
@@ -181,12 +196,12 @@ def print_winning_hands(dealt_cards):
     # dealth_cards iss a nested list, index 0 is dealer's hand, other index represent the other hands
 
     # case: dealer busted
-    if get_hand_value(dealt_cards[0])[0] > 21:
+    if get_best_value(get_hand_value(dealt_cards[0])) > 21:
         print("Dealer busted!  Checking player hands...")
         for i in range(1,len(dealt_cards)):
-            if get_hand_value(dealt_cards[i])[0] <= 21:
+            if get_best_value(get_hand_value(dealt_cards[i])) <= 21:
                 print(f"Hand {i} not busted...beats dealer!")
-            elif get_hand_value(dealt_cards[i])[0] > 21:
+            elif get_best_value(get_hand_value(dealt_cards[i])) > 21:
                 print(f"Hand {i} busted...loses to dealer!")
         print()
     
@@ -195,19 +210,37 @@ def print_winning_hands(dealt_cards):
         print("Dealer did not bust, checking player hands...")
         for i in range(1,len(dealt_cards)):
             # case: player busts
-            if get_hand_value(dealt_cards[i])[0] > 21:
+            if get_best_value(get_hand_value(dealt_cards[i])) > 21:
                 print(f"Hand {i} busted...loses to dealer!")
             # case: player wins
-            elif get_hand_value(dealt_cards[i])[0] > get_hand_value(dealt_cards[0])[0]:
+            elif get_best_value(get_hand_value(dealt_cards[i])) > get_best_value(get_hand_value(dealt_cards[0])):
                 print(f"Hand {i} higher than dealer's...beats dealer!")                
             # case: player loses
-            elif get_hand_value(dealt_cards[i])[0] < get_hand_value(dealt_cards[0])[0]:
+            elif get_best_value(get_hand_value(dealt_cards[i])) < get_best_value(get_hand_value(dealt_cards[0])):
                 print(f"Hand {i} lower than dealer's...loses to dealer!") 
             # case: player ties/pushes with dealer
             else: 
                 print(f"Hand {i} is the same as the dealers....push") 
         print()   
 
+# function for scrubbing bust values from list of values and returning highest value
+def get_best_value(hand_values):
+    ''' function takes a list of potential hand values and returns an int of the best value '''
+
+    # if only one value and it's a bust, return the bust value
+    if len(hand_values) == 1 and hand_values[0] > 21:
+        return hand_values[0]
+
+    # declare return value
+    return_value = 0
+
+    # find the highest non-bust value
+    for value in hand_values: 
+        if value > return_value and value < 22:
+            return_value = value
+    
+    # return best value
+    return return_value
 
 # main loop
 while True:
