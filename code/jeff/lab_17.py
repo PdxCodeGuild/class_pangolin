@@ -8,8 +8,7 @@
 def check_palindrome(wd):
     if rev == wd:
         return((wd) + ' is a palindrome')
-    else:
-        return((wd) + ' is not a palindrome')
+    return((wd) + ' is not a palindrome')
     
 wd = input('Enter a word to check if its a palindrome: ').lower
 rev = wd[::-1] # reverse the string
