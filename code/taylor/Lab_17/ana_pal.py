@@ -5,8 +5,8 @@
 
 # Anagram checker
 # Variables receive user input string
-user_input_1 = sorted(input("Enter the first word  > ").lower().replace(' ', '')) # Conberts input to a list and orders 
-user_input_2 = sorted(input("Enter the second word  > ").lower().replace(' ', ''))# Conberts input to a list and orders 
+user_input_1 = sorted(input("Enter the first word  > ").lower().replace(' ', '')) # Converts input to a list and orders 
+user_input_2 = sorted(input("Enter the second word  > ").lower().replace(' ', ''))# Converts input to a list and orders 
 
 print(user_input_1)
 if user_input_1 == user_input_2: # After being ordered and converted to a list the inputs are compared for equality
