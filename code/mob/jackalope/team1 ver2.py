@@ -1,14 +1,5 @@
 import random
-
-# population of non preg jackalopes
-jackalope_population = [
-    {'name': 'Greatest Grandpa', 'age': 0, 'sex': 0, 'preg': False},
-    {'name': 'Greatest Grandma', 'age': 0, 'sex': 1, 'preg': False}
-]
-# population of preg jackalops
-preg_jack = []
-
-year_counter = 0
+import random_name_elements
 
 # function takes a jack and returns true/false if they are of breeding age
 def is_breedable_male(jack):
@@ -17,6 +8,16 @@ def is_breedable_male(jack):
 # function takes a jack and returns true/false if they are of breeding age
 def is_breedable_female(jack):
     return jack['age'] >= 4 and jack['age'] <= 8 and jack['sex'] == 1 and jack['preg'] == False
+
+# population of non preg jackalopes
+jackalope_population = [
+    {'name': 'Greatest Grandpa', 'age': 0, 'sex': 0, 'preg': False},
+    {'name': 'Greatest Grandma', 'age': 0, 'sex': 1, 'preg': False}
+]
+
+# global vars: population of jackalops and year counter
+preg_jack = []
+year_counter = 0
 
 while len(jackalope_population) <= 1000:
     # print(jackalope_population)
@@ -27,7 +28,7 @@ while len(jackalope_population) <= 1000:
         # if pregnant
         if jack['preg']:
             # add one baby with age 0, random name, random gender (male = 0, female = 1)
-            jackalope_population.append( {'name': 'randomizebabyname', 'age': 0, 'sex': random.randint(0,1), 'preg': False} )
+            jackalope_population.append( {'name': random_name_elements.random_name(), 'age': 0, 'sex': random.randint(0,1), 'preg': False} )
 
     # iterate through the list of non-pregnant jacks
     for i in range(0,len(jackalope_population)):
@@ -46,7 +47,6 @@ while len(jackalope_population) <= 1000:
     for i in range(len(jackalope_population)-1, -1, -1):
         if jackalope_population[i]['age'] == 10:
             jackalope_population.pop(i)
-            print(f'removing a jack')
 
     # # make remaining jack one year older
     for jack in jackalope_population:
@@ -56,6 +56,9 @@ while len(jackalope_population) <= 1000:
     random.shuffle(jackalope_population)
 
     year_counter += 1
-    print(f'end of year. there are now {len(jackalope_population)} jackalopes and it is year counter is {year_counter}')
+    # print(f'end of year. there are now {len(jackalope_population)} jackalopes and it is year counter is {year_counter}')
     # print(jackalope_population)
 
+for jack in jackalope_population:
+    print(jack)
+print(f'It took {year_counter} years to breed {len(jackalope_population)} jackalopes!')
