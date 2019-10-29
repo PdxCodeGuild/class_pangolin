@@ -5,34 +5,37 @@ jackalope_population = [0,0]
 year_counter = 0
 
 while len(jackalope_population) <= 1000:
+    
+    # counter for tracking number of eligible singles
     mate_counter = 0
-    # print(jackalope_population)
-    for i in range(0, len(jackalope_population)):
-        print(f' jack is {(i)}')
-        if jackalope_population[i] >= 4 and jackalope_population[i] <= 8:
-            mate_counter += 1
-            # print(f'mate counter is {mate_counter}')
-            jackalope_population[i] += 1
-        
-        else:
-            jackalope_population[i] += 1
 
-    temp_list = []
+    # iterate through jack population and figure out how many of breeding age
     for jack in jackalope_population:
-        if jack <= 10:
-            temp_list.append(jack)
+        # if jack is of breeding age
+        if jack >= 4 and jack <= 8:
+            # increment jack counter
+            mate_counter += 1
+            print(f'adding one jack to male counter.  male counter is now: {mate_counter}')
 
-    jackalope_population = temp_list.copy()    
+    # iterate through jack population and remove those who are too old
+    # count how many old jacks
+    old_jack_count = jackalope_population.count(10)
+    print(f'removing {old_jack_count} jacks')
+    
+    # remove that many jacks
+    for i in range(0,old_jack_count):
+        jackalope_population.remove(10)
+
+    # make remaining jacks one year older
+    jackalope_population = [jack + 1 for jack in jackalope_population]
         
-        #print([i])
-
+    # add newly born jacks
     for i in range(0,mate_counter//2):
         jackalope_population.append(0)
         jackalope_population.append(0)
         jackalope_population.append(0)
         jackalope_population.append(0)
-        # jackalope_population.append(0) ** 4   
 
     year_counter += 1
-    print(f'there are now {len(jackalope_population)} jackalopes and it is year {year_counter}')
+    print(f'end of year. there are now {len(jackalope_population)} jackalopes and it is year {year_counter}')
 
