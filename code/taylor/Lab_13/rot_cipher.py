@@ -38,7 +38,7 @@ def rot_decrypt(lst, rot, dl):
 rot_encrypt(usr_str1, usr_rot1, e_list)
 
 # Returns the encryption list to a string
-lst_to_str = ''.join([str(elem) for elem in e_list]) 
+lst_to_str = ''.join([str(i) for i in e_list]) 
 print(lst_to_str)
 
 # User inputs, text string and rotation number for decryption
@@ -49,6 +49,6 @@ usr_rot2 = int(input("Enter a rotation (1 - 18): > "))
 rot_decrypt(usr_str2, usr_rot2, d_list)
 
 # Returns the decryption list to a string
-lst_to_str = ''.join([str(elem) for elem in d_list]) 
+lst_to_str = ''.join([str(i) for i in d_list]) 
 print(lst_to_str)
 
