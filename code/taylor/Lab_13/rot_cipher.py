@@ -11,7 +11,7 @@ usr_rot1 = int(input("Enter a rotation (1 - 25): > "))
 e_list = []
 d_list = []
 
-# Rot encryption function, accomidates spaces 1 - 18 Rot without bugs
+# Rot encryption function, accomidates spaces 1 - 25 Rot without bugs
 def rot_encrypt(lst, rot):
     for i in lst:
         b = int(str(ord(i) + rot))
