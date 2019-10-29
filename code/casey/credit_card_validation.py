@@ -30,3 +30,10 @@ For example, the worked out steps would be:
 Valid!
 
 '''
+
+# define dig
+dig = []
+
+def validator(dig):
+    for num in dig:
+        
