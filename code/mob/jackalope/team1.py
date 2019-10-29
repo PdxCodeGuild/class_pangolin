@@ -13,11 +13,16 @@ while len(jackalope_population) <= 1000:
             mate_counter += 1
             # print(f'mate counter is {mate_counter}')
             jackalope_population[i] += 1
-        # elif jackalope_population[i] >= 10:
-        #     jackalope_population.pop(i)
+        
         else:
             jackalope_population[i] += 1
-            
+
+    temp_list = []
+    for jack in jackalope_population:
+        if jack <= 10:
+            temp_list.append(jack)
+
+    jackalope_population = temp_list.copy()    
         
         #print([i])
 
