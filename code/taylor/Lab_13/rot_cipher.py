@@ -21,7 +21,7 @@ def rot_encrypt(lst, rot):
             b = 32
         e_list.append(chr(b))
 
-# Rot decryption function, accomidates spaces 1 - 18 Rot without bugs
+# Rot decryption function, accomidates spaces 1 - 25 Rot without bugs
 def rot_decrypt(lst, rot, dl):
     for i in lst:
         b = int(str(ord(i) - rot))
