@@ -25,16 +25,16 @@ while len(jackalope_population) <= 1000:
     for i in range(0,old_jack_count):
         jackalope_population.remove(10)
 
-    # make remaining jacks one year older
-    jackalope_population = [jack + 1 for jack in jackalope_population]
-        
     # add newly born jacks
     print(f'adding {(mate_counter // 2) * 2} new babies')
     for i in range(0,mate_counter//2):
         jackalope_population.append(0)
         jackalope_population.append(0)
 
+    # make remaining jack one year older
+    jackalope_population = [jack + 1 for jack in jackalope_population]      
+
     year_counter += 1
     print(f'end of year. there are now {len(jackalope_population)} jackalopes and it is year counter is {year_counter}')
-    print(jackalope_population)
+    # print(jackalope_population)
 
