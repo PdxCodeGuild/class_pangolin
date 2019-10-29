@@ -27,8 +27,8 @@ def rot_decrypt(lst, rot, dl):
         b = int(str(ord(i) - rot))
         while b < 97:
             if b + rot == 32:
-                sp = 32
-                dl.append(chr(sp))
+                b = 32
+                dl.append(chr(b))
                 break
             c = 97 - b
             b = 123 - c
