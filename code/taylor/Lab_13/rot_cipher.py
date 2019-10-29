@@ -30,8 +30,7 @@ def rot_decrypt(lst, rot, dl):
                 b = 32
                 dl.append(chr(b))
                 break
-            c = 96 - b
-            b = 122 - c
+            b += -96 + 122
         dl.append(chr(b))
 
 # Encryption function call
