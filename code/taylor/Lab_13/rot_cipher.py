@@ -42,8 +42,8 @@ lst_to_str = ''.join([str(i) for i in e_list])
 print(lst_to_str)
 
 # User inputs, text string and rotation number for decryption
-usr_str2 = list(str(input("Enter some text: > ")).lower())
-usr_rot2 = int(input("Enter a rotation (1 - 18): > "))
+usr_str2 = list(str(input("Enter encoded text to decrypt: > ")).lower())
+usr_rot2 = int(input("Enter the original rotation (1 - 18): > "))
 
 # Decryption function call
 rot_decrypt(usr_str2, usr_rot2, d_list)
