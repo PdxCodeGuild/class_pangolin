@@ -76,6 +76,68 @@ def peaks_and_valleys(data):
 
     return return_list
 
+# function for returning highest value in data
+def find_highest_point(data):
+    ''' arguments: list of elevations as ints 
+        return: highest point in elevations '''
+
+    highest = 0
+    for point in data:
+        if point > highest:
+            highest = point
+    return highest
+
+# function for printing 
+def print_range(data):
+    ''' arguments: none
+        returns: how much water in range (also prints range) '''
+
+    # counter for calculating how much water 
+    water_counter = 0
+
+    # nested for loops for printing out data.  left index is row, right index is column
+    # use highest point plus two to account for the fact that 1) hight starts at 1, not 0 and 
+    # 2) keep one row of sky above highest mountain
+    for y in range(find_highest_point(data)+2,-1,-1):
+        for x in data:
+            # determine what to print: '  ' for air, 'X ' for ground, 'O ' for water
+            # if too high, print air
+            if x <= y and not is_water(data, x, y):
+                print('   ', end='')
+            elif x <= y and is_water(data, x, y):
+                print('O  ', end='')
+                water_counter += 1
+            elif x > y:
+                print('X  ', end='')
+
+        print()
+
+    # return nothing
+    return water_counter
+
+# function for figuring out if spot is in water
+def is_water(data, x, y):
+    ''' parameters: data and location (index) along range, and height we're evaluating
+        return: returns true if water, false if not '''
+
+    # if you can find land (an int of equal value to y the left and to the right x), then return true
+    is_land_to_left = False
+    is_land_to_right = False
+
+    # iterate left: from current x location to 1, -1 increment at a time
+    for i in range(x,0, -1):
+        if data[i] == y:
+            is_land_to_left = True
+            break                       # exit loop once land is found
+
+    # iterate right: from current x location to len(data), +1 increment at a time
+    for i in range(x,len(data), 1):
+        if data[i] == y:
+            is_land_to_left = True
+            break                       # exit loop once land is found
+
+    # return if there is land to both left and right
+    return is_land_to_left and is_land_to_right
 
 
 # sample data
@@ -85,3 +147,4 @@ data = [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 5, 6, 7, 8, 9, 8, 7, 6, 7, 8, 9]
 # main
 print(f' peaks: {peaks(data)}, valleys: {valleys(data)}')
 print(f' peaks and valleys: {peaks_and_valleys(data)}')
+print(f' there is {print_range(data)} water in this range')
