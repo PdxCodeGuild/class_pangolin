@@ -11,9 +11,11 @@ mtn_range = [1,	2, 3, 4, 5, 6, 7, 6, 5, 4, 5, 6, 7, 8, 9, 8, 7, 6, 7, 8, 9]
 
 #peaks_and_valleys - uses the above two functions to compile a single list of the peaks and valleys in order of appearance in the original data.
 
-#6 - p, 9 - v, 14 - p, 17 - v
 peak_lst = []
 valley_lst = []
+peaks_and_valleys = []
+peaks_and_valleys.append(peak_lst)
+peaks_and_valleys.append(valley_lst)
 
 for i in range(len(mtn_range)):
 
@@ -27,5 +29,8 @@ for i in range(len(mtn_range)):
     except:
         pass
 
-        print("Peak", peak_lst )
-        print("Valley", valley_lst)
+
+print("Peak", peak_lst )
+print("Valley", valley_lst)
+print("\nPeaks and Valleys > ",peaks_and_valleys)
+
