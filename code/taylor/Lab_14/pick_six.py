@@ -2,7 +2,7 @@
 # PDX Code Guild
 # Lab_14 
 # 10/30/2019
-
+# I didn't want order to matter so I used set() and intersection
 # Import random module
 import random
 
@@ -14,7 +14,7 @@ expenses = 0
 
 # Function to calculate the winnings
 def calc_winnings(a, b, c, d, e, f):
-    total = sum([a * 2, b * 4, c * 10, d * 500, e * 1000000, f * 25000000])
+    total = sum([a * 4, b * 7, c * 100, d * 5000, e * 1000000, f * 25000000])
     return total
 
 # Function to generate a random list of 6 integers between 1 & 99 inclusive
