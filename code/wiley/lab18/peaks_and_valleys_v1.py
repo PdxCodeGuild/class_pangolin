@@ -12,26 +12,34 @@ data = [1, 2, 3, 4, 5, 6, 7, 6, 5, 4, 5, 6, 7, 8, 9, 8, 7, 6, 7, 8, 9]
 def peaks(x):
     '''returns the indices of peaks.  A peak has a lower number on both the left and right.'''
     peak_list = []
-    #check = len(x)-1
     for i in range(len(x)):
         if i-1 !=0 and x[i-1] < x[i]:
             if i + 1 < len(x) and x[i + 1] < x[i]:
-                print(f"the value is {x[i]}  and {i} is the index")
+                #print(f"the value is {x[i]}  and {i} is the index")
                 peak_list.append(i)
-                print(peak_list)
+                #print(peak_list)
     return peak_list 
 
 def valleys(x):
     '''returns the indices of valleys. A valley has a lower number on both the left and right.'''
     valley_list = []
     for i in range(len(x)):
-        if i-1 != 0 and x[i-1] > x[i]:
-            if i + 1 > len(x) and x[i + 1] > x[i]:
-                print(f"the value is {x[i]} and {i} is the index.")
+        if i !=0 and x[i-1] > x[i]:
+            if i + 1 < len(x) and x[i + 1] > x[i]:
+                #print(f"the value is {x[i]}  and {i} is the index")
                 valley_list.append(i)
-                print(valley_list)
-    return(valley_list)
+                #print(valley_list)
+    return valley_list
 
-#print(peaks(data))
+print(peaks(data))
 print(valleys(data))
 
+def peaks_and_valleys():
+    peaks_and_valleys_list=[]
+    valleys(data)    
+    peaks(data)
+    
+    peaks_and_valleys_list = peaks(data) + valleys(data)
+    peaks_and_valleys_list.sort()
+    return peaks_and_valleys_list
+print(peaks_and_valleys())
