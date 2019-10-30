@@ -28,11 +28,8 @@ card_values = {
     'A': 1
 }
 
-# make deck a global list
-deck = []
-
 # function for getting hand value
-def get_hand_value(cards):
+def get_hand_value(hand):
     ''' function is passed a list of cards and returns a list of ints of the possible hand values '''
 
     # declare return list for values
@@ -40,16 +37,25 @@ def get_hand_value(cards):
 
     # add up all the cards
     sum = 0
+
+    # a counter for the number of aces in the hand
     ace_counter = 0
-    for card in cards:
+
+    # iterate through each card in the hand
+    for card in hand:
         # need to handle 10 different since it's key has two characters
         if card[0] == '1':
+            # look up value of a 10 card from dictionary 
             sum += card_values['10']
         # need to handle Aces different since they can have two values
         elif card[0] == 'A':
+            # increment ace counter
             ace_counter += 1
+            # look up value of card (an ace) from dictionary
             sum += card_values[card[0]]
+        # if not an ace or a 10
         else:
+            # look up value of card from dictionary
             sum += card_values[card[0]]
     values.append(sum)
 
@@ -94,17 +100,17 @@ def deal(players):
     return delt_cards
 
 # function for one player to take hits or stand
-def play_hand(player_id, dealt_cards):
+def play_hand(player_id):
     ''' function will recieve a player's id/index and the dealt cards, and return a list of their final hand '''
     
     # if dealer is playing (player_id == 0)
     if player_id == 0: 
         # get value of hand
-        hand_value_list = get_hand_value(dealt_cards[player_id])
+        hand_value_list = get_hand_value(the_deal[player_id])
 
         # print cards and value of cards
         print(f"\nDealer's hand is: ", end = " ")
-        print(f"{dealt_cards[player_id]} with value(s) of {hand_value_list}")
+        print(f"{the_deal[player_id]} with value(s) of {hand_value_list}")
 
         # print dealer's advice
         dealer_action = get_deal_advice(hand_value_list)
@@ -112,20 +118,20 @@ def play_hand(player_id, dealt_cards):
         
         # continue to loop while not given input of 'stay' or 'hold' 
         while dealer_action not in ['stay', 'bust', 'blackjack!']:
-            dealt_cards[player_id].append(get_card())
-            hand_value_list = get_hand_value(dealt_cards[player_id])
-            print(f"Dealer hit and now has {dealt_cards[player_id]} with value(s) of {hand_value_list}")
+            the_deal[player_id].append(get_card())
+            hand_value_list = get_hand_value(the_deal[player_id])
+            print(f"Dealer hit and now has {the_deal[player_id]} with value(s) of {hand_value_list}")
             dealer_action = get_deal_advice(hand_value_list)          
             print(f"Dealer will now {dealer_action}")
 
     # else if player is playing (player_id != 0)
     else: 
         # get value of hand
-        hand_value_list = get_hand_value(dealt_cards[player_id])
+        hand_value_list = get_hand_value(the_deal[player_id])
 
         # print cards and value of cards
         print(f"\nPlaying Hand {player_id}: ", end = " ")
-        print(f"{dealt_cards[player_id]} with value(s) of {hand_value_list}")
+        print(f"{the_deal[player_id]} with value(s) of {hand_value_list}")
 
         # print dealer's advice
         print(f"Dealer says: {get_deal_advice(hand_value_list)}")
@@ -135,9 +141,9 @@ def play_hand(player_id, dealt_cards):
         
         # continue to loop while not given input of 'stay' or 'hold' 
         while user_choice not in ['stay', 'Stay', 's', 'hold', 'Hold', 'h', 'bust', 'stand']:
-            dealt_cards[player_id].append(get_card())
-            hand_value_list = get_hand_value(dealt_cards[player_id])
-            print(f"{dealt_cards[player_id]} with value(s) of {hand_value_list}")
+            the_deal[player_id].append(get_card())
+            hand_value_list = get_hand_value(the_deal[player_id])
+            print(f"{the_deal[player_id]} with value(s) of {hand_value_list}")
             print(f"Dealer says: {get_deal_advice(hand_value_list)}")
             if get_deal_advice(hand_value_list) == 'bust':
                 break
@@ -179,44 +185,46 @@ def build_deck(num_decks):
     random.shuffle(deck)
 
 # function for displaying the current deal
-def display_cards(dealt_cards):
+def display_cards():
     ''' function receives a nested list of delt cards, and prints out the current cards to the screen....no return '''
+    global the_deal
+
 
     # show dealer's cards
-    print(f"           Dealer is showing {dealt_cards[0][0]}")
+    print(f"           Dealer is showing {the_deal[0][0]}")
 
     # show each player's hand
-    for card in range(1,len(dealt_cards)):
+    for card in range(1,len(the_deal)):
         # print(f"dealt_cards[card] is {dealt_cards[card]}")
-        print(f"Hand {card}: {dealt_cards[card]}", end = "   ")
+        print(f"Hand {card}: {the_deal[card]}", end = "   ")
     print()
 
 # function for printing winners
-def print_winning_hands(dealt_cards):
+def print_winning_hands():
     # dealth_cards iss a nested list, index 0 is dealer's hand, other index represent the other hands
 
     # case: dealer busted
-    if get_best_value(get_hand_value(dealt_cards[0])) > 21:
+    if get_best_value(get_hand_value(the_deal[0])) > 21:
         print("Dealer busted!  Checking player hands...")
-        for i in range(1,len(dealt_cards)):
-            if get_best_value(get_hand_value(dealt_cards[i])) <= 21:
+        for i in range(1,len(the_deal)):
+            if get_best_value(get_hand_value(the_deal[i])) <= 21:
                 print(f"Hand {i} not busted...beats dealer!")
-            elif get_best_value(get_hand_value(dealt_cards[i])) > 21:
+            elif get_best_value(get_hand_value(the_deal[i])) > 21:
                 print(f"Hand {i} busted...loses to dealer!")
         print()
     
     # if dealer did not bust:
     else:
         print("Dealer did not bust, checking player hands...")
-        for i in range(1,len(dealt_cards)):
+        for i in range(1,len(the_deal)):
             # case: player busts
-            if get_best_value(get_hand_value(dealt_cards[i])) > 21:
+            if get_best_value(get_hand_value(the_deal[i])) > 21:
                 print(f"Hand {i} busted...loses to dealer!")
             # case: player wins
-            elif get_best_value(get_hand_value(dealt_cards[i])) > get_best_value(get_hand_value(dealt_cards[0])):
+            elif get_best_value(get_hand_value(the_deal[i])) > get_best_value(get_hand_value(the_deal[0])):
                 print(f"Hand {i} higher than dealer's...beats dealer!")                
             # case: player loses
-            elif get_best_value(get_hand_value(dealt_cards[i])) < get_best_value(get_hand_value(dealt_cards[0])):
+            elif get_best_value(get_hand_value(the_deal[i])) < get_best_value(get_hand_value(the_deal[0])):
                 print(f"Hand {i} lower than dealer's...loses to dealer!") 
             # case: player ties/pushes with dealer
             else: 
@@ -242,6 +250,12 @@ def get_best_value(hand_values):
     # return best value
     return return_value
 
+
+# global variables
+deck = []               # main deck of un-dealt cards (list of strings)
+the_deal = []           # the delt cards (nested list, inside is a list of each player's hands)
+
+
 # main loop
 while True:
 
@@ -258,20 +272,20 @@ while True:
     # number_of_players = 2
 
     # deal first two cards to each player
-    cards = deal(number_of_players)
+    the_deal = deal(number_of_players)
 
     # print first deal
-    display_cards(cards)
+    display_cards()
 
     # play each hand
     for player in range(1,number_of_players+1):
-        play_hand(player, cards)
+        play_hand(player)
 
     # play dealer hand
-    play_hand(0,cards)
+    play_hand(0)
 
     # print off which hands won
-    print_winning_hands(cards)
+    print_winning_hands()
 
     # Play again?
     if not input("Press enter to quit or input anything to play again: "):
