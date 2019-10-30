@@ -3,18 +3,6 @@ Lab 14: Pick6 - Version 1
 
 Purpose/goal: Have the computer play pick6 many times and determine net balance.
 
-a ticket costs $2
-if 1 number matches, you win $4
-if 2 numbers match, you win $7
-if 3 numbers match, you win $100
-if 4 numbers match, you win $50,000
-if 5 numbers match, you win $1,000,000
-if 6 numbers match, you win $25,000,000
-
-One function you might write is pick6() which will generate a list of 6 random numbers, which can then be used for both the winning numbers and tickets. Another function could be num_matches(winning, ticket) which returns the number of matches between the winning numbers and the ticket.
-
-Steps
-
     - Generate a list of 6 random numbers representing the winning tickets - D
 
     - Start your balance at 0 - D
