@@ -14,7 +14,7 @@ if user_input_1 == user_input_2: # After being ordered and converted to a list t
 
 # Palindrome checker
 # Variables receive user input string
-user_input_3 = list(input("Enter the first word  > ").lower().replace(' ', ''))
+user_input_3 = input("Enter the first word  > ").lower().replace(' ', '')
 user_input_4 = list(input("Enter the second word  > ").lower().replace(' ', ''))
 
 # Function to reverse teh order of a given string, receives a list and returns a list
