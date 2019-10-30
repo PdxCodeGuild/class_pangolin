@@ -1,24 +1,32 @@
+# Taylor Rebbe
+# PDX Code Guild
+# Lab_14 
+# 10/30/2019
+
+# Import random module
 import random
-
+# Variables
 a, b, c, d, e, f = 0, 0, 0, 0, 0, 0
-# m1, m2, m3, m4, m5, m6 = a *4,b * 7,c * 100,d * 50000,e * 1000000,f * 25000000
-
+# Tallies ammount spent on tickets @ 2$ each
+expenses = 0
+winnings = 0
+# Loop counter / index
+i = 0
+# Function to calculate the winnings
 def calc_winnings(a, b, c, d, e, f):
-    total = sum([a * 4, b * 7, c * 100, d * 50000, e * 1000000, f * 25000000])
+    total = sum([a * 2, b * 4, c * 10, d * 500, e * 1000000, f * 25000000])
     return total
-
-# Generates a random list of 6 integers between 1 & 99 inclusive
+# Function to generate a random list of 6 integers between 1 & 99 inclusive
 def get_six():
     six_lst = []
     for n in range(1, 7):
         six_lst.append(random.randint(1, 99))
     return six_lst
-budget = 0
-i = 0
-while i < 10:
-
-    mtchs = len(set(get_six()) & set(get_six()))
-  
+# Main program loop
+while i < 100000:
+    expenses += 2
+    mtchs = len(set(get_six()) & set(get_six()))# set() & - intersection is used to determin matches in the set
+  # mtchs is the length of the matches list and tallied below
     if mtchs == 1:
         a += 1
     elif mtchs == 2:
@@ -32,11 +40,11 @@ while i < 10:
     elif mtchs == 6:
         f += 1
     i += 1
-    budget -= 1
-
+# User output
+totals = (calc_winnings(a, b, c, d, e, f) - expenses) / expenses
 print("\nTotal Winnings > $",calc_winnings(a, b, c, d, e, f))
-print("Budget > $", budget)
-print(f"ROI > {(calc_winnings(a, b, c, d, e, f) - budget) / budget }%")
+print("Expenses > $", expenses)
+print(f"ROI > {totals}%")
 
 
 
