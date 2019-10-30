@@ -29,7 +29,7 @@ def rot_decrypt(lst, rot, dl):
             if x + rot == 32:
                 x = 32
                 dl.append(chr(x))
-                break
+                continue
             x += -96 + 122
         dl.append(chr(x))
 
