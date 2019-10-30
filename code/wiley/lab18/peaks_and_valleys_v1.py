@@ -36,8 +36,8 @@ print(valleys(data))
 
 def peaks_and_valleys():
     peaks_and_valleys_list=[]
-    valleys(data)    
-    peaks(data)
+    #valleys(data)    
+    #peaks(data)
     
     peaks_and_valleys_list = peaks(data) + valleys(data)
     peaks_and_valleys_list.sort()
