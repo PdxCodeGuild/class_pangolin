@@ -41,10 +41,10 @@ while i < 100000:
         f += 1
     i += 1
 # User output
-totals = (calc_winnings(a, b, c, d, e, f) - expenses) / expenses
+totals = round(((calc_winnings(a, b, c, d, e, f) - expenses) / expenses) * 100)
 print("\nTotal Winnings > $",calc_winnings(a, b, c, d, e, f))
 print("Expenses > $", expenses)
-print(f"ROI > {totals}%")
+print(f"ROI > {totals} %")
 
 
 
