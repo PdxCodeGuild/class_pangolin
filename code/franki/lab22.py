@@ -29,15 +29,11 @@ def list_words(x):
 def count_characters(x):
     punctuations = ''',/?!)(-._'":;'''
     no_punct = []
-    characters = ""
-    characters = characters.join(x)
-    for char in characters:
+    for char in x:
         if char not in punctuations:
             no_punct.append(char)
     character_count = len(no_punct)
     return character_count
-
-    
        
 with open('boat_of_ra.txt', 'r') as file:
     poem = file.read()
@@ -47,9 +43,7 @@ with open('boat_of_ra.txt', 'r') as file:
     sentence_count = count_sentences(poem)
     ari = (4.71*(character_count / word_count)) + (0.5*(word_count / sentence_count)) - 21.43
     ari = math.ceil(ari)
-    print(sentence_count)
-    print(word_count)
-    print(character_count)
+
     print(f"The Automated Readability Index of this text is: {ari}.")
     print(f"This corresponds to {ari_scale[ari]['grade_level']} reading level.")
     print(f"It is suitable for ages {ari_scale[ari]['ages']}.")
