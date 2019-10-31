@@ -3,6 +3,21 @@ Compute the ARI for a given body of text loaded in from a file. The automated re
 for computing the U.S. grade level for a given block of text. The general formula to compute the ARI is as follows:
 """
 
+sentences = 0.0
+words = 0.0
+chara = 0.0
+ari_test = 0.0
+
+
+def get_ari(ari_test):
+    ari_test = 4.71 * (chara / words) + 0.5 * (words / sentences) - 21.43
+    ari_test = int(ari_test)
+    if ari_test > 14:
+        ari_test = 14
+    return ari_test
+
+
+
 ari_scale = {
     1: {'ages': '5-6', 'grade_level': 'Kindergarten'},
     2: {'ages': '6-7', 'grade_level': '1st Grade'},
@@ -20,8 +35,30 @@ ari_scale = {
     14: {'ages': '18-22', 'grade_level': 'College'}
 }
 
-#4.71(chara / words) + 0.5(words / sentances) - 21.43
+# 4.71(chara / words) + 0.5(words / sentences) - 21.43
 
-text = open("13chil.txt")
-print(text.read())
+# text = open("13chil.txt")
+# text = open("pg2449.txt")
+#text = open("pg1404.txt")
+text = open("gettysburg-address.txt")
+# print(text.read())
+test_text = text.read()
+sentences = test_text.count(".")
+test_text = test_text.replace(".", "")
+words = test_text.count(" ")
+test_text = test_text.replace(",", "")
+test_text = test_text.replace("\"", "")
+test_text = test_text.rstrip("\n")
+test_text = test_text.strip()
+test_text = "".join(test_text)
+# test_text = "\n".join(test_text)
+test_text = test_text.replace(" ", "")
+chara = test_text.count("")
 
+
+
+print(test_text)
+print(words)
+print(sentences)
+print(chara)
+print(get_ari(ari_test))
