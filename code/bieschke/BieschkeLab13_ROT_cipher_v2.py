@@ -1,5 +1,7 @@
 #Bieschke Lab 13: ROT Cipher v2 
 #I'd tell you what this program does, but then I'd have to kill you
+#Negatives decrypt, as does completing the coded input to a multiple of 26
+#i.e. if you encrypt 50, encrypt the returned message at 2, and the original appears
 
 rot_13 = "abcdefghijklmnopqrstuvwxyz"
 
