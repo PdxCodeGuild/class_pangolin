@@ -1,8 +1,8 @@
 #ARI grading .10/31/2019 by Wiley Rummel
 import string
 import os
-
-with open(r'C:\Users\wiley\Documents\class_pangolin\code\wiley\lab22\gettysburg.txt', 'r') as speech:
+file_name = 'gettysburg.txt'
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), file_name), 'r') as speech:
     contents = speech.read()
 
 def character_counting(contents):
@@ -100,7 +100,7 @@ print(f"{ari_character_num} characters in the speech.")
 print(f"{ari_word_count} words in the speech.")
 print(f"{ari_sentence_count} sentences in the speech.")
 print(f"{ari} is the ARI score of the speech.")
-print(f"The ARI for X is {ari}.\nThis corresponds to a {grade_level1} level of difficulty.\nThat is suitale for an average person {ages1} years old.")
+print(f"The ARI for {file_name} is {ari}.\nThis corresponds to a {grade_level1} level of difficulty.\nThat is suitale for an average person {ages1} years old.")
 
 
         
