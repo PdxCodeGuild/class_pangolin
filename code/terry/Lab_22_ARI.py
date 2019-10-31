@@ -17,7 +17,6 @@ def get_ari(ari_test):
     return ari_test
 
 
-
 ari_scale = {
     1: {'ages': '5-6', 'grade_level': 'Kindergarten'},
     2: {'ages': '6-7', 'grade_level': '1st Grade'},
@@ -35,14 +34,11 @@ ari_scale = {
     14: {'ages': '18-22', 'grade_level': 'College'}
 }
 
-# 4.71(chara / words) + 0.5(words / sentences) - 21.43
-
-# text = open("13chil.txt")
+# text = open("13chil.txt") - 3.6
 # text = open("pg2449.txt")
-#text = open("pg1404.txt")
-text = open("gettysburg-address.txt")
-# print(text.read())
-test_text = text.read()
+# text = open("pg1404.txt") - 19
+with open("gettysburg-address.txt") as text:
+    test_text = text.read()
 sentences = test_text.count(".")
 test_text = test_text.replace(".", "")
 words = test_text.count(" ")
@@ -51,14 +47,11 @@ test_text = test_text.replace("\"", "")
 test_text = test_text.rstrip("\n")
 test_text = test_text.strip()
 test_text = "".join(test_text)
-# test_text = "\n".join(test_text)
 test_text = test_text.replace(" ", "")
 chara = test_text.count("")
 
-
-
-print(test_text)
-print(words)
-print(sentences)
-print(chara)
-print(get_ari(ari_test))
+#print(test_text)
+print(f"The number of words is: {words}")
+print(f"The number of sentences is: {sentences}")
+print(f"The number of characters is: {chara}")
+print(f"The ARI is: {get_ari(ari_test)}")
