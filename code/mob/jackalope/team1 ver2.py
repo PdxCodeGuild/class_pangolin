@@ -19,7 +19,7 @@ jackalope_population = [
 preg_jack = []
 year_counter = 0
 
-while len(jackalope_population) <= 1000:
+while year_counter <= 100:
     # print(jackalope_population)
 
     # add newly born jacks

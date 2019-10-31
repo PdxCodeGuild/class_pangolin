@@ -1,13 +1,7 @@
 '''
-Lab 18: Peaks and Valleys - Version 1
+Lab 18: Peaks and Valleys - Version 2
 
-    - Define the following functions:
-
-        peaks - Returns the indices of peaks. A peak has a lower number on both the left and the right. - D
-
-        valleys - Returns the indices of 'valleys'. A valley is a number with a higher number on both the left and the right. - D
-
-        peaks_and_valleys - uses the above two functions to compile a single list of the peaks and valleys in order of appearance in the original data. - D
+Purpose/goal: Using the data list above, draw the image of X's below
 
 '''
 # define data list
@@ -44,4 +38,18 @@ def peaks_and_valleys(data):
    p_v = peaks_list + val_list
    return p_v
 
+def draw():
+    global data
+    width = len(data)
+    height = 10
+    for y in range(height,0,-1):
+        for x in range(width):
+            if data[x] < y:
+                print("  ", end="")
+            elif data[x] >= y:
+                print("X ", end="")
+        print()        
+
+draw()
+print(data)
 print(peaks_and_valleys(data))
