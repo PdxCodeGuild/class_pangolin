@@ -27,6 +27,7 @@ ari_scale = {
 # main loop
 while True: 
     # get input for opening file
+    print("Files currently in this folder are day_of_infamy.txt trump.txt and gettysburg_address.txt")
     user_file_name = input("Please input filename, or press enter to quit: ")
     # user_file_name = 'gettysburg_address.txt'
 
@@ -39,7 +40,7 @@ while True:
         file_string = f.read()                
 
     # to get number of sentences, split on '.'
-    num_sentences = file_string.count('.')
+    num_sentences = file_string.count('.') + file_string.count('!') + file_string.count('?')
 
     # to get number of words, count spaces.  strip trailing/leading white space and all newlines first
     file_string = file_string.strip()
@@ -47,8 +48,6 @@ while True:
 
     # count number of spaces to get number of words
     num_words = file_string.count(' ')
-
-    print(file_string)
 
     # to get number of characters, iterate through and count only letters
     num_char = 0
@@ -62,7 +61,11 @@ while True:
     print(f'there are {num_char} characters')
     
     # calculate ARI score
-    ari_score = math.ceil(   (4.17  *  (num_char/num_words)  ) + (0.5*   (num_words/num_sentences)   ) - 21.43)
+    ari_score = math.ceil(   (4.71  *  (num_char/num_words)  ) + (0.5*   (num_words/num_sentences)   ) - 21.43)
+
+    # max score is 14 for college
+    if ari_score > 14:
+        ari_score = 14
 
     # print ARI message
     print('--------------------------------------------------------')
