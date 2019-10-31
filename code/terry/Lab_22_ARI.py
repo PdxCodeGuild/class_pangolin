@@ -50,7 +50,6 @@ test_text = "".join(test_text)
 test_text = test_text.replace(" ", "")
 chara = test_text.count("")
 
-#print(test_text)
 print(f"The number of words is: {words}")
 print(f"The number of sentences is: {sentences}")
 print(f"The number of characters is: {chara}")
