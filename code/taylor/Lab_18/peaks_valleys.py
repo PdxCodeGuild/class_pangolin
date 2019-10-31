@@ -13,12 +13,8 @@ mtn_range = [1,	2, 3, 4, 5, 6, 7, 6, 5, 4, 5, 6, 7, 8, 9, 8, 7, 6, 7, 8, 9]
 
 peak_lst = []
 valley_lst = []
-peaks_and_valleys = []
-peaks_and_valleys.append(peak_lst)
-peaks_and_valleys.append(valley_lst)
 
 for i in range(len(mtn_range)):
-
     try:
         if  mtn_range[i - 1]  < mtn_range[i]  > mtn_range[i + 1]:
             peak_lst.append(mtn_range[i])
@@ -29,8 +25,9 @@ for i in range(len(mtn_range)):
     except:
         pass
 
+peaks_and_valleys = peak_lst + valley_lst
 
 print("Peak", peak_lst )
 print("Valley", valley_lst)
-print("\nPeaks and Valleys > ",peaks_and_valleys)
+print("\nPeaks and Valleys > ",sorted(peaks_and_valleys))
 
