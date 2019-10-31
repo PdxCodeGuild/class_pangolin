@@ -6,7 +6,6 @@
 # Import math library
 import math
 
-# Find number of sentences
 doc1 = './code/taylor/Lab_22/wrds_doc.txt'
 
 # ARI dictionary, free of charge
@@ -26,7 +25,7 @@ ari_scale = {
     13: {'ages': '17-18', 'grade_level':   '12th Grade'},
     14: {'ages': '18-22', 'grade_level':      'College'}
 }
-
+# Find number of sentences
 def get_snt(d):
     with open(d) as f:
         num_snt = f.read().count('.')
@@ -59,8 +58,11 @@ def get_grd(a):
 
 # ARI formula, spared at no expense
 ari = math.floor((4.71 * (get_chr(doc1) / get_wrd(doc1)) + 0.5 * (get_wrd(doc1) / get_snt(doc1)) - 21.43))
-
-# User output 
+# For all those PHd's
+if ari >= 14:
+    ari = 14
+    
+# User output     
 print(f"\nThe ARI for [ {doc1} ] is: > {ari} ")
 print(f"\nThis corresponds to a {get_grd(ari_scale)} Grade level of difficulty")
 print(f"That is suitable for an average person {get_ags(ari_scale)} years old.")
