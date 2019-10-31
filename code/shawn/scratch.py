@@ -1,7 +1,16 @@
-product_to_price = {'apple': 1.0, 'pear': 1.5, 'grapes': 0.75}
 
-print(f"pears are: {product_to_price['pear']}")
+data = [1,2,3,4,5,6,5,4,3,2,1]
 
-{name: str(price) + " per fruit" for name, price in product_to_price.items()}
+width = len(data)
+height = 7
 
-print(product_to_price)
+
+
+for y in range(height,0,-1):
+    for x in range(width):
+        if data[x] < y:
+            print('  ', end='')
+        elif data[x] >= y:
+            print('X ', end='')
+    print()
+
