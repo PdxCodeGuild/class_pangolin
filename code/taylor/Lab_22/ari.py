@@ -42,7 +42,7 @@ def get_wrd(d):
 # Find number of letters
 def get_chr(d):
     with open(d) as f:
-        num_chr = len(f.read().translate(str.maketrans('', '', string.punctuation)).replace(' s',''))
+        num_chr = len(f.read().translate(str.maketrans('', '', string.punctuation)).replace(' ',''))
         return num_chr
 
 # Ages for user output
