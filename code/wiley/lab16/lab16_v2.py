@@ -12,14 +12,20 @@ pixels = img.load()
 
 for i in range(width):
     for j in range(height):
-        r, g, b = pixels[(i*2345)%512, j]
+        r, g, b = pixels[i, j]
         #Y = 0.299*R + 0.587*G + 0.114*B
         #y = round(r*.299) + round(g*.587)+ round(b*.114)
-        h, s, v = colorsys.rgb_to_hsv(r,g,b)
+
+        h, s, v = colorsys.rgb_to_hsv(r/255,g/255,b/255)
+        
         #print(h,s,v)
-        h, s, v = (h),(s),(v)
+        h, s, v = (h+100),(s*1.93),(v-(v//2))
+
 
         r,g,b = colorsys.hsv_to_rgb(h,s,v)
+        r = int(r*255)
+        g = int(g*255)
+        b = int(b*255)
 
         pixels[i, j] = round(r),round(g),round(b)
 
