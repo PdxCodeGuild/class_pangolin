@@ -5,6 +5,7 @@
 
 # Import math library
 import math
+import string
 
 doc1 = './code/taylor/Lab_22/wrds_doc.txt'
 
@@ -41,7 +42,7 @@ def get_wrd(d):
 # Find number of letters
 def get_chr(d):
     with open(d) as f:
-        num_chr = len(f.read().replace(' ','').replace('.', '').replace(',',''))
+        num_chr = len(f.read().translate(str.maketrans('', '', string.punctuation)).replace(' ',''))
         return num_chr
 
 # Ages for user output
@@ -58,6 +59,7 @@ def get_grd(a):
 
 # ARI formula, spared at no expense
 ari = math.floor((4.71 * (get_chr(doc1) / get_wrd(doc1)) + 0.5 * (get_wrd(doc1) / get_snt(doc1)) - 21.43))
+
 # For all those PHd's
 if ari >= 14:
     ari = 14
