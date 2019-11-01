@@ -68,3 +68,6 @@ if ari >= 14:
 print(f"\nThe ARI for [ {doc1} ] is: > {ari} ")
 print(f"\nThis corresponds to a {get_grd(ari_scale)} Grade level of difficulty")
 print(f"That is suitable for an average person {get_ags(ari_scale)} years old.")
+
+
+
