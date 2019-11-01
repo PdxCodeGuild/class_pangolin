@@ -18,7 +18,7 @@ while num <= 100000:
     #print ('actual',ballance)
 
     #create random tickets for each 100000 tickets 
-    your_tickets = [random.randint(0,100) for winning_ticket in range(6)]
+    your_tickets = [random.randint(0, 100) for winning_ticket in range(6)]
     #print (your_tickets)
 
     #check tikets this method turns them into tuples then you turn them into lists and check the list in a for loop
