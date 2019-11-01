@@ -93,6 +93,57 @@ print(end=*1*100) # this gives you 100 stars after your statment
 ___________________________________________________________
 
 
+cvc_finder.py
+
+import string
+input_string = 'abcadeemonqrs'
+vowel_string = 'aoeuiy'
+consonant_string = ''
+for letter in string.ascii_lowercase:
+    if letter not in vowel_string:
+        consonant_string += letter 
+
+for index in range(len(input_string)):
+    if input_string[index] in vowel_string and input_string[index - 1 in consonant_string and input_string += 1]
+        print(index, input_string[index-1:index+2])
+
+
+--------------------
+
+file input output
+
+two ways to get to paths are relative and absolute
+
+-relative path is relative to the file found in 
+file.text or ./file.text represents a file in current direcory
+
+-absolute paths are specific path that respect the root of the file system
+
+c:/user/bob/desktop.txt
 
 
 
+to get a file you need to do print(f.rea())
+
+THIS IS HOW IT IS DONE REAL WORLD
+with open('test.txt') as f:
+    print(f)
+    print(dir(f))
+    print(f.read())
+
+
+IF YOU WANT TO READ IT 
+with open('test.txt', 'r') as f:
+    text = f.read()
+
+text_lines = text.split('\n')
+print(text_lines)
+
+print(text_lines)
+text_lines = [line + 'SPOOKY' for line in text_lines]
+
+print(text_lines)
+
+new_text = '\n'.join(text_lines)
+
+print(new_text)
