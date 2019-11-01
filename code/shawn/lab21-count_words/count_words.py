@@ -24,7 +24,7 @@ def format_input(input_str):
     return input_str.split()
 
 # function for creating dictionary from word list
-def create_dictionary(word_list):
+def create_dictionary_single_words(word_list):
     ''' argument: list of words,
         return: a dictionary of word/quantity pairs '''
 
@@ -32,13 +32,50 @@ def create_dictionary(word_list):
     words = {}
 
     # iterate through all words in input string
-    for word in word_list:
-        if not words.get(word):
-            # if word not in dictionary, add it to dictionary with a value of 1
-            words[word] = 1
-        else:
-            # if word is in dictionary, increment it's quantity by 1
+    for i in range(len(word_list)):
+
+        # for clarity's sake, set word equal to current element in word_list
+        word = word_list[i]
+
+        # for each word in word_list
+        if word in words and i != len(word_list):
+            # if word in dictionary, increment its quantity
             words[word] += 1
+        else:
+            # else word is not in dictionary, create/intialize it with value of 1
+            words[word] = 1
+    
+    # return dictionary
+    return words
+
+# function for creating dictionary of word pairs
+def create_dictionary_pair_words(word_list):
+    ''' argument: list of words,
+        return: a dictionary of word/quantity pairs '''
+
+    # new empty dictionary that will eventually be returned
+    words = {}
+
+    # iterate through all words in input string
+    for i in range(len(word_list)):
+
+        # for clarity's sake, set word equal to current element in word_list
+        word = word_list[i]
+
+        # if you've reached end of word_list, wrap around and set next_word to index 0
+        if i == (len(word_list) - 1):
+            next_word = word_list[0]
+        # else for every other word, next_word is index + 1
+        else:
+            next_word = word_list[i+1]
+
+        # for each word in word_list
+        if words.get(word + " " + next_word):
+            # if word in dictionary, increment its quantity
+            words[word + " " + next_word] += 1
+        else:
+            # else word is not in dictionary, create/intialize it with value of 1
+            words[word + " " + next_word] = 1
     
     # return dictionary
     return words
@@ -85,23 +122,38 @@ def print_top10_words(word_dict, qty, num_words_remaining):
 # main:
 
 # open book
-with open('moby_dick.txt', 'r', encoding='utf8') as b:
+with open('test.txt', 'r', encoding='utf8') as b:
     book = b.read()
 
 # get list of words
 word_list = format_input(book)
 
-# create dictionary with words as keys and quantity as the value.  
-word_dict = create_dictionary(word_list)
-# print(word_dict)
+# create dictionary with single words as keys and quantity as the value.  
+single_word_dict = create_dictionary_single_words(word_list)
+
+# create dictionary with pair words as keys and quantity as the value.  
+pair_word_dict = create_dictionary_pair_words(word_list)
+# print(pair_word_dict)
 
 # get highest quantity
-highest_quantity = find_highest_qty(word_dict)
+highest_single_quantity = find_highest_qty(single_word_dict)
+highest_pair_quantity = find_highest_qty(pair_word_dict)
 # print(f'highest quantity is {highest_quantity}')
 
-# print out highest occuring words
+# print out highest occuring single words
+print(" ****  Single Words:  ****  ")
 num_words_remaining = 10
 while num_words_remaining > 0:
-    num_words_remaining = print_top10_words(word_dict, highest_quantity, num_words_remaining)
+    num_words_remaining = print_top10_words(single_word_dict, highest_single_quantity, num_words_remaining)
     if num_words_remaining > 0:
-        highest_quantity -= 1
+        highest_single_quantity -= 1
+print()
+
+print(" ****  Pair Words:  ****  ")
+# print out highest occuring double words
+num_words_remaining = 10
+while num_words_remaining > 0:
+    num_words_remaining = print_top10_words(pair_word_dict, highest_pair_quantity, num_words_remaining)
+    if num_words_remaining > 0:
+        highest_pair_quantity -= 1
+print()
