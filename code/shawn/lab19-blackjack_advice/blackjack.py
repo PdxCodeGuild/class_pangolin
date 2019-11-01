@@ -30,7 +30,8 @@ card_values = {
 
 # function for getting hand value
 def get_hand_value(hand):
-    ''' function is passed a list of cards and returns a list of ints of the possible hand values '''
+    ''' parameters: list of cards (representing a player's hand)
+        return: list of ints of the possible hand values '''
 
     # declare return list for values
     values = []
@@ -71,7 +72,10 @@ def get_hand_value(hand):
 
 # function to get a card from the deck
 def get_card():
-    ''' function will pull card from global deck, returns a string of the card ID'''
+    ''' arguments: (none, pulls from global variable deck) 
+        return: a string of the card IDs '''
+    
+    # access the global variable, deck 
     global deck
 
     # return/pop card off end
@@ -86,7 +90,8 @@ def get_card():
 
 # function for starting a round of 21
 def deal(players):
-    ''' function is passed the number of players and the deck, and returns a list of lists (each nested list will be a player's hand) '''
+    ''' argument: int representing number of players
+        returns: list nested with lists, each nested list is a player's hand) '''
 
     # declare return list of the cards after the first deal
     delt_cards = []
@@ -101,7 +106,8 @@ def deal(players):
 
 # function for one player to take hits or stand
 def play_hand(player_id):
-    ''' function will recieve a player's id/index and the dealt cards, and return a list of their final hand '''
+    ''' arguments: player's id/index 
+        return: none '''
     
     # if dealer is playing (player_id == 0)
     if player_id == 0: 
@@ -134,27 +140,34 @@ def play_hand(player_id):
         print(f"{the_deal[player_id]} with value(s) of {hand_value_list}")
 
         # print dealer's advice
-        print(f"Dealer says: {get_deal_advice(hand_value_list)}")
+        dealer_advice = get_deal_advice(hand_value_list)
+        if dealer_advice == 'blackjack!':
+            print("Congrats on blackjack! You win now.") 
+        else:
+            print(f"Dealer says: {dealer_advice}")
 
-        # get user's input on next action
-        user_choice = input("Tell dealer what to do: ")
-        
-        # continue to loop while not given input of 'stay' or 'hold' 
-        while user_choice not in ['stay', 'Stay', 's', 'hold', 'Hold', 'h', 'bust', 'stand']:
-            the_deal[player_id].append(get_card())
-            hand_value_list = get_hand_value(the_deal[player_id])
-            print(f"{the_deal[player_id]} with value(s) of {hand_value_list}")
-            print(f"Dealer says: {get_deal_advice(hand_value_list)}")
-            if get_deal_advice(hand_value_list) == 'bust':
-                break
-            else:
-                user_choice = input("Now what? ")
+            # get user's input on next action
+            user_choice = input("Tell dealer what to do: ")
+            
+            # continue to loop while not given input of 'stay' or 'hold' 
+            while user_choice not in ['stay', 'Stay', 's', 'hold', 'Hold', 'h', 'bust', 'stand']:
+                the_deal[player_id].append(get_card())
+                hand_value_list = get_hand_value(the_deal[player_id])
+                print(f"{the_deal[player_id]} with value(s) of {hand_value_list}")
+
+                # get dealer advice
+                dealer_advice = get_deal_advice(hand_value_list)
+                print(f"Dealer says: {dealer_advice}")
+                if dealer_advice == 'bust':
+                    print("Sorry, you busted.  You lose now.")
+                    break
+                else:
+                    user_choice = input("Now what? ")
 
 # function to return advice from the dealer to the player
 def get_deal_advice(hand_value):
-    ''' function will recieve a list of hand value and return a string regarding what the player should do '''
-
-
+    ''' argument: a list of hand values
+        returns: a string regarding what the player should do '''
 
     # if only one potential value in hand (ie, no aces)
     if get_best_value(hand_value) < 17:
@@ -168,10 +181,11 @@ def get_deal_advice(hand_value):
 
 # build the deck, based on how many decks the user wants to play with
 def build_deck(num_decks):
-    ''' when given a number of decks to play with, this will build global variable deck '''
+    ''' arguments: number of decks to play with
+        return: none(this will build global variable deck) '''
+
     # use global deck variable
     global deck
-
 
     # loop based on how many decks they want
     for i in range(0,number_of_decks):
@@ -186,9 +200,11 @@ def build_deck(num_decks):
 
 # function for displaying the current deal
 def display_cards():
-    ''' function receives a nested list of delt cards, and prints out the current cards to the screen....no return '''
+    ''' arguments: nested list of delt cards
+        returns: none (prints out cards) '''
+   
+    # access global deal variable
     global the_deal
-
 
     # show dealer's cards
     print(f"           Dealer is showing {the_deal[0][0]}")
@@ -201,7 +217,10 @@ def display_cards():
 
 # function for printing winners
 def print_winning_hands():
-    # dealth_cards iss a nested list, index 0 is dealer's hand, other index represent the other hands
+    ''' arguments: none
+        returns: none (prints the results of the hand, who beats/loses to the dealer '''
+
+    # dealt_cards is a nested list, with index 0 is dealer's hand, remaining indicies represent the other hands
 
     # case: dealer busted
     if get_best_value(get_hand_value(the_deal[0])) > 21:
@@ -233,7 +252,8 @@ def print_winning_hands():
 
 # function for scrubbing bust values from list of values and returning highest value
 def get_best_value(hand_values):
-    ''' function takes a list of potential hand values and returns an int of the best value '''
+    ''' arguments: takes a list of potential hand values
+        return: int of the best value in the hand '''
 
     # if only one value and it's a bust, return the bust value
     if len(hand_values) == 1 and hand_values[0] > 21:
@@ -264,6 +284,7 @@ while True:
 
     # set up deck
     number_of_decks = int(input("Please input the number of decks you'd like to play with: "))
+
     #number_of_decks = 1
     build_deck(number_of_decks)
 
