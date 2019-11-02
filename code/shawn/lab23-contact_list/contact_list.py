@@ -3,6 +3,30 @@
 # Assignment: Lab 23 - Contact List
 # Date: 11/1/2019
 
+# function for opening file
+def open_file(filename):
+    ''' arguments: filename to open
+        return: list of each line as a string '''
+    # open file
+    with open(filename, 'r') as file:
+        # load each line into list of strings call 'lines'
+        lines = file.read().split('\n')
+    
+    return lines
+
+# function for writing data to file
+def write(filename, output_string):
+    ''' arguments: filename to output to and string to write
+        returns: boolean if operation was successful '''
+
+    try: 
+        with open(filename, 'w') as file:
+            file.write(output_string)
+        return True
+    except IOError as e:
+        print(e)
+        return False
+
 # function to convert list of comma seperated lines to a dictionary
 def get_dictionary(input_string_list):
     ''' arguments: input list of strings.  each string is a line with comma seperated values,
@@ -127,13 +151,40 @@ def delete(dict_list, headers):
     else: 
         return None
 
+# function for transforming the dictionary list to a csv-ready string
+def dict_list_to_csv_string(dict_list, headers):
+    ''' arguments: list of dictionaries and a list of header words
+        return: a csv string ready for writing to csv '''
+
+    # declare return string as empty
+    return_string = ''
+
+    # print out headers first
+    for header in headers:
+        return_string += header + ','
+    # after itering through all columns, slice off last character (the ',')  and add a newline
+    return_string = return_string[:-1:1] + '\n'
+
+    # iterate through dict_list
+    for row in dict_list:
+        # iterate through each header
+        for col in row:
+            # update return string
+            return_string += row[col] + ','
+        
+        # after itering through all columns, slice off last character (the ',')  and add a newline
+        return_string = return_string[:-1:1] + '\n'
+
+    # return string
+    return return_string
+
 
 # main
 
 # open file
-with open('lab23_spreadsheet.csv', 'r') as file:
-    # load each line into list of strings call 'lines'
-    lines = file.read().split('\n')
+filename = 'lab23_spreadsheet.csv'
+lines = open_file(filename)
+
 
 # get dictionary from csv
 dict_list = get_dictionary(lines)
@@ -146,13 +197,14 @@ print(dict_list)
 ## version 2: CRUD REPL
 while True:
     # get operation input
-    user_operation = input("Commands:\n(c) create\n(r) retrieve\n(u) update\n(d) delete\n(s) show data\n(q) quit\nPlease make selection: ")
+    user_operation = input("\nCommands:\n(c) create\n(r) retrieve\n(u) update\n(d) delete\n(s) show data\n(w) write to file\n(q) quit\nPlease make selection: ")
     user_operation = user_operation.lower()
 
-    # initiate action depending on input
+    # --------------------------------   initiate action depending on input   -----------------------------
     # create
     if user_operation == 'c':
         dict_list.append(create(header))
+
     # retrieve
     elif user_operation == 'r':
         # get lookup data
@@ -162,6 +214,7 @@ while True:
             print(f"That {header[0]} was not found.")
         else:
             print(lookup_data)
+
     # update
     elif user_operation == 'u':
         # get updated list of dictionaries
@@ -171,6 +224,7 @@ while True:
             dict_list = updated_dict.copy()
         else:
             print("Data not successfully updated")
+
     # delete
     elif user_operation == 'd':
         # get updated list of dictionaries
@@ -180,9 +234,23 @@ while True:
             dict_list = updated_dict.copy()
         else:
             print("Data not found, delete was unsuccessful")
+
     # show data
     elif user_operation == 's':
-        print(dict_list)    
+        print(dict_list) 
+
+    # write to file
+    elif user_operation == 'w':
+        # get output string
+        output_string = dict_list_to_csv_string(dict_list, header)
+
+        # write output string
+        print(f'test of output_string {output_string}')
+        if write(filename, output_string):
+            print("Write completed successfully")  
+        else:
+            print("Write unsuccessful")
+
     # quit
     elif user_operation == 'q':
         print("Quitting program.")
