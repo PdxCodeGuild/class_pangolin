@@ -3,14 +3,20 @@ from PIL import Image, ImageDraw
 width = 500
 height = 500
 
-img = Image.new('RGBA', (width, height))
+
+img = Image.open(r'C:\Users\wiley\Documents\class_pangolin\code\wiley\lab16\not_stock_resize.jpg')
+img = img.convert('RGBA')
+
+#img.load()
+#img = Image.open()
 
 draw = ImageDraw.Draw(img)
 
 
+
 # the origin (0, 0) is at the top-left corner
 
-draw.rectangle(((0, 0), (width, height)), fill=("grey"))
+#draw.rectangle(((0, 0), (width, height)), fill=("grey"))
 
 # draw a rectangle from x0, y0 to x1, y1
 #draw.rectangle(((250, 250), (600, 600)), fill="lightblue")
@@ -21,6 +27,7 @@ color = (256, 128, 128)  # pink
 
 #line starts at x250,y150 and ends at x250 y400
 #this is the "body"
+
 draw.line((250,150, 250, 400 ), fill=color, width = 10)
 
 #line starts at x150, y250 and ends at x350, y250
