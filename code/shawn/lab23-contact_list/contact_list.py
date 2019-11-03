@@ -10,7 +10,8 @@ def open_file(filename):
     # open file
     with open(filename, 'r') as file:
         # load each line into list of strings call 'lines'
-        lines = file.read().split('\n')
+        lines_string = file.read().strip()      # removes whitespace and newlines
+        lines = lines_string.split('\n')
     
     return lines
 
