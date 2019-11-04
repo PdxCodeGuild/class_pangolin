@@ -5,12 +5,14 @@
 
 import random
 
+# given sock properties
 sock_types = ['ankle', 'crew', 'calf', 'thigh']
+sock_colors = ['black', 'white', 'blue']
 
 # generate list of random socks
 sock_list = []
 for i in range(1000):
-    sock_list.append(random.choice(sock_types))
+    sock_list.append( (random.choice(sock_colors),random.choice(sock_types)) )
 
 # put list of socks into dictionary
 sock_dict = {}
