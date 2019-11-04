@@ -4,11 +4,23 @@ with open('contact_list.csv', 'r') as file:
 
 contactList = []
 my_dict = {}
+header = []
+name = []
+fruit = []
+color = []
+my_line = []
+new_list = []
 
 for contact in lines:
     my_line = contact.split(",")
-    print(my_line)
+    contactList.append(my_line)
 
-    #print(contact)
+header = zip(contactList[0])
+new_list = zip(contactList[1], contactList[2])
 
-#print(name, fruit, color)
+keys = list(header)
+values = list(new_list)
+
+print(keys)
+print(values)
+#print(my_dict)
