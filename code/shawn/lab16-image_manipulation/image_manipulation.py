@@ -56,6 +56,51 @@ img.show()
 
 # Version 3: Draw Stick Figure and 1000 random lines/rectangles
 
+width = 500
+height = 500
+
+img = Image.new('RGB', (width, height))
+
+draw = ImageDraw.Draw(img)
+
+
+# the origin (0, 0) is at the top-left corner
+
+draw.rectangle(((0, 0), (width, height)), fill="black")     # draw a black background
+
+# some variables to help
+body_width = 20
+body_height = 170
+leg_height = 100
+
+# draw torso: a rectangle from x0, y0 to x1, y1
+draw.rectangle(((240, 150), (240+body_width, 150+body_height)), fill="red")  # draw a blue shirt, 50 wide and 150 tall
+
+# draw pants
+draw.rectangle(((240, 320), (240+body_width, 320+leg_height)), fill="lightblue")
+draw.rectangle(((240+(body_width//2),320+30), (242+(body_width//2),320+leg_height)), fill = 'black')
+
+# draw arms
+draw.rectangle(((160,200),(240,210)), fill="yellow")        # arms are 60 wide and 10 tall
+draw.rectangle(((260,200),(340,210)), fill="yellow")
+
+
+# # draw a line from x0, y0, x1, y1
+# # using the color pink
+# color = (256, 128, 128)  # pink
+# draw.line((0, 0, width, height), fill=color)
+# draw.line((0, height, width, 0), fill=color)
+
+
+circle_x = width/2
+circle_y = 120
+circle_radius = 40
+draw.ellipse((circle_x-circle_radius, circle_y-circle_radius, circle_x+circle_radius, circle_y+circle_radius), fill='lightgreen')
+
+img.show()
+
+
+# version 3: draw art
 # 1000 random lines: 
 width = 500
 height = 500
