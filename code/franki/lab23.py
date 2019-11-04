@@ -3,14 +3,11 @@ with open('contacts.csv', 'r') as file:
     lines = file.read().split('\n')
     lines = list(lines)
     keys = lines[0].split(',')
-    print(lines)
 # iterate through the lines
 # split each line
 # iterate through the list and assign each value to a key
 # name,favorite fruit,favorite color
-# matthew,blackberries,orange
-# sam,pineapple,green
-# franki,blueberries,purple
+
 contact_list = []
 for i in range(1, len(lines)):
     dict = {}
