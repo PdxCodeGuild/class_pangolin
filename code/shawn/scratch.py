@@ -1,16 +1,7 @@
+import string
+s = 'I $am a !string with punc&^%*tuation! am - am  am-am am—am am\'s'
 
-data = [1,2,3,4,5,6,5,4,3,2,1]
-
-width = len(data)
-height = 7
-
-
-
-for y in range(height,0,-1):
-    for x in range(width):
-        if data[x] < y:
-            print('  ', end='')
-        elif data[x] >= y:
-            print('X ', end='')
-    print()
-
+translator = str.maketrans('', '', string.punctuation)
+string_without_punct = s.translate(translator) # I am a string with punctuation
+print(string_without_punct)
+print(string.punctuation)
