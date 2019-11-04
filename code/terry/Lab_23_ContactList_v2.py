@@ -37,23 +37,27 @@ user_fruit = ""
 user_color = ""
 
 user_choice = input(
-    "Would you like to 'C'reate a new user, 'F'ind a user, 'U'pdate a user, or 'D'elete a user?").lower()
-
-user_name = input("Enter a name: ")
-user_fruit = input("Enter a fruit: ")
-user_color = input("Enter a color: ")
+    "Would you like to 'C'reate a new user, 'F'ind a user, 'U'pdate a user, or 'D'elete a user? ").lower()
 
 if user_choice == "c":
     # create new user
+    user_name = input("Enter a name: ")
+    user_fruit = input("Enter a fruit: ")
+    user_color = input("Enter a color: ")
     my_dict.update({'Name': user_name, 'Favorite Fruit': user_fruit, 'Favorite Color': user_color})
+    print(f"Here is the record you just created: {my_dict}")
+elif user_choice == "f":
+    # do a look up .get
+    user_name = input("Enter a name: ")
     #print(my_dict)
-# elif user_choice == "f":
-#     #do a look up .get
+    for n in final_list:
+        if n['Name'] == user_name:
+            print(n)
 # elif user_choice == "u":
 #     #use the .update
 # elif user_choice == "d":
 #     #delete the record
 
 
-print(my_dict)
-print(final_list)
+# print(my_dict)
+# print(final_list)
