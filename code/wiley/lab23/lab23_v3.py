@@ -4,7 +4,7 @@
 #The text in the header represents the keys, the text in the other lines represents the values.
 import os
 filename = "contacts.csv"
-with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r') as file:
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
     lines = file.read().split('\n')
     #print(lines)
 
@@ -44,14 +44,14 @@ or 'EXIT' to close the program.""").lower()
         for value in user_list:    
             user_dict = (dict(zip(keys,user_list)))
         
-        return contact_list.append(user_dict)
+        return contact_list.append(user_dict) 
     
     elif user_input == 'r':
         print("You selected: Retrieve a record.\n")
         user_name = input("Whose contact information do you want to see?").lower()
         for element in contact_list:
             if element["name"]== user_name:
-                return element
+                return element 
             else:
                 print("Not found in contacts list. ")
 
