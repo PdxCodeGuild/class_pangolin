@@ -19,7 +19,7 @@ for i in range(width):
         h, s, v = colorsys.rgb_to_hsv(r/255,g/255,b/255)
         
         #print(h,s,v)
-        h, s, v = (h+100),(s*1.93),(v-(v//2))
+        h, s, v = (h+400),(s*1.93),(v-(v//2))
 
 
         r,g,b = colorsys.hsv_to_rgb(h,s,v)
