@@ -35,11 +35,33 @@ def find():
     for n in things:
         if n['name'] == find_it:
             print (n)
+            return n
+        
+def update():
+    update = input('what contact do you want to update? ')
+    atrabute = input('what option do you want to update? ')
+    new_value = input('what would you like to replace it with? ')
+    for n in things:
+        if n['name'] == find_it:
+            print (n)
+            return n
+        for i in range(len(n)):
+            if n[i]['name'] == atrabute:
+                #update
+            elif n[i]['favorite fruit'] == atrabute:
+                #update
+            elif n[i]['favorite color'] == atrabute:
+                #update
+            #work on this one tomorrow
 
-    # name.append(find_it)
-    # return name
-    # if find_it in things:
-    #     print dict(find_it)
+            
+def delete():
+    delete = input('What contatct name do you want to delete? ')
+    for i in range(len(things)):
+        if things[i]['name'] == delete:
+            del things[i]
+            print(things)
+            return things
 
 #print (find_stuff())
 # things.append(input_stuff())
@@ -51,7 +73,12 @@ if what_to_do == 'create':
     input_stuff()
 elif what_to_do == 'find':
     find()
-  
+elif what_to_do == 'update':
+    update()
+elif what_to_do == 'delete':
+    delete()
+else:
+    print('please enter a valid responce. ')
 
 
 
