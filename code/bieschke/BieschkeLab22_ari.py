@@ -46,6 +46,8 @@ with open(y) as sampled_file:
 
 # sentences.remove('')
 x = ari(letters, word, sentences)
+if x > 14:
+    x = 14 
 #print(x)
 #print(ari_scale.get(ari()))
 print(f"The ARI for {sampled_file.name} is {x}")
