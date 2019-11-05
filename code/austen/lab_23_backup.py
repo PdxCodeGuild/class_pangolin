@@ -1,8 +1,6 @@
 with open('test_contacts.csv', 'r') as file:
     lines = file.read().split('\n')
-    print (lines)
     lines = [item.lower() for item in lines]
-    print(lines)
     #print(lines)
 
 things = [] 
@@ -10,20 +8,12 @@ things = []
 for i in range(1,3):
     key_things = lines[0]
     key_things = key_things.split(',')
-    print(key_things)
+    #print(key_things)
     row = lines[i]
     row = row.split(',')
     row = dict(zip(key_things,row))
     things.append(row)
 #print(things)
-def export_list():
-    global lines, things
-    with open('test_contacts_out.csv', 'w') as out_file:
-
-        for line in lines:
-            lines = out_file.write(" ".join(line) + "\n")
-            #lines = [item for item in line]
-
 
 #print (things) # rememeber to put the print statement outside the for loop or you will end up printing every time the loop itterates 
 def input_stuff():
@@ -55,7 +45,6 @@ def update():
             if atrabute in n:
                 n[atrabute] = new_value
                 print (n)
-                export_list()
             # return n  
             
 def delete():
@@ -82,6 +71,4 @@ while True:
         break
     else:
         print(f'please enter a valid responce.')
-        
-#with open('test_contacts.csv', 'a') as file:
-   # file.write()
+
