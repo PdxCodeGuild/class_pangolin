@@ -1,6 +1,5 @@
 with open('contact_list.csv', 'r') as file:
     lines = file.read().split('\n')
-    # print(lines)
 
 contactList = []
 my_dict = {}
@@ -49,15 +48,43 @@ if user_choice == "c":
 elif user_choice == "f":
     # do a look up .get
     user_name = input("Enter a name: ")
-    #print(my_dict)
+    # print(my_dict)
     for n in final_list:
         if n['Name'] == user_name:
             print(n)
-# elif user_choice == "u":
-#     #use the .update
-# elif user_choice == "d":
-#     #delete the record
+        # elif n['Name'] != user_name:
+        #     print("That user does not exist.")
 
+elif user_choice == "u":
+    # use the .update
+    user_name = input("Enter a name: ")
+    get_attrib = input("Would you like to update the 'F'ruit or the 'C'olor? ").lower()
 
+    if get_attrib == 'f':
+        user_fruit = input("Which fruit? ")
+        my_dict.update({'Favorite Fruit': user_fruit})
+    elif get_attrib == 'c':
+        user_color = input("Which color? ")
+        my_dict.update({'Favorite Color': user_color})
+    for n in final_list:
+        if n['Name'] == user_name:
+            print(n)
+elif user_choice == "d":
+    # delete the record
+    user_name = input("Enter a name: ")
+
+    for n in final_list:
+        if n['Name'] == user_name:
+            del my_dict['Name']
+            del my_dict['Favorite Fruit']
+            del my_dict['Favorite Color']
+
+        my_print = list(my_dict.items())
+        # print(my_print)
+
+    # For testing to confirm that the Name was removed
+    for n in final_list:
+        if n['Name'] == user_name:
+            print("User not found or deleted.")
 # print(my_dict)
 # print(final_list)
