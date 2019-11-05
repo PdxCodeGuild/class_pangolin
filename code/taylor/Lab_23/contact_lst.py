@@ -13,8 +13,11 @@ emsg2 = "Contact not found"
 
 inp_val1 = ("y","n")
 
+ld_to_csv = []
+
 with open('contacts.csv', 'r') as f:
     csv_orig = f.read().split('\n')
+    print(csv_orig)
 
 # List to dictionary
 def get_dict(csvL):
@@ -29,6 +32,17 @@ def get_dict(csvL):
     return csv_lst
 
 contacts = get_dict(csv_orig)
+
+def list_to_csv(dictList):
+    ll = list(dictList[0].keys())
+    dd = ','.join(ll)
+    ld_to_csv.append(dd)
+    for i in range(len(dictList)):
+        v = list(dictList[i].values())
+        vv = ','.join(v)
+        ld_to_csv.append(vv)
+
+    return ld_to_csv
 
 # Create a record
 def new_rcd(nme, frt, clr):
@@ -74,7 +88,7 @@ def usr_inp(msg, emsg, *args):
 new_contact = usr_inp(msg1, emsg1, *inp_val1)
 if new_contact == 'y':
     new_rcd(input(msg5),input(msg6),input(msg7))
-    print(contacts)
+ 
 
 # Retreive a contact loop
 retrieve_contact = usr_inp(msg2, emsg1, *inp_val1)
@@ -93,7 +107,6 @@ if update_contact == 'y':
         print(emsg2)
     else:
         upd_rcd(record, input(msg8), input(msg9))
-        print(contacts)
 
 # Delete a contact loop
 delete_contact = usr_inp(msg4, emsg1, *inp_val1)
@@ -103,4 +116,11 @@ if delete_contact == 'y':
         print(emsg2)
     else:
         del_rcd(record['name'])
-        print(contacts)
+
+
+final = list_to_csv(contacts)
+
+with open('contacts.csv', 'w') as f:
+    for i in range(len(final)):
+        f.write(final[i] + '\n')
+
