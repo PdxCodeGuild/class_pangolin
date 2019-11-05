@@ -2,7 +2,7 @@
 
 **Sets** are an _unordered_, mutable, unique, iterable, collection of values. They are similar to the sets in mathematics. You can find more info [here](https://docs.python.org/3/tutorial/datastructures.html#sets).
 
-Set literals are written using curly braces and . The empty set is  written as `set()` to not conflict with the empty dict.
+Set literals are written using curly braces and commas. The empty set is  written as `set()` to not conflict with the empty dict.
 
 ```python
 {2, 4, 6, 8}
@@ -33,7 +33,7 @@ You can convert any iterable to a set using the `set()` function.
 |`x not in s`|test x for non-membership in s|
 |`s.issubset(t)` or `s <= t`|test whether every element in `s is in t`|
 |`s.issuperset(t)` or `s >= t` |test whether every element in t is in s|
-|`s.union(t)` or `s &#124; t` | new set with elements from both s and t|
+|`s.union(t)` or `s <pipe> t` | new set with elements from both s and t|
 |`s.intersection(t)` or `s & t` | new set with elements common to s and t|
 |`s.difference(t)` or `s - t` |new set with elements in s but not in t|
 |`s.symmetric_difference(t)` or `s ^ t`|new set with elements in either s or t but not both|
