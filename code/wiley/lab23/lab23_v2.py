@@ -22,6 +22,7 @@ for value in values:
 
 
 def crud_loop():
+    '''This function gives the user the option to Create Retrieve Update or Delete a record in the Contact List and returns the contact list in its new form. '''
     user_input = input("""What action would you like to complete?
 'C' for create new record.
 'R' for retrieve a record.
@@ -48,12 +49,16 @@ or 'EXIT' to close the program.""").lower()
     elif user_input == 'r':
         print("You selected: Retrieve a record.\n")
         user_name = input("Whose contact information do you want to see?").lower()
+        not_found = True
+        
         for element in contact_list:
             if element["name"]== user_name:
-                return element
-            else:
-                print("Not found in contacts list. ")
-
+                not_found = False
+                print(element)
+        if not_found:
+            print("Contact not in contact list.")    
+            
+        
 
     elif user_input == 'u':
         print("You selected: Update a record. \n")
@@ -92,6 +97,6 @@ or 'EXIT' to close the program.""").lower()
         print("Thanks, goodbye.")
         return
     else:
-        print("Not a valid response.  Try again.")
-        pass
+        print("Not a valid response.")
+
 crud_loop()

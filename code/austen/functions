@@ -147,3 +147,28 @@ print(text_lines)
 new_text = '\n'.join(text_lines)
 
 print(new_text)
+
+---------------
+
+list_of_lists = [[1,2,3]],
+                [[1,2,3]],
+                [[1,2,3]]
+
+def double_nums (in_list_of_lists):
+    for i in range(len(in_list_of_lists)):
+        for j in range(len(in_list_of_lists[i])):
+            doubled_num = in_list_of_lists[i][j]*2
+            in_list_of_lists[i][j] = double_num
+    return in_list_of_lists
+print(doubled_num(list_of_lists))
+
+
+words = {
+'let': 1,
+'the' : 1,
+
+
+
+}
+
+let the user enter a word, then show the words which most frequently follow it.
