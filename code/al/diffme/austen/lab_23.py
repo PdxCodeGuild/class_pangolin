@@ -27,23 +27,28 @@ def export_list():
     ','.join(things[0].keys())
     ','.join(things[0].values())
     mylist.append(','.join(things[0].keys()))
-    for i in range(len(things)):# this for loop makes it loop through everything and not just line one and two
-        mylist.append(','.join(things[i].values()))
+    mylist.append(','.join(things[0].values()))
+    mylist.append(','.join(things[1].values()))
     '\n'.join(mylist)
     print(mylist)
     # print (mylist)
     with open('test_contacts_out.csv', 'w') as contact_list:
        contact_list.write('\n'.join(mylist))
 
+    # with open('test_contacts_out.csv', 'w', newline="\n") as export_list:
+    #    export_list.write(mylist)
+        
+        #print (list(things[0].values()))
+
 #print (things) # rememeber to put the print statement outside the for loop or you will end up printing every time the loop itterates 
 def input_stuff():
-    #user = []
-    user = input('what is your name? '), input('what is your favorite fruit? '), input('what is your favorite color?')
-    # new_row = ''.join(user_input).split(',')
-    # user.append(user_input)
-    # user = [list(x) for x in user]
-    # user = [value for sec_list in user for value in sec_list]
-    print(user)
+    user = []
+    user_input = input('what is your name? '), input('what is your favorite fruit? '), input('what is your favorite color?')
+    new_row = ''.join(user_input).split(',')
+    user.append(user_input)
+    user = [list(x) for x in user]
+    user = [value for sec_list in user for value in sec_list]
+   # print(user)
     new_row = dict(zip(key_things, user))
     things.append(new_row)
     print(things)
@@ -55,7 +60,7 @@ def find():
     for n in things:
         if n['name'] == find_it:
             print (n)
-            #export_list()
+            export_list()
             return n
         
 def update():
