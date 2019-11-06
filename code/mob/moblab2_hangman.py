@@ -48,6 +48,7 @@ def game():
             if correct_guesses == 0:
                 print(f"Sorry, there's no {guess}.")
                 guesses -=1
+                pillow_talk.picture(guesses)
                 print(f"You have {guesses} guesses left.\n")
             elif correct_guesses == 1:
                 print(f"There's one {guess}.\n")
@@ -63,7 +64,7 @@ def game():
             print("You win!!!!")
             break
         guessed_letters.append(guess)
-        pillow_talk.picture(guesses)
+        
 
 game()
 
