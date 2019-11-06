@@ -3,6 +3,7 @@
 
 import random
 import string
+import pillow_talk
 
 word_list = []
 with open('english.txt', 'r') as file:
@@ -55,13 +56,14 @@ def game():
 
         if guesses == 0:
             print(f"I'm sorry, you lose! The word was {game_word}")
+            pillow_talk.picture(guesses)
             break
         elif redacted_word == word:
             print(' '.join(redacted_word))
             print("You win!!!!")
             break
         guessed_letters.append(guess)
-
+        pillow_talk.picture(guesses)
 
 game()
 
