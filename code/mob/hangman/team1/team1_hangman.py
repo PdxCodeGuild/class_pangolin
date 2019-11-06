@@ -1,5 +1,6 @@
 import random
 import string
+import os
 
 # function for opening/initializing file
 def file_init(filename, word_length):
@@ -96,9 +97,37 @@ def play_one_round(target_word, dash_list, letters_guessed):
     # return dash list, letters guessed, and a num_guesses modifier (1 or 0) as a tuple
     return  dash_list, letters_guessed, num_guesses_mod
 
+# function for printing to console
+def display_game(target_word, dash_list, num_guesses, letters_guessed):
+    ''' parameters: target word (string), dash list (list), num guesses (int), letters guessed (list)
+        return: none (justs prints game) '''
+
+    # first, clear terminal window
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    # print hangman gallows scene based on how many guesses are left
+    hangman_art = ['ded', 'almost ded', 'getting close', 'ok', 'ok', 'ok', 'ok', 'very ok', 'perfectly ok', 'perfect']
+    print(hangman_art[num_guesses-1])
+
+    # print out each letter in dash list seperated by white space
+    for letter in dash_list:
+        print(letter, end=' ')
+    print()     # prints newline since we are ending each letter with just a ' '
+
+    # print number of guesses remaining: 
+    print(f"# of guesses remaining: {num_guesses}")
+
+    # print list of already guessed letters
+    print("already guessed: ", end=' ')
+    for letter in letters_guessed:
+        print(letter, end=', ')
+    print()     # prints newline since we are ending each letter with just a ' '
+
+    # return none
+    return 
+
 # function playing whole game (one word) of hangman
 def play_hangman(word_length):
-
     # variables to be passed to user input validation function later
     message_1 = "Do you want to play again? "
     error_message = "Invalid input, enter (y or n) "
@@ -116,20 +145,15 @@ def play_hangman(word_length):
     # a list for tracking characters guessed
     letters_guessed = []
 
-    # print out current list of underscores or correctly guessed characters
-    print(dash_list)
-
     # continue looping while game is not yet won
     while not check_for_win(dash_list):
+    
+        # print out current list of underscores or correctly guessed characters
+        display_game(target_word,dash_list,num_guesses,letters_guessed)
 
         # play one letter, update number guessed with the returned modifier
         dash_list, letters_guessed, num_guesses_mod = play_one_round(target_word,dash_list, letters_guessed)
         num_guesses -= num_guesses_mod
-
-        # print out current game status
-        print(dash_list)
-        print(f"already guessed: {letters_guessed}")
-        print(f"# guessed remaining: {num_guesses}")
 
         # if you've run out of guesses, you lose
         if num_guesses == 0:
@@ -137,7 +161,7 @@ def play_hangman(word_length):
             break
         # if you've won, print out winning message
         if check_for_win(dash_list):
-            print("You win!")
+            print(f"You win! Target word was {target_word}")
 
     # see if user wants to play again
     return user_input_validation(message_1, error_message, *validation)
