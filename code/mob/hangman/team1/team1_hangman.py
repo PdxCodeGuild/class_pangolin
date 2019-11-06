@@ -1,6 +1,7 @@
 import random
 import string
 import os
+import you_lose
 
 # function for opening/initializing file
 def file_init(filename, word_length):
@@ -106,8 +107,8 @@ def display_game(target_word, dash_list, num_guesses, letters_guessed):
     os.system('cls' if os.name == 'nt' else 'clear')
 
     # print hangman gallows scene based on how many guesses are left
-    hangman_art = ['ded', 'almost ded', 'getting close', 'ok', 'ok', 'ok', 'ok', 'very ok', 'perfectly ok', 'perfect']
-    print(hangman_art[num_guesses-1])
+    hangman_art = [you_lose.reaper, 'almost ded', 'getting close', 'ok', 'ok', 'ok', 'ok', 'very ok', 'perfectly ok', 'perfect', 'first guess']
+    print(hangman_art[num_guesses])
 
     # print out each letter in dash list seperated by white space
     for letter in dash_list:
@@ -157,6 +158,7 @@ def play_hangman(word_length):
 
         # if you've run out of guesses, you lose
         if num_guesses == 0:
+            display_game(target_word,dash_list,num_guesses,letters_guessed)
             print(f"You ran out of guesses! You lose! Target word was: {target_word}")
             break
         # if you've won, print out winning message
