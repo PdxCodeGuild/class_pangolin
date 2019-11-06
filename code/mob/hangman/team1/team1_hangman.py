@@ -3,6 +3,10 @@
 import random
 import string
 
+message_1 = "Do you want to play again? "
+error_message = "Invalid input, enter (y or n) "
+validation = ['y', 'n']
+
 # function for opening/initializing file
 def file_init(filename, word_length):
     ''' parameters: filename as a string, word_length
@@ -82,35 +86,48 @@ def check_for_win(dash_list):
     if "_" in dash_list:
         return False
     else:
-        return True    
+        return True
 
+# function to validate user input
+def user_input_validation(msg, emsg, *args):
+    '''This function validates user input.'''
+    while True:
+        user_input = input(msg).lower()
+        if user_input.lower() not in args:
+            print(f"\n{emsg}")
+        else:
+            return user_input    
 
-# dash_list  is list of either dashes or correct letters guessed
-# target_word is string of the word the player is trying to guess
-# num_guesses is an int (starting at 10) of how many guesses remain
-# letters_guessed is a list of letters of both correct and incorrect letters that have been guessed
+def play_hangman(word_length):
+    target_word = get_target_word(file_init('english.txt', word_length))
+    dash_list = get_dash_list(target_word)
+    num_guesses = 10
+    num_guesses_mod = 0
+    letters_guessed = []
 
-
-
-
-# main 
-target_word = get_target_word(file_init('english.txt', 5))
-dash_list = get_dash_list(target_word)
-num_guesses = 10
-num_guesses_mod = 0
-letters_guessed = []
-
-print(dash_list)
-
-while not check_for_win(dash_list):
-
-
-    dash_list, letters_guessed, num_guesses_mod = play_one_round(target_word,dash_list, letters_guessed)
     print(dash_list)
-    print(f"already guessed: {letters_guessed}")
 
-    num_guesses -= num_guesses_mod
-    print(f"# guessed remaining: {num_guesses}")
-    if num_guesses == 0:
-        print("You ran out of guesses!")
+    while not check_for_win(dash_list):
+
+        dash_list, letters_guessed, num_guesses_mod = play_one_round(target_word,dash_list, letters_guessed)
+        print(dash_list)
+        print(f"already guessed: {letters_guessed}")
+
+        num_guesses -= num_guesses_mod
+        print(f"# guessed remaining: {num_guesses}")
+        if num_guesses == 0:
+            print(f"You ran out of guesses! You lose! Target word was: {target_word}")
+            break
+        if check_for_win(dash_list):
+            print("You win!")
+    return user_input_validation(message_1, error_message, *validation)
+
+while True:
+    if play_hangman(5) == 'n':
         break
+    print("Playing another round.")
+print("Game Over.")
+
+
+
+
