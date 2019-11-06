@@ -1,5 +1,3 @@
-
-
 import random
 import string
 
@@ -7,12 +5,20 @@ import string
 def file_init(filename, word_length):
     ''' parameters: filename as a string, word_length
         return: list of strings of words over input word_length '''
+    # declare empty list for list of words
+    n_words_or_greater = []
 
+    # open file using passed filename
     with open(filename, 'r') as f:
+        # store file as list of strings, each string its own newline
         dictionary_list = list(f.read().split('\n'))
+
+    # filtering words greater >= word length, appending to return list
     for i in range(len(dictionary_list)):
         if len(dictionary_list[i]) >= word_length:
             n_words_or_greater.append(dictionary_list[i])
+
+    # returning list
     return n_words_or_greater
 
 # function for getting target word
@@ -21,20 +27,38 @@ def get_target_word(list_of_words):
         return: a random target word '''
 
     target_word = random.choice(list_of_words)
+    # print(f"target_word is {target_word}")        ## for cheat mode, uncomment this
     return target_word
 
 # function for getting list of dashes based on target word
 def get_dash_list(target_word):
     ''' parameters: target word as a string
         return: a list of strings (initialized as underscores) '''
-    dash_list = ['_' for letter in target_word]
+    return ['_' for letter in target_word]
 
-    return dash_list
+# function for checking if there's a win
+def check_for_win(dash_list):
+    ''' parameters: dash list as a list of strings
+        return: true/false if game is over '''
+    if "_" in dash_list:
+        return False
+    else:
+        return True
+
+# function to validate user input
+def user_input_validation(msg, emsg, *args):
+    '''This function validates user input.'''
+    while True:
+        user_input = input(msg).lower()
+        if user_input.lower() not in args:
+            print(f"\n{emsg}")
+        else:
+            return user_input    
 
 # function for playing through one guess/round
-def play_one_round(target_word, num_of_choices, dash_list, letters_guessed):
+def play_one_round(target_word, dash_list, letters_guessed):
     ''' parameters: target word as string, number of choices remaining as int, dash list as list of strings, and letters guessed as list of strings
-        return: updated dash list and letters guessed '''
+        return: updated dash list, letters guessed, and num_guesses modifier as tuple '''
     
     # get input
     while True:
@@ -55,39 +79,76 @@ def play_one_round(target_word, num_of_choices, dash_list, letters_guessed):
         else:
             print(f"{user_input} is not valid input...must be a single letter")
 
+    # declare modifier for num_guesses
+    num_guesses_mod = 1
+
     # iterate through target word indexes
     for i in range(len(target_word)):
         # if input character equals target_word[i]
         if user_input == target_word[i]:
             # set dash_list[i] equal to input char
+            num_guesses_mod = 0
             dash_list[i] = user_input
 
     # add input letter to letters guessed
     letters_guessed.append(user_input)
 
+    # return dash list, letters guessed, and a num_guesses modifier (1 or 0) as a tuple
+    return  dash_list, letters_guessed, num_guesses_mod
 
-    # return dash list and letters guessed as a tuple
-    return  dash_list, letters_guessed
+# function playing whole game (one word) of hangman
+def play_hangman(word_length):
 
-# function for checking if there's a win
-def check_for_win(dash_list):
-    ''' parameters: dash list as a list of strings
-        return: true/false if game is over '''
-    if "_" in dash_list:
-        return False
-    else:
-        return True    
+    # variables to be passed to user input validation function later
+    message_1 = "Do you want to play again? "
+    error_message = "Invalid input, enter (y or n) "
+    validation = ['y', 'n']
+
+    # setting up variables needed for one game of hangman
+    # string that player is trying to guess
+    target_word = get_target_word(file_init('english.txt', word_length))
+    # list that will hold correctly guessed letters
+    dash_list = get_dash_list(target_word)
+    # nuber of guesses remaining
+    num_guesses = 10
+    # a modifier used to change number of guesses for each letter guessed
+    num_guesses_mod = 0
+    # a list for tracking characters guessed
+    letters_guessed = []
+
+    # print out current list of underscores or correctly guessed characters
+    print(dash_list)
+
+    # continue looping while game is not yet won
+    while not check_for_win(dash_list):
+
+        # play one letter, update number guessed with the returned modifier
+        dash_list, letters_guessed, num_guesses_mod = play_one_round(target_word,dash_list, letters_guessed)
+        num_guesses -= num_guesses_mod
+
+        # print out current game status
+        print(dash_list)
+        print(f"already guessed: {letters_guessed}")
+        print(f"# guessed remaining: {num_guesses}")
+
+        # if you've run out of guesses, you lose
+        if num_guesses == 0:
+            print(f"You ran out of guesses! You lose! Target word was: {target_word}")
+            break
+        # if you've won, print out winning message
+        if check_for_win(dash_list):
+            print("You win!")
+
+    # see if user wants to play again
+    return user_input_validation(message_1, error_message, *validation)
+
+# main game loop
+while True:
+    if play_hangman(5) == 'n':
+        break
+    print("Playing another round.")
+print("Game Over.")
 
 
-# dash_list  is list of either dashes or correct letters guessed
-# target_word is string of the word the player is trying to guess
-# num_guesses is an int (starting at 10) of how many guesses remain
-# letters_guessed is a list of letters of both correct and incorrect letters that have been guessed
 
-target_word = 'test'
-letters_guessed = ['t']
-num_choices = 10
-dash_list = ['_', '_', '_', '_']
-
-print(f"play_one_round returns: {play_one_round(target_word, 10, dash_list, letters_guessed)}")
 
