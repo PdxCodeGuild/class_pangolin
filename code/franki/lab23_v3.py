@@ -11,7 +11,6 @@ for i in range(1, len(lines)):
         key = keys[j] 
         dict[key] = values[j]
     contact_list.append(dict)
-print(contact_list)
 
 print("Welcome to the contact list.")
 while True:
@@ -61,17 +60,16 @@ while True:
                         continue
                     else:
                         break
+
 new_list = []
-keys = []
-for value in contact_list[0]:
-    keys.append(value)
-    new_list.append(value)
+key_list = list(contact_list[0].keys())
+new_list.append(','.join(key_list))
 for i in range(len(contact_list)):
-    for key in keys:
-        new_list.append('\n'.join(list(contact_list[i].values())))
-    
-print(new_list)
-new_list = ",".join(new_list)
+    mini_list = []
+    for key in key_list:
+        mini_list.append(contact_list[i][key])
+    new_list.append(",".join(mini_list))
+new_list = "\n".join(new_list)
 print(new_list)
 with open('new_contacts.csv', 'w') as file:
     file.write(new_list)
