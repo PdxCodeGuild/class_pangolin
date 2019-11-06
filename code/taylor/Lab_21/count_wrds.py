@@ -8,11 +8,17 @@ with open('pg36825.txt', 'r') as f:
 translator = str.maketrans('', '', string.punctuation)
 sh = sh.translate(translator).lower().replace('\n','').split(' ')
 
+# Function to create a fresh list form STOPWORDS and book gen'd list.
 def makeClean(stopwords, bookList): 
+    """ This function uses a comprehension to compare two lists, and output a new list
+    which exludes the contents of the first. """
     freshyList = [i for i in stopwords + bookList if i not in stopwords or i not in bookList] 
     return freshyList
 
-# word_dict = {v:0 for v in makeClean(STOPWORDS, sh)}
+# word_dict = {v:0 for v in makeClean(STOPWORDS, sh)}// Was a cool find to gen up a quick dictionary.
+
+# This loop creates a dictionary form the makeClean list, and initialies the " word-key" to a value of 0.
+# if the word exists then the value is incremented by one each instance within the list. 
 word_dict = {}
 for i in makeClean(STOPWORDS, sh):
     if i not in word_dict:

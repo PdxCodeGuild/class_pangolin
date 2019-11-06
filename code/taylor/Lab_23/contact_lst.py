@@ -80,36 +80,52 @@ def usr_inp(msg, emsg, *args):
                return usr_inp
 
 # Create a new contact loop
-new_contact = usr_inp(msg1, emsg1, *inp_val1)
-if new_contact == 'y':
-    new_rcd(input(msg5),input(msg6),input(msg7))
+new_contact = 'y'
+while new_contact == 'y':
+    new_contact = usr_inp(msg1, emsg1, *inp_val1)
+    if new_contact == 'n':
+        break
+    if new_contact == 'y':
+        new_rcd(input(msg5),input(msg6),input(msg7))
  
 # Retreive a contact loop
-retrieve_contact = usr_inp(msg2, emsg1, *inp_val1)
-if retrieve_contact == 'y':
-    record = fnd_rcd(input(msg5))
-    if record == None:
-        print(emsg2)
+retrieve_contact = 'y'
+while retrieve_contact == 'y':
+    retrieve_contact = usr_inp(msg2, emsg1, *inp_val1)
+    if retrieve_contact == 'n':
+        break
     else:
-        print(record)
+        record = fnd_rcd(input(msg5))
+        if record == None:
+            print(emsg2)
+        else:
+            print(record)
 
 # Update a contact loop
-update_contact = usr_inp(msg3, emsg1, *inp_val1)
-if update_contact == 'y':
-    record = fnd_rcd(input(msg5))
-    if record == None:
-        print(emsg2)
+update_contact = 'y'
+while update_contact == 'y':
+    update_contact = usr_inp(msg3, emsg1, *inp_val1)
+    if update_contact == 'n':
+        break
     else:
-        upd_rcd(record, input(msg8), input(msg9))
+        record = fnd_rcd(input(msg5))
+        if record == None:
+            print(emsg2)
+        else:
+            upd_rcd(record, input(msg8), input(msg9))
 
 # Delete a contact loop
-delete_contact = usr_inp(msg4, emsg1, *inp_val1)
-if delete_contact == 'y':
-    record = fnd_rcd(input(msg5))
-    if record == None:
-        print(emsg2)
+delete_contact = 'y'
+while delete_contact == 'y':
+    delete_contact = usr_inp(msg4, emsg1, *inp_val1)
+    if delete_contact == 'n':
+        break
     else:
-        del_rcd(record['name'])
+        record = fnd_rcd(input(msg5))
+        if record == None:
+            print(emsg2)
+        else:
+            del_rcd(record['name'])
 
 final = list_to_csv(contacts)
 
