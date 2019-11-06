@@ -1,5 +1,7 @@
 with open('contact_list.csv', 'r') as file:
+    # print(list(file))
     lines = file.read().split('\n')
+    # print(lines)
 
 contactList = []
 my_dict = {}
@@ -10,6 +12,7 @@ header = []
 my_line = []
 new_list = []
 final_list = []
+final_text = []
 
 lines = [x for x in lines if x]
 # print(lines)
@@ -79,7 +82,7 @@ elif user_choice == "d":
             del my_dict['Favorite Fruit']
             del my_dict['Favorite Color']
 
-        my_print = list(my_dict.items())
+        # my_print = list(my_dict.items())
         # print(my_print)
 
     # For testing to confirm that the Name was removed
@@ -88,3 +91,28 @@ elif user_choice == "d":
             print("User not found or deleted.")
 # print(my_dict)
 # print(final_list)
+final_text = my_dict.keys()
+
+# print(','.join(my_dict.keys()))
+final_keys = []
+final_keys.append(','.join(my_dict.keys()))
+final_values = []
+for d in final_list:
+    final_values.append((','.join(d.values())))
+# print(d)
+print(final_keys)
+# final_string = (','.join(final_values))
+# final_string.
+# Goal: ['Name,Favorite Fruit,Favorite Color\n', 'Matthew,blackberries,orange\n', 'Sam,pineapple,green\n']
+print(final_values)
+print(final_keys)
+final_string = final_keys + final_values
+final_string = str(final_string)
+# final_string = final_string.replace("',", "\\n,")
+# final_string = final_string.replace("']", "\\n")
+final_string = final_string.replace("['", "")
+final_string = final_string.replace("']", "")
+final_string = final_string.replace("', '", ", ")
+print(final_string)
+with open('contact_list.csv', 'w') as file:
+    file.write(', '.join(final_string))
