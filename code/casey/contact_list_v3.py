@@ -3,9 +3,9 @@ Lab 23: Contact List - Version 3
 
 Purpose/goal: When REPL loop finishes:
     
-    - Write the updated contact info to the CSV file to be saved. 
+    - Write the updated contact info to the CSV file to be saved. - D
     
-    - Save a backup contacts.csv because you likely won't write it correctly the first time.
+    - Save a backup contacts.csv because you likely won't write it correctly the first time. - D
 '''
 
 # open contacts.csv
