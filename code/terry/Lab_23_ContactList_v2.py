@@ -108,11 +108,12 @@ print(final_values)
 print(final_keys)
 final_string = final_keys + final_values
 final_string = str(final_string)
-# final_string = final_string.replace("',", "\\n,")
+
 # final_string = final_string.replace("']", "\\n")
 final_string = final_string.replace("['", "")
 final_string = final_string.replace("']", "")
 final_string = final_string.replace("', '", ", ")
+final_string = final_string.replace(", ", ", \n")
 print(final_string)
-with open('contact_list.csv', 'w') as file:
-    file.write(', '.join(final_string))
+with open('contact_list.csv', 'w', newline="\n") as file:
+    file.write(final_string)
