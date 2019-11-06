@@ -1,6 +1,4 @@
-Name,Favorite fruit,Favorite color,,,,
-Casey,Figs,Blue,,,,
-Abagayle,Bananas,Sea foam green,,,,
-Lia,Grapes,Red,,,,
-Michael,Apples,Pink,,,,
-Hunter,Oranges,Blonde,,,,
+name,favorite_fruit,favorite_color
+abagayle,bananas,sea_foam_green
+lia,grapes,red
+michael,apples,pink
