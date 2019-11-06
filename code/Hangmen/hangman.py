@@ -38,23 +38,23 @@ def game_loop():
         else:
             for i in range(len(answer)):
                 if user_guess == answer[i]:
-                    print('works')
-                    #  user_guess
-                    
                     blanks[i] = answer[i]
-                    counter += 1
+                    #counter += 1
                 else:
                     pass
             nice_try.append(user_guess)        
             for i in nice_try:
                 if i in answer:                
                     nice_try.remove(i)
-            counter -= 1
-            if counter > 10:
-                counter = 10
+            counter = 10 - len(nice_try)
+            #if counter > 10:
+             #   counter = 10
             if ''.join(blanks) == answer:
-                print("You saved a criminal")
+                print("You saved a criminal\n")
+                print(f"The word was {answer}")
                 break
+            if counter == 0:
+                print("You lost, a criminal dies. ")
     return nice_try, blanks
 
 load_words()
