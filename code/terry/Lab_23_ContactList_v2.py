@@ -2,6 +2,45 @@ with open('contact_list.csv', 'r') as file:
     lines = file.read().split('\n')
 """reads in the file.  sets it to "file" then adds a new line to each line."""
 
+
+def userInput(user_choice):
+    """based on what the user chose, deciding what to do"""
+    if user_choice == "c":
+        # create new user
+        user_name = input("Enter a name: ")
+        user_fruit = input("Enter a fruit: ")
+        user_color = input("Enter a color: ")
+        my_dict.update({'Name': user_name, 'Favorite Fruit': user_fruit, 'Favorite Color': user_color})
+        print(f"Here is the record you just created: {my_dict}")
+    elif user_choice == "f":
+        # do a look up
+        user_name = input("Enter a name: ")
+        for n in final_list:
+            if n['Name'] == user_name:
+                print(n)
+    elif user_choice == "u":
+        # use the .update
+        user_name = input("Enter a name: ")
+        get_attrib = input("Would you like to update the 'F'ruit or the 'C'olor? ").lower()
+        if get_attrib == 'f':
+            user_fruit = input("Which fruit? ")
+            my_dict.update({'Favorite Fruit': user_fruit})
+        elif get_attrib == 'c':
+            user_color = input("Which color? ")
+            my_dict.update({'Favorite Color': user_color})
+        for n in final_list:
+            if n['Name'] == user_name:
+                print(n)
+    elif user_choice == "d":
+        # delete the record
+        user_name = input("Enter a name: ")
+        for n in final_list:
+            if n['Name'] == user_name:
+                del my_dict['Name']
+                del my_dict['Favorite Fruit']
+                del my_dict['Favorite Color']
+
+
 """setting the global variables"""
 contactList = []
 my_dict = {}
@@ -40,47 +79,12 @@ user_color = ""
 """getting user input"""
 user_choice = input(
     "Would you like to 'C'reate a new user, 'F'ind a user, 'U'pdate a user, or 'D'elete a user? ").lower()
+userInput(user_choice)
 
-"""based on what the user chose, deciding what to do"""
-if user_choice == "c":
-    # create new user
-    user_name = input("Enter a name: ")
-    user_fruit = input("Enter a fruit: ")
-    user_color = input("Enter a color: ")
-    my_dict.update({'Name': user_name, 'Favorite Fruit': user_fruit, 'Favorite Color': user_color})
-    print(f"Here is the record you just created: {my_dict}")
-elif user_choice == "f":
-    # do a look up
-    user_name = input("Enter a name: ")
-    for n in final_list:
-        if n['Name'] == user_name:
-            print(n)
-elif user_choice == "u":
-    # use the .update
-    user_name = input("Enter a name: ")
-    get_attrib = input("Would you like to update the 'F'ruit or the 'C'olor? ").lower()
-    if get_attrib == 'f':
-        user_fruit = input("Which fruit? ")
-        my_dict.update({'Favorite Fruit': user_fruit})
-    elif get_attrib == 'c':
-        user_color = input("Which color? ")
-        my_dict.update({'Favorite Color': user_color})
-    for n in final_list:
-        if n['Name'] == user_name:
-            print(n)
-elif user_choice == "d":
-    # delete the record
-    user_name = input("Enter a name: ")
-    for n in final_list:
-        if n['Name'] == user_name:
-            del my_dict['Name']
-            del my_dict['Favorite Fruit']
-            del my_dict['Favorite Color']
-
-    # For testing to confirm that the Name was removed
-    # for n in final_list:
-    #     if n['Name'] == user_name:
-    #         print("User not found or deleted.")
+# For testing to confirm that the Name was removed
+# for n in final_list:
+#     if n['Name'] == user_name:
+#         print("User not found or deleted.")
 
 final_text = my_dict.keys()
 final_keys = []
