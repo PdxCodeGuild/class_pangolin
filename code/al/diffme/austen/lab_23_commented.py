@@ -20,30 +20,35 @@ def export_list():
     global things
     mylist = []
     
-    things[0].values()
+    things[0].values() # lines 23-28 do nothing
     list(things[0].values())
     list(things[1].values())
     things[0].keys()
     ','.join(things[0].keys())
     ','.join(things[0].values())
-    mylist.append(','.join(things[0].keys()))
-    for i in range(len(things)):# this for loop makes it loop through everything and not just line one and two
-        mylist.append(','.join(things[i].values()))
+    mylist.append(','.join(things[0].keys())) # this is good
+    mylist.append(','.join(things[0].values())) # in these two lines, 0 and 1 are hardcoded. They should be based on range(len(things))
+    mylist.append(','.join(things[1].values()))
     '\n'.join(mylist)
     print(mylist)
     # print (mylist)
     with open('test_contacts_out.csv', 'w') as contact_list:
        contact_list.write('\n'.join(mylist))
 
+    # with open('test_contacts_out.csv', 'w', newline="\n") as export_list:
+    #    export_list.write(mylist)
+        
+        #print (list(things[0].values()))
+
 #print (things) # rememeber to put the print statement outside the for loop or you will end up printing every time the loop itterates 
 def input_stuff():
-    #user = []
-    user = input('what is your name? '), input('what is your favorite fruit? '), input('what is your favorite color?')
-    # new_row = ''.join(user_input).split(',')
-    # user.append(user_input)
-    # user = [list(x) for x in user]
-    # user = [value for sec_list in user for value in sec_list]
-    print(user)
+    user = []
+    user_input = input('what is your name? '), input('what is your favorite fruit? '), input('what is your favorite color?') # this is making a tuple through tuple packing
+    new_row = ''.join(user_input).split(',') # split is doing nothing, you don't use this info being created
+    user.append(user_input) # this will put a tuple in the list
+    user = [list(x) for x in user] # this is iterating over the list with one tuple in it, and converting the single tuple into a list
+    user = [value for sec_list in user for value in sec_list] # this is taking everything buried in two lists, and bringing it one list up
+   # print(user)
     new_row = dict(zip(key_things, user))
     things.append(new_row)
     print(things)
@@ -52,16 +57,19 @@ def input_stuff():
 
 def find():
     find_it = input('What is the name of the person you would like to find? ')
+
     for n in things:
         if n['name'] == find_it:
             print (n)
-            #export_list()
+            export_list()
+
             return n
         
 def update():
     update = input('what contact do you want to update? ')
     atrabute = input('what option do you want to update? ')
     new_value = input('what would you like to replace it with? ')
+
     for n in things:
         if n['name'] == update:
             if atrabute in n:
@@ -72,11 +80,13 @@ def update():
             
 def delete():
     delete = input('What contatct name do you want to delete? ')
+
     for i in range(len(things)):
         if things[i]['name'] == delete:
             del things[i]
             print(things)
             export_list()
+
             return things
 
 
