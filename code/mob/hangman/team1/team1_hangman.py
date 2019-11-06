@@ -107,7 +107,7 @@ def display_game(target_word, dash_list, num_guesses, letters_guessed):
     os.system('cls' if os.name == 'nt' else 'clear')
 
     # print hangman gallows scene based on how many guesses are left
-    hangman_art = [you_lose.reaper, 'almost ded', 'getting close', 'ok', 'ok', 'ok', 'ok', 'very ok', 'perfectly ok', 'perfect', 'first guess']
+    hangman_art = [you_lose.reaper, you_lose.one, you_lose.two, you_lose.three, you_lose.four, you_lose.five, you_lose.six, you_lose.seven, you_lose.eight, you_lose.nine, you_lose.ten]
     print(hangman_art[num_guesses])
 
     # print out each letter in dash list seperated by white space
