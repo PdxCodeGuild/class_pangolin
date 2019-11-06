@@ -1,16 +1,27 @@
 import random
+dictionary_list = []
+n_words_or_greater = []
 
 
-with open('english.txt', 'r') as f:
-    dictionary_list = list(f.read().split('\n'))
-print(dictionary_list)
 
 # function for opening/initializing file
 def file_init(filename, word_length):
     ''' parameters: filename as a string, word_length
         return: list of strings of words over input word_length '''
 
-    return
+    with open(filename, 'r') as f:
+        dictionary_list = list(f.read().split('\n'))
+    for i in range(len(dictionary_list)):
+        if len(dictionary_list[i]) >= word_length:
+            n_words_or_greater.append(dictionary_list[i])
+            return n_words_or_greater
+
+
+    
+
+
+
+ 
 # function for getting target word
 def get_target_word(list_of_words):
     ''' parameters: list of strings, each a potential target word
