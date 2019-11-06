@@ -10,10 +10,13 @@ with open('english.txt', 'r') as file:
     for word in file:
         if len(word) >= 5:
             word_list.append(word)
+
+print("Welcome to Hangman!")
+print("Enter '1' to quit at any time")
         
 def game():        
     game_word = random.choice(word_list)
-    print(game_word)
+    #print(game_word)
 
     word = list(game_word)
     redacted_word = []
@@ -21,10 +24,14 @@ def game():
     guesses = 10
     for letter in word:
         redacted_word.append('_')
-    while True:
-        print(redacted_word)
+    replay = "yes"
+    while replay == "yes":
+        print(' '.join(redacted_word))
         guess = input("Guess a letter. ").lower()
-        if guess in guessed_letters:
+        if guess == "exit" or guess == '1':
+            print("Sayonara!")
+            quit()
+        elif guess in guessed_letters:
             print("You already guessed that!")
             continue
         elif guess not in string.ascii_lowercase:
@@ -40,19 +47,23 @@ def game():
             if correct_guesses == 0:
                 print(f"Sorry, there's no {guess}.")
                 guesses -=1
-                print(f"You have {guesses} guesses left.")
+                print(f"You have {guesses} guesses left.\n")
             elif correct_guesses == 1:
-                print(f"There's one {guess}.")
+                print(f"There's one {guess}.\n")
             else:
-                print(f"There are {correct_guesses} {guess}'s.")
+                print(f"There are {correct_guesses} {guess}'s.\n")
 
         if guesses == 0:
             print(f"I'm sorry, you lose! The word was {game_word}")
             break
         elif redacted_word == word:
+            print(' '.join(redacted_word))
             print("You win!!!!")
             break
         guessed_letters.append(guess)
+
+
+game()
 
 while True:
     replay = input("Do you want to play Hangman? yes or no\n>: ").lower()

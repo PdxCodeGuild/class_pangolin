@@ -1,8 +1,6 @@
 import random
 import string
 
-
-
 # function for opening/initializing file
 def file_init(filename, word_length):
     ''' parameters: filename as a string, word_length
