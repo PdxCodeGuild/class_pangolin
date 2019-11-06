@@ -20,14 +20,14 @@ def export_list():
     global things
     mylist = []
     
-    things[0].values()
+    things[0].values() # lines 23-28 do nothing
     list(things[0].values())
     list(things[1].values())
     things[0].keys()
     ','.join(things[0].keys())
     ','.join(things[0].values())
-    mylist.append(','.join(things[0].keys()))
-    mylist.append(','.join(things[0].values()))
+    mylist.append(','.join(things[0].keys())) # this is good
+    mylist.append(','.join(things[0].values())) # in these two lines, 0 and 1 are hardcoded. They should be based on range(len(things))
     mylist.append(','.join(things[1].values()))
     '\n'.join(mylist)
     print(mylist)
