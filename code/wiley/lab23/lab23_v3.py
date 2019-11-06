@@ -19,80 +19,112 @@ for value in values:
     #print(value)
     contact_list.append(dict(zip(keys, value)))
 
+def format_to_csv(dictionary, keys):
+    '''Takes 2 arguments and converts them into a csv formatted string. '''
+    csv = ''
+    for key in keys:
+        csv += key + ','
+    csv = csv[:-1:1] + '\n'
+
+    for row in dictionary:
+        for column in row:
+            csv += column + ','
+        csv = csv[:-1] + '\n'
+   
+    
+    return csv
+
 
 
 def crud_loop():
-    '''This function gives the user the option to Create Retrieve Update or Delete a record in the Contact List and returns the contact list in its new form. '''
-    user_input = input("""What action would you like to complete?
-'C' for create new record.
-'R' for retrieve a record.
-'U' for update a record.
-'D' for delete a record.
-or 'EXIT' to close the program.""").lower()
-    
-    if user_input == 'c':
-        user_list = []
-        print("You have selected create new record.\n")
-        user_name = input("What is the name?\n")
-        user_address = input("What is the address?\n")
-        user_phone = input("What is the phone number?\n")
-        user_email = input("What is the email?\n")
-        user_age = input("What is the age?\n")
+    '''This function gives the user the option to Create Retrieve Update or Delete
+     a record in the Contact List and returns the contact list in its new form. '''
+   
+    while True: 
+        user_input = input("""What action would you like to complete?
+    'C' for create new record.
+    'R' for retrieve a record.
+    'U' for update a record.
+    'D' for delete a record.
+    or 'EXIT' to close the program.""").lower()  
+        if user_input == 'c':
+            user_list = []
+            print("You have selected create new record.\n")
+            user_name = input("What is the name?\n")
+            user_address = input("What is the address?\n")
+            user_phone = input("What is the phone number?\n")
+            user_email = input("What is the email?\n")
+            user_age = input("What is the age?\n")
+            
+            user_list = [user_name, user_address, user_phone, user_email, user_age]
+            values.append(user_list)
+            for value in user_list:    
+                user_dict = (dict(zip(keys,user_list)))
+            contact_list.append(user_dict)
+            formatted_list = format_to_csv(values, keys)
+            #print(formatted_list)
+            with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
+                file.write(formatted_list)
         
-        user_list = [user_name, user_address, user_phone, user_email, user_age]
+
+            
         
-        for value in user_list:    
-            user_dict = (dict(zip(keys,user_list)))
-        
-        return contact_list.append(user_dict) 
-    
-    elif user_input == 'r':
-        print("You selected: Retrieve a record.\n")
-        user_name = input("Whose contact information do you want to see?").lower()
-        for element in contact_list:
-            if element["name"]== user_name:
-                return element 
-            else:
-                print("Not found in contacts list. ")
+        elif user_input == 'r':
+            print("You selected: Retrieve a record.\n")
+            user_name = input("Whose contact information do you want to see?").lower()
+            not_found = True
+            for element in contact_list:
+                if element["name"]== user_name:
+                    print(element)
+                    not_found = False
+                    formatted_list = format_to_csv(values, keys)
+                    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
+                        file.write(formatted_list)
+            if not_found:
+                print("Contact not found in contacts list.")
 
 
-    elif user_input == 'u':
-        print("You selected: Update a record. \n")
-        user_name = input("Whose information would you like to update?\n").lower()
-        for element in contact_list:
-            if element["name"] == user_name:
-                print(element)
-                update_element = input("User found! What part of their information would you like to update?\n").lower()
-                if update_element in element.keys():
-                    user_update = input(f"You want to update {element['name']}'s {update_element}? What is the update?\n")
-                    element[update_element] = user_update
-                    return element
+        elif user_input == 'u':
+            print("You selected: Update a record. \n")
+            user_name = input("Whose information would you like to update?\n").lower()
+            for element in contact_list:
+                if element["name"] == user_name:
+                    print(element)
+                    update_element = input("User found! What part of their information would you like to update?\n").lower()
+                    if update_element in element.keys():
+                        user_update = input(f"You want to update {element['name']}'s {update_element}? What is the update?\n")
+                        element[update_element] = user_update
+                        formatted_list = format_to_csv(values, keys)
+                        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
+                            file.write(formatted_list)
+                    else:
+                        print('Option not found. ')
+                        pass
                 else:
-                    print('Option not found. ')
+                    print("User not found.")
                     pass
-            else:
-                print("User not found.")
-                pass
 
-    elif user_input == 'd':
-        print("You selected delete.\n")
-        user_name = input("Whose information would you like to delete?\n").lower()
-        for element in contact_list:
-            print(element)
-            if element["name"] == user_name:
-                print(f"Deleteing {user_name} from your contacts list.\n")
-                contact_list.remove(element)
-                print(contact_list)
-                return contact_list
-            else:
-                print(f"{user_name} not found in list.\n")
-                pass
+        elif user_input == 'd':
+            print("You selected delete.\n")
+            user_name = input("Whose information would you like to delete?\n").lower()
+            not_found = True
+            for element in contact_list:
+                
+                if element["name"] == user_name:
+                    print(f"Deleting {user_name} from your contacts list.\n")
+                    values.remove(element)
+                    not_found = False
+                    formatted_list = format_to_csv(values, keys)
+                    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
+                        file.write(formatted_list)
+            if not_found:
+                    print("Contact not found.")
 
 
-    elif user_input == 'exit':
-        print("Thanks, goodbye.")
-        return
-    else:
-        print("Not a valid response.")
-        pass
+        elif user_input == 'exit':
+            print("Thanks, goodbye.")
+            return
+        #else:
+        #    print("Not a valid response.")
+        #    pass
 crud_loop()

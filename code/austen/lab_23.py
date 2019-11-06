@@ -17,13 +17,28 @@ for i in range(1,3):
     things.append(row)
 #print(things)
 def export_list():
-    global lines, things
-    with open('test_contacts_out.csv', 'w') as out_file:
+    global things
+    mylist = []
+    
+    things[0].values()
+    list(things[0].values())
+    list(things[1].values())
+    things[0].keys()
+    ','.join(things[0].keys())
+    ','.join(things[0].values())
+    mylist.append(','.join(things[0].keys()))
+    mylist.append(','.join(things[0].values()))
+    mylist.append(','.join(things[1].values()))
+    '\n'.join(mylist)
+    print(mylist)
+    # print (mylist)
+    with open('test_contacts_out.csv', 'w') as contact_list:
+       contact_list.write('\n'.join(mylist))
 
-        for line in lines:
-            lines = out_file.write(" ".join(line) + "\n")
-            #lines = [item for item in line]
-
+    # with open('test_contacts_out.csv', 'w', newline="\n") as export_list:
+    #    export_list.write(mylist)
+        
+        #print (list(things[0].values()))
 
 #print (things) # rememeber to put the print statement outside the for loop or you will end up printing every time the loop itterates 
 def input_stuff():
@@ -37,13 +52,15 @@ def input_stuff():
     new_row = dict(zip(key_things, user))
     things.append(new_row)
     print(things)
-    return new_row
+    export_list().
+    #return new_row
 
 def find():
     find_it = input('What is the name of the person you would like to find? ')
     for n in things:
         if n['name'] == find_it:
             print (n)
+            export_list()
             return n
         
 def update():
@@ -64,6 +81,7 @@ def delete():
         if things[i]['name'] == delete:
             del things[i]
             print(things)
+            export_list()
             return things
 
 
