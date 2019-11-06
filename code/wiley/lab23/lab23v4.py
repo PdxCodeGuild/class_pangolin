@@ -22,18 +22,11 @@ for value in values:
 def format_to_csv(dictionary, keys):
     '''Takes 2 arguments and converts them into a csv formatted string. '''
     csv = ''
-    catch = 0
     
-    for key in keys:
-        csv += key + ','
-        catch += 1
-        if catch >= 5:
-            break 
-        csv = csv[:-1:1] + '\n'
-    if catch == 5:
-        for row in dictionary:
-            csv += row + ','
-    csv = csv[:-1] + '\n'
+    csv += ','.join(keys)
+    for row in dictionary:
+        csv += ','.join(row) +'\n'
+    
    
     
     return csv
@@ -48,11 +41,12 @@ def create():
     user_age = input("What is the age?\n")
     
     user_list = [user_name, user_address, user_phone, user_email, user_age]
-    values.append(user_list)
+    contact_list.append(user_list)
     for value in user_list:    
-        user_dict = (dict(zip(keys,user_list)))
+        user_dict = (dict(zip(keys,value)))
     contact_list.append(user_dict)
-    formatted_list = format_to_csv(element.values(), element.keys())
+    for element in contact_list:
+        formatted_list = format_to_csv(element.values(), element.keys())
     #print(formatted_list)
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
         file.write(formatted_list)
@@ -61,6 +55,7 @@ def retrieve():
     print("You selected: Retrieve a record.\n")
     user_name = input("Whose contact information do you want to see?").lower()
     not_found = True
+    formatted_list = ''
     for element in contact_list:
         if element["name"]== user_name:
             print(element)
@@ -75,6 +70,7 @@ def update(): #maybe implement not_found flag
     print("You selected: Update a record. \n")
     user_name = input("Whose information would you like to update?\n").lower()
     not_found = True
+    formatted_list = ''
     for element in contact_list:
         if element["name"] == user_name:
             print(element)
@@ -103,6 +99,7 @@ def delete():
             contact_list.remove(element)
             not_found = False
             print(contact_list)
+            break
     formatted_list = ''
     for element in contact_list:
         formatted_list += format_to_csv(list(element.values()), list(element.keys()))
