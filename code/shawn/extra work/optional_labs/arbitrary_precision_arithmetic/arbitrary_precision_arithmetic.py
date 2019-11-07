@@ -3,8 +3,6 @@
 # Assignment: Optional Lab - Arbitrary Precision Arithmetic
 # Date: 11/6/2019
 
-# addition
-
 # get input
 def get_input():
     while True: 
@@ -104,7 +102,80 @@ def do_addition(num1, num2):
 
     # return result
 
-# main
-num1, num2 = get_input()
+# do long multiplication
+def do_long_multiplication(num1, num2):
 
-print(f"{num1} + {num2} = {do_addition(num1,num2)}")
+    # get reversed int lists for each num
+    num1_list = list(str(num1))
+    num1_list = [int(n) for n in num1_list]
+    num1_list.reverse()
+    num2_list = list(str(num2))
+    num2_list = [int(n) for n in num2_list]
+    num2_list.reverse()
+
+    # figure out which list is shorter, and make that num1
+    if len(num1_list) > len(num2_list):
+        num3_list = num1_list.copy()
+        num1_list = num2_list.copy()
+        num2_list = num3_list.copy()
+
+    # set up final product list
+    product_list = []
+
+    # we'll iterate through each number in shorter num list
+    for i in range(len(num1_list)):
+        # declare/reset carry
+        carry = 0
+        # set up this product list, which will be appended to main product list later
+        this_product_list = []
+        # iterate through each number of larger int
+        for j in range(len(num2_list)):
+
+            # get the product of the two
+            this_product = num1_list[i] * num2_list[j]
+            # add carry to the product
+            this_sum = this_product + carry
+            # get how many times 10 divides into the product
+            carry = this_sum // 10
+            # append string list with this_sum modulus 10
+            # print(f"n1: {num1_list[i]} n2: {num2_list[j]} this_product: {this_product} this_sum {this_sum} carry: {carry}")
+            this_product_list.append(this_sum%10)
+
+    
+        # append any leftover carry value to product
+        if carry != 0:
+            this_product_list.append(carry)
+        
+        # translate this_product_list into a joined, correctly-ordered int
+        this_product_list.reverse()
+
+        # add 0s to the end of the product for the number of i 
+        for k in range (0,i):  
+            this_product_list.append(0)
+        this_product_list = [str(num) for num in this_product_list]
+
+        # translate this product to the product list
+        product_list.append(int(''.join(this_product_list)))
+
+    # go through and add product lists together
+    running_sum = product_list[0]
+    for x in range(1,len(product_list)):
+        # use elementary addition function
+        running_sum = do_addition(running_sum, product_list[x])
+
+    # return the sum of each individual product
+    return running_sum
+
+# main loop
+
+while True:
+    # get input
+    num1, num2 = get_input()
+
+    print(f"{num1} + {num2} = {do_addition(num1,num2)}")
+    print(f"{num1} * {num2} = {do_long_multiplication(num1,num2)}")
+
+    if not input("Press enter to quit or input anything to continue...."):
+        break
+
+print("Program ending.")
