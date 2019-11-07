@@ -88,6 +88,7 @@ def upd_rcd(fnd, atr, val):
     contacts.append(upd_rcd)
     return contacts
 
+# Validate user input
 def usr_inp(msg, emsg, *args):
     """This function validates user input."""
      while True:
