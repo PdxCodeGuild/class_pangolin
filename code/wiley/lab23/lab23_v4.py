@@ -35,18 +35,20 @@ def create():
     user_list = []
     print("You have selected create new record.\n")
     user_name = input("What is the name?\n")
-    user_address = input("What is the address?\n")
-    user_phone = input("What is the phone number?\n")
-    user_email = input("What is the email?\n")
+    #user_address = input("What is the address?\n")
+    #user_phone = input("What is the phone number?\n")
+    #user_email = input("What is the email?\n")
     user_age = input("What is the age?\n")
     
-    user_list = [user_name, user_address, user_phone, user_email, user_age]
-    contact_list.append(user_list)
-    for value in user_list:    
-        user_dict = (dict(zip(keys,value)))
-    contact_list.append(user_dict)
-    for element in contact_list:
-        formatted_list = format_to_csv(element.values(), element.keys())
+    
+    user_list = [user_name, user_age]
+    temp_dict = dict(zip(keys, user_list))
+    contact_list.append(temp_dict)
+    #for value in user_list:    
+    #    user_dict = (dict(zip(keys,value)))
+    #contact_list.append(user_dict)
+    #for element in contact_list:
+    formatted_list = format_to_csv(element.values(), element.keys())
     #print(formatted_list)
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
         file.write(formatted_list)
@@ -55,14 +57,14 @@ def retrieve():
     print("You selected: Retrieve a record.\n")
     user_name = input("Whose contact information do you want to see?").lower()
     not_found = True
-    formatted_list = ''
+    #formatted_list = ''
     for element in contact_list:
         if element["name"]== user_name:
             print(element)
             not_found = False
             formatted_list = format_to_csv(element.values(), element.keys())
-            with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
-                file.write(formatted_list)
+            #with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
+            #    file.write(formatted_list)
     if not_found:
         print("Contact not found in contacts list.")
 
@@ -71,23 +73,23 @@ def update(): #maybe implement not_found flag
     user_name = input("Whose information would you like to update?\n").lower()
     not_found = True
     formatted_list = ''
-    for element in contact_list:
-        if element["name"] == user_name:
-            print(element)
+    for i in range(len(contact_list)):
+        if contact_list[i] == user_name:
+            print(contact_list[i])
             update_element = input("User found! What part of their information would you like to update?\n").lower()
-            if update_element in element.keys():
+            if update_element in contact_list[i].keys():
                 user_update = input(f"You want to update {element['name']}'s {update_element}? What is the update?\n")
-                element[update_element] = user_update
+                contact_list[i][update_element] = user_update
                 not_found = False
-                formatted_list = format_to_csv(element.values(), element.keys())
+                formatted_list = format_to_csv(contact_list[i].values(), contact_list[i].keys())
                 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
                     file.write(formatted_list)
-            else:
-                print('Option not found. ')
-                pass
-        else:
-            print("User not found.")
-            pass
+            #if not_found:
+             #   print('Option not found. ')
+              #  pass
+        #if not_found:
+           # print("User not found.")
+           # pass
 
 def delete():
     print("You selected delete.\n")
