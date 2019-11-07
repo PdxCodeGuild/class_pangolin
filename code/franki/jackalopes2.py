@@ -1,3 +1,5 @@
+# by casey, franki, and taylor
+
 import random
 jackalopes = [{'name': 'jack', 'age': 0, 'female': False, 'expecting': False}, {'name': 'jacqueline', 'age': 0, 'female': True, 'expecting': False}]
 consonants = ['b', 'k', 'd', 'f', 'g', 'h', 'j', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z']
