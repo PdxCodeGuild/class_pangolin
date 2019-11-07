@@ -3,23 +3,23 @@
 # 11/07/19
 
 class BankAccount():
-    def __init__(self):
-        
-        account = 0,
-        deposit = 0,
-        check_withdrawl = 0,
-        withdraw = 0
 
-    def deposit(self, amount):
+    def __init__(self, account=0):
+        self.account = account
+
+    def deposit(self, amount=0):
         ''' Deposits the given amount in the account '''
+        self.account += amount
+        return self.account
 
     def check_balance(self):
         ''' Returns the account balance '''
 
-    def check_withdrawl(self, amount):
+
+    def check_withdrawl(self, amount=0):
         ''' Returns true if hte withdrawn amount won't put the account in the negative '''
 
-    def withdraw(self, amount):
+    def withdraw(self, amount=0):
         ''' WIthdraws the amount from hte account and returns it ''' 
 
     # Version 2
@@ -36,3 +36,8 @@ class BankAccount():
     > what would you like to do (deposit, withdraw, check balance, history)?
     > check balance
     > balance: $5 '''
+
+taco = BankAccount()
+
+
+print(taco.account)
