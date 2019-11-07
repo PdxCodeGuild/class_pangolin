@@ -14,10 +14,15 @@ class BankAccount():
 
     def check_balance(self):
         ''' Returns the account balance '''
+        return self.account
 
 
-    def check_withdrawl(self, amount=0):
+    def check_withdraw(self, amount=0):
         ''' Returns true if hte withdrawn amount won't put the account in the negative '''
+        if self.account - amount >= 0:
+            print('Oki-Doki')
+        else:
+            print('Over Draft!')
 
     def withdraw(self, amount=0):
         ''' WIthdraws the amount from hte account and returns it ''' 
@@ -38,6 +43,8 @@ class BankAccount():
     > balance: $5 '''
 
 taco = BankAccount()
-
-
+taco.deposit(155.22)
 print(taco.account)
+taco.deposit(4.78)
+print(taco.check_balance())
+taco.check_withdraw(150.00)
