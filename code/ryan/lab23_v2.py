@@ -1,6 +1,6 @@
 with open('contacts.csv', 'r') as file:
     lines = file.read().split('\n')
-    # print(lines)
+    print(lines)
 
 contacts = []
 list_of_lists = []
@@ -9,7 +9,6 @@ for line in lines:
     line = line.split(",")
     list_of_lists.append(line) 
 keys = list_of_lists.pop(0)
-
 for i in range(len(list_of_lists)):
     row = list_of_lists[i]
     contact = dict(zip(keys, row))
@@ -51,10 +50,30 @@ def update_record():
 
 def delete_record():
     name = input("What is the name of the contact you would like to delete?  ") 
-    for i in range(len(contacts)-1):
+    for i in range(len(contacts)):
         if contacts[i]["Name"] == name:
             del contacts[i]
+            break
     return contacts
+
+def save_csv(contacts):
+    out_list = []
+    out_list.append(list(contacts[0].keys()))
+    for contact in contacts:
+        out_list.append(list(contact.values()))
+    print(out_list) 
+
+    output = []
+    for row in out_list:
+        output.append(", ".join(row))
+
+    out_str = ""
+    for i in range(len(output)):
+        out_str += output[i] + "\n"
+    out_str = out_str.replace(" ", "")  
+    with open('contacts.csv', 'w') as f:
+        f.write(out_str)
+    return out_str
 
 def main():
     while True:
@@ -70,5 +89,12 @@ def main():
         elif action == "delete":
             print(delete_record())    
         else:
-            break    
+            break 
+    print(save_csv(contacts))
+     
 main()
+
+
+
+ 
+

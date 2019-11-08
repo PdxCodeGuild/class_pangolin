@@ -3,6 +3,7 @@
 
 import random
 import string
+import pillow_talk
 
 word_list = []
 with open('english.txt', 'r') as file:
@@ -33,6 +34,7 @@ def game():
             quit()
         elif guess in guessed_letters:
             print("You already guessed that!")
+            print(guessed_letters)
             continue
         elif guess not in string.ascii_lowercase:
             print("Your guesses need to be a single letter please.")
@@ -47,6 +49,8 @@ def game():
             if correct_guesses == 0:
                 print(f"Sorry, there's no {guess}.")
                 guesses -=1
+                pillow_talk.picture(guesses)
+                print(guessed_letters)
                 print(f"You have {guesses} guesses left.\n")
             elif correct_guesses == 1:
                 print(f"There's one {guess}.\n")
@@ -55,13 +59,14 @@ def game():
 
         if guesses == 0:
             print(f"I'm sorry, you lose! The word was {game_word}")
+            pillow_talk.picture(guesses)
             break
         elif redacted_word == word:
             print(' '.join(redacted_word))
             print("You win!!!!")
             break
         guessed_letters.append(guess)
-
+        
 
 game()
 

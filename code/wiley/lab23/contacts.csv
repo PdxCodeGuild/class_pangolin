@@ -1,6 +1,3 @@
-name,address,phone,email,age
-Wiley Rummel,28 SE 63rd,214-681-1528,wiley.rummel@fakemail.com,29
-Emma Hoyle,28 SE 63rd,785-691-5510,emmamaryhoyle@fakemail.com,30
-Joe Stogsdill,4041 Oak ,785-555-1529,joeschmoe@fakemail.com,30
-Rion Glynn,3029 12th ,503-445-1234,rionglynn@fakemail.com,30
-Elle Ueker,999 Main,503-123-1234,elle@fakemail.com,29
+name
+wiley,29
+emma,30
