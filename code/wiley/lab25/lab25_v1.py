@@ -9,51 +9,42 @@ withdrawal(amount)>>> withdraws the amount from the account and returns it.  '''
 
 class ATM:
     def __init__(self, balance=0):
-        self.balance = balance
+        self.__balance = balance
+        self.ledger = list()
         
     
     def __str__(self):
-        return f"The balance of you account is: {self.balance}."
+        return f"The balance of you account is: {self.__balance}."
     
-    #def __add__(self, amount):
-       # self.amount += self.balance
-        #return self.balance
-
-    # def __sub__(self, amount):
-    #     self.balance -= self.amount
-    #     return self.balance
-
-    # def __ge__(self, amount):
-    #     if self.balance >= self.amount:
-    #         return True
-    # def __le__(self,amount):
-    #     if self.balance <= self.amount:
-    #         return False
 
     def check_balance(self):
-        return self.balance
+        return self.__balance
     
 
     def deposit(self, amount):
-        self.balance += amount
-        return self.balance
+        self.__balance += amount
+        self.ledger.append(f"Account deposited {amount}. ")
+        return self.__balance ,self.ledger
     
     def check_withdrawal(self, amount):
-        if amount > self.balance:
+        if amount < self.__balance:
             return True
-        if amount < self.balance:
+        if amount > self.__balance:
             return False
     
     def withdrawal(self, amount):
         if self.check_withdrawal(amount) == True:
-            self.balance -= amount
-            return self.balance
+            self.__balance -= amount
+            self.ledger.append(f"User withrew {amount}.")
+            return self.__balance
         if self.check_withdrawal(amount) == False:
-            return f"Insufficeint funds to withdrawal {amount} from your account.  Your balance is {self.balance}."
+            return f"Insufficeint funds to withdrawal {amount} from your account.  Your balance is {self.__balance}."
+            
+    def print_transaction(self):
+        return self.ledger
 
 
 account = ATM()
-
 
 while True:
     print("Accessing your account...")
@@ -62,7 +53,8 @@ while True:
     Enter 'cb' to check your balance.
     Enter 'd' to make a deposit.
     Enter 'w' to make a withdrawal.
-    Enter 'e' to end the transaction. """).lower()
+    Enter 'e' to end the transaction. 
+    Enter 'l' to show your transaction history.""").lower()
     if user_choice == 'cb':
         print(f"Your account balance is: {account.check_balance()}")
     elif user_choice == 'd':
@@ -72,7 +64,11 @@ while True:
     elif user_choice == 'w':
         withdrawal_amount = int(input("How much do you want to withdrawal?"))
         account.withdrawal(withdrawal_amount)
+        print(account.withdrawal(withdrawal_amount))
         print(account.check_balance())
+    elif user_choice == 'l':
+        print(account.ledger)
+
     elif user_choice == 'e':
         print("Goodbye.")
         break
