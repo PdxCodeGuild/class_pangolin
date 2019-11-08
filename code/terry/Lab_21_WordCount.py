@@ -10,8 +10,17 @@ with open('pg6422.txt', 'r') as file:
 
 translator = str.maketrans('', '', string.punctuation)
 string_without_punct = lines.translate(translator)
-#print(string_without_punct)
+list_of_words = string_without_punct.split()
+# print(list_of_words)
 
-for i in range(len(string_without_punct)):
-    dic_of_words[i]
+for w in list_of_words:
+    if w in dic_of_words:
+        num = dic_of_words[w]
+        num += 1
+        dic_of_words.update({w: num})
+    else:
+        dic_of_words[w] = 1
+
+# dic_of_words[i]
 print(dic_of_words)
+# print(words)
