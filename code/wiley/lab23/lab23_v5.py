@@ -41,26 +41,25 @@ def retrieve():
 def update():
     '''This function will update a contact's information in contact list'''
     get_contact = input("Whose contact information do you want to see?\n").lower()
-    catch = True
+    #catch = True
     
     for i in range(len(contact_list)):        
-        while catch:
-            if contact_list[i]['name'] == get_contact:
-                catch = False
-                user_update = input(f"Would you like to update {contact_list[i]['name']}'s name or {contact_list[i]['name']}'s age\n").lower()
-                if user_update == 'age':
-                    new_age = input("What is the new age?\n")
-                    contact_list[i]['age'] = new_age
-                    print(contact_list[i])
-                if user_update == 'name':
-                    new_name = input("What is the new name?\n")
-                    contact_list[i]['name'] = new_name
-                else:
-                    print("Not a valid selection.")
-                    
-            elif contact_list[i]["name"] != get_contact:
-                catch = False
-                print(f"{get_contact} not in the contacts list.")
+        if contact_list[i]['name'] == get_contact:
+            #catch = False
+            user_update = input(f"Would you like to update {contact_list[i]['name']}'s name or {contact_list[i]['name']}'s age\n").lower()
+            if user_update == 'age':
+                new_age = input("What is the new age?\n")
+                contact_list[i]['age'] = new_age
+                print(contact_list[i])
+            if user_update == 'name':
+                new_name = input("What is the new name?\n")
+                contact_list[i]['name'] = new_name
+            #else:
+                #print("Not a valid selection.")
+                
+        #elif contact_list[i]["name"] != get_contact:
+        #    catch = False
+        #    print(f"{get_contact} not in the contacts list.")
         
     return contact_list
 
