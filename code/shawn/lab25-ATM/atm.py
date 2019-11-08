@@ -3,9 +3,6 @@
 # Assignment: Lab 25 - ATM
 # Date: 11/7/2019
 
-# make balance variable private
-# log?
-
 class Account:
 
     def __init__(self):
