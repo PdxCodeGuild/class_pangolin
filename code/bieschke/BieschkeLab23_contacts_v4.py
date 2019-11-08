@@ -1,4 +1,5 @@
 #bieschke gonna work this time 
+#currently writes line 34 to heroes_out.csv
 '''
 Version 3
 When REPL loop finishes, write the updated contact info to the CSV file to be saved. 
@@ -30,15 +31,15 @@ def save(*args):
     for i in range(len(hero)):
         hero_out = [",".join(keys)]
         hero_out.append(hero_out)
-        
+    hero_out = ['k1,k2', 'v1, v2']  #think about how the data needs to be formatted to look like this
     file = open("heroes_out.csv", "w")
     file.write('\n'.join(hero_out))
     file.close()
     print("Your changes have been saved!")
 
-lions = True
-while lions:
-    
+# lions = True
+# while lions:
+while True:    
     print("Hello! Today we're working with a list of historical generals.")
     action = input("You can create, retrieve, update, or delete a record, or enter q or 1 to quit.\n>")
     
