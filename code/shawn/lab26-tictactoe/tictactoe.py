@@ -101,14 +101,30 @@ class Game:
             elif  self.board[0][2] == symbol and self.board[1][1] == symbol and self.board[2][0] == symbol:
                 return symbol
 
-    def is_full(sefl):
+    def is_full(self):
         '''
         '   Function to check if game board is full
         '   Parameters: none        Returns: boolean, True if game board is full
         '''
 
+        # iterate through everything in the game board, if a blank is found return False
+        for x in range(len(self.board)):
+            for y in range(len(self.board[x])):
+                if self.board[x][y] == ' ':
+                    return False
 
+        # if iteration through the game board didn't find any empty locaitons, return True...board is full
+        return True
 
+    def is_game_over(self):
+        '''
+        '   Function to figure out if game has finished (in either a tie or someone wins)
+        '   Parameters: none        Returns: bool (True if game is over)
+        '''
+        # if a winner is caluculated or board is full
+        if self.calc_winner() or self.is_full():
+            return True
+        return False
 
 # set up game
 player_one = Player('Shawn', 'X')
@@ -123,3 +139,4 @@ game_board.move(1,2,player_one)
 print(game_board)
 print(game_board.board)
 print(game_board.calc_winner())
+
