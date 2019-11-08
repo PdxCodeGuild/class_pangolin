@@ -1,4 +1,5 @@
-#BieschkeLab23_v3 contact dictionary 
+#bieschke gonna work this time 
+#currently writes line 34 to heroes_out.csv
 '''
 Version 3
 When REPL loop finishes, write the updated contact info to the CSV file to be saved. 
@@ -21,26 +22,24 @@ def hero_dict(keys, hero):
 
 def search(hero, query):
     for arr in hero:
-        if arr[0] in query:
+        if arr[0] == query:
             return arr
     else:
         print("Not found")
 
 def save(*args):
     for i in range(len(hero)):
-        new_entries = ",".join(hero[i])
-        hero.append(new_entries)
-    str(hero)
-    print(hero)
-        
-    file = open("heroes.csv", "a")
-    file.write(hero)
+        hero_out = [",".join(keys)]
+        hero_out.append(hero_out)
+    hero_out = ['k1,k2', 'v1, v2']  #think about how the data needs to be formatted to look like this
+    file = open("heroes_out.csv", "w")
+    file.write('\n'.join(hero_out))
     file.close()
     print("Your changes have been saved!")
 
-lions = True
-while lions:
-    
+# lions = True
+# while lions:
+while True:    
     print("Hello! Today we're working with a list of historical generals.")
     action = input("You can create, retrieve, update, or delete a record, or enter q or 1 to quit.\n>")
     
@@ -62,9 +61,10 @@ while lions:
         info = input("Whose information would you like to see?")
         new_value = search(hero, info)
         field = input("Which field would you like to update?")
-        if field == 'conquest':
+        lower_keys = [key.lower() for key in keys]
+        if field in lower_keys:
             new_conquest = input("Enter your update: ")
-            new_value[3] = new_conquest
+            new_value[lower_keys.index(field)] = new_conquest
             print(new_value)
         else:
             print("Sorry, that field cannot be edited.")

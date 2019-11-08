@@ -1,17 +1,20 @@
 import os
 filename = "contacts.csv"
+filename_out = "contacts2.csv"
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
     lines = file.read().split('\n')
     #print(lines)
 #turn the csv into a list of dictionaries
+
 contact_list = []
 keys = lines[0].split(',')
 values = [x.lower().split(',') for x in lines[1:]]
+
 for value in values:
     contact_list.append(dict(zip(keys, value)))
 def save_csv(x):
     '''This function takes in a string variable and writes to a txt file.'''
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename_out), 'w') as file:
         file.write(x)
 #make functions for Create, Retrieve, Update, and Delete
 def create():
@@ -38,8 +41,11 @@ def retrieve():
 def update():
     '''This function will update a contact's information in contact list'''
     get_contact = input("Whose contact information do you want to see?\n").lower()
+    #catch = True
+    
     for i in range(len(contact_list)):        
         if contact_list[i]['name'] == get_contact:
+            #catch = False
             user_update = input(f"Would you like to update {contact_list[i]['name']}'s name or {contact_list[i]['name']}'s age\n").lower()
             if user_update == 'age':
                 new_age = input("What is the new age?\n")
@@ -48,11 +54,12 @@ def update():
             if user_update == 'name':
                 new_name = input("What is the new name?\n")
                 contact_list[i]['name'] = new_name
-            else:
-                print("Not a valid selection.")
-                continue
-    if contact_list[i]["name"] != get_contact:
-        print(f"{get_contact} not in the contacts list.")
+            #else:
+                #print("Not a valid selection.")
+                
+        #elif contact_list[i]["name"] != get_contact:
+        #    catch = False
+        #    print(f"{get_contact} not in the contacts list.")
         
     return contact_list
 
@@ -62,7 +69,7 @@ def delete():
     for i in contact_list:
         if i['name'] == delete_contact:
             contact_list.remove(i)
-            print(contact_list)
+    print(contact_list)
             
     return contact_list
 
@@ -77,9 +84,10 @@ def format_csv(x):
     my_values = []    
     for i in range(len(x)):
         my_values.append(list(x[i].values()))
-    my_keys.append(list(x[i].keys()))
+    my_keys.append(list(x[0].keys()))
     my_keys_str = ''.join(','.join(elem) for elem in my_keys) + '\n'
     my_values_str = '\n'.join(','.join(elem) for elem in my_values)
+    
     csv += (my_keys_str)
     csv += (my_values_str)
     return csv
@@ -98,21 +106,23 @@ def crud():
         if user_select == 'c':
             create()
             format_csv(contact_list)
-            save_csv(csv)            
+            #save_csv(csv)            
         elif user_select == 'r':
             retrieve()
         elif user_select == 'u':
             update()            
             format_csv(contact_list)
-            save_csv(csv)
+            #save_csv(csv)
         elif user_select == 'd':
             delete()
             print(contact_list)
             format_csv(contact_list)
             print(csv)
-            save_csv(csv)
+            #save_csv(csv)
         elif user_select == 'e':
             print("Exiting program.  Goodbye.")
+            save_csv(csv)
+
             break
         else:
             print("Not a valid selection")
