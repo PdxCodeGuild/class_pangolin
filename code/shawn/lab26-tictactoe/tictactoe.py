@@ -31,6 +31,8 @@ class Game:
     '       calc_winner() to figure out who/if a player has won
     '       is_full() to return True when game board is full and there's a tie
     '       is_game_over() returns True if game is over (either a win or a tie)     
+    '       play_turn() will play one round with the input player
+    '       get_valid_xy_coord() will prompt user for input and only return a valided x,y pair
     '''
 
     def __init__(self):
@@ -55,6 +57,11 @@ class Game:
         '''
         # clear terminal before printing game board
         os.system('cls' if os.name == 'nt' else 'clear')
+
+        # print logo
+        print("***********************************")
+        print("*********** tic tac toe ***********")
+        print("***********************************")
 
         # init empty return string
         return_string = ''
@@ -135,7 +142,7 @@ class Game:
     def play_turn(self, player):
         '''
         '   A function for playing a turn of tic tac toe
-        '   Parameters: Game and Player object      Return: none
+        '   Parameters: Player object      Return: none
         '''
         # print out who's turn
         print(f"{player.name}'s turn ({player.token}):")
@@ -157,7 +164,6 @@ class Game:
 
             # remove all whitespace
             user_input = user_input.replace(' ', '')
-
 
             # regex for x,y input
             regex = r"^[0-2]{1},[0-2]{1}$"
@@ -185,6 +191,14 @@ def game_init():
     '   A function for setting up a game of tic tac toe.
     '   Parameters: none    Returns: a tuple with three objects: Game, Player1, and Player2
     '''
+
+    # clear terminal
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    # print logo
+    print("***********************************")
+    print("*********** tic tac toe ***********")
+    print("***********************************")
 
     # get user input
     user_name_1 = input("Enter player 1 name: ")
@@ -234,24 +248,3 @@ while True:
     if user_input == 'n':
         print("Game over.")
         break
-
-
-
-
-
-
-
-
-# player_one = Player('Shawn', 'X')
-# player_two = Player('Jeff', 'O')
-# game_board = Game()
-# print(game_board.board)
-# print(game_board)
-# game_board.move(0,0,player_two)
-# game_board.move(1,1,player_two)
-# game_board.move(2,2,player_two)
-# game_board.move(1,2,player_one)
-# print(game_board)
-# print(game_board.board)
-# print(game_board.calc_winner())
-
