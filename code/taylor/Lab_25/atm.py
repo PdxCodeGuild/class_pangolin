@@ -15,13 +15,13 @@ end_transaction = 'n'
 
 # def define_transaction(selection):
 #     if selection == 1:
-#         return customer.deposit(int(input(message8)))
+#         return acount.deposit(int(input(message8)))
 #     elif selection == 2:
-#         return customer.withdraw(int(input(message8)))
+#         return account.withdraw(int(input(message8)))
 #     elif selection == 3:
-#         return customer.check_balance()
+#         return account.check_balance()
 #     else:
-#         return customer.print_transactions()
+#         return account.print_transactions()
 
     # Get the user's account number
 account_number = int(input(message9))

@@ -2,7 +2,7 @@
 # Lab_25
 # 11/07/19
 
-class BankAccount():
+class BankAccount:
 
     def __init__(self, number):
         self.number = number
@@ -11,7 +11,7 @@ class BankAccount():
     
     def __str__(self):
         ''' String dunder to format output of "self" '''
-        return 'Account [ {} ]'.format(self.number)
+        return f"Account [ {self.number} ]"
  
     def deposit(self, amount=0):
         ''' Deposits the given amount in the account '''
