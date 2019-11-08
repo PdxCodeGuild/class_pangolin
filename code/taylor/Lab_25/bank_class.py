@@ -6,19 +6,22 @@ class BankAccount():
 
     def __init__(self, account=0):
         self.account = account
+        self.transactions = []
  
     def deposit(self, amount=0):
         ''' Deposits the given amount in the account '''
         self.account += amount
+        self.transactions.append(f"{self} Deposited: > {amount}")
         return self.account
 
     def check_balance(self):
         ''' Returns the account balance '''
         return self.account
 
-    def withdraw(self, amount):
+    def withdraw(self, amount=0):
         ''' WIthdraws the amount from the account and returns it '''
         self.account - amount
+        self.transactions.append(f"{self} Withdrew: > {amount}")
         return self.account
 
     def check_withdraw(self, amount=0):
@@ -41,9 +44,3 @@ class BankAccount():
     > check balance
     > balance: $5 '''
 
-taco = BankAccount(155)
-a = taco.check_withdraw(10)
-if a == True:
-    print('True')
-else:
-    print('False')
