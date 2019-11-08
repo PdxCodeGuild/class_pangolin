@@ -1,3 +1,4 @@
+# Wiley, Casey, Jeff group lab on 11/6/2019
 '''Write a program to play hangman. Write a function load_words(path) which read the text from the 
 file and return a list of strings which are greater than 5 letters. 
 Randomly pick a word from the list. Allow the user 10 gueses.  Keep track of the letters guessed. '''
@@ -50,11 +51,11 @@ def game_loop():
             #if counter > 10:
              #   counter = 10
             if ''.join(blanks) == answer:
-                print("You saved a criminal\n")
+                print("You saved a life!\n")
                 print(f"The word was {answer}")
                 break
             if counter == 0:
-                print("You lost, a criminal dies. ")
+                print("You lost. ")
     return nice_try, blanks
 
 load_words()

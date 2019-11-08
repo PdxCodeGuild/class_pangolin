@@ -1,9 +1,11 @@
 import os
 filename = "contacts.csv"
+filename_out = "contacts2.csv"
 with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
     lines = file.read().split('\n')
     #print(lines)
 #turn the csv into a list of dictionaries
+
 contact_list = []
 keys = lines[0].split(',')
 values = [x.lower().split(',') for x in lines[1:]]
@@ -11,7 +13,7 @@ for value in values:
     contact_list.append(dict(zip(keys, value)))
 def save_csv(x):
     '''This function takes in a string variable and writes to a txt file.'''
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename), 'r+') as file:
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), filename_out), 'r+') as file:
         file.write(x)
 #make functions for Create, Retrieve, Update, and Delete
 def create():
