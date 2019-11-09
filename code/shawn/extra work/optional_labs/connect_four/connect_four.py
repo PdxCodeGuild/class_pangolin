@@ -49,9 +49,9 @@ class Game:
         return_str = ''
 
         # clear screen and logo
-        os.system('cls' if os.name == 'nt' else 'clear')
-        return_str = "   C O N N E C T   F O U R     \n"
-        return_str += "=============================\n\n"
+        # os.system('cls' if os.name == 'nt' else 'clear')
+        # return_str = "   C O N N E C T   F O U R     \n"
+        # return_str += "=============================\n\n"
 
         # print game board
         return_str += "-----------------------------\n"
@@ -88,44 +88,73 @@ class Game:
         # update game board with appropriate chip color
         self.board[row][position] = player.color
 
-    def play_turn(self, player):
+    def play_turn(self, player, input_move=''):
         '''
         '   A function for asking the user for a position, and then validating it
-        '   Parameters: player        Returns: none
+        '   Parameters: player, optional list of strings as input moves        Returns: none
         '''
 
-        # get player input 
-        while True:
+        # if moves are passed in, use input file
+        if input_move:
+            
+            # convert move to int and index
+            input_move = int(input_move) - 1
 
-            # get player input
-            user_input = input(f"{player.name}'s turn.  Please enter a column for your chip: ").strip()
+            # play move
+            self.move(player,input_move)
 
-            # make sure input is between 1 and 7
-            if len(user_input) == 1 and user_input in '1234567':
+        # no moves passed in...play game with user input
+        else:
+            # get player input 
+            while True:
 
-                # convert to int and into an index
-                user_col = int(user_input) - 1     
+                # get player input
+                user_input = input(f"{player.name}'s turn.  Please enter a column for your chip: ").strip()
 
-                # check if column is not full
-                if self.get_height(user_col) != -1:
-                    break   
-                # else column is full
-                else:
-                    print(f"Column {user_input} is full...please pick another column.")
-            # print bad input message
-            else: 
-                print("Bad input...please enter a column between one and seven.")
+                # make sure input is between 1 and 7
+                if len(user_input) == 1 and user_input in '1234567':
 
-        # update game board
-        self.move(player,user_col)
+                    # convert to int and into an index
+                    user_col = int(user_input) - 1     
 
+                    # check if column is not full
+                    if self.get_height(user_col) != -1:
+                        break   
+                    # else column is full
+                    else:
+                        print(f"Column {user_input} is full...please pick another column.")
+                # print bad input message
+                else: 
+                    print("Bad input...please enter a column between one and seven.")
+
+            # update game board
+            self.move(player,user_col)
+
+# setup players/game   (will need input from user eventually)
 p1 = Player("Shawn", 'R')
 p2 = Player("Jeff", 'Y')
 c4 = Game()
 
-print(c4)
-while True:
-    c4.play_turn(p1)
+# open input file
+# specifying encoding as utf-8-sig due to ï»¿ that was showing up at start of string list
+with open('connect-four-moves.txt', 'r', encoding='utf-8-sig') as f:
+        moves = f.read().strip().split('\n')
+
+# iterate through moves in the input file
+for i in range(len(moves)):
+    
+    # player 1 goes on even turns
+    if i % 2 == 0:
+        c4.play_turn(p1,moves[i])
+    # player 2 goes on odd turns
+    elif i % 2 == 1:
+        c4.play_turn(p2,moves[i])
+
     print(c4)
-    c4.play_turn(p2)
-    print(c4)
+
+# print(c4)
+# while True:
+#     c4.play_turn(p1)
+#     print(c4)
+#     c4.play_turn(p2)
+#     print(c4)
