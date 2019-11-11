@@ -1,7 +1,8 @@
 import ttt_messages as t3msg    
 import ttt_classes as t3cls
 
-print(t3msg.a)
+print(t3cls.Game(t3msg.board))
+
 
 def main():
     return None
