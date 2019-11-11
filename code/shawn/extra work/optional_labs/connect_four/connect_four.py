@@ -52,6 +52,7 @@ class Game:
         os.system('cls' if os.name == 'nt' else 'clear')
         return_str = "   C O N N E C T   F O U R     \n"
         return_str += "=============================\n\n"
+        return_str += "  1   2   3   4   5   6   7  \n"
 
         # print game board
         return_str += "-----------------------------\n"
@@ -88,7 +89,6 @@ class Game:
         # update game board with appropriate chip color
         self.board[row][position] = player.color
 
-
     def play_turn(self, player, input_move=''):
         '''
         '   A function for asking the user for a position, and then validating it
@@ -110,7 +110,7 @@ class Game:
             while True:
 
                 # get player input
-                user_input = input(f"{player.name}'s turn.  Please enter a column for your chip: ").strip()
+                user_input = input(f"{player.name}'s turn.  Please enter a column for your {player.color} chip: ").strip()
 
                 # make sure input is between 1 and 7
                 if len(user_input) == 1 and user_input in '1234567':
@@ -130,29 +130,142 @@ class Game:
 
             # update game board
             self.move(player,user_col)
-
-    
+  
     def is_full(self):
         '''
         '   A function for finding if all columns are full
         '   Parameters: none        Returns: boolean (True if all columns full)
         '''
-        # initialize to true, then we'll set to false if any column is not full
-        return_flag = True
-
         # iterate through all columns of board
-        for i in range(len(self.board)):
-            # if any column is not full, it'll set flag to false
-            if self.get_height(i) != -1:
-                return_flag =  False
+        for y in range(len(self.board)):
+            # iterate through all rows of board
+            for x in range(len(self.board[y])):
+                # if any cell is empty, update flag to False
+                if self.board[y][x] == ' ':
+                    return False
         
-        # Return true if it iterates
-        return return_flag
+        # Return true if it iterates through board and doesn't find an empty
+        return True
+
+    def is_game_over(self):
+        '''
+        '   A function for checking if the game is over.  
+        '   Parameters: None        Returns: boolean (true if game is over)
+        '''
+        # check to see if there's a winner
+            # return True if there's a winner
+        # check to see if game board is full
+            # return True if game board is full
+        # return false if no winner and board not full
+
+    def calc_winner(self, player): 
+        '''
+        '   This function will check to see if there's a winner
+        '   Parameters: none    Return: True/False if winner
+        '''
+        # list for tracking results
+        result_list = []
+
+        # iterate through all cells
+        for y in range(len(self.board)):
+            for x in range(len(self.board[y])):
+                # call recursive chip checker on for each cell, in each direction
+                # might not actually need to check each direction, but for clarity's sake....
+
+                # up
+                result_list.append(self.recursive_chip_checker(x,y,0,1,0,player.color))
+                # up-right
+                result_list.append(self.recursive_chip_checker(x,y,1,1,0,player.color))
+                # right
+                result_list.append(self.recursive_chip_checker(x,y,1,0,0,player.color))
+                # down-right
+                result_list.append(self.recursive_chip_checker(x,y,1,-1,0,player.color))
+                # down
+                result_list.append(self.recursive_chip_checker(x,y,0,-1,0,player.color))
+                # down-left
+                result_list.append(self.recursive_chip_checker(x,y,-1,-1,0,player.color))
+                # left
+                result_list.append(self.recursive_chip_checker(x,y,-1,0,0,player.color))
+                # up-left
+                result_list.append(self.recursive_chip_checker(x,y,-1,1,0,player.color))
+
+        # return result list
+        if True in result_list:
+            return True
+        else:
+            return False
+
+    def recursive_chip_checker(self, curr_x, curr_y, x_dir, y_dir, count, color): 
+        '''
+        '   This function will (recursivel) check to see if there is a winner
+        '   Parameters: x and y of current cell, x direction, y direction (-1, 0, or 1), a count for # correct chips in a row, player's color
+        '   Return: winner's color letter (or empty string if no winner)
+        '''
+
+        # try to check current cell, catching index error
+        try:
+            # if the item at board[y][x] is the same player's chip
+            if self.board[curr_y][curr_x] == color:
+                # update count for the match
+                count += 1
+                # check to see if there is a connect 4...return true if so:
+                if count == 4:
+                    return True
+                # else, recursively call chip checker with updated x/y coordinates
+                else:
+                    # update x and y based on input direction modifiers
+                    curr_y += y_dir
+                    curr_x += x_dir
+                    # recursively call function
+                    return self.recursive_chip_checker(curr_x, curr_y, x_dir, y_dir, count, color)
+
+            # if the item at board[y][x] is an empty cell, return false:
+            elif self.board[curr_y][curr_x] == ' ':
+                return False
+
+            # else, blocked by opposite player...return false
+            else:
+                return False
+
+        # excepting IndexError so it doesn't recursively iterate off the board...return false
+        except IndexError:
+            return False
+
+    def play(self, p1, p2):
+        '''
+        '   A function for containing main game, so that you can play multiple times    
+        '   Parameter: players 1 and 2         Return: none
+        '''
+        # counter for figuring out who's turn it is
+        counter = 0
+
+        while True:
+            # print game board
+            print(self)
+
+            # player 1 plays on even turns
+            if counter % 2 == 0:
+                self.play_turn(p1)
+                if self.calc_winner(p1):
+                    print(self)
+                    print(f"{p1.name} won!")
+                    return
+            # player 2 plays on odd turns
+            else:
+                self.play_turn(p2)
+                if self.calc_winner(p2):
+                    print(self)
+                    print(f"{p2.name} won!")
+                    return
+
+            # increment counter
+            counter += 1
+    
 
 # setup players/game   (will need input from user eventually)
-p1 = Player("Shawn", 'R')
-p2 = Player("Jeff", 'Y')
-c4 = Game()
+player1 = Player("Shawn", 'R')
+player2 = Player("Jeff", 'Y')
+connect4 = Game()
 
 # open input file
 # specifying encoding as utf-8-sig due to ï»¿ that was showing up at start of string list
@@ -173,11 +286,4 @@ with open('connect-four-moves.txt', 'r', encoding='utf-8-sig') as f:
 #     print(c4)
 
 # for version 2/3: playable
-print(c4)
-while True:
-    c4.play_turn(p1)
-    print(c4)
-    print(c4.is_full())
-    c4.play_turn(p2)
-    print(c4)
-    print(c4.is_full())
+connect4.play(player1,player2)
