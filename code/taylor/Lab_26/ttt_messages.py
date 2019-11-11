@@ -1,32 +1,74 @@
-# Tic Tac Toe User Messages and Display
-
-
-
 
 ''' Win Definition '''
+a = [0, 1, 2] 
+b = [0, 4, 8] 
+c = [0, 3, 6] 
+d = [1, 4, 7] 
+e = [2, 5, 8] 
+f = [3, 4, 5] 
+g = [6, 7, 8] 
 
-# if [0,1,2] = X or O
-# if [0,4,8] = X or O
-# if [0,3,6] = X or O
-# if [1,4,7] = X or O
-# if [2,5,8] = X or O
-# if [3,4,5] = X or O
-# if [6,7,8] = X or O
+board = ['O', 'X', 'X', 'O', '_', '_', 'O', ' ', ' ']
+winning_list = []
 
-message_1 = "Enter a name for player 1: > "
-message_2 = "Chose a token (X or O): > "
-message_3 = "Starting from the top right position, chose a keypad location (1 - 9): > "
-error_message = "Invalid input"
-validation_1 = ['y', 'n']
-validation_2 = ['x', 'o']
+def x_check(board):
+  x_list = []
+  for i in range(len(board)):
+    if board[i] == 'X':
+      x_list.append(i)
+      continue
+  print(x_list)
+  if winner(x_list) != None:
+    print('X is the winner')
+    return x_list
 
-def user_input_validation(msg, emsg, *args):
-    '''This function validates user input.'''
-    while True:
-        user_input = input(msg).lower()
-        if user_input.lower() not in args:
-            print(f"\n{emsg}")
-        else:
-            return user_input 
+def o_check(board):
+  o_list = []
+  for i in range(len(board)):
+    if board[i] == 'O':
+      o_list.append(i)
+      continue
+  print(o_list)
+  if winner(o_list) != None:
+    print('O is the winner')
+    return o_list
 
-            
+def winner(check_list):
+  if check_list == a or check_list == b or check_list ==c or check_list == d or check_list == e or check_list == f or check_list == g:
+    return 0 
+  else:
+    return None
+
+x_check(board)
+o_check(board)
+
+
+  # if check_list == [0,1,2]:
+  #   return check_list
+  # elif check_list == [0,4,8]:
+  #   return check_list
+  # elif check_list == [0,3,6]:
+  #   return check_list
+  # elif check_list == [1,4,7]:
+  #   return check_list
+  # elif check_list == [2,5,8]:
+  #   return check_list
+  # elif check_list == [3,4,5]:
+  #   return check_list
+  # elif check_list == [6,7,8]:
+  #   return check_list
+  # else: 
+  #   return False
+
+
+
+
+def calc_winner(self):
+  ''' calc_winner() What token character string has won or None if no one has. '''
+
+def is_full(self):
+  ''' is_full() Returns true if the game board is full. '''
+        
+def is_game_over(self):
+  ''' is_game_over() Returns true if the game board is full or a player has won. '''
+

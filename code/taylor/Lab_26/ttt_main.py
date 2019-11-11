@@ -10,7 +10,7 @@ player_2 = ''
 # User messages
 message_1 = "Enter a name for player 1: > "
 message_2 = "Chose a token ( x or o ): > "
-message_3 = "Starting from the top right position, chose a keypad location (1 - 9): > "
+message_3 = "Starting from the top right position, chose a keypad location (0 - 8): > "
 error_message = "Invalid input"
 validation_1 = ['y', 'n']
 validation_2 = ['x', 'o']
@@ -32,18 +32,18 @@ def create_player_2_AI(player_1):
     else:
         return t3cls.Player('Nemesis', 'x')
 
-# Test
+# Test Print Game Board
 print(t3cls.Game(board))
 
+# User input for player 1
 receive_player_name = input(message_1)
 receive_player_token = user_input_validation(message_2, error_message, *validation_2)
 
-
+# Creates player 1 and 2
 player_1 = t3cls.Player(receive_player_name, receive_player_token)
 player_2 = create_player_2_AI(player_1)
 
-
-
+# Test print players
 print('\n####################*******PLAYERS*****#########################')
 
 print(player_1.__dict__)
