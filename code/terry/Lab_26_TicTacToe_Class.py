@@ -109,12 +109,5 @@ class Player:
             """At the end of a game, asks the user if they wish to play again"""
             if Game.win(Game.game):
                 game_won = True
-                again = input("The game is over, would you like to play again? 'Y'es or 'N'o ").lower()
-                if again == "y":
-                    print("New game.")
-                elif again == "n":
-                    print("Goodbye.")
-                    play = False
-                else:
-                    print("Not valid, closing")
-                    play = False
+                print("The game is over")
+                play = False
