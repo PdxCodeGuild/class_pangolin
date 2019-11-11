@@ -36,12 +36,16 @@ New Years Day -- January 1st, 2019
  Lab 16 -- Image Manipulation  
  Lab 23 -- Contact List  
  Lab 21 -- Count Words  
+ Lab 25 -- ATM  
+ Lab 26 -- Tic Tac Toe  
+ Python Project: Mini presentations first thing 11/14  
 
 #### Optional Python Labs
 
  Practice 1-5  
  Labs 02-08, 12 (You did these during the intro course)  
  Lab 24 -- Rain Data  
+ Lab 27 -- Connect Four  
 
 ## Student Presentations
 
