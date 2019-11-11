@@ -1,4 +1,5 @@
-import random 
+import random
+import ttt_messages 
 '''
 Tic Tac Toe is a game. Players take turns placing tokens (a 'O' or 'X') into a 3x3 grid. Whoever gets three in a row first wins.
 
@@ -27,7 +28,13 @@ class Game:
         self.board = board
 
     def __repr__(self):
-        print('Hello')
+        return f'''\n\n
+       ._,-,_.              _    ________    _       ______    __
+       ||| |||    {self.board[0]}|{self.board[1]}|{self.board[2]}    / \  |__    __|  / \     |   _  \  |  |
+       ||| |||    {self.board[3]}|{self.board[4]}|{self.board[5]}   / . \    |  |    / . \    |  |_) /  |  |
+       ;|| ||:    {self.board[6]}|{self.board[7]}|{self.board[8]}  / /_\ \   |  |   / /_\ \   |     (   |  |
+     ./ /| |\ \.        /  ___  \  |  |  /  ___  \  |  |\  \  |  |
+     |./ :_: \.|       /__/   \__\ |__| /__/   \__\ |__| \__\ |__|\n'''
     
     @staticmethod
     def move(x, y, player):
