@@ -3,6 +3,13 @@
 Version 3
 When REPL loop finishes, write the updated contact info to the CSV file to be saved. 
 '''
+hero = []
+with open('heroes.csv', 'r+') as file:
+    lines = file.read().split('\n')
+    keys = lines[0].split(',')      #pulls off the header row
+    for i in range(1, len(lines)):
+        values = lines[i].split(',')    #pulls off the data rows
+        hero.append(values)
 
 def hero_dict(keys, hero):
     heroes = []     #sets a list for dictionaries
@@ -14,14 +21,14 @@ def hero_dict(keys, hero):
 
 def search(hero, query):
     for arr in hero:
-        if arr[0] == query:
+        if arr[0] in query:
             return arr
     else:
         print("Not found")
 
 def save(*args):
     for i in range(len(hero)):
-        new_entries = ",".join.hero[i]
+        new_entries = ",".join(hero[i])
         hero.append(new_entries)
     str(hero)
     print(hero)
@@ -32,19 +39,12 @@ def save(*args):
     print("Your changes have been saved!")
 
 lions = True
-while lions == True:
-    hero = []
+while lions:
+    
     print("Hello! Today we're working with a list of historical generals.")
     action = input("You can create, retrieve, update, or delete a record, or enter q or 1 to quit.\n>")
     
-    with open('heroes.csv', 'r+') as file:
-        lines = file.read().split('\n')
-        keys = lines[0].split(',')      #pulls off the header row
-        for i in range(1, len(lines)):
-            values = lines[i].split(',')    #pulls off the data rows
-            hero.append(values)
-        
-    if action == ('c', 'create'):
+    if action in ('c', 'create'):
         name = input("Name: ")
         location = input("Location: ")
         era = input("Era: ")
@@ -53,12 +53,12 @@ while lions == True:
         hero.append(action_list)
         print(f"The generals entered are:\n {hero}")
     
-    elif action == ('r', 'retrieve'):
+    elif action in ('r', 'retrieve'):
         info = input("Whose information would you like to see?")
         #info = 'Ghenghis Khan'
         print(search(hero, info))
     
-    elif action == ('u', 'update'):
+    elif action in ('u', 'update'):
         info = input("Whose information would you like to see?")
         new_value = search(hero, info)
         field = input("Which field would you like to update?")
@@ -69,7 +69,7 @@ while lions == True:
         else:
             print("Sorry, that field cannot be edited.")
 
-    elif action == ('d', 'delete'):
+    elif action in ('d', 'delete'):
         info = input("Whose information would you like to delete?")
         del_value = search(hero, info)
         confirm = input("Enter 'd' to delete this entry: ")
@@ -80,7 +80,7 @@ while lions == True:
 
         print(hero)
         
-    elif action == 'q' or 1:
+    elif action in ('q', '1'):
         save(keys, hero)
         quit()
 
