@@ -7,6 +7,17 @@ a,b,c,d,e,f,g,h,i = '_','_','_','_','_','_',' ',' ',' '
 
 board_as_list = [a, b, c, d, e, f, g, h, i]
 
+0, 1, 2, 3, 4, 5, 6, 7, 8
+
+''' Win Definition '''
+# if abc = X or O
+# if aei = X or O
+# if adg = X or O
+# if beh = X or O
+# if cfi = X or O
+# if def = X or O
+# if ghi = X or O
+
 game_board_graphic = f'''\n\n
        ._,-,_.              _    ________    _       ______    __
        ||| |||    {a}|{b}|{c}    / \  |__    __|  / \     |   _  \  |  |
@@ -16,5 +27,5 @@ game_board_graphic = f'''\n\n
      |./ :_: \.|       /__/   \__\ |__| /__/   \__\ |__| \__\ |__|\n'''
 
 
-print(game_board_graphic)
+print(game_board_graphic, board_as_list[0])
 
