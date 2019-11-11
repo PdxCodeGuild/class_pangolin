@@ -2,8 +2,10 @@
 # Lab_25
 # 11/07/19
 
-class BankAccount:
+# Bank Class Module
 
+class BankAccount():
+    ''' This class definesa an account object, each account object has an account 'number', a balance(account), and transactions history ''' 
     def __init__(self, number):
         self.number = number
         self.account = 0
@@ -37,19 +39,3 @@ class BankAccount:
     def print_transactions(self):
         ''' Print transaction record function as list of strings '''
         return print(self.transactions)
-    
-    # Version 2
-    ''' Have the ATM maintain a list of transactions. Every time the user makes a deposit or withdrawal, add a string to a list saying 'user deposited $15' or 'user withdrew $15'. Add a new function print_transactions() to your class for printing out the list of transactions '''
-
-    # Version 3
-    ''' Allow the user to enter commands into a REPL.
-
-    > what would you like to do (deposit, withdraw, check balance, history)?
-    > deposit
-    > how much would you like to deposit?
-    > $5
-    > what would you like to do (deposit, withdraw, check balance, history)?
-    > check balance
-    > balance: $5 '''
-    
-
