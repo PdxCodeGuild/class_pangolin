@@ -38,6 +38,7 @@ New Years Day -- January 1st, 2019
  Lab 21 -- Count Words  
  Lab 25 -- ATM  
  Lab 26 -- Tic Tac Toe  
+ Python Project: Mini presentations first thing 11/14  
 
 #### Optional Python Labs
 
