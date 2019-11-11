@@ -27,6 +27,8 @@ class Game:
     '           is_full(): returns true if all board positions are occupied
     '           is_game_over(): returns true if the game is over (a winnder is found or the board is full)
     '           play_turn(): function that plays one turn
+    '           play(): function that plays whole game, given two player
+    '           recursive_chip_checker(): recurisvely checks in all directions to find if theres a connect 4
     '''
 
     def __init__(self):
@@ -147,21 +149,26 @@ class Game:
         # Return true if it iterates through board and doesn't find an empty
         return True
 
-    def is_game_over(self):
+    def is_game_over(self, p1, p2):     # not currently used
         '''
         '   A function for checking if the game is over.  
         '   Parameters: None        Returns: boolean (true if game is over)
         '''
         # check to see if there's a winner
+        if self.calc_winner(p1) or self.calc_winner(p2):
             # return True if there's a winner
+            return True
         # check to see if game board is full
+        if self.is_full():
             # return True if game board is full
+            return True
         # return false if no winner and board not full
+        return False
 
     def calc_winner(self, player): 
         '''
         '   This function will check to see if there's a winner
-        '   Parameters: none    Return: True/False if winner
+        '   Parameters: player (for getting their token color)    Return: True/False if winner
         '''
         # list for tracking results
         result_list = []
@@ -189,7 +196,7 @@ class Game:
                 # up-left
                 result_list.append(self.recursive_chip_checker(x,y,-1,1,0,player.color))
 
-        # return result list
+        # return true if there is a true value in the list...else, return false
         if True in result_list:
             return True
         else:
@@ -199,7 +206,7 @@ class Game:
         '''
         '   This function will (recursivel) check to see if there is a winner
         '   Parameters: x and y of current cell, x direction, y direction (-1, 0, or 1), a count for # correct chips in a row, player's color
-        '   Return: winner's color letter (or empty string if no winner)
+        '   Return: True (if the input color is a winner) or false boolean
         '''
 
         # try to check current cell, catching index error
@@ -246,31 +253,46 @@ class Game:
             # player 1 plays on even turns
             if counter % 2 == 0:
                 self.play_turn(p1)
-                if self.calc_winner(p1):
-                    print(self)
-                    print(f"{p1.name} won!")
-                    return
+
             # player 2 plays on odd turns
             else:
                 self.play_turn(p2)
-                if self.calc_winner(p2):
-                    print(self)
-                    print(f"{p2.name} won!")
-                    return
 
             # increment counter
             counter += 1
-    
 
-# setup players/game   (will need input from user eventually)
-player1 = Player("Shawn", 'R')
-player2 = Player("Jeff", 'Y')
-connect4 = Game()
+            # check to see if game is over (either full board or winner)
+            if self.is_game_over(p1, p2):
+                break
 
-# open input file
-# specifying encoding as utf-8-sig due to ï»¿ that was showing up at start of string list
-with open('connect-four-moves.txt', 'r', encoding='utf-8-sig') as f:
-        moves = f.read().strip().split('\n')
+        # check to see if player 1 won
+        if self.calc_winner(p1):
+            print(self)
+            return f"{p1.name} won!"
+
+        # check to see if player 2 won
+        elif self.calc_winner(p2):
+            print(self)
+            return f"{p2.name} won!"
+
+        # else, must be tie
+        return "Game board is full...players tied."
+
+# Set up players and first game
+# clear screen and logo
+os.system('cls' if os.name == 'nt' else 'clear')
+print("    C O N N E C T   F O U R    ")
+print("===============================")
+player1 = Player(input("Please enter name for red player: "), 'R')
+player2 = Player(input("Please enter name for yellow player: "), 'Y')
+
+# # -------------------------  This is version 1 -------------------------------------------#
+# # open input file
+# # specifying encoding as utf-8-sig due to ï»¿ that was showing up at start of string list
+# with open('connect-four-moves.txt', 'r', encoding='utf-8-sig') as f:
+#         moves = f.read().strip().split('\n')
+
+# connect4 = Game()
 
 # for version 1: using input file
 # iterate through moves in the input file
@@ -284,6 +306,24 @@ with open('connect-four-moves.txt', 'r', encoding='utf-8-sig') as f:
 #         c4.play_turn(p2,moves[i])
 
 #     print(c4)
+# # ---------------------------  End of version 1 -------------------------------------------#
+
 
 # for version 2/3: playable
-connect4.play(player1,player2)
+while True:
+    # create new game
+    connect4 = Game()
+    # play whole game
+    print(connect4.play(player1,player2))
+
+    # see if user wants to play again
+    while True:
+        user_input = input("Play again? Enter (y) or (n): ")
+        if user_input.lower() in ['n','no']:
+            print("Game over.")
+            exit()
+        elif user_input.lower() not in ['y','yes']:
+            print("Invalid input.")
+        else:
+            print("Starting new game.")
+            break
