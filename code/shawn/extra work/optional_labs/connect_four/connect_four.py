@@ -49,9 +49,9 @@ class Game:
         return_str = ''
 
         # clear screen and logo
-        # os.system('cls' if os.name == 'nt' else 'clear')
-        # return_str = "   C O N N E C T   F O U R     \n"
-        # return_str += "=============================\n\n"
+        os.system('cls' if os.name == 'nt' else 'clear')
+        return_str = "   C O N N E C T   F O U R     \n"
+        return_str += "=============================\n\n"
 
         # print game board
         return_str += "-----------------------------\n"
@@ -65,7 +65,7 @@ class Game:
     def get_height(self, position):
         '''
         '   A function that will return height of input position
-        '   Parameters: input position (int)        Return: index if next available chip location (int)
+        '   Parameters: input position (int)        Return: index if next available chip location (int).  returns -1 if full
         '''
 
         # iterate vertically through column, starting from bottom 
@@ -87,6 +87,7 @@ class Game:
 
         # update game board with appropriate chip color
         self.board[row][position] = player.color
+
 
     def play_turn(self, player, input_move=''):
         '''
@@ -130,6 +131,24 @@ class Game:
             # update game board
             self.move(player,user_col)
 
+    
+    def is_full(self):
+        '''
+        '   A function for finding if all columns are full
+        '   Parameters: none        Returns: boolean (True if all columns full)
+        '''
+        # initialize to true, then we'll set to false if any column is not full
+        return_flag = True
+
+        # iterate through all columns of board
+        for i in range(len(self.board)):
+            # if any column is not full, it'll set flag to false
+            if self.get_height(i) != -1:
+                return_flag =  False
+        
+        # Return true if it iterates
+        return return_flag
+
 # setup players/game   (will need input from user eventually)
 p1 = Player("Shawn", 'R')
 p2 = Player("Jeff", 'Y')
@@ -140,21 +159,25 @@ c4 = Game()
 with open('connect-four-moves.txt', 'r', encoding='utf-8-sig') as f:
         moves = f.read().strip().split('\n')
 
+# for version 1: using input file
 # iterate through moves in the input file
-for i in range(len(moves)):
+# for i in range(len(moves)):
     
-    # player 1 goes on even turns
-    if i % 2 == 0:
-        c4.play_turn(p1,moves[i])
-    # player 2 goes on odd turns
-    elif i % 2 == 1:
-        c4.play_turn(p2,moves[i])
+#     # player 1 goes on even turns
+#     if i % 2 == 0:
+#         c4.play_turn(p1,moves[i])
+#     # player 2 goes on odd turns
+#     elif i % 2 == 1:
+#         c4.play_turn(p2,moves[i])
 
+#     print(c4)
+
+# for version 2/3: playable
+print(c4)
+while True:
+    c4.play_turn(p1)
     print(c4)
-
-# print(c4)
-# while True:
-#     c4.play_turn(p1)
-#     print(c4)
-#     c4.play_turn(p2)
-#     print(c4)
+    print(c4.is_full())
+    c4.play_turn(p2)
+    print(c4)
+    print(c4.is_full())
