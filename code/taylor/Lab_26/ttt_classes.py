@@ -1,3 +1,7 @@
+# Thank you for visiting https://asciiart.website/
+# This ASCII pic can be found at
+# https://asciiart.website/index.php?art=objects/computers
+
 import random
 import ttt_messages 
 '''
@@ -28,7 +32,8 @@ class Game:
         self.board = board
 
     def __repr__(self):
-        return f'''\n\n
+        ''' Takes in the Game Object and formats for diaplay the Board values '''
+        return f'''\n
        ._,-,_.              _    ________    _       ______    __
        ||| |||    {self.board[0]}|{self.board[1]}|{self.board[2]}    / \  |__    __|  / \     |   _  \  |  |
        ||| |||    {self.board[3]}|{self.board[4]}|{self.board[5]}   / . \    |  |    / . \    |  |_) /  |  |

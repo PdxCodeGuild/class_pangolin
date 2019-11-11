@@ -1,14 +1,7 @@
 # Tic Tac Toe User Messages and Display
-# Thank you for visiting https://asciiart.website/
-# This ASCII pic can be found at
-# https://asciiart.website/index.php?art=objects/computers
-
-board = ['_', '_', '_', '_', '_', '_', ' ', ' ', ' ']
 
 
 
-player_1 = ''
-player_2 = ''
 
 ''' Win Definition '''
 
@@ -20,4 +13,20 @@ player_2 = ''
 # if [3,4,5] = X or O
 # if [6,7,8] = X or O
 
+message_1 = "Enter a name for player 1: > "
+message_2 = "Chose a token (X or O): > "
+message_3 = "Starting from the top right position, chose a keypad location (1 - 9): > "
+error_message = "Invalid input"
+validation_1 = ['y', 'n']
+validation_2 = ['x', 'o']
 
+def user_input_validation(msg, emsg, *args):
+    '''This function validates user input.'''
+    while True:
+        user_input = input(msg).lower()
+        if user_input.lower() not in args:
+            print(f"\n{emsg}")
+        else:
+            return user_input 
+
+            
