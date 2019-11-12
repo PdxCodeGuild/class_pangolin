@@ -93,11 +93,11 @@ def main():
             ttt.move(player_1_move, player_1)
             os.system('cls' if os.name == 'nt' else 'clear')
             if ttt.is_game_over(ttt.calc_winner(), ttt.is_full()) == True:
-                if ttt.is_full() == True:
+                if ttt.is_full() == True and ttt.calc_winner() == None:
                     print('Tie Game!')
                 else:
                     print(f"Token: {ttt.calc_winner()} is the winner.")
-                break
+                    break
             print(ttt)
             nemesis_move_tally(player_1_move)
             print('Nemesis is thinking')
@@ -105,11 +105,11 @@ def main():
             nemesis = nemesis_move()
             ttt.move(nemesis, player_2)
             if ttt.is_game_over(ttt.calc_winner(), ttt.is_full()) == True:
-                if ttt.is_full() == True:
+                if ttt.is_full() == True and ttt.calc_winner() == None:
                     print('Tie Game!')
                 else:
                     print(f"Token: {ttt.calc_winner()} is the winner.")
-                break
+                    break
             nemesis_move_tally(nemesis)
         else:
             break
