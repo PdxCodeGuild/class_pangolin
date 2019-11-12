@@ -49,8 +49,15 @@ class Game:
         ''' calc_winner() What token character string has won or None if no one has. '''
         
     def is_full(self):
-        ''' is_full() Returns true if the game board is full. '''
-        
+          ''' is_full() Returns true if the game board is full. '''
+          for i in range(len(self)):
+              if self[i] == ' ':
+                  return False
+                elif self[i] == '_':
+                    return False
+                else:True
+
+
     def is_game_over(self):
         ''' is_game_over() Returns true if the game board is full or a player has won. '''
 

@@ -2,7 +2,7 @@
 ''' Win Definition '''
 winning_definitions = [[0, 1, 2], [0, 4, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [3, 4, 5], [6, 7, 8]] 
 
-board = ['X', 'Y', 'X', 'X', 'O', 'O', 'X', 'O', 'O']
+board = ['X', 'O', 'X', 'X', 'X', 'O', 'O', 'X', 'X']
 winning_list = []
 
 def x_check(board):
@@ -28,42 +28,30 @@ def o_check(board):
     return 'O'
 
 def winner(check):
-  ''' Function to check for 3 in a row of X or Y value, refactor into list of list check later '''
+  ''' Function to check if the winnning definitions are a subset of the build lists 'x_check() and o_check' '''
   for i in range(len(winning_definitions)):
     if set(winning_definitions[i]).issubset(check):
       print('chicken dinner')
     else:
       print('no winner')
 
-
 x_check(board)
-
-  # if check_list == [0,1,2]:
-  #   return check_list
-  # elif check_list == [0,4,8]:
-  #   return check_list
-  # elif check_list == [0,3,6]:
-  #   return check_list
-  # elif check_list == [1,4,7]:
-  #   return check_list
-  # elif check_list == [2,5,8]:
-  #   return check_list
-  # elif check_list == [3,4,5]:
-  #   return check_list
-  # elif check_list == [6,7,8]:
-  #   return check_list
-  # else: 
-  #   return False
-
-
-
 
 def calc_winner(self):
   ''' calc_winner() What token character string has won or None if no one has. '''
 
 def is_full(self):
   ''' is_full() Returns true if the game board is full. '''
+  for i in range(len(self)):
+    if self[i] == ' ' or self[i] == '_':
+      return False
+  else:
+    return True
+
+
+
         
 def is_game_over(self):
   ''' is_game_over() Returns true if the game board is full or a player has won. '''
 
+print(is_full(board))
