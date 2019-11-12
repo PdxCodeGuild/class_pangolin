@@ -1,7 +1,15 @@
-import string
-s = 'I $am a !string with punc&^%*tuation! am - am  am-am am—am am\'s'
 
-translator = str.maketrans('', '', string.punctuation)
-string_without_punct = s.translate(translator) # I am a string with punctuation
-print(string_without_punct)
-print(string.punctuation)
+import re
+
+# regex for x,y input
+regex = r"[0-2]{1},[0-2]{1}"
+
+# get user validated user input
+while True:
+    user_input = input("Please input x,y coordinates: ")
+
+    if re.match(regex, user_input):
+        print("good input")
+    else:
+        print("bad input")
+
