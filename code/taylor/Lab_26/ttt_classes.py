@@ -1,26 +1,8 @@
-# Thank you for visiting https://asciiart.website/
-# This ASCII pic can be found at
+# Taylor Rebbe
+# Lab_26 Tic Tac Toe
+# 11/11.2019
+# This ASCII pic can be found at (ATARI)
 # https://asciiart.website/index.php?art=objects/computers
-
-import random
-import ttt_messages 
-'''
-Tic Tac Toe is a game. Players take turns placing tokens (a 'O' or 'X') into a 3x3 grid. Whoever gets three in a row first wins.
-
-You will write a Player class and Game class to model Tic Tac Toe, and a function main that models gameplay taking in user inputs through REPL.
-
-The Player class has the following properties:
-
-name = player name
-token = 'X' or 'O'
-The Game class has the following properties:
-
-board = your representation of the board
-You can represent the board however you like, such as a 2D list, tuples, or dictionary.
-
-The Game class has the following methods:
-
-__repr__() Returns a pretty string representation of the game board '''
 
 class Player:
     def __init__(self, name, token):
@@ -41,25 +23,66 @@ class Game:
      ./ /| |\ \.        /  ___  \  |  |  /  ___  \  |  |\  \  |  |
      |./ :_: \.|       /__/   \__\ |__| /__/   \__\ |__| \__\ |__|\n'''
     
-    @staticmethod
-    def move(keyPad, player):
+    def move(self, keyPad, Player):
         ''' move(keyPad, player) Place a player's token character string at a given keypad location (top-left 0). '''
-    
+        if self.board[keyPad] == ' ' or self.board[keyPad] == '_':
+            self.board[keyPad] = Player.token
+            return self.board
+        else:
+            return False
+
     def calc_winner(self):
         ''' calc_winner() What token character string has won or None if no one has. '''
-        
+
+        def x_check(self):
+            ''' Helper to build x list for win check '''
+            x_list = []
+            for i in range(len(self.board)):
+                if self.board[i] == 'X':
+                    x_list.append(i)
+                    continue
+            if winner(x_list) != None:
+                return 'X'
+
+        def o_check(self):
+            ''' Helper to build o list for win check '''
+            o_list = []
+            for i in range(len(self.board)):
+                if self.board[i] == 'O':
+                    o_list.append(i)
+                    continue
+            if winner(o_list) != None:
+                return 'O'
+
+        def winner(check):
+            ''' Function to check if the winnning definitions are a subset of the build lists 'x_check() and o_check' '''
+            winning_definitions = [[0, 1, 2], [0, 4, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [3, 4, 5], [6, 7, 8]]
+            for i in range(len(winning_definitions)):
+                if set(winning_definitions[i]).issubset(check):
+                    return True
+
+        # Calls helper methods which check for winning values for x or o    
+        if x_check(self) == 'X':
+            return 'X'
+        if o_check(self) == 'O':
+            return 'O'
+
     def is_full(self):
-          ''' is_full() Returns true if the game board is full. '''
-          for i in range(len(self)):
-              if self[i] == ' ':
-                  return False
-                elif self[i] == '_':
-                    return False
-                else:True
-
-
-    def is_game_over(self):
+        ''' is_full() Returns true if the game board is full. '''
+        for i in range(len(self.board)):
+            if self.board[i] == ' ' or self.board[i] == '_':
+                return False
+        else:
+            return True
+        
+    def is_game_over(self, calcwinner, isfull):
         ''' is_game_over() Returns true if the game board is full or a player has won. '''
+        if calcwinner != None:
+            return True
+        elif isfull == True:
+            return True
+        else:
+            return False
 
 
 
