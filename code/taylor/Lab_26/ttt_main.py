@@ -87,12 +87,6 @@ time.sleep(3)
 def main():
     while True:
         if ttt.is_game_over(ttt.calc_winner(), ttt.is_full()) == False:
-            if ttt.is_game_over(ttt.calc_winner(), ttt.is_full()) == True:
-                if ttt.is_full() == True:
-                    print('Tie Game!')
-                else:
-                    print(f"Token: {ttt.calc_winner()} is the winner.")
-                break
             os.system('cls' if os.name == 'nt' else 'clear')
             print(ttt)
             player_1_move = user_input_validation_int(message_3, error_message, *validation_3)
@@ -110,6 +104,12 @@ def main():
             time.sleep(1)
             nemesis = nemesis_move()
             ttt.move(nemesis, player_2)
+            if ttt.is_game_over(ttt.calc_winner(), ttt.is_full()) == True:
+                if ttt.is_full() == True:
+                    print('Tie Game!')
+                else:
+                    print(f"Token: {ttt.calc_winner()} is the winner.")
+                break
             nemesis_move_tally(nemesis)
         else:
             break
