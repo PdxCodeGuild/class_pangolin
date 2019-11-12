@@ -3,3 +3,4 @@ Google Sheets API:
 https://developers.google.com/sheets/api/guides/concepts
 - guide for reading/writing cell values:
 https://developers.google.com/sheets/api/guides/values
+PANDAS for statistical stuff later on
