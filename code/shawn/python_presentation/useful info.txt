@@ -1,0 +1,5 @@
+Google Sheets API:
+- general info on concepts used in API:
+https://developers.google.com/sheets/api/guides/concepts
+- guide for reading/writing cell values:
+https://developers.google.com/sheets/api/guides/values

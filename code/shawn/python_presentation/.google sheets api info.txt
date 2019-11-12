@@ -1,0 +1,5 @@
+client id:
+42710461394-sdtlcmu6c08h7hvm751lq8q9hab68ak1.apps.googleusercontent.com
+
+client secret:
+UZI2uTBBqq3w1PYh61XHOWX4
