@@ -1,9 +1,65 @@
+# Supporting Modules
 import ttt_messages as t3msg    
 import ttt_classes as t3cls
 
-print(t3cls.Game(t3msg.board))
+# Global Variables
+board = ['_', '_', '_', '_', '_', '_', ' ', ' ', ' ']
+player_1 = ''
+player_2 = ''
+
+# User messages
+message_1 = "Enter a name for player 1: > "
+message_2 = "Chose a token ( x or o ): > "
+message_3 = "Starting from the top right position, chose a keypad location (0 - 8): > "
+error_message = "Invalid input"
+validation_1 = ['y', 'n']
+validation_2 = ['x', 'o']
+
+# Input Validation Function
+def user_input_validation(msg, emsg, *args):
+    '''This function validates user input.'''
+    while True:
+        user_input = input(msg).lower()
+        if user_input.lower() not in args:
+            print(f"\n{emsg}")
+        else:
+            return user_input 
+
+# Creates an AI player 2
+def create_player_2_AI(player_1):
+    if player_1.__dict__['token'] == 'x':
+        return t3cls.Player('Nemesis', 'o')
+    else:
+        return t3cls.Player('Nemesis', 'x')
+
+# Test Print Game Board
+print(t3cls.Game(board))
+
+# User input for player 1
+receive_player_name = input(message_1)
+receive_player_token = user_input_validation(message_2, error_message, *validation_2)
+
+# Creates player 1 and 2
+player_1 = t3cls.Player(receive_player_name, receive_player_token)
+player_2 = create_player_2_AI(player_1)
+
+# Test print players
+print('\n####################*******PLAYERS*****#########################')
+
+print(player_1.__dict__)
+print(player_2.__dict__)
 
 
+
+
+
+
+
+
+
+
+
+# Main function
 def main():
     return None
 
@@ -16,6 +72,7 @@ def main():
     # - is the space available? True = allow
     # else "Location is full"
 # 4) Move player 2 (Random Choice)
+    # sets new value to game board per user request
 
 # 5) run is_game_over() to determine board is full or there was a winner.
     # 5a) run calc_winner to check for win.

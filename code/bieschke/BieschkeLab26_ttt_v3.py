@@ -1,4 +1,4 @@
-#Bieschke Lab 26: tic tac toe.py
+#Bieschke Lab 26_v3: tic tac toe.py
 
 class Game():
     def __init__(self):
@@ -7,15 +7,6 @@ class Game():
         self.board = {1: '1', 2: '2', 3: '3',
                       4: '4', 5: '5', 6: '6',
                       7: '7', 8: '8', 9: '9'}
-
-    # def printBoard(self, board):
-    #     print(self.board[1] + '|' + self.board[2] + '|' + self.board[3])
-    #     print('-+-+-')
-    #     print(self.board[4] + '|' + self.board[5] + '|' + self.board[6])
-    #     print('-+-+-')
-    #     print(self.board[7] + '|' + self.board[8] + '|' + self.board[9])
-    #     print("\n")
-    #     print("*"*50)
 
     def __repr__(self):
         print(self.board[1] + '|' + self.board[2] + '|' + self.board[3])
@@ -28,7 +19,6 @@ class Game():
 
     def movement(self):
         move = int(input("What square would you like to occupy?"))
-        #checking()
         if self.checking(move) == True:
             self.board[move] = turn
         else:
@@ -110,34 +100,38 @@ class Game():
             pass
 
 class Player():
-    def __init__(self):
-        # self.name = name
-        # self.token = token
+    def __init__(self, name, token):
+        self.name = name
+        self.token = token
         #p1 = Player.input_init()
         #p2 = Player.input_init()
-        self.p1 = str(input("What is player one's name?"))
-        self.p2 = str(input("What is player two's name?"))
 
-    def tokens(self):
-        self.players = ['X', 'O']
-        self.player1 = input(f"{self.p1}, would you like to be X or O?").upper()
-        #self.player1 = input("Who is going first, X or O?\n> ").upper()
-        print(f"Great! {self.p1} is {self.player1}!")
-        #print(f"Great! {self.player1} is player one!")
-        self.players.remove(self.player1)
-        self.player2 = str(self.players)
-        self.player2 = self.player2.strip("'[]'")
-        print(f"That means {self.p2} is {self.player2}! LET'S DO THIS!!")
+def tokens():
+    players = ['X', 'O']
+    player1 = input(f"{p1}, would you like to be X or O?").upper()
+    print(f"Great! {p1} is {player1}!")
+    players.remove(player1)
+    player2 = str(players)
+    #player2 = player2.strip("'[]'")
+    player2 = player2[2:-2]
+    print(f"That means {p2} is {player2}! LET'S DO THIS!!")
+
+# player1 = ''
+# player2 = ''
+# turn = ''
+
+# p1 = Player('D', "O")
+# p2 = Player('Brandon', "X")
+
+# p1 = str(input("What is player one's name?"))
+# p2 = str(input("What is player two's name?"))
 
 g = Game()
-p = Player()
+p = Player(name, token)
 
-#print("Hello! And Welcome to TTT!")
-p.tokens()
+tokens()
 print("Play by entering the number of the square you would like to occupy.")
-#g.printBoard(g.board)
 g.__repr__()
-
 
 player = 0
 
@@ -147,8 +141,8 @@ while lions == True:
     for player in range(9):
         if player % 2 == 0:
             turn = p.player1
-            print(f"{p.p1}'s turn!")
+            print(f"{p1}'s turn!")
         else:
             turn = p.player2
-            print(f"{p.p2}'s turn!")
+            print(f"{p2}'s turn!")
         g.movement()

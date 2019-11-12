@@ -1,3 +1,7 @@
+# Thank you for visiting https://asciiart.website/
+# This ASCII pic can be found at
+# https://asciiart.website/index.php?art=objects/computers
+
 import random
 import ttt_messages 
 '''
@@ -28,7 +32,8 @@ class Game:
         self.board = board
 
     def __repr__(self):
-        return f'''\n\n
+        ''' Takes in the Game Object and formats for diaplay the Board values '''
+        return f'''\n
        ._,-,_.              _    ________    _       ______    __
        ||| |||    {self.board[0]}|{self.board[1]}|{self.board[2]}    / \  |__    __|  / \     |   _  \  |  |
        ||| |||    {self.board[3]}|{self.board[4]}|{self.board[5]}   / . \    |  |    / . \    |  |_) /  |  |
@@ -37,14 +42,22 @@ class Game:
      |./ :_: \.|       /__/   \__\ |__| /__/   \__\ |__| \__\ |__|\n'''
     
     @staticmethod
-    def move(x, y, player):
-        ''' move(x, y, player) Place a player's token character string at a given coordinate (top-left is 0, 0), x is horizontal position, y is vertical position. '''
+    def move(keyPad, player):
+        ''' move(keyPad, player) Place a player's token character string at a given keypad location (top-left 0). '''
     
     def calc_winner(self):
         ''' calc_winner() What token character string has won or None if no one has. '''
         
     def is_full(self):
-        ''' is_full() Returns true if the game board is full. '''
+          ''' is_full() Returns true if the game board is full. '''
+          for i in range(len(self)):
+              if self[i] == ' ':
+                  return False
+                elif self[i] == '_':
+                    return False
+                else:True
+
+
     def is_game_over(self):
         ''' is_game_over() Returns true if the game board is full or a player has won. '''
 
