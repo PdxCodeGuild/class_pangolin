@@ -10,15 +10,17 @@ class Player:
         self.token = token
 
     def __repr__(self):
-        return f"name is {self.name}, token is {self.token}"
+        return self.token
     
 players = []
+
 for elem in 'XO':
     players.append(Player(name = input("What is your name?"),
     token = elem
     ))
+#print(players)
 
-print(players)
+
 
 
 class Game:
@@ -32,9 +34,8 @@ class Game:
             board2.append('|'.join(line))        
         return '\n'.join(board2)
     def move(self,x,y,player):
-        self.y = self.board[y]
-        self.x = self.board[y][x]
-        self.player = player
+        self.board[x][y] = player.token
+        
     def calc_winner(self):
         for row in range(len(self.board)):
             if len(set(self.board[row])) == 1:
@@ -73,19 +74,55 @@ class Game:
     def is_game_over(self):
         if self.is_full() and not self.calc_winner():
             return f"CAT, no winner!"
- 
-
-        
-        
-
-
-
+def player_move():
+    move_x = int(input("What is the x value of the spot you want to move?"))
+    move_y = int(input('What is the y value of the spot you want to move?'))
+    # if g.board[move_y][move_x] == 'X' or g.board[move_y][move_x] == 'O':
+    #     return print("Not a valid move. Cheaters lose.  Goodbye")
         
 
+    return move_x,move_y
+
+def player_turn(player_list):
+    player_list * 4 + [player_list[0]]
+    return player_list.pop(0)
+
+def tictactoe(player_list):
+    '''This is a REPL loop function to play TicTacToe based on classes built above.'''       
+    start_game = input("Want to play TicTacToe?(Y/N)").lower()
+    if start_game == 'y':
+        start_game == True
+    elif start_game == 'n':
+        start_game == False
+    else:
+        print("Not a valid selection. Please enter Y or N")
+    # p = Player()
+    g = Game()
+    move_counter = 0
+    
+    #print(player_list)        
+    print(f"The current board is: \n{g}")
+    while start_game:    
+        print("New Turn")
+        try:
+            print(f"{player_list[move_counter % 2]}'s turn: ")
+            g.move(*player_move(), player_list[move_counter % 2])
+        except ValueError:
+            print("Not an acceptable X or Y value. Must be a number.")
+        except IndexError:
+            print("Not an acceptable X or Y value.  Must be 0,1 or 2.")
+        print(g)
+        move_counter +=1
+        if move_counter > 5:
+            g.calc_winner()
+            print(f"{player_list.name} wins")
+        if move_counter == 9:
+            g.is_full()
+            g.is_game_over()
+            print("CAT")
+            break
 
 
-play = Game()
-#play.calc_winner()
-play.is_full()
-play.__repr__()
-#play.move()
+
+
+tictactoe(players)
