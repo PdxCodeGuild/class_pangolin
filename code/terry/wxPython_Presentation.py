@@ -60,12 +60,12 @@ class CalcPanel(wx.Panel):
 
         if label not in operators:
             if self.last_button_pressed in operators:
-                self.solution.SetValue(current_equation + ' ' + label)
+                self.solution.SetValue(f"{current_equation} {label}")
             else:
                 self.solution.SetValue(current_equation + label)
         elif label in operators and current_equation != '' \
                 and self.last_button_pressed not in operators:
-            self.solution.SetValue(current_equation + ' ' + label)
+            self.solution.SetValue(f"{current_equation} {label}")
 
         self.last_button_pressed = label
 
@@ -81,13 +81,13 @@ class CalcPanel(wx.Panel):
             self.Layout()
             return current_solution
         except ZeroDivisionError:
-            self.solution.SetValue('You can not divide by zero.')
+            self.solution.SetValue("You can not divide by zero.")
         except:
             pass
 
     def on_clear(self, event):
         self.solution.Clear()
-        self.running_total.SetLabel('')
+        self.running_total.SetLabel("")
 
     def on_total(self, event):
         solution = self.update_solution()
