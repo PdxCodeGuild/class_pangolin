@@ -163,7 +163,8 @@ class Player:
             # Ship specific attributes
             leg_mod = False                 # do they have legendary module for that ship?
             player_pref = False             # does the player prefer to play this ship?
-            admiral_pref = False            # does an admiral prefer the player plays this ship?
+            admiral_strong_pref = False     # does an admiral strongly prefer the player plays this ship?
+            admiral_weak_pref = False       # does an admiral weakly prefer the player plays this ship?
             ship_PR = 2000                  # Ship-specific Personal Rating
             ship_WR  = .5                   # Ship-specific Win rate
             ship_avg_damage = 100,000       # Ship-specific Avg damage
@@ -181,7 +182,8 @@ class Player:
             if 'Y' in input_list[i]:
                 self.ships[header_list[i]] = {  'legendary': leg_mod, 
                                                 'player_preferred': player_pref, 
-                                                'admiral_preferred': admiral_pref,
+                                                'admiral_strong_preferred': admiral_strong_pref,
+                                                'admiral_weak_preferred': admiral_weak_pref,
                                                 'ship_PR': ship_PR,
                                                 'ship_WR': ship_WR,
                                                 'ship_avg_damage': ship_avg_damage
@@ -190,7 +192,6 @@ class Player:
 
     def __repr__(self):
         return self.username_wg
-
  
 class Lineup:
     '''
@@ -204,7 +205,8 @@ class Lineup:
     const_points = 100
     # modifiers per factor considered when slotting players into ships.  eventually, these should be user adjustable
     mod_has_ship = 0.3
-    mod_admiral_preferred = 0.1
+    mod_admiral_strong_preferred = 0.5
+    mod_admiral_weak_preferred = 0.1
     mod_player_preferred = 0.1
     mod_is_alpha = 0.1
     mod_is_main_class = 0.5
@@ -235,13 +237,14 @@ class Lineup:
                 points = -math.inf
             else:
                 # add points if they are admiral preferred ship
-                if combo[0].ships[combo[1]]['admiral_preferred']:
-                    points += Lineup.const_points * Lineup.mod_admiral_preferred
-                    
+                if combo[0].ships[combo[1]]['admiral_strong_preferred']:
+                    points += Lineup.const_points * Lineup.mod_admiral_strong_preferred
+                # add points if they are admiral preferred ship
+                if combo[0].ships[combo[1]]['admiral_weak_preferred']:
+                    points += Lineup.const_points * Lineup.mod_admiral_weak_preferred
                 # add points if alpha team player
                 if combo[0].is_alpha_team:
                     points += Lineup.const_points * Lineup.mod_is_alpha
-
                 # add points if player preferred ship
                 if combo[0].ships[combo[1]]['player_preferred']:
                     points += Lineup.const_points * Lineup.mod_player_preferred           
@@ -335,22 +338,6 @@ clan = Clan(sheets_output)
 short_player_list_test = [clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('ItsAGameThing')]
 actual_player_list = [clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc')]
 oversize_player_list = [clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc')]
-supersize_player_list = [   clan.get_player('manbear67'), 
-                            clan.get_player('SWOdaddy'), 
-                            clan.get_player('_Switch'), 
-                            clan.get_player('br4in6'), 
-                            clan.get_player('Kage_Acheron'), 
-                            clan.get_player('Maelon'), 
-                            clan.get_player('McRendel1ten'), 
-                            clan.get_player('Sh1Zuk0'), 
-                            clan.get_player('tehDugong'), 
-                            clan.get_player('Ztulc'),
-                            clan.get_player('4_TRIDENT_4'),
-                            clan.get_player('Acqua_Reale'),
-                            clan.get_player('Admiral_Calamari'),
-                            clan.get_player('Admiral_Gloval'),
-                            clan.get_player('Feuerja'),
-                            clan.get_player('kalman81')
-                            ]
+supersize_player_list = [   clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc'),clan.get_player('4_TRIDENT_4'),clan.get_player('Acqua_Reale'),clan.get_player('Admiral_Calamari'),clan.get_player('Admiral_Gloval'),clan.get_player('Feuerja'),clan.get_player('kalman81')]
 # print(clan.generate_lineup(test_player_list))
-print(clan.generate_lineup(actual_player_list, team_size))
+print(clan.generate_lineup(short_player_list_test, team_size))
