@@ -1,11 +1,11 @@
 """wxPython provides a GUI for applications."""
-
 import wx
 
 
 class CalcFrame(wx.Frame):
     """This class sets the maximum size that the calculator can be.
     This is the frame and the panel sits inside."""
+
     def __init__(self):
         super().__init__(
             None, title="wxCalculator",
@@ -94,11 +94,15 @@ class CalcPanel(wx.Panel):
             return current_solution
         except ZeroDivisionError:
             self.solution.SetValue("You can not divide by zero.")
+
     """Clears the both the SetValue and SetLabel which clears the screen."""
+
     def on_clear(self, event):
         self.solution.Clear()
         self.running_total.SetLabel("")
+
     """Is called by the equal button being pressed.  Updates the SetLabel"""
+
     def on_total(self, event):
         solution = self.update_solution()
         if solution:
