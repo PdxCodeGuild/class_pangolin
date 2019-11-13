@@ -84,6 +84,8 @@ print(f"You're Opponent is Nemesis... Player: {player_1.name} Token: {player_1.t
 time.sleep(3)
 
 # Mani game function
+
+# Could use input validation on the positions, and check if keypad position is already full.
 def main():
     while True:
         if ttt.is_game_over(ttt.calc_winner(), ttt.is_full()) == False:
