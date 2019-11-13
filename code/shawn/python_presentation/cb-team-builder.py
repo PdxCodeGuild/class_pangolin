@@ -11,7 +11,9 @@ from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
-
+# Other imports
+import math                             # for using INF in Lineup scoring system
+from itertools import permutations     # for finding all possible permutations of input players
 # =====================    CLASSES  ============================= #
 class Clan:
     '''
@@ -33,6 +35,7 @@ class Clan:
 
         # the desired ship lineup, as a list of strings
         self.target_ship_lineup = ['Kremlin', 'Yamato', 'Smolensk', 'Moskva', 'Des Moines', 'Kleber', 'Kleber', 'Gearing']
+        self.master_target_ship_lineup = self.target_ship_lineup.copy()
 
         # try to retrieve all of the data from input file
         try:
@@ -53,7 +56,7 @@ class Clan:
             if self.roster[i].username_wg == name:
                 return self.roster[i]
 
-    def generate_lineup(self, player_list):
+    def generate_lineup(self, player_list, team_size):
         '''
         '   This is the main algorithm for generating the best lineup.  One important note is that this algorithm
         '   is reliant on having a player list that is exactly as long as the target ship lineup
@@ -61,55 +64,62 @@ class Clan:
         '   Returns: a Lineup object
         '''
 
-        # order the ships in preferred lineup based on which are rarest in the clan
+        #   Here's how the algorithm will work:
+        #   1. Generate all possible permutations of n players.  Each permutation is stored as a type Lineup
+        #       a. In the Lineup ___init__ function, a score for the Lineup will be generated
+        #       b. The score will then be used to decide which Lineup is best
+        #       c. If a player is paired with a ship that is not in their port, then that lineup will be given a score of -INF
+        #   2. Each lineup is stored in a list
+        #   3. Iterate through the list and find the highest scoring Lineup
+        #   4. If the highest scoring Lineup is -INF, then there is no valid lineup and it will err
 
-        # iterate through preferred ship lineup list, rarest ship first
-            # get list of players who have that ship
-            # iterate through list of players who have the ship
-                # assign each player a score for that ship, based on following factors:
-                    # how many other ships remaining in the copy of target lineup they have
-                        # if they have none, then slot them in current ship
-                    # are they admiral preferred
-                    # are they alpha team
-                    # are they player preferred
-                    # does player main that class
-                    # stats 
-            # order the player list by score
-            # pop off the Player from player_list with the highest score, add them to the to-be-returned Lineup
-            # pop off that ship from the copy of the target ship lineup
+        # Get list of permutations
+        player_perms = list(permutations(player_list,team_size))
+        
+        # Iterate through permutations and create lineups
+        player_perm_list = []
+        for perm in player_perms:
+            player_perm_list.append(Lineup(perm, self))
 
-    @staticmethod
-    def get_dict_players_with_ships(player_list, ship_list):
-        '''
-        '   This function will help figure out how "rare" each ship is, based on the input Players
-        '   Static method since it's a helper function for ship rosters and ship lineups
-        '   Parameters: list of Player objects, list of ships (as strings)
-        '   Return: a dictionary of ship: number of players with ship 
-        '''
-        # declare empty return dictionary
-        return_dict = {}
-
-        # iterate through ships:
-        for ship in ship_list:
-            # if ship is already in dictionary, skip
-            if ship in return_dict.keys():
+        # iterate through Lineups and find the one with the highest score
+        best_score = -math.inf
+        best_lineup = ''
+        bad_perm_count = 0
+        for lineup in player_perm_list:
+            if lineup.score > best_score:
+                best_score = lineup.score
+                best_lineup = lineup
+            if lineup.score == -math.inf:
+                bad_perm_count += 1
+            else:
+                # print(f"evalutaing {lineup}")
                 pass
-            # else if ship is not in dictionary
-            else: 
-                # init counter to 0
-                counter = 0
-                # iterate through players
-                for player in player_list:
-                    # check to see if player has that ship
-                    if ship in player.ships.keys():
-                        # increment counter
-                        counter += 1
-                # add that ship to dictionary as a key with the number of players as the value
-                return_dict[ship] = counter
-            
-        # return return dict
-        return return_dict
+        
+        # some print messages about stats
+        print(f"{len(player_perm_list)} permutations were checked: {bad_perm_count} were invalid and {len(player_perm_list)-bad_perm_count} were evaluated and compared against each other")
 
+        # check to see if there is no a valid lineup
+        if best_score == -math.inf:
+            return False
+        
+        # return best lineup
+        return best_lineup
+    
+    def get_list_players_owning_ship(self, ship_name, player_list):
+        '''
+        '   This function will return a list of players in a given list who own a ship
+        '   Parameters: ship_name (string) and list of Player objects
+        '   Return: list of Player objects who own the ship
+        '''
+        # setup return list of players
+        return_list = []
+        # interate through players in player list
+        for player in player_list:
+            if ship_name in player.ships.keys():
+                return_list.append(player)
+        
+        # return return list
+        return return_list
 
 class Player:
     '''
@@ -141,7 +151,7 @@ class Player:
         self.join_date = input_list[1]          # clan join date
         self.is_active = True                   # is player an active player
         self.is_alpha_team = True               # is the player a "core" or Alpha team player, as decided by clan admirals?
-        self.main_ship_class = ''               # what is their main class of ship (carrier-CV, battleship-BB, cruiser-CA, destroyer-DD, submarine-SS)
+        # self.main_ship_class = ''               # what is their main class of ship (carrier-CV, battleship-BB, cruiser-CA, destroyer-DD, submarine-SS)
         self.overall_PR = 1500                  # Overall Personal Rating
         self.overall_WR = .6                    # Overall Win Rate
         self.overall_avg_damage = 90,000        # Overall Avg Damage
@@ -153,7 +163,8 @@ class Player:
             # Ship specific attributes
             leg_mod = False                 # do they have legendary module for that ship?
             player_pref = False             # does the player prefer to play this ship?
-            admiral_pref = False            # does an admiral prefer the player plays this ship?
+            admiral_strong_pref = False     # does an admiral strongly prefer the player plays this ship?
+            admiral_weak_pref = False       # does an admiral weakly prefer the player plays this ship?
             ship_PR = 2000                  # Ship-specific Personal Rating
             ship_WR  = .5                   # Ship-specific Win rate
             ship_avg_damage = 100,000       # Ship-specific Avg damage
@@ -171,7 +182,8 @@ class Player:
             if 'Y' in input_list[i]:
                 self.ships[header_list[i]] = {  'legendary': leg_mod, 
                                                 'player_preferred': player_pref, 
-                                                'admiral_preferred': admiral_pref,
+                                                'admiral_strong_preferred': admiral_strong_pref,
+                                                'admiral_weak_preferred': admiral_weak_pref,
                                                 'ship_PR': ship_PR,
                                                 'ship_WR': ship_WR,
                                                 'ship_avg_damage': ship_avg_damage
@@ -180,32 +192,77 @@ class Player:
 
     def __repr__(self):
         return self.username_wg
-
-
+ 
 class Lineup:
     '''
     '   This object will be use to hold a certain lineup of ships.  It will also have many of 
     '   the methods needed for generating lineups.
     '
     '''
-    def __init__(self, player_list, ship_list):
-        ''' Parameters: list of Player objects and list of ships '''
-        
-        # a lineup "score" for algorithm purposes
-        self.score = 0
+
+    # constant variables for all Lineups
+    # total point constant.  the more points a player gets for a ship, the less likely to be slotted
+    const_points = 100
+    # modifiers per factor considered when slotting players into ships.  eventually, these should be user adjustable
+    mod_has_ship = 0.3
+    mod_admiral_strong_preferred = 0.5
+    mod_admiral_weak_preferred = 0.1
+    mod_player_preferred = 0.1
+    mod_is_alpha = 0.1
+    mod_is_main_class = 0.5
+    # (modifiers not yet used):
+    mod_stat_PR = 1
+    mod_stat_WR = 1
+    mod_stat_AVG_DMG = 1
+    mod_needs_wins = 1
+
+    def __init__(self, input_player_list, clan):
+        ''' Parameters: list of Player objects and clan object (so that the target ship lineup can be retrieved) '''
 
         # player/ship nexted list
         self.player_and_ship_list = []
 
-        # combine player and ship list into one list of tuples
-        for i in range(len(player_list)):
-            self.player_and_ship_list.append( [player_list[i].username_wg, ship_list[i]] )
+        # combine player and ship list into one list of lists
+        for i in range(len(input_player_list)):
+            self.player_and_ship_list.append( [input_player_list[i], clan.target_ship_lineup[i]] )
+
+        # initialize points for this player/ship combo
+        points = 0
+
+        # calculate the Lineup's score
+        for combo in self.player_and_ship_list:
+
+            # if the ship is not in that player's list of ships, set points to -inf and skip the rest
+            if combo[1] not in combo[0].ships.keys():
+                points = -math.inf
+            else:
+                # add points if they are admiral preferred ship
+                if combo[0].ships[combo[1]]['admiral_strong_preferred']:
+                    points += Lineup.const_points * Lineup.mod_admiral_strong_preferred
+                # add points if they are admiral preferred ship
+                if combo[0].ships[combo[1]]['admiral_weak_preferred']:
+                    points += Lineup.const_points * Lineup.mod_admiral_weak_preferred
+                # add points if alpha team player
+                if combo[0].is_alpha_team:
+                    points += Lineup.const_points * Lineup.mod_is_alpha
+                # add points if player preferred ship
+                if combo[0].ships[combo[1]]['player_preferred']:
+                    points += Lineup.const_points * Lineup.mod_player_preferred           
+
+                # add points if player doesn't main that class
+                # add points if they don't need wins
+                # add points if they have bad ship stats
+
+        # set score equal to points
+        self.score = points
+
 
     def __repr__(self):
         ''' Parameters: none Returns: string with each player/ship seperated on newlines '''
         return_string = ''
         for i in range(len(self.player_and_ship_list)):
-            return_string += f'({self.player_and_ship_list[i][0]}, {self.player_and_ship_list[i][1]})\n'
+            return_string += f'({self.player_and_ship_list[i][0]}, {self.player_and_ship_list[i][1]}) '
+        return_string += f"Linup score is {self.score}"
         return return_string
 # =====================    END OF CLASSES  ======================= # 
 
@@ -262,6 +319,7 @@ def get_sheets_data(spreadsheets_id, range_name):
 # The ID and range of the test  spreadsheet.
 clan_info_spreadsheet_ID = '14oxx0qpWg7VWhRyYIVP6uv5YL40BQI15APGDOwsdZdQ'
 range_name = 'KSD Tier 10'
+team_size = 8
 
 # for seeing if the Google Sheets API get works
 # print(get_sheets_data(clan_info_spreadsheet_ID, range_name))
@@ -277,7 +335,9 @@ clan = Clan(sheets_output)
 ##
 
 # test Player list.  This will eventually be given to program by discord bot or by a GUI/app
-test_player_list = [clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('NotYou_2'), clan.get_player('McRendel1ten'), clan.get_player('Treegrin'), clan.get_player('br4in6'), clan.get_player('Buckeyefan21x'), clan.get_player('Maelon')]
-
-test_lineup = Lineup(test_player_list, clan.target_ship_lineup)
-print(Clan.get_dict_players_with_ships(test_player_list, clan.target_ship_lineup))
+short_player_list_test = [clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('ItsAGameThing')]
+actual_player_list = [clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc')]
+oversize_player_list = [clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc')]
+supersize_player_list = [   clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc'),clan.get_player('4_TRIDENT_4'),clan.get_player('Acqua_Reale'),clan.get_player('Admiral_Calamari'),clan.get_player('Admiral_Gloval'),clan.get_player('Feuerja'),clan.get_player('kalman81')]
+# print(clan.generate_lineup(test_player_list))
+print(clan.generate_lineup(short_player_list_test, team_size))
