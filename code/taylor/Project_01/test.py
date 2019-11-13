@@ -1,4 +1,4 @@
-import pprint
+import pprint, time
 
 a = {'as_owner': 'Microsoft Corporation',
  'asn': 8075,
@@ -157,4 +157,11 @@ a = {'as_owner': 'Microsoft Corporation',
           'OrgTechRef: https://rdap.arin.net/registry/entity/MRPD-ARIN\n',
  'whois_timestamp': 1572779591}
 
-pprint.pprint((a['as_owner']))
+
+
+# def replace(a):
+#         return a.replace("'", '')
+
+print(a['as_owner'])
+
+print(time.strftime('Date: %m-%d-%Y\nTime: %H:%M:%S',time.localtime(a['https_certificate_date'])))
