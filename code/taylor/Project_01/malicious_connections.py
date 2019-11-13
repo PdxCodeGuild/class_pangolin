@@ -1,4 +1,8 @@
 import psutil
+import config
+import requests
+
+
 
 fetch_remote_system_connections = list(psutil.net_connections(kind='inet4'))
 
@@ -13,3 +17,10 @@ def remote_connections(connections):
 remote_connections_dict = remote_connections(fetch_remote_system_connections)
 
 print(remote_connections_dict)
+
+# Virus total
+url = 'https://www.virustotal.com/vtapi/v2/ip-address/report'
+params = {'apikey': '<apiToken>', 'ip':'<ipaddress>'}
+response = requests.get(url, params=params)
+
+print(response.json())
