@@ -16,18 +16,15 @@ actual_results = results[1:11] # 12 results found but 1 not needed
 new = ",".join(map(str,actual_results)) #joining the results together
 new = new.replace('.',',')
 #print(new)
-
 #new2 = actual_results.strong.decompose()
 new2= new[8:-9].split('</strong>,<strong>') #cool split method using tags
-#print(new2)
 
 new3 = [str(val).split(",") for val in new2] 
-#print(new3)
 #writing the DataFrame
 df = pd.DataFrame(new3, index=None, columns = ['Rank','Place','Location'])
 #new3 = new2.split()
 print(df)
-df.to_csv('test_text.csv')
+df.to_csv('10_climing_destinations.csv')
 
 #a ='\n'.join(new2)
 

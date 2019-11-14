@@ -25,6 +25,7 @@ def input_stuff():
     user = [input('what is the location you would like to add to the list? ')]
     new = dict(zip(key_things,user))
     things.append(new)
+    print(things)
     export_list()
    
 
@@ -41,7 +42,7 @@ def find():
 def delete():
     delete = input('What destination do you want to delete? ')
     for i in range(len(things)):
-        if things[i]['places'] == delete:
+        if things[i]['Places'] == delete:
             del things[i]
             print(things)
             export_list()
@@ -49,7 +50,7 @@ def delete():
 
 
 while True:
-    what_to_do = input('\nWhat would you like to do? (create future destination, find spot on the map, delete your least favorite climing place?)\nenter [c, f, d] or done: ')
+    what_to_do = input('\nWhat would you like to do? (Create future destination, Find spot on the map, Delete your least favorite climing place?)\nenter [c, f, d] or done: ')
 
     if what_to_do == 'c':
         input_stuff()
