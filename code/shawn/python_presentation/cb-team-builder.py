@@ -330,7 +330,7 @@ class Interface:
         ttk.Label(self.main_frame, text="Possible Lineups").grid(column=1, row=15)
         ttk.Label(self.main_frame, text="Selected Lineup").grid(column=3, row=15)
         ttk.Label(self.main_frame, image=image).grid(column=4, row=4)
-        ttk.Label(self.main_frame, text="  Desired Team Composition:  ").grid(column=4, row=6)        
+        ttk.Label(self.main_frame, text="   Ship Composition:  ").grid(column=4, row=6)        
 
         # list labels that will be changed
         # bottom status bar
@@ -358,11 +358,12 @@ class Interface:
         self.button_remove.grid(column=2, row=7)
         self.button_clear = ttk.Button(self.main_frame, text="Clear", command=self.clear_players)
         self.button_clear.grid(column=2, row=8)
-        self.button_generate_lineups = ttk.Button(self.main_frame, text="Generate Lineups", command=self.start_algorithm)
+        self.button_generate_lineups = ttk.Button(self.main_frame, text="Generate Lineups", command=self.start_algorithm, state=DISABLED)
         self.button_generate_lineups.grid(column=2, row=14)
+        self.button_team_comp = ttk.Button(self.main_frame, text="Update Ship Composition", command=self.update_ship_comp, state=DISABLED)
+        self.button_team_comp.grid(column=4, row=20, rowspan=3)
 
         # add info to lists
-        print(f"{type(self.tree_clan_players)}")
         for player in clan.roster:
             self.tree_clan_players.insert('', 'end', player.username_wg, text=player.username_wg)
 
@@ -388,10 +389,17 @@ class Interface:
 
             # update player count
             self.player_count.configure(text=f"Player Count: {len(self.tree_selected_players.get_children())}")
-            self.player_count.grid(column=3, row=14, sticky=N)            
+            self.player_count.grid(column=3, row=14, sticky=N)
+
+            # enable button if enough players are selected
+            if len(self.tree_selected_players.get_children()) == len(self.stored_clan.target_ship_lineup):
+                self.button_generate_lineups.configure(state = 'normal')
+            else:
+                self.button_generate_lineups.configure(state = DISABLED)
 
         # show/pack error message if player already selected
         except TclError:
+            # error is shown by packing error message into grid (already created label in init)
             self.error_label.grid(column=2, row=4)
 
     def remove_players(self):
@@ -407,6 +415,12 @@ class Interface:
         self.player_count.configure(text=f"Player Count: {len(self.tree_selected_players.get_children())}")
         self.player_count.grid(column=3, row=14, sticky=N)             
 
+        # enable button if enough players are selected
+        if len(self.tree_selected_players.get_children()) == len(self.stored_clan.target_ship_lineup):
+            self.button_generate_lineups.configure(state = 'normal')
+        else:
+            self.button_generate_lineups.configure(state = DISABLED)
+
     def clear_players(self):
         '''
         '   When button_clear is pressed, call this fuction to clear players from selected list
@@ -417,6 +431,8 @@ class Interface:
         self.tree_selected_lineup.delete(*self.tree_selected_lineup.get_children())
         self.tree_selected_players.delete(*self.tree_selected_players.get_children())
         self.player_count.grid_forget()
+        # disable generate button
+        self.button_generate_lineups.configure(state=DISABLED)
 
     def update_target_ship_list(self,clan):
         '''
@@ -427,7 +443,7 @@ class Interface:
             ttk.Label(self.main_frame, text=f"{i+1}. {clan.target_ship_lineup[i]}").grid(column=4, row=(6+1+i))          
 
     def start_algorithm(self):
-        
+
         # reset/remove items from possible and selected lineup trees
         self.tree_possible_lineups.delete(*self.tree_possible_lineups.get_children())
         self.tree_selected_lineup.delete(*self.tree_selected_lineup.get_children())
@@ -444,7 +460,7 @@ class Interface:
         try:
             # put lineups into tree_possible_lineups
             for lineup in self.generated_lineups:
-                self.tree_possible_lineups.insert('', 'end', lineup.id, text=f"Lineup ID: {lineup.id}")      
+                self.tree_possible_lineups.insert('', 'end', lineup.id, text=f"Lineup ID: {lineup.id}  Score: {lineup.score}")      
         except TypeError:
             # if no valid lineups, show error message
             if not self.generated_lineups:
@@ -455,7 +471,6 @@ class Interface:
 
         # bind an event so that you can display a lineup when it's selected in tree_possible_lineups
         self.tree_possible_lineups.bind("<<TreeviewSelect>>",self.on_possible_lineup_click)
-
 
     def on_possible_lineup_click(self,virtual_event):
 
@@ -473,9 +488,11 @@ class Interface:
 
         # print lineup to tree selected lineup
         for combo in this_lineup_obj.player_and_ship_list:
-            self.tree_selected_lineup.insert('', 'end', combo[0], text=f"{combo[1]}: {combo[0]}")           
+            self.tree_selected_lineup.insert('', 'end', combo[0], text=f"{combo[1]}:     {combo[0]}")           
 
-
+    def update_ship_comp(self):
+        print('update ship comp')
+        
 # =====================    END OF CLASSES  ======================= # 
 
 
@@ -539,7 +556,11 @@ team_size = 8
 
 # # uncomment below when basic UI ready
 # # 2D list of strings from Google Sheets
-sheets_output = get_sheets_data(clan_info_spreadsheet_ID, range_name)             
+try:
+    sheets_output = get_sheets_data(clan_info_spreadsheet_ID, range_name)             
+except:
+    print("Error reaching Google Sheets, exiting. ")
+    exit()
 
 # # create Clan object using output from sheets
 clan = Clan(sheets_output)                                                        
