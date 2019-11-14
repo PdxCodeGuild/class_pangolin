@@ -1,12 +1,14 @@
 import pprint, time
+import win32com.client as w32c
+import config
 
-a = {'as_owner': 'Microsoft Corporation',
+report = {'as_owner': 'Microsoft Corporation',
  'asn': 8075,
  'continent': 'NA',
  'country': 'US',
  'detected_downloaded_samples': [],
  'detected_referrer_samples': [],
- 'detected_urls': [],
+ 'detected_urls': [7, 88],
  'https_certificate_date': 1573060489,
  'last_https_certificate': {'cert_signature': {'signature': '6880368aa42b13940a533881fbf476ee51a06de51ce1c7af2f56cd3a3d3a8baa625b8f4cf71383724130cb373bedaed2ea9e5681a592687c1346edc60966c56de205325f82bcb161fd5ed727457877aea5882a80cc463fa0a3a4d193acb0f3c7fe9c12cf1f1d44da3b64489b63766034c3f6715130b844694f75addc8f4be9d4e217c2f214d1d33005d87ae8dc12ed47a44acaf192c21db35858f5e966c6c9b25206c7740dd0f78bd96ff176fa07dea95c0b8a6deb7f9f50935c2d0156e766f34bac832c40d871dd37a5070960d9ce1312c2ad178dfe9b9f6d82fc3263c240f1eef2d3558844d9509eae3579c86f0867fe26f34de786d95f15ef6071feb3dbdc2f7724189bd28116f3ba173048f1aa866b9a90e43e1a11a4fffce7298bb9c0d99e5f0a310366311f4fc6d4f49519dd5e8cbc1188265ef29f412c5606109dbcc722a675bca08c8f9305463570137d5a36585684aa8f976bfdcc324b8fe69f49c6dd7df3187e26b3394302e8e516772e86990ad98f2bdcffa1691267178196b06554d88b1d1d5597737c6005dc62ed768515fc605c583bfadc0c786c0b5ab9fe59fdbb5641f1873923900aed561e6c7f26a916b1d07e08681d1e21317a8308df9c633052c2c4b5da6e1a518408d8c66b61168462cb65f808bd42dcb9d589a02498a6aa6d66a16815f067945689eeafd279e0aa01595e9fc6a0b2497c693e2fa408',
                                                'signature_algorithm': 'sha256RSA'},
@@ -161,7 +163,65 @@ a = {'as_owner': 'Microsoft Corporation',
 
 # def replace(a):
 #         return a.replace("'", '')
+print(report['resolutions'])
 
-print(a['as_owner'])
 
-print(time.strftime('Date: %m-%d-%Y\nTime: %H:%M:%S',time.localtime(a['https_certificate_date'])))
+resolutions_list = []
+for i in range(len(report['resolutions'])):
+        resolutions_list.append(report['resolutions'][i]['hostname'])
+        resolutions = f"Top Resolutions: {resolutions_list[0]}"
+print(resolutions)
+
+# address_owner = f"\nAddress Owner: {a['as_owner']}"
+# country_of_origin = f"Country of Origin: {a['country']}\n"
+# whois_timestamp = f"Whois: {time.strftime('Date: %m-%d-%Y',time.localtime(a['whois_timestamp']))}"
+# resolutions = f"Top Resolutions: {'; '.join(resolutions_list[0:2])}"
+
+# print(address_owner)
+# print(country_of_origin)s
+# print(whois_timestamp)
+# print(resolutions)
+
+# message_subject_preamble = f"Warning: {len(ip_list)} Connection Reports in Queue."
+# message_body_preamble = f"\nRemote Connections:\n\n>    {connection_rows}"
+
+# def format_and_send_preamble_email(connections_dict):
+#         ip_list = list(connections_dict.keys())
+#         connection_rows = '\n>    '.join(ip_list)
+#         message_subject_preamble = f"Warning: {len(ip_list)} Connection Reports in Queue."
+#         message_body_preamble = f"\nRemote Connections:\n\n>    {connection_rows}"
+#         return send_outlook_mail(config.to_email,message_subject_preamble, message_body_preamble)
+
+# def format_and_send_report_email(report):
+#         ''' This function formats the report email and calls the send_outlook_email() functions to deliver a report '''
+#         address_owner = f"\nAddress Owner: {report['as_owner']}"
+#         country_of_origin = f"Country of Origin: {report['country']}\n"
+#         whois_timestamp = f"Whois {time.strftime('Date: %m-%d-%Y',time.localtime(report['whois_timestamp']))}"
+#         # Retreives and stores the 2 most recent DNS resolutions for the given ip
+#         resolutions_list = []
+#         for i in range(len(report['resolutions'])):
+#                 resolutions_list.append(report['resolutions'][i]['hostname'])
+#                 resolutions = f"Top Resolutions: {'; '.join(resolutions_list[0:2])}"
+#         # If there is a detection associated with the ip an alert subject line is sent
+#         try:
+#                 if len(list(report['detected_downloaded_samples'])) > 0 or len(list(report['detected_urls'])) > 0:
+#                         message_subject_report = 'ALERT Suspicious Connection'
+#                 else:
+#                         message_subject_report = 'Connection report'
+#         except KeyError:
+#                 print('Key Error Raised')
+#         # Email body message output
+#         message_body_report = f"{address_owner}\n{country_of_origin}\n{whois_timestamp}\n{resolutions}"
+#         return send_outlook_mail(config.to_email,message_subject_report, message_body_report)
+
+
+# def send_outlook_mail(to_email, subject, body ):
+#     ''' Function to send out an email message from the local outlook system account '''
+#     outlook = w32c.Dispatch('outlook.application')
+#     mail = outlook.CreateItem(0)
+#     mail.To = to_email
+#     mail.Subject = subject
+#     mail.Body = body #mail.HTMLBody = '<h2></h2>'; attachment  = "Path to the attachment"; mail.Attachments.Add(attachment)
+#     return mail.Send()
+
+# format_and_send_report_email(report)
