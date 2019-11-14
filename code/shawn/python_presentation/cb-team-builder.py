@@ -13,7 +13,9 @@ from google.auth.transport.requests import Request
 
 # Other imports
 import math                             # for using INF in Lineup scoring system
-from itertools import permutations     # for finding all possible permutations of input players
+from tkinter import *                    # for GUI
+from tkinter import ttk                 # for themed widgets
+from itertools import permutations      # for finding all possible permutations of input players
 # =====================    CLASSES  ============================= #
 class Clan:
     '''
@@ -264,6 +266,87 @@ class Lineup:
             return_string += f'({self.player_and_ship_list[i][0]}, {self.player_and_ship_list[i][1]}) '
         return_string += f"Linup score is {self.score}"
         return return_string
+
+class Interface:
+    '''
+    '   This is an interface class to managing information in the Tkinter Gui
+    '''
+    def __init__(self, root, clan, image):
+        '''constructor'''
+
+        # set some basic properties of GUI window
+        root.title("WoWs Clan Battle Team Builder")
+
+        # tell Tkinter to resize root frame with the window
+        # root.columnconfigure(0,weight=1)                        
+        # root.rowconfigure(0,weight=1)
+
+        # setting up all grid framework that will hold all contents of main window
+        self.main_frame = ttk.Frame(root).grid(column=0, row=0, sticky=(N,W,E,S))
+
+        # add some padding to each widget
+        for child in root.winfo_children(): child.grid_configure(padx=5, pady=5)
+
+        # add label widgets
+        ttk.Label(self.main_frame, text="Clan Roster").grid(column=1, row=1)
+        ttk.Label(self.main_frame, text="Selected Players").grid(column=3, row=1)
+        ttk.Label(self.main_frame, text="Possible Lineups").grid(column=1, row=15)
+        ttk.Label(self.main_frame, text="Selected Lineup").grid(column=3, row=15)
+        ttk.Label(self.main_frame, text=" ").grid(column=1, row=28, columnspan=3)
+        # add label of image that's passed in.  currently passing in because of how tkinter is imported
+        ttk.Label(self.main_frame, image=image).grid(column=4, row=4)
+
+        # add treeviews and pack for listing players/lineups
+        self.tree_clan_players = ttk.Treeview(self.main_frame, show='tree')
+        self.tree_clan_players.grid(column=1, row=2, rowspan=12)
+        self.tree_selected_players = ttk.Treeview(self.main_frame, show='tree')
+        self.tree_selected_players.grid(column=3, row=2, rowspan=12)
+        self.tree_possible_lineups = ttk.Treeview(self.main_frame, show='tree')
+        self.tree_possible_lineups.grid(column=1, row=16, rowspan=12)
+        self.tree_selected_lineup = ttk.Treeview(self.main_frame, show='tree')
+        self.tree_selected_lineup.grid(column=3, row=16, rowspan=12)
+
+        # add buttons and pack to grid
+        self.button_add = ttk.Button(self.main_frame, text="Add", command=self.select_players)
+        self.button_add.grid(column=2, row=6)
+        self.button_remove = ttk.Button(self.main_frame, text="Remove", command=self.remove_players)
+        self.button_remove.grid(column=2, row=7)
+        self.button_clear = ttk.Button(self.main_frame, text="Clear", command=self.clear_players)
+        self.button_clear.grid(column=2, row=8)
+        self.button_generate_lineups = ttk.Button(self.main_frame, text="Generate Lineups")
+        self.button_generate_lineups.grid(column=2, row=14)
+
+        # add info to lists
+        print(f"{type(self.tree_clan_players)}")
+        for player in clan.roster:
+            self.tree_clan_players.insert('', 'end', player.username_wg, text=player.username_wg)
+
+    def select_players(self):
+        '''
+        '   When button_add is pressed, call this fuction to move players to selected list
+        '
+        '''
+        selection = self.tree_clan_players.selection()
+        for player in selection:
+            self.tree_selected_players.insert('','end', player, text=player)
+
+    def remove_players(self):
+        '''
+        '   When button_add is pressed, call this fuction to move players to selected list
+        '
+        '''
+        selection = self.tree_selected_players.selection()
+        for player in selection:
+            self.tree_selected_players.delete(player)
+
+    def clear_players(self):
+        '''
+        '   When button_add is pressed, call this fuction to move players to selected list
+        '
+        '''
+        self.tree_selected_players.delete(*self.tree_selected_players.get_children())
+
+
 # =====================    END OF CLASSES  ======================= # 
 
 
@@ -312,6 +395,9 @@ def get_sheets_data(spreadsheets_id, range_name):
     else:
         return values
 
+
+
+
 # =====================    END OF FUNCTIONS  ============================= #
 
 
@@ -322,22 +408,33 @@ range_name = 'KSD Tier 10'
 team_size = 8
 
 # for seeing if the Google Sheets API get works
-# print(get_sheets_data(clan_info_spreadsheet_ID, range_name))
+# print(get_sheets_data(clan_info_spreadsheet_ID, range_name))          
 
-# 2D list of strings from Google Sheets
-sheets_output = get_sheets_data(clan_info_spreadsheet_ID, range_name)
+# # uncomment below when basic UI ready
+# # 2D list of strings from Google Sheets
+sheets_output = get_sheets_data(clan_info_spreadsheet_ID, range_name)             
 
-# create Clan object using output from sheets
-clan = Clan(sheets_output)
+# # create Clan object using output from sheets
+clan = Clan(sheets_output)                                                        
+# # test player inputs
+short_player_list_test = [clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('ItsAGameThing')]
+actual_player_list = [clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc')]
+oversize_player_list = [clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc')]
+supersize_player_list = [   clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc'),clan.get_player('4_TRIDENT_4'),clan.get_player('Acqua_Reale'),clan.get_player('Admiral_Calamari'),clan.get_player('Admiral_Gloval'),clan.get_player('Feuerja'),clan.get_player('kalman81')]
+
+# set up GUI
+root = Tk()
+
+# open image for right side
+image = PhotoImage(file='wows_icon.png')
+
+# create instance of interface
+gui = Interface(root, clan, image)
+
+root.mainloop()
 
 ##
 ## TESTING BELOW
 ##
 
-# test Player list.  This will eventually be given to program by discord bot or by a GUI/app
-short_player_list_test = [clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('ItsAGameThing')]
-actual_player_list = [clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc')]
-oversize_player_list = [clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc')]
-supersize_player_list = [   clan.get_player('manbear67'), clan.get_player('SWOdaddy'), clan.get_player('_Switch'), clan.get_player('br4in6'), clan.get_player('Kage_Acheron'), clan.get_player('Maelon'), clan.get_player('McRendel1ten'), clan.get_player('Sh1Zuk0'), clan.get_player('tehDugong'), clan.get_player('Ztulc'),clan.get_player('4_TRIDENT_4'),clan.get_player('Acqua_Reale'),clan.get_player('Admiral_Calamari'),clan.get_player('Admiral_Gloval'),clan.get_player('Feuerja'),clan.get_player('kalman81')]
-# print(clan.generate_lineup(test_player_list))
-print(clan.generate_lineup(short_player_list_test, team_size))
+# print(clan.generate_lineup(short_player_list_test, team_size))
