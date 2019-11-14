@@ -1,0 +1,40 @@
+pip install psutil
+
+pip --help
+pip list --help
+pip show --help
+pip freeze
+
+import pprint
+pprint.pprint()
+
+import psutil
+psutil==5.6.5
+
+psutil.net_connections(kind='inet')
+
+        +------------+----------------------------------------------------+
+        | Kind Value | Connections using                                  |
+        +------------+----------------------------------------------------+
+        | inet       | IPv4 and IPv6                                      |
+        | inet4      | IPv4                                               |
+        | inet6      | IPv6                                               |
+        | tcp        | TCP                                                |
+        | tcp4       | TCP over IPv4                                      |
+        | tcp6       | TCP over IPv6                                      |
+        | udp        | UDP                                                |
+        | udp4       | UDP over IPv4                                      |
+        | udp6       | UDP over IPv6                                      |
+        | unix       | UNIX socket (both UDP and TCP protocols)           |
+        | all        | the sum of all the possible families and protocols |
+        +------------+----------------------------------------------------+
+
+# list outbound connection IP and port Number
+
+>>> a = list(psutil.net_connections(kind='inet4'))
+
+i
+>>> for i in range(len(a)):
+...     print(list(a[i][4]))
+
+
