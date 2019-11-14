@@ -34,9 +34,16 @@ def format_and_send_preamble_email(ip_list):
 
 def format_and_send_report_email(report):
         ''' This function formats the report email and calls the send_outlook_email() functions to deliver a report '''
-        message_subject_report = f"Connection report {ip}"
-        address_owner = f"\nAddress Owner: {report['as_owner']}"
-        country_of_origin = f"Country of Origin: {report['country']}\n"
+        message_subject_report = f"Connection report"
+        try:
+            address_owner = f"\nAddress Owner: {report['as_owner']}"
+            country_of_origin = f"Country of Origin: {report['country']}\n"
+            pass
+        except KeyError:
+            address_owner = 'Address Owner: Unavailable.'
+            country_of_origin = 'Country: Unavailable.'
+            pass
+   
         # Retreives and stores the 2 most recent DNS resolutions for the given ip
         resolutions = 'None'
         whois_timestamp = 'None'
@@ -50,17 +57,18 @@ def format_and_send_report_email(report):
             print('Error1')
             resolutions = 'None'
             whois_timestamp = 'None'
+            message_subject_report = f"ALERT Suspicious Connection"
             pass
         finally:
-
             pass
         try:
             print('samples length', len(list(report['detected_downloaded_samples'])))
             print('samples url length', len(list(report['detected_urls'])))
             if len(list(report['detected_downloaded_samples'])) > 0 or len(report['detected_urls']) > 0:
-                message_subject_report = f"ALERT Suspicious Connection {ip}"
+                message_subject_report = f"ALERT Suspicious Connection"
         except KeyError:
             print('Error2')
+            message_subject_report = f"ALERT Suspicious Connection"
             pass
         finally:
             message_body_report = f"{address_owner}\n{country_of_origin}\n{whois_timestamp}\n{resolutions}"
