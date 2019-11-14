@@ -88,27 +88,17 @@ class Clan:
         total_perm_count = lineup_id
         
         # iterate through Lineups and find the one with the highest score
-        best_score = -math.inf
-        best_lineup = ''
         bad_perm_count = 0
 
         # iterate through from end of list to front so that bad lineups can be removed without causing index errors
         for i in range(len(player_perm_list)-1,-1,-1):
-            # if the current lineup is better than the current best
-            if player_perm_list[i].score > best_score:
-                # update the best score/lineup with current
-                best_score = player_perm_list[i].score
-                best_lineup = player_perm_list[i]
             # if the current lineup is invalid (score is -inf)
             if player_perm_list[i].score == -math.inf:
                 # update the bad lineup count
                 bad_perm_count += 1
                 # pop this element from the list
                 player_perm_list.pop(i)
-            else:
-                # print(f"evalutaing {lineup}")
-                pass
-        
+
         # sort the remaining lineups by score
         player_perm_list.sort(key=lambda x: x.score, reverse=True)
 
@@ -119,7 +109,7 @@ class Clan:
         print(f"{len(player_perm_list)} permutations were checked: {bad_perm_count} were invalid and {total_perm_count-bad_perm_count} were evaluated and compared against each other")
 
         # check to see if there is no a valid lineup
-        if best_score == -math.inf:
+        if len(player_perm_list) == 0:
             return False, bad_perm_count, total_perm_count
         
         # return sorted best to worst list of lineups, the total bad lineups that were thrown out, and the total permutations generated
@@ -355,9 +345,9 @@ class Interface:
         self.tree_clan_players.grid(column=1, row=2, rowspan=12)
         self.tree_selected_players = ttk.Treeview(self.main_frame, show='tree')
         self.tree_selected_players.grid(column=3, row=2, rowspan=12)
-        self.tree_possible_lineups = ttk.Treeview(self.main_frame, show='tree')
+        self.tree_possible_lineups = ttk.Treeview(self.main_frame, show='tree', selectmode="browse")
         self.tree_possible_lineups.grid(column=1, row=16, rowspan=12)
-        self.tree_selected_lineup = ttk.Treeview(self.main_frame, show='tree')
+        self.tree_selected_lineup = ttk.Treeview(self.main_frame, show='tree', selectmode="none")
         self.tree_selected_lineup.grid(column=3, row=16, rowspan=12)
 
         # add buttons and pack to grid
@@ -417,12 +407,14 @@ class Interface:
         self.player_count.configure(text=f"Player Count: {len(self.tree_selected_players.get_children())}")
         self.player_count.grid(column=3, row=14, sticky=N)             
 
-
     def clear_players(self):
         '''
         '   When button_clear is pressed, call this fuction to clear players from selected list
         '
         '''
+        # clear all trees, hide the player count
+        self.tree_possible_lineups.delete(*self.tree_possible_lineups.get_children())
+        self.tree_selected_lineup.delete(*self.tree_selected_lineup.get_children())
         self.tree_selected_players.delete(*self.tree_selected_players.get_children())
         self.player_count.grid_forget()
 
@@ -436,6 +428,10 @@ class Interface:
 
     def start_algorithm(self):
         
+        # reset/remove items from possible and selected lineup trees
+        self.tree_possible_lineups.delete(*self.tree_possible_lineups.get_children())
+        self.tree_selected_lineup.delete(*self.tree_selected_lineup.get_children())
+
         # get list of player objects
         player_obj_list = []
         for player in self.tree_selected_players.get_children():
@@ -456,6 +452,29 @@ class Interface:
       
         # update status bar
         self.label_status.configure(text=f"{total_perm_count} total permutations with {bad_perm_count} invalid lineups.\n Showing {total_perm_count-bad_perm_count} valid lineups in best to worst order.")
+
+        # bind an event so that you can display a lineup when it's selected in tree_possible_lineups
+        self.tree_possible_lineups.bind("<<TreeviewSelect>>",self.on_possible_lineup_click)
+
+
+    def on_possible_lineup_click(self,virtual_event):
+
+        # reset/remove items from tree_selected_lineup
+        self.tree_selected_lineup.delete(*self.tree_selected_lineup.get_children())
+
+        # get lineup ID
+        this_lineup_id = int(self.tree_possible_lineups.selection()[0])
+        # retrieve lineup object
+        for lineup in self.generated_lineups:
+            if int(lineup.id) == this_lineup_id:
+                this_lineup_obj = lineup
+
+        # print(f"Lineup retrieved: {this_lineup_obj}")
+
+        # print lineup to tree selected lineup
+        for combo in this_lineup_obj.player_and_ship_list:
+            self.tree_selected_lineup.insert('', 'end', combo[0], text=f"{combo[1]}: {combo[0]}")           
+
 
 # =====================    END OF CLASSES  ======================= # 
 
