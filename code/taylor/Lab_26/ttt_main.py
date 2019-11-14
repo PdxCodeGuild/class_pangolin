@@ -84,6 +84,8 @@ print(f"You're Opponent is Nemesis... Player: {player_1.name} Token: {player_1.t
 time.sleep(3)
 
 # Mani game function
+
+# Could use input validation on the positions, and check if keypad position is already full.
 def main():
     while True:
         if ttt.is_game_over(ttt.calc_winner(), ttt.is_full()) == False:
@@ -94,8 +96,10 @@ def main():
             os.system('cls' if os.name == 'nt' else 'clear')
             if ttt.is_game_over(ttt.calc_winner(), ttt.is_full()) == True:
                 if ttt.is_full() == True and ttt.calc_winner() == None:
+                    print(ttt)
                     print('Tie Game!')
                 else:
+                    print(ttt)
                     print(f"Token: {ttt.calc_winner()} is the winner.")
                     break
             print(ttt)
@@ -106,8 +110,12 @@ def main():
             ttt.move(nemesis, player_2)
             if ttt.is_game_over(ttt.calc_winner(), ttt.is_full()) == True:
                 if ttt.is_full() == True and ttt.calc_winner() == None:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print(ttt)
                     print('Tie Game!')
                 else:
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                    print(ttt)
                     print(f"Token: {ttt.calc_winner()} is the winner.")
                     break
             nemesis_move_tally(nemesis)
