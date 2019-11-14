@@ -7,7 +7,7 @@ with open('test_contacts.csv', 'r') as file:
 
 things = [] 
 
-for i in range(1,3):
+for i in range(len(lines)):
     key_things = lines[0]
     key_things = key_things.split(',')
     print(key_things)
@@ -81,7 +81,7 @@ def delete():
 
 
 while True:
-    what_to_do = (input('\nWhat would you like to do? (create,find,update,delete)\nenter [c, f, u, d] or done: '))
+    what_to_do = input('\nWhat would you like to do? (create,find,update,delete)\nenter [c, f, u, d] or done: ')
 
     if what_to_do == 'c':
         input_stuff()

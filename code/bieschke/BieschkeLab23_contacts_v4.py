@@ -29,11 +29,15 @@ def search(hero, query):
 
 def save(*args):
     for i in range(len(hero)):
+    #for hero in heroes:
+        #hero_out.append(hero_out)
         hero_out = [",".join(keys)]
         hero_out.append(hero_out)
-    hero_out = ['k1,k2', 'v1, v2']  #think about how the data needs to be formatted to look like this
+    #hero_out = ['k1,k2', 'v1, v2']  #think about how the data needs to be formatted to look like this
     file = open("heroes_out.csv", "w")
-    file.write('\n'.join(hero_out))
+    hero_out = str(hero_out).strip("'[]'")
+    file.write(hero_out)
+    #file.write('\n'.join(hero_out))
     file.close()
     print("Your changes have been saved!")
 
