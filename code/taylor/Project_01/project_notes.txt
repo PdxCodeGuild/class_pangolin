@@ -38,3 +38,16 @@ i
 ...     print(list(a[i][4]))
 
 
+#######################################################
+cd C:\Users\cloud\Desktop\projects\class_pangolin\code\taylor\Project_01
+
+
+
+import pprint
+import psutil
+
+a = list(psutil.net_connections(kind='inet4'))
+pprint.pprint(a)
+
+
+py .\malicious_connections.py
