@@ -13,8 +13,9 @@ from google.auth.transport.requests import Request
 
 # Other imports
 import math                             # for using INF in Lineup scoring system
-from tkinter import *                    # for GUI
+from tkinter import *                   # for GUI
 from tkinter import ttk                 # for themed widgets
+from tkinter import messagebox
 from itertools import permutations      # for finding all possible permutations of input players
 # =====================    CLASSES  ============================= #
 class Clan:
@@ -80,32 +81,39 @@ class Clan:
         
         # Iterate through permutations and create lineups
         player_perm_list = []
+        lineup_id = 0
         for perm in player_perms:
-            player_perm_list.append(Lineup(perm, self))
-
-        # iterate through Lineups and find the one with the highest score
-        best_score = -math.inf
-        best_lineup = ''
-        bad_perm_count = 0
-        for lineup in player_perm_list:
-            if lineup.score > best_score:
-                best_score = lineup.score
-                best_lineup = lineup
-            if lineup.score == -math.inf:
-                bad_perm_count += 1
-            else:
-                # print(f"evalutaing {lineup}")
-                pass
+            lineup_id += 1
+            player_perm_list.append(Lineup(perm, self, lineup_id))
+        total_perm_count = lineup_id
         
+        # iterate through Lineups and find the one with the highest score
+        bad_perm_count = 0
+
+        # iterate through from end of list to front so that bad lineups can be removed without causing index errors
+        for i in range(len(player_perm_list)-1,-1,-1):
+            # if the current lineup is invalid (score is -inf)
+            if player_perm_list[i].score == -math.inf:
+                # update the bad lineup count
+                bad_perm_count += 1
+                # pop this element from the list
+                player_perm_list.pop(i)
+
+        # sort the remaining lineups by score
+        player_perm_list.sort(key=lambda x: x.score, reverse=True)
+
+        # print sorted list
+        # print(f"sorted player perm lis is {player_perm_list}")
+
         # some print messages about stats
-        print(f"{len(player_perm_list)} permutations were checked: {bad_perm_count} were invalid and {len(player_perm_list)-bad_perm_count} were evaluated and compared against each other")
+        print(f"{len(player_perm_list)} permutations were checked: {bad_perm_count} were invalid and {total_perm_count-bad_perm_count} were evaluated and compared against each other")
 
         # check to see if there is no a valid lineup
-        if best_score == -math.inf:
-            return False
+        if len(player_perm_list) == 0:
+            return False, bad_perm_count, total_perm_count
         
-        # return best lineup
-        return best_lineup
+        # return sorted best to worst list of lineups, the total bad lineups that were thrown out, and the total permutations generated
+        return player_perm_list, bad_perm_count, total_perm_count
     
     def get_list_players_owning_ship(self, ship_name, player_list):
         '''
@@ -121,6 +129,30 @@ class Clan:
                 return_list.append(player)
         
         # return return list
+        return return_list
+
+    def get_ordered_rare_ship_list(self, player_list):
+        ''' 
+        '   This method will provide a list of ships (with duplicates) in order of rarity
+        '   Parameters: Player list, ship list (strings)
+        '   Returns: list of ship strings in order of most to least rare
+        '''
+        # get dict using class helper method
+        # this dict has keys of ships in the lineup and values of how many players in the player list have that ship
+        ship_dict = self.get_dict_players_with_ships(player_list)
+
+        # set up empty return list
+        return_list = []
+
+        # this block of code creates a list of strings equal to the target ship lineup, 
+        # with each element being a ship that is needed in the lineup, in order of least to most rare
+        for i in range(min(ship_dict.values()), max(ship_dict.values())+1):     # iterate through ship rarirty from the most rare ship to least rare ship
+            for ship in ship_dict:                                              # iterate through all ships in dict
+                if ship_dict[ship] == i:                                        # if current ship is the rare one we are looking for
+                    for count in range(self.target_ship_lineup.count(ship)):    # append that ship name to the return list as many times as the ship appears in our target lineup
+                        return_list.append(ship)
+
+        # return the return lis
         return return_list
 
 class Player:
@@ -218,8 +250,11 @@ class Lineup:
     mod_stat_AVG_DMG = 1
     mod_needs_wins = 1
 
-    def __init__(self, input_player_list, clan):
+    def __init__(self, input_player_list, clan, lineup_id):
         ''' Parameters: list of Player objects and clan object (so that the target ship lineup can be retrieved) '''
+
+        # store lineup id
+        self.id = lineup_id
 
         # player/ship nexted list
         self.player_and_ship_list = []
@@ -280,6 +315,7 @@ class Interface:
         # tell Tkinter to resize root frame with the window
         # root.columnconfigure(0,weight=1)                        
         # root.rowconfigure(0,weight=1)
+        root.resizable(False, False)
 
         # setting up all grid framework that will hold all contents of main window
         self.main_frame = ttk.Frame(root).grid(column=0, row=0, sticky=(N,W,E,S))
@@ -288,69 +324,179 @@ class Interface:
         for child in root.winfo_children(): child.grid_configure(padx=5, pady=5)
 
         # add label widgets
+        # list labels that won't be changed
         ttk.Label(self.main_frame, text="Clan Roster").grid(column=1, row=1)
         ttk.Label(self.main_frame, text="Selected Players").grid(column=3, row=1)
         ttk.Label(self.main_frame, text="Possible Lineups").grid(column=1, row=15)
         ttk.Label(self.main_frame, text="Selected Lineup").grid(column=3, row=15)
-        ttk.Label(self.main_frame, text=" ").grid(column=1, row=28, columnspan=3)
-        # add label of image that's passed in.  currently passing in because of how tkinter is imported
         ttk.Label(self.main_frame, image=image).grid(column=4, row=4)
+        ttk.Label(self.main_frame, text="   Ship Composition:  ").grid(column=4, row=6)        
+
+        # list labels that will be changed
+        # bottom status bar
+        self.label_status = ttk.Label(self.main_frame, text=" ")
+        self.label_status.grid(column=1, row=28, columnspan=4)
+        self.player_count = ttk.Label(self.main_frame, text=" ")     
+        # target ship list at the right
+        self.update_target_ship_list(clan)                                           
 
         # add treeviews and pack for listing players/lineups
         self.tree_clan_players = ttk.Treeview(self.main_frame, show='tree')
         self.tree_clan_players.grid(column=1, row=2, rowspan=12)
         self.tree_selected_players = ttk.Treeview(self.main_frame, show='tree')
         self.tree_selected_players.grid(column=3, row=2, rowspan=12)
-        self.tree_possible_lineups = ttk.Treeview(self.main_frame, show='tree')
+        self.tree_possible_lineups = ttk.Treeview(self.main_frame, show='tree', selectmode="browse")
         self.tree_possible_lineups.grid(column=1, row=16, rowspan=12)
-        self.tree_selected_lineup = ttk.Treeview(self.main_frame, show='tree')
+        self.tree_selected_lineup = ttk.Treeview(self.main_frame, show='tree', selectmode="none")
         self.tree_selected_lineup.grid(column=3, row=16, rowspan=12)
 
         # add buttons and pack to grid
         self.button_add = ttk.Button(self.main_frame, text="Add", command=self.select_players)
         self.button_add.grid(column=2, row=6)
+        self.error_label = ttk.Label(self.main_frame, text="Already selected!")
         self.button_remove = ttk.Button(self.main_frame, text="Remove", command=self.remove_players)
         self.button_remove.grid(column=2, row=7)
         self.button_clear = ttk.Button(self.main_frame, text="Clear", command=self.clear_players)
         self.button_clear.grid(column=2, row=8)
-        self.button_generate_lineups = ttk.Button(self.main_frame, text="Generate Lineups")
+        self.button_generate_lineups = ttk.Button(self.main_frame, text="Generate Lineups", command=self.start_algorithm, state=DISABLED)
         self.button_generate_lineups.grid(column=2, row=14)
+        self.button_team_comp = ttk.Button(self.main_frame, text="Update Ship Composition", command=self.update_ship_comp, state=DISABLED)
+        self.button_team_comp.grid(column=4, row=20, rowspan=3)
 
         # add info to lists
-        print(f"{type(self.tree_clan_players)}")
         for player in clan.roster:
             self.tree_clan_players.insert('', 'end', player.username_wg, text=player.username_wg)
+
+        # store clan to be used for start_algorithm method
+        self.stored_clan = clan
 
     def select_players(self):
         '''
         '   When button_add is pressed, call this fuction to move players to selected list
         '
         '''
-        selection = self.tree_clan_players.selection()
-        for player in selection:
-            self.tree_selected_players.insert('','end', player, text=player)
+        # using try to catch if player has already been added...can't add same player treeview twice
+        try:
+            # get selection from left treeview
+            selection = self.tree_clan_players.selection()
+            # for each player in selection
+            for player in selection:
+                # add player to selected tree view
+                self.tree_selected_players.insert('','end', player, text=player)
+
+            # clear 'already selected" error message bhy forgetting the pack
+            self.error_label.grid_forget()
+
+            # update player count
+            self.player_count.configure(text=f"Player Count: {len(self.tree_selected_players.get_children())}")
+            self.player_count.grid(column=3, row=14, sticky=N)
+
+            # enable button if enough players are selected
+            if len(self.tree_selected_players.get_children()) == len(self.stored_clan.target_ship_lineup):
+                self.button_generate_lineups.configure(state = 'normal')
+            else:
+                self.button_generate_lineups.configure(state = DISABLED)
+
+        # show/pack error message if player already selected
+        except TclError:
+            # error is shown by packing error message into grid (already created label in init)
+            self.error_label.grid(column=2, row=4)
 
     def remove_players(self):
         '''
-        '   When button_add is pressed, call this fuction to move players to selected list
+        '   When button_remove is pressed, call this fuction to remove players to selected list
         '
         '''
         selection = self.tree_selected_players.selection()
         for player in selection:
             self.tree_selected_players.delete(player)
+        
+        # update player count
+        self.player_count.configure(text=f"Player Count: {len(self.tree_selected_players.get_children())}")
+        self.player_count.grid(column=3, row=14, sticky=N)             
+
+        # enable button if enough players are selected
+        if len(self.tree_selected_players.get_children()) == len(self.stored_clan.target_ship_lineup):
+            self.button_generate_lineups.configure(state = 'normal')
+        else:
+            self.button_generate_lineups.configure(state = DISABLED)
 
     def clear_players(self):
         '''
-        '   When button_add is pressed, call this fuction to move players to selected list
+        '   When button_clear is pressed, call this fuction to clear players from selected list
         '
         '''
+        # clear all trees, hide the player count
+        self.tree_possible_lineups.delete(*self.tree_possible_lineups.get_children())
+        self.tree_selected_lineup.delete(*self.tree_selected_lineup.get_children())
         self.tree_selected_players.delete(*self.tree_selected_players.get_children())
+        self.player_count.grid_forget()
+        # disable generate button
+        self.button_generate_lineups.configure(state=DISABLED)
 
+    def update_target_ship_list(self,clan):
+        '''
+        '   A function for updating the target ship lineup
+        '
+        '''
+        for i in range(len(clan.target_ship_lineup)):
+            ttk.Label(self.main_frame, text=f"{i+1}. {clan.target_ship_lineup[i]}").grid(column=4, row=(6+1+i))          
 
+    def start_algorithm(self):
+
+        # reset/remove items from possible and selected lineup trees
+        self.tree_possible_lineups.delete(*self.tree_possible_lineups.get_children())
+        self.tree_selected_lineup.delete(*self.tree_selected_lineup.get_children())
+
+        # get list of player objects
+        player_obj_list = []
+        for player in self.tree_selected_players.get_children():
+            player_obj_list.append(self.stored_clan.get_player(player))
+        print(f"playe_obj list is {player_obj_list}")
+
+        # call generate lineups
+        self.generated_lineups, bad_perm_count, total_perm_count = self.stored_clan.generate_lineup(player_obj_list,len(player_obj_list))
+
+        try:
+            # put lineups into tree_possible_lineups
+            for lineup in self.generated_lineups:
+                self.tree_possible_lineups.insert('', 'end', lineup.id, text=f"Lineup ID: {lineup.id}  Score: {lineup.score}")      
+        except TypeError:
+            # if no valid lineups, show error message
+            if not self.generated_lineups:
+                messagebox.showerror("Lineup Error", "Those players cannot form the desired ship composition!  Please select different players.")
+      
+        # update status bar
+        self.label_status.configure(text=f"{total_perm_count} total permutations with {bad_perm_count} invalid lineups.\n Showing {total_perm_count-bad_perm_count} valid lineups in best to worst order.")
+
+        # bind an event so that you can display a lineup when it's selected in tree_possible_lineups
+        self.tree_possible_lineups.bind("<<TreeviewSelect>>",self.on_possible_lineup_click)
+
+    def on_possible_lineup_click(self,virtual_event):
+
+        # reset/remove items from tree_selected_lineup
+        self.tree_selected_lineup.delete(*self.tree_selected_lineup.get_children())
+
+        # get lineup ID
+        this_lineup_id = int(self.tree_possible_lineups.selection()[0])
+        # retrieve lineup object
+        for lineup in self.generated_lineups:
+            if int(lineup.id) == this_lineup_id:
+                this_lineup_obj = lineup
+
+        # print(f"Lineup retrieved: {this_lineup_obj}")
+
+        # print lineup to tree selected lineup
+        for combo in this_lineup_obj.player_and_ship_list:
+            self.tree_selected_lineup.insert('', 'end', combo[0], text=f"{combo[1]}:     {combo[0]}")           
+
+    def update_ship_comp(self):
+        print('update ship comp')
+        
 # =====================    END OF CLASSES  ======================= # 
 
 
-# =====================    FUNCTIONS  ============================= #
+# =====================   Non-class FUNCTIONS  =========================== #
 
 def get_sheets_data(spreadsheets_id, range_name):
     '''
@@ -396,8 +542,6 @@ def get_sheets_data(spreadsheets_id, range_name):
         return values
 
 
-
-
 # =====================    END OF FUNCTIONS  ============================= #
 
 
@@ -412,7 +556,11 @@ team_size = 8
 
 # # uncomment below when basic UI ready
 # # 2D list of strings from Google Sheets
-sheets_output = get_sheets_data(clan_info_spreadsheet_ID, range_name)             
+try:
+    sheets_output = get_sheets_data(clan_info_spreadsheet_ID, range_name)             
+except:
+    print("Error reaching Google Sheets, exiting. ")
+    exit()
 
 # # create Clan object using output from sheets
 clan = Clan(sheets_output)                                                        
