@@ -21,9 +21,11 @@ from itertools import permutations      # for finding all possible permutations 
 class Clan:
     '''
     '   This class will hold all information related to a clan (mainly the roster and preferred ship lineup)
-    '   Attributes: A roster of Player objects
-    '   Methods:
-    '           
+    '   Attributes: A roster of players (list of Player objects)
+    '               A list of ships (the header of the input spreadsheet)
+    '   Methods: get_player - Get a player object from the clan's roster given a username string
+    '            generate_lineup - the main player lineup algorithm
+    '            get_list_of_players_owning_ship - get a list of players in the clan who own a specific ship
     '
     '''
 
@@ -38,7 +40,6 @@ class Clan:
 
         # the desired ship lineup, as a list of strings
         self.target_ship_lineup = ['Kremlin', 'Yamato', 'Smolensk', 'Moskva', 'Des Moines', 'Kleber', 'Kleber', 'Gearing']
-        self.master_target_ship_lineup = self.target_ship_lineup.copy()
 
         # try to retrieve all of the data from input file
         try:
@@ -102,9 +103,6 @@ class Clan:
         # sort the remaining lineups by score
         player_perm_list.sort(key=lambda x: x.score, reverse=True)
 
-        # print sorted list
-        # print(f"sorted player perm lis is {player_perm_list}")
-
         # some print messages about stats
         print(f"{len(player_perm_list)} permutations were checked: {bad_perm_count} were invalid and {total_perm_count-bad_perm_count} were evaluated and compared against each other")
 
@@ -149,7 +147,7 @@ class Clan:
         for i in range(min(ship_dict.values()), max(ship_dict.values())+1):     # iterate through ship rarirty from the most rare ship to least rare ship
             for ship in ship_dict:                                              # iterate through all ships in dict
                 if ship_dict[ship] == i:                                        # if current ship is the rare one we are looking for
-                    for count in range(self.target_ship_lineup.count(ship)):    # append that ship name to the return list as many times as the ship appears in our target lineup
+                    for j in range(self.target_ship_lineup.count(ship)):    # append that ship name to the return list as many times as the ship appears in our target lineup
                         return_list.append(ship)
 
         # return the return lis
@@ -194,27 +192,32 @@ class Player:
         # iterate through header_list after the username/join date columns (iterate through each ship)
         for i in range(2,len(header_list)):
 
-            # Ship specific attributes
-            leg_mod = False                 # do they have legendary module for that ship?
-            player_pref = False             # does the player prefer to play this ship?
-            admiral_strong_pref = False     # does an admiral strongly prefer the player plays this ship?
-            admiral_weak_pref = False       # does an admiral weakly prefer the player plays this ship?
-            ship_PR = 2000                  # Ship-specific Personal Rating
-            ship_WR  = .5                   # Ship-specific Win rate
-            ship_avg_damage = 100,000       # Ship-specific Avg damage
 
-            # check to see if they have legendary mod 
-            if 'mod' in input_list[i]:
-                leg_mod = True
-            # check to see if this ship is preferred for them
-            if '*' in input_list[i]:
-                player_pref = True
-            # check player's PR rating with ship
-            # CODE HERE to get and update PR, WR, and avg damage....json from Wargaming?
 
-            # append dictionary to ship list
+            # append dictionary to ship list if the ship is unlocked
             if 'Y' in input_list[i]:
-                self.ships[header_list[i]] = {  'legendary': leg_mod, 
+                # Ship specific attributes
+                is_ship_available = True        # do they have the ship in port, ready to play? 
+                leg_mod = False                 # do they have legendary module for that ship?
+                player_pref = False             # does the player prefer to play this ship?
+                admiral_strong_pref = False     # does an admiral strongly prefer the player plays this ship?
+                admiral_weak_pref = False       # does an admiral weakly prefer the player plays this ship?
+                ship_PR = 2000                  # Ship-specific Personal Rating
+                ship_WR  = .5                   # Ship-specific Win rate
+                ship_avg_damage = 100,000       # Ship-specific Avg damage
+
+                # check to see if they have legendary mod 
+                if 'mod' in input_list[i]:
+                    leg_mod = True
+                # check to see if this ship is preferred for them
+                if '*' in input_list[i]:
+                    player_pref = True
+
+                # check player's PR rating with ship
+                # CODE HERE to get and update PR, WR, and avg damage....json from Wargaming?
+                
+                self.ships[header_list[i]] = {  'is_ship_available': is_ship_available,
+                                                'legendary': leg_mod, 
                                                 'player_preferred': player_pref, 
                                                 'admiral_strong_preferred': admiral_strong_pref,
                                                 'admiral_weak_preferred': admiral_weak_pref,
@@ -238,7 +241,7 @@ class Lineup:
     # total point constant.  the more points a player gets for a ship, the less likely to be slotted
     const_points = 100
     # modifiers per factor considered when slotting players into ships.  eventually, these should be user adjustable
-    mod_has_ship = 0.3
+    # mod_has_ship = 0.3
     mod_admiral_strong_preferred = 0.5
     mod_admiral_weak_preferred = 0.1
     mod_player_preferred = 0.1
@@ -546,6 +549,8 @@ def get_sheets_data(spreadsheets_id, range_name):
 
 
 # ============================    MAIN  ================================== #
+
+
 # The ID and range of the test  spreadsheet.
 clan_info_spreadsheet_ID = '14oxx0qpWg7VWhRyYIVP6uv5YL40BQI15APGDOwsdZdQ'
 range_name = 'KSD Tier 10'
@@ -577,12 +582,7 @@ root = Tk()
 image = PhotoImage(file='wows_icon.png')
 
 # create instance of interface
+
 gui = Interface(root, clan, image)
 
 root.mainloop()
-
-##
-## TESTING BELOW
-##
-
-# print(clan.generate_lineup(short_player_list_test, team_size))
