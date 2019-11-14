@@ -2,9 +2,10 @@
 import webbrowser
 from geopy.geocoders import Nominatim
 import pandas as pd
+
 data = pd.read_csv('climbing.csv')
-#print (data)
 key_things = data
+#print (data)
 #print(key_things)
 
 things = [] 
