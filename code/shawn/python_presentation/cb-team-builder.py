@@ -280,6 +280,7 @@ class Interface:
         # tell Tkinter to resize root frame with the window
         # root.columnconfigure(0,weight=1)                        
         # root.rowconfigure(0,weight=1)
+        root.resizable(False, False)
 
         # setting up all grid framework that will hold all contents of main window
         self.main_frame = ttk.Frame(root).grid(column=0, row=0, sticky=(N,W,E,S))
@@ -309,6 +310,7 @@ class Interface:
         # add buttons and pack to grid
         self.button_add = ttk.Button(self.main_frame, text="Add", command=self.select_players)
         self.button_add.grid(column=2, row=6)
+        self.error_label = ttk.Label(self.main_frame, text="Already selected!")
         self.button_remove = ttk.Button(self.main_frame, text="Remove", command=self.remove_players)
         self.button_remove.grid(column=2, row=7)
         self.button_clear = ttk.Button(self.main_frame, text="Clear", command=self.clear_players)
@@ -326,13 +328,26 @@ class Interface:
         '   When button_add is pressed, call this fuction to move players to selected list
         '
         '''
-        selection = self.tree_clan_players.selection()
-        for player in selection:
-            self.tree_selected_players.insert('','end', player, text=player)
+        # using try to catch if player has already been added...can't add same player treeview twice
+        try:
+            # get selection from left treeview
+            selection = self.tree_clan_players.selection()
+            # for each player in selection
+            for player in selection:
+                # add player to selected tree view
+                self.tree_selected_players.insert('','end', player, text=player)
+
+            # clear 'already selected" error message bhy forgetting the pack
+            self.error_label.grid_forget()
+
+        # show/pack error message if player already selected
+        except TclError:
+            self.error_label.grid(column=2, row=4)
+
 
     def remove_players(self):
         '''
-        '   When button_add is pressed, call this fuction to move players to selected list
+        '   When button_remove is pressed, call this fuction to remove players to selected list
         '
         '''
         selection = self.tree_selected_players.selection()
@@ -341,7 +356,7 @@ class Interface:
 
     def clear_players(self):
         '''
-        '   When button_add is pressed, call this fuction to move players to selected list
+        '   When button_clear is pressed, call this fuction to clear players from selected list
         '
         '''
         self.tree_selected_players.delete(*self.tree_selected_players.get_children())
@@ -394,8 +409,6 @@ def get_sheets_data(spreadsheets_id, range_name):
     # if able to find values, return them 
     else:
         return values
-
-
 
 
 # =====================    END OF FUNCTIONS  ============================= #
