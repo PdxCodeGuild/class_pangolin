@@ -75,7 +75,7 @@ def processing():
         quote4 = user_quote
         print("Let's mash your quotes together!")
         quoteX = mash(quote3, quote4)
-        save(quoteX)
+        #save(quoteX)
         with open ("quotes_out.csv", "r") as file:
             contents = file.read()
         print(f"Here are the quotes you have saved so far!\n{contents}")
@@ -87,12 +87,11 @@ def processing():
 
 def mash(quote1, quote2):
     punct_list = [':', ',', ' - ', '.']
-    #print(re.sub("\b", quote2, quote1, 1))
     for punct in punct_list:
-        print(punct)
+        #print(punct)
         if punct in quote1:
-            print('FOUND PUNCTIONAT')
-            quote1 = quote1.split(punct)# or quote1.split(";") or quote1.split(" - ") 
+            #print('FOUND PUNCTIONAT')
+            quote1 = quote1.split(punct) 
             quote1 = quote1[0]
             quote1 = str(quote1)+(f", {quote2}")
             print(quote1)
@@ -100,7 +99,7 @@ def mash(quote1, quote2):
             save(quoteX)
             return
         
-    quote2 = quote2.split(punct)# or quote2.split(";") or quote2.split(" - ") 
+    quote2 = quote2.split(punct) 
     quote2 = quote2[0]
     quote2 = str(quote2)+(f", {quote1}")
     print(quote2)
