@@ -57,16 +57,6 @@ def win_date_format(string_win_jumble):
     return string_win_date
 
 
-def happy_save():
-    '''happy_save compares todays date to the last recorded win.
-    If it has been less than 7 days since the win, it will download the youtube video of the game.
-    If not, it will do something else. '''
-    if since_win < datetime.timedelta(days = 7):
-        print("What a win! Enjoy the highlights!")
-        os.system(f'py -m youtube_dl "ytsearch:\'{yt_regex +  " full game highlights"}\'"')
-    
-    if since_win > datetime.timedelta(days = 7):
-        print("No recent wins this week.")
 #get todays date, and get length of time between today and last win date
 today = datetime.datetime.today()
 todaystr = today.strftime("%b %d")
@@ -74,10 +64,20 @@ last_win_date = datetime.datetime.strptime((win_date_format(string_win_jumble)),
 since_win = today - last_win_date
 
 
+def happy_save():
+    '''happy_save compares todays date to the last recorded win.
+    If it has been less than 7 days since the win, it will download the youtube video of the game.
+    If not, it will do something else. '''
+    if since_win < datetime.timedelta(days = 7):
+        print("What a win! Enjoy the highlights!")
+        os.system(f'py -m youtube_dl "ytsearch:\'{yt_regex +  " full game highlights"}\'"')
+        
+    
+    if since_win > datetime.timedelta(days = 7):
+        print(f"No recent wins this week. The most recent win was {last_win_date}. It has been {since_win} since the last win for {select_team}.")
+
+
+
+
 
 happy_save()
-
-    
-
-
-

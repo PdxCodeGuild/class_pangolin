@@ -172,3 +172,85 @@ words = {
 }
 
 let the user enter a word, then show the words which most frequently follow it.
+
+-------------------------------------
+
+- A module is a .py file plain and simple
+- If you try to get the name of the module exactly then you are going to get _main_
+- If you want to run a module indiviualy you can run python -m what ever you are trying to run 
+
+- A package
+
+--------------------------------------
+
+- Classes:
+
+- represent types (int, float, str, list, etc.....)
+
+EXAMPLE*
+
+class Point:
+    def __init__(self, x, y): # this is the initializer
+        self.x = x #these are member variables
+        self.y = y
+
+p = Point(5,2) # call the initializer, instantiate the class
+print(p.x) # 5
+print(p.y) # 2
+print(type(p)) #Point
+
+-the thing to the left of the dot is what is going to be operated on 
+
+-with the @staticmethond , you need to have a (r,theta): in order to make it works this makes it not belong to the object but it belongs to the class
+
+- the class is a blueprint for the for the object 
+
+dunder methods;
+
+__x__ example 
+
+dunder is also named the magic method
+
+-------------------------------------
+EXAMPLE:
+
+from random import randint 
+
+class WackyNum:
+
+    eating_incident = {6,7,8,9}
+
+    @staticmethond
+    def eating_check(a,b): #static does not want to think about self ever 
+        if a in WackyNum.eating_incident and b in WackyNum.eating_incident:
+            print('awkward becasue of the eating incident')
+
+
+    def __init__(self, num= 0):
+        self.num = num
+
+    def __repr__(self):
+        return f'I am aprox {self.num + randint (-2,2)}'
+
+    def__add__(self,in_num)
+        print(':D nice!')
+        WackyNum.eating_check(self.num, in_num)
+        if type(in_num) is int:
+            return WackyNum(self.num + in_num)
+        raise MemoryError(f'I dont't rementer asking for a {type(in_num)})
+
+if __name__ == '__main__':
+    my_num = WackyNum(8)
+    print(my_num)
+    my_num = my_num + 100
+    print (my_num)
+    my_num = my_num + 'a'
+   
+
+   --------------------------------
+
+MULTIPLE INHERITANCE:
+
+  - a subclass inharets from a super class
+  -Method resilution ordrer
+    

@@ -151,29 +151,7 @@
         # return return dict
         return return_dict
 
-    def get_ordered_rare_ship_list(self, player_list):
-        ''' 
-        '   This method will provide a list of ships (with duplicates) in order of rarity
-        '   Parameters: Player list, ship list (strings)
-        '   Returns: list of ship strings in order of most to least rare
-        '''
-        # get dict using class helper method
-        # this dict has keys of ships in the lineup and values of how many players in the player list have that ship
-        ship_dict = self.get_dict_players_with_ships(player_list)
 
-        # set up empty return list
-        return_list = []
-
-        # this block of code creates a list of strings equal to the target ship lineup, 
-        # with each element being a ship that is needed in the lineup, in order of least to most rare
-        for i in range(min(ship_dict.values()), max(ship_dict.values())+1):     # iterate through ship rarirty from the most rare ship to least rare ship
-            for ship in ship_dict:                                              # iterate through all ships in dict
-                if ship_dict[ship] == i:                                        # if current ship is the rare one we are looking for
-                    for count in range(self.target_ship_lineup.count(ship)):    # append that ship name to the return list as many times as the ship appears in our target lineup
-                        return_list.append(ship)
-
-        # return the return lis
-        return return_list
         
 class Lineup:
     '''
