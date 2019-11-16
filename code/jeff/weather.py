@@ -11,7 +11,7 @@ from email.mime.multipart import MIMEMultipart
 # OpenWeatherMap API key
 
 # Search criteria pulling current +- 10min, for Portland, OR. Return 'Imperial' results.
-url = 'http://api.openweathermap.org/data/2.5/forecast?id=4720131&APPID=248f86c4f28e22722ba6efee4a3066db&units=imperial'
+
 
 res = requests.get(url) # Retrieve the page
 data = res.json() # Put the local data into a searchable format.
