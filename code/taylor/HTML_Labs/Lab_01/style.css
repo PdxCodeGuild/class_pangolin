@@ -1,0 +1,20 @@
+
+.content {
+    max-width: 500px;
+    margin: auto;
+}
+
+img { 
+    float:none;
+    border-radius: 5%;
+}
+
+li {
+    margin: 0;
+    padding: 20px 40px 25px;
+    list-style: none;
+    background-image: url("./iconT800.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 30px;
+}
