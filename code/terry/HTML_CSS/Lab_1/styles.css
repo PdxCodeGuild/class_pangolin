@@ -1,0 +1,51 @@
+body {
+  text-align: center;
+  background-color: #cceeff;
+  color: #0066ff;
+}
+
+a:link {
+  color: #0066ff;
+}
+
+a:visited {
+  color: #0066ff;
+}
+
+a:hover {
+  color: #66ccff;
+  text-shadow: 1px 1px;
+}
+
+
+li {
+  text-align: center;
+  padding: 2px 2px;
+  list-style-type: square;
+  list-style-position: inside;
+}
+
+table {
+  padding: 16px 20px;
+  margin: 20px auto;
+  widith: 50%;
+}
+
+td.list_cell {
+  text-align: center;
+  padding: 2px 40px;
+  margin: 2px 20px;
+}
+
+td.big_cell {
+   padding: 2px 20px;
+  margin: 2px 20px;
+}
+
+img.Dan_Img {
+  border-radius: 20px;
+}
+
+blockquote {
+  font-family: "Lucida Console", Times, Sans-serif;
+}
