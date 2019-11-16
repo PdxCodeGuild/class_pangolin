@@ -45,7 +45,7 @@ class Game:
         if self.board[move_y][move_x] == 'X' or self.board[move_y][move_x] == 'O':
             return print("Not a valid move. Cheaters lose.  Goodbye")
         
-        return move_x,move_y
+        return move_y,move_x
     def get(self, *args):
         '''Game.get method takes in a tuple of x,y coordinates on the game board to check if the space is still free to take.'''
         return self.board[args[0]][args[1]]
@@ -107,7 +107,7 @@ def tictactoe(player_list):
             print(f"{player_list[move_counter % 2].name}'s turn: ")
             place = g.player_move()
             if g.get(*place) == ' ':
-                x, y = place
+                y, x = place
                 g.board[y][x] = player_list[move_counter % 2].token
                 move_counter +=1
 
@@ -117,7 +117,7 @@ def tictactoe(player_list):
             print("Not an acceptable X or Y value.  Must be 0,1 or 2.")
         print(g)
         if move_counter > 4 and g.calc_winner():
-            print(f"{player_list[move_counter%2]} wins")
+            print(f"{player_list[(move_counter%2) - 1]} wins")
             break
         if move_counter == 9:
             g.is_full()

@@ -37,7 +37,7 @@ for result in results:
 string_win = str(record[-1])
 print(f"Last win for {select_team}:\n{string_win}")
 yt_regex = re.findall("[A-Z]{3}", string_win)
-yt_regex = yt_regex[0:1]
+yt_regex = yt_regex[0:2]
 yt_regex = ' '.join(yt_regex)
 yt_regex = re.sub("POR", "PDX", yt_regex)
 

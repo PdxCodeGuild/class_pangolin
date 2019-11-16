@@ -1,0 +1,36 @@
+body{
+    background-color: black;
+    color:lightblue;
+    margin-right: 10em;
+    margin-left: 10em;
+}
+li {
+    color:red;  
+}
+p {
+    padding-top: .5em;
+}
+[id="link"]{
+    text-align: center;
+}
+img {
+    float: right;
+    padding: .5em;
+    border-radius: 50%;
+}
+h1 {
+    color: salmon;
+    text-align:center;
+    padding: 0;
+}
+a {
+    color: papayawhip
+}
+blockquote{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: right;
+}
+ul {
+    list-style-image: url("smalleyes.PNG");
+    font-weight: bold;
+}
