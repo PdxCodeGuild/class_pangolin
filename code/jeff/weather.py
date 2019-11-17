@@ -9,10 +9,10 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 # OpenWeatherMap API key
-APIKEY = '248f86c4f28e22722ba6efee4a3066db'
+APIKEY = ''
 
 # Search criteria pulling current +- 10min, for Portland, OR. Return 'Imperial' results.
-url = 'http://api.openweathermap.org/data/2.5/forecast?id=4720131&APPID=248f86c4f28e22722ba6efee4a3066db&units=imperial'
+url = ''
 
 res = requests.get(url) # Retrieve the page
 data = res.json() # Put the local data into a searchable format.
@@ -40,10 +40,10 @@ h = 'Humidity: {} %\n'.format(humid)
     # return c + t + w + d + h
 
 # print(body())
-email = "pdx1tail@gmail.com"
-pas = "liwvpzwnkmohbvdj"
-to = 'jsportland@gmail.com'
-# sms_gateway = '15035011958@vtext.com'
+email = ''
+pas = ''
+to = ''
+# sms_gateway = ''
 
 smtp = "smtp.gmail.com" #outgoing server for sms
 port = 587
