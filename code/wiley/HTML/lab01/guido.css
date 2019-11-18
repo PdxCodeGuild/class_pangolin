@@ -1,0 +1,27 @@
+p {
+    color: crimson;
+}
+a {
+    color: maroon;
+    font-family: cursive;
+    
+}
+
+body p {
+    background-color: forestgreen;
+    border-radius: 90%;
+}
+.headshot {
+    border-radius: 50%;
+}
+li {
+    
+    list-style-position: inside;
+    
+    list-style-type: square;
+    
+}
+
+q {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

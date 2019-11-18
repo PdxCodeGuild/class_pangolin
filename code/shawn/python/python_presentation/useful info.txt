@@ -1,0 +1,9 @@
+Google Sheets API:
+- general info on concepts used in API:
+https://developers.google.com/sheets/api/guides/concepts
+- guide for reading/writing cell values:
+https://developers.google.com/sheets/api/guides/values
+PANDAS for statistical stuff later on
+
+Putting GUI into a class:
+https://stackoverflow.com/questions/36120426/tkinter-treeview-widget-inserting-data/36131160
