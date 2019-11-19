@@ -23,7 +23,7 @@ Create your mobile version, using the styling of your choice.
 
 ## Part 3:
 
-Use ```min-width``` media queries to add a tablet layout using floats. Customize your styling as needed. You probably want your breakpoint between phone and tablet widths to be somewhere around 640-768px.
+Use ```min-width``` media queries to add a tablet layout using flexbox. Customize your styling as needed. You probably want your breakpoint between phone and tablet widths to be somewhere around 640-768px.
 
 ## Part 4:
 

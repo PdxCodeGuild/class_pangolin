@@ -1,0 +1,54 @@
+/* stylesheet fo cabello file */
+body {
+    text-align: center;
+    border-style: double;
+    border-radius: 15%;
+    border-color: green;
+    margin: 30px;
+    padding: 40px;
+    border-width: 10px;
+}
+.h1{
+    flex-direction: center;
+    background-color: grey;
+    opacity: 0.9;
+}
+.center{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    list-style-position: inside;
+}
+.img [class= "1"] { 
+    float: left;
+    border-radius: 50%;
+    width: 275px;
+    height: 290px;
+}
+
+a {
+   color: green;
+} 
+p {
+    background-color: grey;
+    opacity: 0.9;
+    font-variant-alternates: normal;
+    
+}
+q{
+    background-color: grey;
+    opacity: 0.8;
+    font-style: italic;
+    font-family: fantasy;
+}
+ul{ 
+    list-style-image: url("running_man2.png"); 
+    list-style-position: inside;
+    text-align: center;
+  } 
+body{
+    background-color: darkgray;
+    background-image: url("trail_pic.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+}
