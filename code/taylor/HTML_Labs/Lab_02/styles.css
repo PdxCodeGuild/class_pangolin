@@ -8,6 +8,8 @@
 .wrapper > * {
   padding: 2px;
   flex: 1 100%;
+
+  /* border:1px solid #000; */
 }
 
 /* .header {
@@ -42,6 +44,9 @@
   .footer  { order: 2; }
 }
 
+ .post{
+   padding: 1.5em;
+}
 @import "compass/css3";
 
 @import url(https://fonts.googleapis.com/css?family=Cantora+One);
@@ -73,10 +78,8 @@ body {
   height: 100%;
 }
 
-body {
-  background: url(http://subtlepatterns.subtlepatterns.netdna-cdn.com/patterns/nasty_fabric.png);
-  margin: .5em;
-  font: 1em 'Cantora One', sans-serif;
+nav {
+  box-shadow: rgba(228, 8, 8, 0.685);
 }
 
 nav[role="full-horizontal"] {
