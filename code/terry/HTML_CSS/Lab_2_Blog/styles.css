@@ -1,0 +1,102 @@
+html {
+    box-sizing: border-box;
+}
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    display: block;
+    align-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* .row {
+    display: flex;
+} */
+
+.column1 {
+    display: flex;
+    /* flex: 25%; */
+    padding: 10px;
+    background-color: navy;
+    color: lightblue;
+}
+
+.column2 {
+    display: flex;
+    /* flex: 75%; */
+    padding: 10px;
+    background-color: lightblue;
+    color: navy;
+}
+
+p.nameo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    padding: 10px;    
+}
+
+.left_bar {
+    display: flex;    
+    align-items: flex-start;
+    flex-direction: column;
+    border: 1px solid lightblue;
+    margin: 2px;
+    padding: 2px;    
+}
+
+img.shiba_1 {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px 30px 6px;
+    align-content: center;
+}
+
+.flex_nav p {
+    display: flex;
+    align-content: flex-start;
+    border: 1px solid lightblue;
+    margin: 6px;
+    padding: 3px;
+}
+
+.col_article {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;   
+    margin: 6px;
+    padding: 4px;
+}
+
+.article {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    border-bottom: 1px solid white;
+    margin: 6px;
+    padding: 8px;
+}
+
+.art_header {
+    display: flex;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    font-weight: bold;
+}
+
+/* This applies from 600px onwards */
+@media (min-width: 600px) {
+  body {
+    background: lightblue;
+  }
+  .row {
+    display: flex;
+  }   
+  .column1 {
+      flex: 25%;
+  }
+  .column2 {
+      flex: 75%;
+  }
+}

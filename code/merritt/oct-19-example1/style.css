@@ -1,0 +1,31 @@
+#als-div {
+  color: lemonchiffon;
+  background-color: steelblue;
+}
+
+.silly {
+  font-family: 'Comic Sans MS', san-serif;
+  color: purple;
+  background-color: limegreen;
+}
+
+.teal {
+  color: teal;
+}
+
+div {
+  color: coral;
+}
+
+input[type="password"] {
+  height: 5px;
+  width: 5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: burlywood;
+}
+
+ul > li, ol li {
+  color: green;
+}

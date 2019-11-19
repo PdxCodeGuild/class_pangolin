@@ -1,0 +1,55 @@
+h1, 
+body{
+    text-align: center;
+    color: whitesmoke;
+    background-image: url(background.jpeg);
+    font-size: 1.5em;
+}
+h1{
+    background-color: rgba(71, 124, 178, .4);
+}
+
+div{
+    background-color: rgba(71, 124, 178, .4);
+    padding-right: 20px;
+    margin-bottom: 20px;
+}
+ul{
+    display: inline-block;
+    text-align: left;
+}
+
+
+#jerry{
+    border-radius: 50px;
+    
+    
+}
+q{
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+}
+
+a{
+    color: yellow;
+}
+
+#pic{
+    height: 216.078px;
+    width: auto;
+    float: left;
+    margin-left: 170px;
+    margin-bottom: 20px;
+}
+p{
+  margin: 20px 20px;  
+}
+
+h3{
+    margin-right: 400px;
+}
+
+ul { list-style: none; } /* Remove default bullets */
+
+li::before {
+    content: "\25B6"; /* Unicode bullet symbol */
