@@ -1,0 +1,25 @@
+.wrapper{
+    display: grid;
+    grid-template-columns: ;
+    float: right;
+
+}
+.sidebar {
+    display:grid;
+    grid-template-columns: 20%;
+    font-size: 12px;
+    
+      
+}
+header > div {
+    background: #eeeeee;
+    padding:1em;
+
+}
+header > div:nth-child(odd){
+    background: #dddddd;
+}
+#icon {
+    max-width: 100%;
+    height: auto;    
+}
