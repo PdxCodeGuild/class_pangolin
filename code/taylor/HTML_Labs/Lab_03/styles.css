@@ -19,13 +19,14 @@
 
 .footer {
   grid-area: footer;
-  background-color: rgba(136, 101, 38, 0.507);
+  /* background-color: rgba(136, 101, 38, 0.507); */
   margin: 6px;
+  text-align: bottom;
 }
 
 .container {
   display: grid;
-  grid-template-columns: 100px fr fr fr;
+  grid-template-columns: fr fr fr fr;
   grid-template-rows: auto auto auto auto auto;
   grid-template-areas: 
     "sidebar header header ."
@@ -47,10 +48,14 @@
 .flex_images{
   display: flex;
   flex-direction: row;
-  background-color: rgba(204, 171, 23, 0.726);
+  /* background-color: rgba(204, 171, 23, 0.726); */
    
   margin: 6px;
 
+}
+img {
+  margin: 24px;
+  box-shadow: 0 0 20px black;
 }
 
 /* Horizontal Nav Bar */
