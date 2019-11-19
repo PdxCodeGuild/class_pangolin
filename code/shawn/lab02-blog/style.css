@@ -1,0 +1,98 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #042f4b;
+    color: #fff6da;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+header, main, footer {
+    margin: auto;
+    margin-top: 24px;
+}
+
+h1, h2, h3, h4, h5, h6{
+    color: #fbc99d;
+    margin: 3px;
+}
+
+#headers_with_pic {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#pang_logo_pic {
+    border-radius: 12px;
+}
+
+.top-nav {
+    display: flex;
+    color: #ed1250;
+    justify-content: space-around;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.side-nav {
+    display: none;
+    color: #ed1250;
+    width: 150px;
+    border: 2px solid #ed1250;
+    margin-right: 20px;
+    padding-left: 6px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 6px;
+    margin: 3px;
+}   
+
+li{
+    padding-left: 6px;
+}
+
+.top-nav p {
+    border: 2px solid #ed1250;
+    padding: 6px;
+}
+
+
+@media (min-width: 768px) {
+
+    main, header, footer {
+        width: 760px;
+    }
+    #headers_with_pic {
+        flex-direction: row;
+    }
+    .side-nav {
+        display: flex;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    main, header, footer {
+        width: 960px;
+    }
+
+    #headers_with_pic {
+        flex-direction: row;
+    }
+
+    .side-nav {
+        display: flex;
+    }
+}

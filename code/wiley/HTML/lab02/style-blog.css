@@ -1,0 +1,122 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body{
+    font-family: 'Courier New', Courier, monospace;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+nav{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 6px;
+    margin: 3%;
+}
+.Top{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border-top: 10px solid rgb(26, 185, 95);
+    border-bottom: 10px solid rgb(46, 150, 248);
+    text-shadow: 2px 2px rgb(255, 255, 118);
+        
+}
+nav p{
+    margin: 1%;
+    padding: 2px;
+    font-size:85%;
+    font-weight: bolder;
+    
+}
+
+img{
+    display: flex;
+    max-width: 90%;
+    height: auto;
+    border: 3px solid black;
+    justify-content: center;
+}
+h4{
+    display: flex;
+    flex: content;
+    font-weight: 800;
+    text-shadow: 2px 2px rgb(255, 255, 118);
+
+}
+.flex-three-column{
+    display:flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 10px;
+    justify-content: center;
+}
+.flex-three-column p{
+    background-color:rgba(255, 255, 118, 0.363) ;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+.sideright{
+    display: flex;
+    flex: content;
+    flex-direction: column;
+    max-width: 25%;
+    font-size:55%;
+    background-color: blanchedalmond;
+    margin: 6px;
+    padding: 6px;
+    float: right;
+    width: 200px;
+}
+footer{
+    display:flex;
+    justify-content: center;
+    border-width: 10%;
+    border-style: groove;
+    border-top-color: rgb(26, 185, 95);
+    font-size: 60%;
+
+}
+@media screen and (min-width:600px){
+    .sideright{
+        display: flex;
+        flex: content;
+        flex-direction: column;
+        max-width: 25%;
+        font-size:75%;
+        background-color: blanchedalmond;
+        margin: 10px;
+        padding: 10px;
+        float: right;
+        width: 250px;
+    }
+}
+@media screen and (min-width:900px) {
+    .sideright{
+        display: flex;
+        flex: content;
+        flex-direction: column;
+        max-width: 25%;
+        font-size:80%;
+        background-color: blanchedalmond;
+        margin: 10px;
+        padding: 10px;
+        float: right;
+        width: 280px;
+    }
+    img{
+        display: flex;
+        max-width: 100%;
+        height: auto;
+        border: 3px solid black;
+        justify-content: center;
+    }
+
+}
