@@ -10,13 +10,13 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.row {
+/* .row {
     display: flex;
-}
+} */
 
 .column1 {
     display: flex;
-    flex: 25%;
+    /* flex: 25%; */
     padding: 10px;
     background-color: navy;
     color: lightblue;
@@ -24,7 +24,7 @@ body {
 
 .column2 {
     display: flex;
-    flex: 75%;
+    /* flex: 75%; */
     padding: 10px;
     background-color: lightblue;
     color: navy;
@@ -46,6 +46,8 @@ p.nameo {
 }
 
 img.shiba_1 {
+    max-width: 100%;
+    height: auto;
     border-radius: 6px 30px 6px;
     align-content: center;
 }
@@ -81,4 +83,20 @@ img.shiba_1 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: larger;
     font-weight: bold;
+}
+
+/* This applies from 600px onwards */
+@media (min-width: 600px) {
+  body {
+    background: lightblue;
+  }
+  .row {
+    display: flex;
+  }   
+  .column1 {
+      flex: 25%;
+  }
+  .column2 {
+      flex: 75%;
+  }
 }
