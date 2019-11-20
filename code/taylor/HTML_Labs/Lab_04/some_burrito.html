@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css"
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Oswald:500&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+        <div class="header">
+          <nav>
+              <ul>
+                  <li><a class="active" href="#home">Burrito</a></li>
+                  <li><a href="#news">Taco</a></li>
+                  <li><a href="#contact">Enchalada</a></li>
+                  <li><a href="#about">Tomatilla</a></li>
+              </ul>
+          </nav>
+        </div> <!-- header class-->
+        <div class="sidebar">
+          <img class="center" src="./some_pig.png" alt="City" width="200" height="200"> 
+        </div> <!--sidebar class-->
+        <div class="main">
+          <div class="flex_container">
+            <form action="webhook" method="post">
+              <fieldset>
+                <legend>Burrito Order Form</legend>
+                <div class="tortilla">
+                    <legend>Tortilla -</legend>
+                    <input type="radio" name="option1" value="White Flour" id="White Flour"/>
+                    <label for="White Flour">White Flour</label>
+                    <input type="radio" name="option1" value="Wheat Flour" id="Wheat Flour"/>
+                    <label for="Wheat Flour">Wheat Flour</label>
+                    <input type="radio" name="option1" value="Spinach" id="Spinach"/>
+                    <label for="Spinach">Spinach</label>
+                    <input type="radio" name="option1" value="corn" id="Corn"/>
+                    <label for="Corn">Corn</label>
+                  </div> <!--tortilla class-->
+                  <div class="rice">
+                    <legend>Rice -</legend>
+                    <input type="radio" name="option2" value="White Rice" id="White Rice"/>
+                    <label for="White Rice">White Rice</label>
+                    <input type="radio" name="option2" value="Brown Rice" id="Brown Rice"/>
+                    <label for="Brown Rice">Brown Rice</label>
+                  </div> <!--rice class-->
+                  <div class="beans">
+                    <legend>Beans -</legend>
+                    <input type="radio" name="option3" value="Black Beans" id="Black Beans"/>
+                    <label for="Black Beans">Black Beans</label>
+                    <input type="radio" name="option3" value="Pinto Beans" id="Pinto Beans"/>
+                    <label for="Pinto Beans">Pinto Beans</label>
+                  </div> <!--beans class-->
+                  <div class="protein">
+                    <legend>Protein -</legend>
+                    <input type="radio" name="option4" value="Carnitas" id="Carnitas"/>
+                    <label for="Carnitas">Carnitas</label>
+                    <input type="radio" name="option4" value="Chicken" id="Chicken"/>
+                    <label for="Chicken">Chicken</label>
+                    <input type="radio" name="option4" value="Sofritas" id="Sofritas"/>
+                    <label for="Sofritas">Sofritas</label>
+                    <input type="radio" name="option4" value="None" id="None"/>
+                    <label for="None">None -</label>
+                  </div> <!--protein class-->
+                  <div class="additional">
+                    <legend>Xtra -</legend>
+                    <input type="checkbox" name="Cheese" id="Cheese"/>
+                    <label for="Cheese">Cheese</label>
+                    <input type="checkbox" name="Sour Cream" id="Sour Cream"/>
+                    <label for="Sour Cream">Sour Cream</label>
+                  </div> <!--additional class-->
+              </fieldset>
+            </div> <!--flex_container class-->
+            <div class="flex_container">
+              <fieldset>
+                <legend>Customer Information</legend>
+                <div class="returning_customer">
+                  <label for="username">User</label>
+                  <input type="text" name="username" id="username" placeholder="User Name" pattern="[a-z]{1,15}" title="username must be between 1 and 15 characters, all lowercase" required/>
+                  <input type="password" name="most-secure-password" placeholder="Password"/>
+                </div> <!--returning_customer class-->
+                <div class="new_customer">
+                  <label for="firstname">Name</label>
+                  <input type="text" name="firstname" id="firstname" placeholder="First Name" required/>
+                  <input type="text" name="lastname" id="lastname" placeholder="Last Name" required/>
+                  <label for="email">Email</label>
+                  <input type="email" name="email" id="email" required/>
+                  <label for="dob">Birthday</label>
+                  <input type="date" name="dob"/>
+                </div> <!-- new_customer class-->
+                <div class="address">
+                  <label for="Address">Address</label>
+                  <input type="text" name="Address" id="Address" placeholder="Street e.g. 123 Mulberry Ln" required/>
+                  <label for="zip">City, State, or Zip</label>
+                  <input type="text" name="Address" id="zip" placeholder="Portland, OR, 97201" required/>
+                </div> <!--address Class-->
+                <div class="reset_submit">
+                  <input type="reset" value="Re-Burrito"/>
+                  <input type="submit" value="Submit"/>
+                </div>
+              </fieldset>
+            </form>
+          </div> <!--flex_container class-->
+        </div> <!--main class-->
+        <div class="footer">
+          <h4>Ⓒ Copywright Some Burrito</h4>
+        </div><!--footer class-->  
+    </div> <!--container class-->
+  </div> <!--wrapper class-->
+</body>
+</html>
