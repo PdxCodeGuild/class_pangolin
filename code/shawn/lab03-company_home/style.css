@@ -15,12 +15,13 @@ html {
 }
 
 body {
-    background-color: #FFFFFF;
+    background: linear-gradient(to bottom right, rgba(0,0,0,0), rgba(0,0,0,1)), radial-gradient( #049DBF, #2C3759) ;
 }
 
 header, nav, main, footer {
     padding: 6px;
     font-family: 'Roboto', sans-serif; 
+    color: #F2D7B6
 }
 
 header {
@@ -28,13 +29,22 @@ header {
     justify-content: space-between;
     align-items: center;
     font-family:'Lakki Reddy', cursive;
-    background-color: #F2D7B6;
+    
+    background: linear-gradient(to bottom, #F2D7B6, rgb(167, 147, 124));
     border: 3px solid #2C3759;
+    border-radius: 12px;
     padding: 3px;
+    max-width: 1080px;
+    margin: auto;
 }
 
 a {
     text-decoration: none;
+    color: #F2D7B6;
+}
+a :hover {
+    color: #F2A81D;
+    transition: color ease .125s;
 }
 
 h1 {
@@ -57,29 +67,72 @@ header img {
 main {
     display: flex;
     flex-direction: column;
+    max-width: 1080px;
+    margin: auto;
 }
 
 nav {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    background: linear-gradient(to bottom, #2C3759, black);
+    border: 3px solid #2C3759;
+    border-radius: 12px;
 }
 nav a {
-    width: 180px;
+    width: 168px;
     padding-right: 18px;
+    font-size: 1.5em;
+    margin: 6px;
 }
+
+#content {
+    max-width: 900px;
+    margin-left: 12px;
+}
+
 #content img {
     max-width: 100%;
-    height: auto;
+    border-radius: 50% 50% 12.5% 12.5%;
+}
+figure{
+    margin: 6px;
 }
 figure img {
     width: 250px;
+    margin: 12px;
 }
-#picture-tiles {
+.picture-tiles {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+figcaption {
+    text-align: center;
 }
 
+#social {
+    display: flex;
+    justify-content: center;
+
+}
+
+#social a img {
+    width: 42px;
+    height: 42px;
+    margin: 12px;
+}
+footer {
+    max-width: 1080px;
+    margin: auto;
+}
+#fine-print{
+    display: flex;
+    justify-content: center;
+}
+#fine-print p {
+    margin: 12px;
+}
 @media (min-width: 768px) {
     h1 {
         display: inline;

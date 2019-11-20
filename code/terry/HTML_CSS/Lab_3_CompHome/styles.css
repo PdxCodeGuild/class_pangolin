@@ -20,6 +20,7 @@ body {
 }
 
 .nav_button {
+    padding-top: 10px;
     padding-right: 40px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: black;

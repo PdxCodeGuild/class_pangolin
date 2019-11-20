@@ -1,0 +1,88 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+header{
+    border: 5px ridge blue
+}
+.top-section{
+    color: whitesmoke;
+    text-align: center;
+    padding:24px;
+    vertical-align: middle;
+    margin-top: 6px;
+    background-image: url(trees.jpg)
+}
+.lower-section {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    /* align-items: stretch; */
+    flex-wrap: wrap;
+    padding: 10px;
+}
+.our-mission{
+   position: relative;
+}
+.our-mission,img{
+    display: inline-block;
+    vertical-align: top;
+}
+@media (min-width: 768px){
+    header, main, footer{
+        width: 760px;
+    } 
+    .flex-nav{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: stretch;
+        padding: 10px;
+    }
+    .middle-section{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        border: ridge red;
+    }
+    .item{
+        max-width: 50%;
+        border: ridge lightseagreen;
+        background-color: turquoise;
+        margin-right: 15px;
+    }
+    .item2{
+        display: flex;
+        flex-direction: row;
+        /* justify-content: space-around;
+        align-items: stretch; */
+        background-color: violet;
+        flex-wrap: wrap;
+        max-width: 50%;
+        border: ridge yellow;
+    }
+    .text-block1,.text-block2,.text-block3{
+        position: absolute;
+        bottom: -100px;
+        left: 50px;
+        mix-blend-mode: difference;
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .text-block2{
+        bottom: -400px;
+        left: 50px;
+    }
+    .text-block3{
+        bottom: -700px;
+        left: 50px;
+    }
+}
+
+
