@@ -6,15 +6,11 @@
 }
 
 .wrapper > * {
-  padding: 2px;
+  padding: 0px;
   flex: 1 100%;
 
   /* border:1px solid #000; */
 }
-
-/* .header {
-  background: tomato;
-} */
 
 .footer {
   background: rgba(190, 223, 6, 0.822);
@@ -28,11 +24,12 @@
 
 .aside-1 {
   background: rgba(47, 52, 56, 0.247);
-
+  
 }
 
 @media all and (min-width: 600px) {
   .aside { flex: 1 0 0; }
+  
 }
 
 @media all and (min-width: 800px) {
@@ -46,6 +43,10 @@
 
  .post{
    padding: 1.5em;
+}
+
+img {
+  box-shadow: -6px -6px 12px rgba(0, 0, 0, 0.507);
 }
 @import "compass/css3";
 
@@ -76,10 +77,6 @@ html,
 body {
   width: 100%;
   height: 100%;
-}
-
-nav {
-  box-shadow: rgba(228, 8, 8, 0.685);
 }
 
 nav[role="full-horizontal"] {
