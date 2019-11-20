@@ -1,12 +1,15 @@
 /* Grid Page Layout */
 body{
-  background-color: rgba(11, 71, 53, 0.685);
+  background-color: rgba(11, 71, 53, 0.589);
   max-width: 1200px;
 }
 
 .wrapper {
-  display: flex;  
-  flex-flow: row wrap;
+  /* display: flex;  
+  flex-flow: row wrap; */
+  max-width: 1000px;
+  margin: auto;
+  align-self: auto;
   /* font-weight: bold; */
   /* text-align: center; */
 }
@@ -36,7 +39,7 @@ body{
 
 .main {
   grid-area: main;
-  max-width: 1000px;
+  /* max-width: 1000px; */
   font-size: medium;
   font-family: 'Oswald', sans-serif;
 }
@@ -61,7 +64,7 @@ body{
   margin-left: 12px;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: fr fr fr fr fr;
+  grid-template-rows: auto;
   grid-template-areas: 
     "sidebar header header ."
     "sidebar main main main"
@@ -97,9 +100,9 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  /* width: 50%; */
+ 
 }
-/* Horizontal Nav Bar */
+
 
 ul {
   list-style-type: none;
