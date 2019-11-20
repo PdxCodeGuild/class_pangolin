@@ -1,19 +1,43 @@
 /* Grid Page Layout */
+body{
+  background-color: rgba(210, 191, 226, 0.678);
+  max-width: 1200px;
+ 
+  
+}
+.wrapper {
+  display: flex;  
+  flex-flow: row wrap;
+  font-weight: bold;
+  text-align: center;
+}
+
+.wrapper > * {
+  padding: 0px;
+  flex: 1 100%;
+
+  /* border:1px solid #000; */
+}
 
 .header {
   grid-area: header;
+  max-width: 360px;
   box-shadow: 0 0 20px black;
   margin: 6px;
 }
 .sidebar {
   grid-area: sidebar;
-  background-color: rgba(121, 226, 22, 0.514);
+  max-width: 300px;
+  background-color: rgba(64, 50, 187, 0.753);
+  box-shadow:0 0 12px #333;
   margin: 6px;
+  padding: 6px;
   
-
 }
 .main {
   grid-area: main;
+  max-width: 1000px;
+ 
 
 }
 
@@ -21,13 +45,18 @@
   grid-area: footer;
   /* background-color: rgba(136, 101, 38, 0.507); */
   margin: 6px;
-  text-align: bottom;
+  padding: 6px;
+
 }
 
 .container {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 12px;
+  margin-left: 12px;
   display: grid;
-  grid-template-columns: fr fr fr fr;
-  grid-template-rows: auto auto auto auto auto;
+  grid-template-columns: auto;
+  grid-template-rows: fr fr fr fr fr;
   grid-template-areas: 
     "sidebar header header ."
     "sidebar main main main"
@@ -39,7 +68,10 @@
 .flex_container{
   display: flex;
   flex-direction: column;
-  background-color: chartreuse;
+  background-color: rgba(64, 50, 187, 0.753);
+  /* background-color: rgba(105, 25, 158, 0.699); */
+  box-shadow:0 0 12px #333;
+  padding: 6px;
    
   margin: 6px;
 
@@ -58,6 +90,12 @@ img {
   box-shadow: 0 0 20px black;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 50%; */
+}
 /* Horizontal Nav Bar */
 
 ul {
@@ -65,11 +103,16 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: rgba(64, 50, 187, 0.753);
+  
 }
 
 li {
   float: left;
+  box-shadow:0 0 6px #333;
+  background-color: rgba(105, 25, 158, 0.699);
+  
+  margin: 6px;
 }
 
 li a {
@@ -82,5 +125,5 @@ li a {
 
 /* Change the link color to #111 (black) on hover */
 li a:hover {
-  background-color: #111;
+  background-color: rgba(33, 26, 97, 0.616);
 }
