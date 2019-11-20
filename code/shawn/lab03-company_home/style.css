@@ -7,3 +7,109 @@ white: #FFFFF
 font-family: 'Lakki Reddy', cursive;            Cornball Logo
 font-family: 'Roboto', sans-serif;              Text */
 
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #FFFFFF;
+}
+
+header, nav, main, footer {
+    padding: 6px;
+    font-family: 'Roboto', sans-serif; 
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family:'Lakki Reddy', cursive;
+    background-color: #F2D7B6;
+    border: 3px solid #2C3759;
+    padding: 3px;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1 {
+    padding-top: 30px;
+    display: none;
+    font-size: 48px;
+    color:  #049DBF;
+    margin: 0px;
+}
+
+#top-banner {
+    display: flex;
+    align-items: center;
+}
+header img {
+    border-radius: 6px;
+    margin-right: 12px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+nav a {
+    width: 180px;
+    padding-right: 18px;
+}
+#content img {
+    max-width: 100%;
+    height: auto;
+}
+figure img {
+    width: 250px;
+}
+#picture-tiles {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        display: inline;
+    }
+    nav {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    main {
+        flex-direction: row;
+    }
+    #picture-tiles {
+        flex-wrap: nowrap;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    h1 {
+        display: inline;
+        flex-direction: column;
+    }
+    nav {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    main {
+        flex-direction: row;
+    }
+    #picture-tiles {
+        flex-wrap: nowrap;
+    }
+}

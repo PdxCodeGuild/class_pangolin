@@ -1,25 +1,38 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+body{
+    background: #FBFBFB;
+}
 .wrapper{
+    width: 90%;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: ;
-    float: right;
-
-}
-.sidebar {
-    display:grid;
-    grid-template-columns: 20%;
-    font-size: 12px;
+    grid-template-columns: 1fr 5fr;
+    grid-auto-rows: 130px;
     
-      
 }
-header > div {
-    background: #eeeeee;
-    padding:1em;
-
+.item{
+    background:  #58d5f5;
+    color: white;
+    padding: 10px;
+    font-size: 225%;
+    text-align: center;
+    
 }
-header > div:nth-child(odd){
-    background: #dddddd;
+.item:nth-child(even){
+    background: #236fc8;
 }
-#icon {
-    max-width: 100%;
-    height: auto;    
+img {
+    width: auto;
+    height: 100px;
+}
+.gridwrapper{
+    width: 90%;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: 1fr 5fr;
+    
 }
