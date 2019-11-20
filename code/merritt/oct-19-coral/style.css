@@ -19,7 +19,7 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: 1px 1px 4px black;
 } */
 
-header, main, footer {
+header, main, footer, form {
   margin: 5px;
   
   padding: 12px;
@@ -57,9 +57,95 @@ a:hover {
   transition: all 1s ease;
 }
 
+.grid-form-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "title title"
+    "why-label why-input"
+    "when-label when-input"
+    "much-label much-select"
+    "opinion-label opinion-radios"
+    ". submit";
+  column-gap: 6px;
+  row-gap: 6px;
+  justify-items: start;
+}
+
+form h3 {
+  grid-area: title;
+}
+
+form label[for="why-coral"] {
+  grid-area: why-label;
+  justify-self: end;
+}
+
+form input[type="text"] {
+  grid-area: why-input;
+  transition: background-color .125s ease;
+}
+
+form input[type="text"]:hover {
+  background-color: coral;
+  transition: background-color .125s ease;
+}
+
+form input[type="text"]:active {
+  background-color: cornflowerblue;
+  transition: background-color .125s ease;
+}
+
+form input[type="text"]:focus {
+  background-color: crimson;
+  transition: background-color .125s ease;
+}
+
+form label[for="when-coral"] {
+  grid-area: when-label;
+  justify-self: end;
+}
+
+form input[type="date"] {
+  grid-area: when-input;
+}
+
+form input[type="submit"] {
+  grid-area: submit;
+}
+
+#opinion-title {
+  grid-area: opinion-label;
+  justify-self: end;
+}
+
+#opinion-radios {
+  grid-area: opinion-radios;
+}
+
+form label[for="how-much"] {
+  grid-area: much-label;
+  justify-self: end;
+}
+
+form select {
+  grid-area: much-select;
+}
+
+#opinion-radios input {
+  margin-right: 6px;
+}
+
+legend {
+  color: white;
+  background-color: black;
+  padding: 3px;
+}
+
 @media (min-width: 768px) {
 
-  header, main, footer {
+  header, main, footer, form {
     margin: 18px auto;
     width: 760px;
   }
@@ -85,7 +171,7 @@ a:hover {
 
 @media (min-width: 1024px) {
 
-  header, main, footer {
+  header, main, footer, form {
     width: 960px;
     /* width: calc(50% - 24px);
     margin: 12px; */
