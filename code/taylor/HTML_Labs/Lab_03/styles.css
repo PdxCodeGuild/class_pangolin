@@ -1,0 +1,86 @@
+/* Grid Page Layout */
+
+.header {
+  grid-area: header;
+  box-shadow: 0 0 20px black;
+  margin: 6px;
+}
+.sidebar {
+  grid-area: sidebar;
+  background-color: rgba(121, 226, 22, 0.514);
+  margin: 6px;
+  
+
+}
+.main {
+  grid-area: main;
+
+}
+
+.footer {
+  grid-area: footer;
+  /* background-color: rgba(136, 101, 38, 0.507); */
+  margin: 6px;
+  text-align: bottom;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: fr fr fr fr;
+  grid-template-rows: auto auto auto auto auto;
+  grid-template-areas: 
+    "sidebar header header ."
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar footer footer footer";
+}
+
+.flex_container{
+  display: flex;
+  flex-direction: column;
+  background-color: chartreuse;
+   
+  margin: 6px;
+
+}
+
+.flex_images{
+  display: flex;
+  flex-direction: row;
+  /* background-color: rgba(204, 171, 23, 0.726); */
+   
+  margin: 6px;
+
+}
+img {
+  margin: 24px;
+  box-shadow: 0 0 20px black;
+}
+
+/* Horizontal Nav Bar */
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
