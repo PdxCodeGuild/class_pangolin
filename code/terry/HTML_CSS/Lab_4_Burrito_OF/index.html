@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="safari" id="" lang="en">
+
+<head>
+
+    <title>
+        Takeout Order Form
+    </title>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="styles.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+    <form id="form1" name="form1" class="wufoo topLabel page1" accept-charset="UTF-8" autocomplete="off"
+        enctype="multipart/form-data" method="post" novalidate action="">
+
+        <header id="header" class="info">
+            <h2 class="">Takeout Order Form</h2>
+            <div class=""></div>
+        </header>
+
+
+        <ul>
+
+
+            <li id="fo1li614" class="      ">
+                <label class="desc notranslate" id="title614" for="Field614">
+                    What type of pizza would you like?
+                </label>
+                <div>
+                    <select id="Field614" name="Field614" class="field select medium" onchange="handleInput(this);"
+                        onkeyup="handleInput(this);" tabindex="0" data-wufoo-field="dropdown">
+                        <option value="Cheese" selected="selected">
+                            <span ">Cheese</span>
+                        </option>
+                        <option value=" Pepperoni (+ $0.50)">
+                                <span ">Pepperoni (+ $0.50)</span>
+                        </option>
+                        <option value=" Sausage (+ $0.50)">
+                                    <span ">Sausage (+ $0.50)</span>
+                        </option>
+                    </select>
+                </div>
+            </li>
+
+
+            <li id=" fo1li616" class="     ">
+                                        <fieldset>
+
+                                            <legend id="title616" class="desc notranslate">
+                                                How many pizzas would you like to order?
+                                            </legend>
+
+                                            <div>
+                                                <input id="radioDefault_616" name="Field616" type="hidden" value="" />
+                                                <span>
+                                                    <input id="Field616_0" name="Field616" type="radio"
+                                                        class="field radio" value="1 - $10" tabindex="0"
+                                                        onchange="handleInput(this);" onmouseup="handleInput(this);"
+                                                        checked="checked" />
+                                                    <label class="choice" for="Field616_0">
+                                                        <span class="choice__text notranslate">1 - $10</span>
+                                                        <span class="choice__qty">
+                                                        </span>
+                                                    </label>
+                                                </span>
+                                                <span>
+                                                    <input id="Field616_1" name="Field616" type="radio"
+                                                        class="field radio" value="2 - $20" tabindex="0"
+                                                        onchange="handleInput(this);" onmouseup="handleInput(this);" />
+                                                    <label class="choice" for="Field616_1">
+                                                        <span class="choice__text notranslate">2 - $20</span>
+                                                        <span class="choice__qty">
+                                                        </span>
+                                                    </label>
+                                                </span>
+                                                <span>
+                                                    <input id="Field616_2" name="Field616" type="radio"
+                                                        class="field radio" value="3 - $25" tabindex="0"
+                                                        onchange="handleInput(this);" onmouseup="handleInput(this);" />
+                                                    <label class="choice" for="Field616_2">
+                                                        <span class="choice__text notranslate">3 - $25</span>
+                                                        <span class="choice__qty">
+                                                        </span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                        </fieldset>
+            </li>
+
+
+            <li id="fo1li2" ">
+                <label class=" desc" id="title2">
+                Name
+                <span id="req_2" class="req">*</span>
+                </label>
+                <span>
+                    <input id="Field2" name="Field2" type="text" class="field text fn" value="" size="8" tabindex="0"
+                        onkeyup="handleInput(this);" onchange="handleInput(this);" placeholder="" required />
+                    <label for="Field2">First</label>
+                </span>
+                <span>
+                    <input id="Field3" name="Field3" type="text" class="field text ln" value="" size="14" tabindex="0"
+                        onkeyup="handleInput(this);" onchange="handleInput(this);" placeholder="" required />
+                    <label for="Field3">Last</label>
+                </span>
+            </li>
+
+
+            <li id="fo1li4" ">
+                <label class=" desc" id="title4" for="Field4">
+                Email
+                </label>
+                <div>
+                    <input id="Field4" name="Field4" type="email" spellcheck="false" class="field text medium" value=""
+                        maxlength="255" tabindex="0" onkeyup="handleInput(this);" onchange="handleInput(this);"
+                        placeholder="" />
+                </div>
+            </li>
+
+
+            <li id="fo1li5" class="phone notranslate      ">
+                <label class="desc" id="title5">
+                    Phone Number
+                </label>
+                <span>
+                    <input id="Field5" name="Field5" type="tel" class="field text" value="" size="3" maxlength="3"
+                        tabindex="0"
+                        onkeyup="handleInput(this); autotab(this, document.getElementById('Field5-1'), this); filterNonnumeric(this);"
+                        onchange="handleInput(this);"
+                        onfocus="this.selectionStart = this.selectionEnd = this.value.length;" placeholder="" />
+                    <label for="Field5">###</label>
+                </span>
+                <span class="symbol">-</span>
+                <span>
+                    <input id="Field5-1" name="Field5-1" type="tel" class="field text" value="" size="3" maxlength="3"
+                        tabindex="0"
+                        onkeyup="handleInput(this); autotab(this, document.getElementById('Field5-2'), document.getElementById('Field5')); filterNonnumeric(this);"
+                        onchange="handleInput(this);"
+                        onfocus="this.selectionStart = this.selectionEnd = this.value.length;" placeholder="" />
+                    <label for="Field5-1">###</label>
+                </span>
+                <span class="symbol">-</span>
+                <span>
+                    <input id="Field5-2" name="Field5-2" type="tel" class="field text" value="" size="4" maxlength="4"
+                        tabindex="0"
+                        onkeyup="handleInput(this); autotab(this, this, document.getElementById('Field5-1')); filterNonnumeric(this);"
+                        onchange="handleInput(this);"
+                        onfocus="this.selectionStart = this.selectionEnd = this.value.length;" placeholder="" />
+                    <label for="Field5-2">####</label>
+                </span>
+            </li>
+
+
+            <li id="fo1li6" class="complex notranslate      ">
+                <label class="desc" id="title6">
+                    Address
+                </label>
+                <div>
+                    <span class="full addr1">
+                        <input id="Field6" name="Field6" type="text" class="field text addr" value="" tabindex="0"
+                            onkeyup="handleInput(this);" onchange="handleInput(this);" placeholder="" />
+                        <label for="Field6">Street Address</label>
+                    </span>
+                    <span class="full addr2">
+                        <input id="Field7" name="Field7" type="text" class="field text addr" value="" tabindex="0"
+                            onkeyup="handleInput(this);" onchange="handleInput(this);" placeholder="" />
+                        <label for="Field7">Address Line 2</label>
+                    </span>
+                    <span class="left city">
+                        <input id="Field8" name="Field8" type="text" class="field text addr" value="" tabindex="0"
+                            onkeyup="handleInput(this);" onchange="handleInput(this);" placeholder="" />
+                        <label for="Field8">City</label>
+                    </span>
+                    <span class="right state">
+                        <input id="Field9" name="Field9" type="text" class="field text addr" value="" tabindex="0"
+                            onkeyup="handleInput(this);" onchange="handleInput(this);" placeholder="" />
+                        <label for="Field9">State / Province / Region</label>
+                    </span>
+                    <span class="left zip">
+                        <input id="Field10" name="Field10" type="text" class="field text addr" value="" maxlength="15"
+                            tabindex="0" onkeyup="handleInput(this);" onchange="handleInput(this);" placeholder="" />
+                        <label for="Field10">Postal / Zip Code</label>
+                    </span>
+                    <span class="right country">
+                        <select id="Field11" name="Field11" class="field select addr" tabindex="0"
+                            onchange="handleInput(this);" onkeyup="handleInput(this);" data-wufoo-field="dropdown">
+                            <option value="" selected="selected"></option>
+                            <option value="United States">United States</option>
+                        </select>
+                        <label for="Field11">Country</label>
+                    </span>
+                </div>
+            </li>
+
+
+            <li class="buttons ">
+                <div>
+                    <input type="hidden" name="currentPage" id="currentPage" value="" />
+
+                    <input id="saveForm" name="saveForm" class="btTxt submit" type="submit" value="Submit"
+                        onmousedown="doSubmitEvents();" />
+
+
+
+                </div>
+            </li>
+
+            <li class="hide">
+                <label for="comment">Do Not Fill This Out</label>
+                <textarea name="comment" id="comment" rows="1" cols="1"></textarea>
+                <input type="hidden" id="idstamp" name="idstamp" value="t6gbLc9kRRm8YQe5J+TXFw==" />
+                <input type="hidden" id="stats" name="stats"
+                    value="{&quot;errors&quot;:0,&quot;startTime&quot;:0,&quot;endTime&quot;:0,&quot;referer&quot;:&quot;https:\/\/tlfuller121.wufoo.com\/build\/takeout-order-form-zcyt7yl0djagbl&quot;}" />
+                <input type="hidden" id="clickOrEnter" name="clickOrEnter" value="" />
+            </li>
+        </ul>
+    </form>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
