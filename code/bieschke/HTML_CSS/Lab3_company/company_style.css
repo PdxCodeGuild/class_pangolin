@@ -174,7 +174,7 @@ so long as there is at least one and it works at 200px*/
 .portfolio {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 .portfolio img {
   width: 100%;
