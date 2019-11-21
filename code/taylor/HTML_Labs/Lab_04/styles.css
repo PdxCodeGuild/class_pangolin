@@ -137,4 +137,12 @@ li a:hover {
   background-color: rgba(206, 226, 21, 0.788);
 }
 
+fieldset
+{
+  border: 1.75px solid rgb(0, 0, 0);
 
+}
+
+legend {
+  font-weight: bold;
+}
