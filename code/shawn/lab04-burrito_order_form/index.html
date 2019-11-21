@@ -26,7 +26,7 @@
                         <!-- tortilla choice -->
                         <label id="tortilla-label">Tortilla:</label>
                         <div id="tortilla-radios">
-                            <input type="radio" name="tortilla" value="flour" id="opt-tortilla-flour"/><label for="opt-tortilla-flour">Flour</label><br>
+                            <input type="radio" name="tortilla" value="flour" id="opt-tortilla-flour" required/><label for="opt-tortilla-flour">Flour</label><br>
                             <input type="radio" name="tortilla" value="wheat" id="opt-tortilla-wheat"/><label for="opt-tortilla-wheat">Wheat</label><br>
                             <input type="radio" name="tortilla" value="corn" id="opt-tortilla-corn"/><label for="opt-tortilla-corn">Corn</label><br>
                             <input type="radio" name="tortilla" value="spinach" id="opt-tortilla-spinach"/><label for="opt-tortilla-spinach">Spinach</label><br>
@@ -36,14 +36,14 @@
                         <div id="rice-radios">
                             <input type="radio" name="rice" value="white" id="opt-rice-white"/><label for="opt-rice-white">White</label><br>
                             <input type="radio" name="rice" value="brown" id="opt-rice-brown"/><label for="opt-rice-brown">Brown</label><br>
-                            <input type="radio" name="rice" value="no_rice" id="opt-rice-none"/><label for="opt-rice-none">None</label><br>
+                            <input type="radio" name="rice" value="no_rice" id="opt-rice-none" checked/><label for="opt-rice-none">None</label><br>
                         </div>
                         <!-- beans choice -->
                         <label id="beans-label">Beans:</label>
                         <div id="beans-radios">
                             <input type="radio" name="beans" value="black" id="opt-beans-black"/><label for="opt-beans-black">Black</label><br>
                             <input type="radio" name="beans" value="pinto" id="opt-beans-pinto"/><label for="opt-beans-pinto">Pinto</label><br>
-                            <input type="radio" name="beans" value="no_beans" id="opt-beans-none"/><label for="opt-beans-none">None</label><br>
+                            <input type="radio" name="beans" value="no_beans" id="opt-beans-none" checked/><label for="opt-beans-none">None</label><br>
                         </div>
                         <!-- protein choice -->
                         <label id="protein-label">Protein:</label>
@@ -52,7 +52,7 @@
                             <input type="radio" name="protein" value="steak" id="opt-protein-steak"/><label for="opt-protein-steak">Steak</label><br>
                             <input type="radio" name="protein" value="carnitas" id="opt-protein-carnitas"/><label for="opt-protein-carnitas">Carnitas</label><br>
                             <input type="radio" name="protein" value="sofritas" id="opt-protein-sofritas"/><label for="opt-protein-sofritas">Sofritas</label><br>
-                            <input type="radio" name="protein" value="no_protein" id="opt-protein-none"/><label for="opt-protein-none">None</label><br>
+                            <input type="radio" name="protein" value="no_protein" id="opt-protein-none" checked/><label for="opt-protein-none">None</label><br>
                         </div>
                         <!-- other options -->
                         <label id="additional-label">Add-ons:</label>
@@ -68,23 +68,23 @@
 
                 <section id="personal-form">
                         <label for="username">Username:</label>
-                        <input type="text" name="username" id="username"/>
+                        <input type="text" name="username" id="username" pattern="[\w]{6,}" title="Your username should be six or more characters, consisting of only letters, numbers, and underscores."/>
                         <label for="password">Password:</label>
-                        <input type="text" name="password" id="password"/>
+                        <input type="text" name="password" id="password" pattern="[A-Za-z0-9!@#$%^&*()_,.]{6,}" title="Your username should be six or more characters, consisting of only letters, numbers, and special characters: !@#$%^&*()_,."/>
                         <label for="name">Name:</label>
-                        <input type="text" name="name" id="name"/>
+                        <input type="text" name="name" id="name" pattern="[A-Za-z]{3,} [A-Za-z]{3,}" title="Your name should be two words, consisting of at least three upper/lower case letters."/>
                         <label for="email">Email:</label>
-                        <input type="text" name="email" id="email"/>
+                        <input type="text" name="email" id="email"  pattern="[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+" title="Must be valid email address."/>  
                         <label for="phone">Phone:</label>
-                        <input type="text" name="phone" id="phone"/>
+                        <input type="text" name="phone" id="phone"  placeholder="XXX-XXX-XXXX" pattern="\d{3}-\d{3}-\d{4}" title="Please use format 123-123-1234"/>
                         <label for="birthday">Date of Birth:</label>
-                        <input type="date" name="birthday" id="birthday"/>
+                        <input type="text" name="birthday" id="birthday" placeholder="MM/DD/YYYY" pattern="\d+\/\d+\/\d{4}" title="Please use format MM/DD/YYYY"/>
                         <label for="ssn">SSN:</label>
-                        <input type="text" name="ssn" id="ssn"/>
+                        <input type="text" name="ssn" id="ssn" pattern="\d{3}-\d{2}-\d{4}" title="Please use format 123-12-1234"/>
                         <label for="street">Street:</label>
                         <input type="text" name="street" id="street"/>                       
                         <label for="city">City, State, Zip:</label>
-                        <input type="text" name="city" id="city"/>
+                        <input type="text" name="city" id="city" pattern="([A-Z]{1}[a-z]+\s?)+, [A-Z]{2}, \d{5}" title="Please use City, ST, XXXXX format"/>
                         <input type="submit" value="Place Order">                
                 </section>
             </form>
