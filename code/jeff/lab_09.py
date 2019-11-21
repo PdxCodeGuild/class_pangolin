@@ -4,6 +4,12 @@
 
 import math
 
-orig = int(input('Welcome to the distance converter. Please tell me how many feet to convert: '))
+orig = int(input('Welcome. Please tell me the distance you would like to convert: '))
 
-print(f'{orig} feet equals {orig * 0.3048} meters')
+measure = input('What are the units? (ft, mi, km): ').lower
+
+
+unit = [ft == 0.3048, mi == 1609.34, m == 1, km == 1000]
+
+if measure == ft:
+    print(orig * ft)
