@@ -1,0 +1,140 @@
+/* font-family: 'Holtwood One SC', serif;     headings
+font-family: 'Raleway', sans-serif;         paragraphs */
+
+/* dark blue: #5061AD
+ligh blue: #8CA1FA
+red orange: #FA450C
+dark green: #81AD58
+light green: #8FC75B */
+/* 
+gray #9592A6
+bluegray #8A92BF
+light brown #FAD2BB    background (for form?)
+med brown #8C5B3F
+dark brown #401201    text          */
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+header, main {
+    margin: 6px;
+    padding: 12px;
+    border: 3px solid #81AD58;
+}
+
+header {
+    display: flex;
+    align-items: center;
+}
+
+h1 {
+    display: inline;
+    margin-left: 12px;
+    font-family: 'Holtwood One SC', serif;
+    font-size: 3em;
+}
+
+header img {
+    max-height: 120px;
+    border-radius: 12px;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main img {
+    max-width: 250px;
+}
+
+form {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+form :last-child {
+    align-self: flex-end;
+}
+#burrito-form {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "lab-tort cho-tort"
+    "lab-rice cho-rice"
+    "lab-bean cho-bean"
+    "lab-prot cho-prot"
+    "lab-addi cho-addi";
+    justify-items: start;
+    column-gap: 6px;
+    row-gap: 6px;
+}
+
+#tortilla-label {
+    grid-area: lab-tort;
+    justify-self: end;
+}
+
+#tortilla-radios {
+    grid-area: cho-tort;
+}
+
+#rice-label {
+    grid-area: lab-rice;
+    justify-self: end;
+}
+
+#rice-radios {
+    grid-area: cho-rice;
+}
+
+#beans-label {
+    grid-area: lab-bean;
+    justify-self: end;
+}
+
+#beans-radios {
+    grid-area: cho-bean;
+}
+
+#protein-label {
+    grid-area: lab-prot;
+    justify-self: end;
+}
+#protein-radios{
+    grid-area: cho-prot;
+}
+
+#additional-label {
+    grid-area: lab-addi;
+    justify-self: end;
+}
+
+#additional-checkboxes {
+    grid-area: cho-addi;
+}
+
+#personal-form {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "lab-usnm inp-usnm"
+    "lab-pass inp-pass"
+    "lab-name inp-name"
+    "lab-emal inp-emal"
+    "lab-phon inp-phon"
+    "lab-bday inp-bday"
+    "lab-ssn inp-ssn"
+    "lab-stre inp-stre"
+    "lab-city inp-city";
+    justify-items: start;
+    column-gap: 6px;
+    row-gap: 6px;
+}
