@@ -23,7 +23,7 @@ body{
 
 .header {
   grid-area: header;
-  max-width: 344px;
+  max-width: 350px;
   box-shadow: 0 0 20px black;
   margin: 6px;
 }
