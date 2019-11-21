@@ -1,0 +1,41 @@
+
+
+.rotateimg180 {
+    -webkit-transform:rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+.content {
+    max-width: 1000px;
+    margin: auto;
+    }
+    body {
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-image: url("84530-full_wallpaper-aquila-warhammer-40000-dawn-of-war-1920x1080-full-hd-2k.jpg");
+
+      }
+img {
+float: left;
+border-radius: 50%; 
+    }
+
+ul {
+    list-style-type: "fa fa-empire";
+    }
+
+.container {
+    display: flex; /* or inline-flex */
+    display: flex;
+    justify-content: center;
+    
+}
+
+.flex-nav section{
+    display: flex;
+    justify-content: center;
+    }

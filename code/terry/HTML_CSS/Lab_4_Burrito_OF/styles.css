@@ -1,0 +1,35 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.column {
+    display: flex;
+    align-items: center;
+}
+
+.left_col {
+    align-self: flex-start;
+}
+
+.title_text {
+    font-size: large;
+    font-weight: bold;
+}
+
+.field_label {
+    font-size: medium;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.order_form {
+    padding: 10px;
+}
+
+.billing {
+    padding: 10px;
+}
+
+.billing_input {
+    margin: 2px;
+}

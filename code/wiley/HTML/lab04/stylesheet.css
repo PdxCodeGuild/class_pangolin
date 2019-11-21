@@ -1,0 +1,84 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+.box {
+    display: grid;
+    grid-template-columns: 30% 60%;
+    grid-template-rows: 100px auto 100px;
+    grid-template-areas:
+    "top-header top-header"
+    "left-logo order-form"
+    "bottom-side bottom-side";
+    
+}
+.item {
+    padding:12px;
+    margin: 6px;
+    background-color: moccasin;
+}
+#top-header {
+    grid-area: top-header;
+
+}
+
+#left-logo {
+    grid-area: left-logo;
+}
+
+#order-form {
+    grid-area: order-form;
+}
+
+#bottom-side {
+    grid-area: bottom-side;
+}
+.order-area {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    grid-template-rows: 20% 20% 20% 30%;
+    grid-template-areas:
+    "order-header order-header"
+    "tortilla rice"
+    "beans meat"
+    "toppings toppings";
+    background-color: rgb(128, 221, 116);
+}
+#order-header {
+    grid-area: order-header;
+    margin: 6px;
+    padding:15px;
+    border: 2px solid black;
+}
+
+#tortilla {
+    grid-area: tortilla ;
+    margin: 6px;
+    padding:15px;
+    border: 2px solid black;
+}
+#rice {
+    grid-area:rice;
+    margin: 6px;
+    padding:18px;
+    border: 2px solid black;
+}
+#meat {
+    grid-area: meat;
+    margin: 6px;
+    padding:15px;
+    border: 2px solid black;
+}
+#beans {
+    grid-area: beans;
+    margin: 6px;
+    padding:15px;
+    border: 2px solid black;
+}
+#toppings {
+    grid-area: toppings;
+    margin: 6px;
+    padding:15px;
+    border: 2px solid black;
+}
