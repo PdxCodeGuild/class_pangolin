@@ -8,7 +8,7 @@ html {
 body {
     background-color: #042f4b;
     color: #fff6da;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family: 'Roboto Slab', serif;
 }
 
 header, main, footer {
@@ -19,6 +19,7 @@ header, main, footer {
 h1, h2, h3, h4, h5, h6{
     color: #fbc99d;
     margin: 3px;
+    font-family: 'Roboto', sans-serif;
 }
 
 #headers_with_pic {

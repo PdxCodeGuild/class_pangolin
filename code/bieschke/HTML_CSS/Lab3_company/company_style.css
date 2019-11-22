@@ -1,0 +1,235 @@
+:root {
+  --primary: #ddd;
+  --dark: black;
+  --light: #fff;
+  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}
+
+html {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--dark);
+}
+
+body {
+  background: #ccc;
+  margin: 30px 50px;
+  line-height: 1.5;
+}
+
+.btn {
+  background: var(--dark);
+  color: var(--light);
+  padding: 10px 22px;
+  text-decoration: none;
+  border: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 20px;
+}
+/*nav*/
+.main-nav ul {
+  display: grid;
+  grid-gap: 20px;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+/* styling for the nav buttons */
+.main-nav a {
+  background: var(--primary);
+  display: block;
+  text-decoration: none;
+  padding: 12px;
+  text-align: center;
+  color: var(--dark);
+  text-transform: uppercase;
+  font-size: 18px;
+  box-shadow: var(--shadow);
+}
+/*Hover highlight the nav buttons */
+.main-nav a:hover {
+  background: var(--dark);
+  color: var(--light);
+}
+
+/*Top container */
+.top-container {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-areas:
+    'showcase top-box-a'
+    'showcase top-box-b'
+    'showcase top-box-c';
+}
+
+/* Showcase */
+.showcase {
+  grid-area: showcase;
+  min-height: 700px;
+  background: url(img/Joel_paint.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+
+.showcase h1{ 
+  font-size: 64px;
+  color: red;
+  margin-bottom: 0;
+}
+
+.showcase p {
+  font-size: 22px;
+  color:  red;
+}
+
+/* Top box */
+.top-box {
+  /* background: var(--primary); */
+  min-height: 350px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.top-box .price {
+  font-size: 36px;
+  color:  red;
+}
+
+.top-box h4 {
+  font-size: 36px;
+  color:  red;
+}
+
+.top-box-a {
+  grid-area: top-box-a;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(img/Godflayer_Album2.jpg);
+  /* background: url(img/Godflayer_Album2.jpg) cover no-repeat center center; */
+  /* background: url(https://placecage.com/800/800); */
+}
+
+.top-box-b {
+  grid-area: top-box-b;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(img/Godflayer_Album2.jpg);
+  /* background: url(img/Godflayer_Album2.jpg) cover no-repeat center center; */
+}
+
+.top-box-c {
+  grid-area: top-box-c;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url(img/Godflayer_Album2.jpg);
+  /* background: url(img/Godflayer_Album2.jpg) cover no-repeat center center; */
+}
+
+/* Boxes */
+/* grid-template-columns allows flexibility in the number of boxes below showcase,
+so long as there is at least one and it works at 200px*/
+.boxes {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.box {
+  min-height: 250px;
+  text-align: center;
+  padding: 24px 32px;
+  box-shadow: var(--shadow);
+}
+
+/* Info */
+.info {
+  background: var(--primary);
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 48px
+}
+
+/* Portfolio */
+.portfolio {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.portfolio img {
+  width: 100%;
+  box-shadow: var(--shadow);
+}
+
+footer {
+  margin-top: 32px;
+  background: var(--dark);
+  color: var(--light);
+  text-align: center;
+  padding: 16px;
+}
+
+/* Media query section */
+@media(max-width: 700px) {
+  .top-container {
+    grid-template-areas:
+    'showcase showcase showcase'
+    'top-box-a top-box-b top-box-c';
+  }
+
+  .main-nav ul {
+    grid-template-columns: 1fr;
+  }
+  .info {
+    grid-template-columns: 1fr;
+  }
+
+  .info .btn {
+    display: block;
+    text-align: center;
+    margin: auto;
+  }
+}
+
+@media(max-width: 500px) {
+  .top-container {
+    grid-template-areas:
+    'showcase'
+    'top-box-a'
+    'top-box-b' 
+    'top-box-c';
+  }
+
+  .main-nav ul {
+    grid-template-columns: 1fr;
+  }
+  .info {
+    grid-template-columns: 1fr;
+  }
+
+  .info .btn {
+    display: block;
+    text-align: center;
+    margin: auto;
+  }
+}
