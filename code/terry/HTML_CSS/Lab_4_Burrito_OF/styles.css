@@ -1,0 +1,44 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: blanchedalmond;
+}
+
+.column {
+    display: flex;
+    align-items: center;
+}
+
+.left_col {
+    align-self: flex-start;
+}
+
+.title_text {
+    font-size: large;
+    font-weight: lighter;
+    margin: 4px;
+}
+
+.field_label {
+    font-size: medium;
+    font-weight: lighter;
+    padding: 10px;
+}
+
+.order_form {
+    padding: 10px;
+    background-color: bisque;
+}
+
+.legend {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: larger;
+    font-weight: bold;
+}
+
+.billing {
+    padding: 10px;
+}
+
+.billing_input {
+    margin: 2px;
+}

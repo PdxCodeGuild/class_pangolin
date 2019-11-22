@@ -1,0 +1,142 @@
+<!Lab3> 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible"
+  content="ie=edge">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="company_style.css">
+  <script src="https://kit.fontawesome.com/8476921bf2.js" 
+  crossorigin="anonymous"></script>
+  <title>GODFLAYER</title>
+</head>
+
+
+<style>
+.item1 { grid-area: header; }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: links; }
+.item5 { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main links links'
+    'menu footer footer footer footer footer';
+  grid-gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+</style>
+
+<body>
+  <div class="wrapper">
+    <!--Nav-->
+    <nav class="main-nav">
+      <ul>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">About</a>
+        </li>
+        <li>
+          <a href="#">Music</a>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+        </li>
+      </ul>  
+      </nav>
+
+      <section class="top-container">
+        <header class="showcase">
+          <h1>The Official Site of Godflayer</h1>
+          <p>MAKE DEATH METAL THRASHY AGAIN</p>
+        </header>
+        <div class="top-box top-box-a">
+          <h4>Buy the record now!</h4>
+          <p class="price">$20</p>
+          <a href="" class="btn">Buy Now</a>
+          <!--<img src="img/Godflayer_Album - Copy.jpg" alt="">-->
+        </div>
+        <div class="top-box top-box-b">
+            <h4>Buy the album now!</h4>
+            <p class="price">$12</p>
+            <a href="" class="btn">Buy Now</a>
+        </div>
+        <div class="top-box top-box-c">
+            <h4>Listen on Spotify!</h4>
+            <a href="" class="btn">Spotify</a>
+        </div>
+      </section>
+
+      <!--Boxes-->
+      <section class="boxes">
+        <div class="box">
+            <i class="fas fa-angry fa-5x"></i>
+            <h3>Guitars</h3>
+            <p>GEAR</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-angry fa-5x"></i>
+            <h3>Basses</h3>
+            <p>GEAR</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-angry fa-5x"></i>
+            <h3>Vocals</h3>
+            <p>GEAR</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-angry fa-5x"></i>
+            <h3>Drumz</h3>
+            <p>GEAR</p>
+        </div>
+      </section>
+
+      <!--Info-->
+      <section class="info">
+        <img src="img/Godflayer_Logo.jpg" alt="">
+        <div>
+          <h2>Heavy Metallllllllllll!!!!</h2>
+          <p>VISCERAL THERAPY SINGLE OUT NOW</p>
+          <a href="#" class="btn">Learn More</a>
+        </div>
+      </section>
+
+      <!--Portfolio-->
+      <!-- Replace these with pics of Joel rocking ASAP -->
+      <!--Size doesn't matter, images are contained by the container (brilliant!)-->
+      <section class="portfolio">
+        <img src="https://source.unsplash.com/random/200x200" alt="">
+        <img src="https://source.unsplash.com/random/201x200" alt="">
+        <img src="https://source.unsplash.com/random/202x200" alt="">
+        <img src="https://source.unsplash.com/random/203x200" alt="">
+        <img src="https://source.unsplash.com/random/204x200" alt="">
+        <img src="https://source.unsplash.com/random/205x200" alt="">
+        <img src="https://source.unsplash.com/random/206x200" alt="">
+      </section>
+
+      <!--Footer-->
+      <footer>
+        <p>Godflayer &copy; 2019</p>
+      </footer>
+
+  </div>
+ <!--Wrap end-->
+
+</body>
+</html>

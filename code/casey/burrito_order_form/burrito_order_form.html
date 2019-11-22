@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BURRITO ORDER FORM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Alata|Reem+Kufi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"/>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <main>
+    <header>
+      <h1>BURRITO ORDER FORM</h1>
+      <img src="burrito.jpg">
+    </header>
+  <body background="cuttingboard2.jpg">
+    <form action="http://webhook.site/b06b1a68-a094-41cb-8632-dd3cb1edb73c" method="post">  
+      <h3>Customize your order!</h3>
+      <fieldset>
+        <legend>Ingredients</legend>
+        
+        <label id="tortilla-choice">Style of Tortilla:</label>
+        <div id="tortilla-radios">
+          <input id="tortilla-white-flour" type="radio" name="choice" value="white-flour" required><label for="tortilla-white-flour">White Flour</label><br>
+          <input id="tortilla-wheat-flour" type="radio" name="choice" value="wheat-flour" required><label for="tortilla-wheat-flour">Wheat Flour</label><br>
+          <input id="tortilla-spinach" type="radio" name="choice" value="spinach" required><label for="tortilla-spinach">Spinach</label><br>
+          <input id="tortilla-corn" type="radio" name="choice" value="corn" required><label for="tortilla-corn">Corn</label><br><br>
+        </div>
+        
+        <label id="rice-choice">Rice:</label>
+        <div id="rice-radios">
+          <input id="white-rice" type="radio" name="choice" value="white-rice" required><label for="white-rice">White Rice</label><br>
+          <input id="brown-rice" type="radio" name="choice" value="brown-rice" required><label for="brown-rice">Brown Rice</label><br><br>
+        </div>
+        
+        <label id="beans-choice">Beans?</label>
+        <div id="beans-radios">
+          <input id="pinto-beans" type="radio" name="choice" value="pinto-beans" required><label for="pinto-beans">Pinto Beans</label><br>
+          <input id="black-beans" type="radio" name="choice" value="black-beans" required><label for="black-beans">Black Beans</label><br><br>
+        </div>
+
+        <label for="protein">Choose your protein:</label><br>
+        <select id="protein" name="protein" required>
+          <option value="" disabled selected>Available options</option>
+          <option value="carnitas">Carnitas</option>
+          <option value="chicken">Chicken</option>
+          <option value="sofritas">Sofritas (tofu)</option>
+          <option value="none">None</option>
+        </select><br><br>
+        
+        <div>
+          <label for="extras">Extras</label><br>
+          <input type="checkbox" name="cheese" value="cheese">Cheese<br>
+          <input type="checkbox" name="sour-cream" value="sour-cream">Sour Cream<br>
+        </div>
+      </fieldset>
+
+
+      <fieldset>
+        <legend>Personal Information</legend>
+        
+        <div class="grid-form-container">
+          <label for="username">Username (at least 6 characters):</label><br>
+          <input id="username" name="username" type="text" pattern="[A-Za-z0-9]{6}" title="Username" required><br>
+          <label for="password">Password (at least 6 characters):</label><br>
+          <input id="password" name="password" type="text" pattern="[A-Za-z0-9]{6}" title="Password" required><br>
+          <label for="Firstname">Firstname:</label><br>
+          <input id="firstname" name="firstname" type="text" pattern="[A-Za-z]{6}" title="Firstname" required><br>
+          <label for="lastname">Lastname:</label><br>
+          <input id="lastname" name="lastname" type="text" pattern="[A-Za-z]{6}" title="Lastname" required><br>
+          <label for="email">Email:</label><br>
+          <input id="email" name="email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" title="Email" required><br>
+          <label for="phone">Phone Number:</label><br>
+          <input id="phone" name="phone" type="email" pattern="[789][0-9]{9}" title="Phone Number" required><br>
+          <label for="date-of-birth">Date of Birth:</label><br>
+          <input class="datepicker" name="date" type="text" title="Date of Birth" readonly required><br>
+          <label for="ssn">Social Security Number:</label><br>
+          <input id="ssn" name="ssn" type="email" pattern="\d{3}[\-]\d{2}[\-]\d{4}" title="Social Security Number" required><br>
+          <label for="street">Street Address:</label><br>
+          <input id="street" name="street" type="text" pattern="[A-Za-z0-9]" title="Street Address" required><br>
+          <label for="city-state">City/State:</label><br>
+          <input id="city-state" name="city-state" type="text" pattern="^([a-zA-Z ]+)(?:,([ A-Z]{3,200}))$" title="City/State" required><br>
+          <label for="zipcode">Zipcode:</label><br>
+          <input id="zipcode" name="zipcode" type="text" pattern="[0-9]{5}" title="Zipcode" required><br><br>
+        </div>
+        <div class="grid-form-container">
+        <input type="submit" value="Confirm Details & Place Your Order">
+        </div>
+      </fieldset>
+    </form>
+  </body>
+  <footer>
+    &copy; Decent Burritos 2019
+  </footer>
+</html>
