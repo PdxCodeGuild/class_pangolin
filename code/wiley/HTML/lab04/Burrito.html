@@ -49,25 +49,63 @@
                                     <option value="refried">Refried</option>
                                 </select>
                             </div>
-                            <div id="toppings" class="order">toppings
-                                <input type="checkbox" id="cheese" name="cheese">
+                            <div id="toppings" class="order"><h2>toppings</h2>
                                 <label for="cheese">Cheese</label>
-                                <input type="checkbox" id="pico" name="pico">
+                                <input type="checkbox" id="cheese" name="cheese">       
                                 <label for="pico">Pico</label>
-                                <input type="checkbox" id="peppers" name="peppers">
+                                <input type="checkbox" id="pico" name="pico">                              
                                 <label for="peppers">Peppers</label>
-                                <input type="checkbox" id="crema" name="crema">
+                                <input type="checkbox" id="peppers" name="peppers">                               
                                 <label for="crema">Crema</label>
-                                <input type="checkbox" id="lettuce" name="lettuce">
+                                <input type="checkbox" id="crema" name="crema">                                
                                 <label for="lettuce">Lettuce</label>
-                                
+                                <input type="checkbox" id="lettuce" name="lettuce">                            
                                 </div>
                             </set> 
                         </section>
                     </div>
                     <div id="bottom-side" class="item">
-                        Personal Info Submission Area
-                        <button type="submit">Submit</button></div>
+                        <div id="user" class="validation">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" pattern="\w{6,}" title="Username" placeholder="Username" required/>
+                        </div>
+                        <div id="pass" class="validation">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" pattern="([A-Za-z0-1]{6,})" title="User Password"  required/>
+                        </div>
+                        <div id="fullname" class="validation"><label for="name">Full name:</label>
+                            <input type="text" id="name" name="name" pattern="([A-Za-z]{2,}\s[A-Za-z]{3,})" title="First name, Last name" placeholder="First Last" required/>
+                        </div>
+                        <div id="useremail" class="validation">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" title="Email Address"  required/></div>
+                        <div id="phonenum" class="validation">
+                            <label for="phone">Phone Number:</label>  
+                            <input type="text" id="phone" name="phone" pattern="[0-9]{3}[\-\s][0-9]{3}[\s\-][0-9]{4}" placeholder="xxx-xxx-xxxx" required/>
+                        </div>
+                        <div id="dob" class="validation">
+                            <label for="birth">Date of Birth: </label>
+                            <input type="date" id="birth" name="birth" max="2019-1-1" required/>
+                        </div>
+                        <div id="social" class="validation">
+                            <label for="ssn">Social Security Number:</label>
+                            <input type="text" id="ssn" name="Social" pattern="[0-9]{3}[\s\-][0-9]{2}[\s\-][0-9]{4}" placeholder="optional"/>
+                        </div>
+                        <div id="streetadd" class="validation">
+                            <label for="street">Street Address:</label>
+                            <input type="text" id="street" name="address" pattern="[0-9]{1,}\s[A-Za-z]{1,}\s[A-Za-z]{1,}" placeholder="Street Address" required/>
+                        </div>
+                        <div id="stateadd" class="validation">
+                            <label for="city">City, State, Zip</label>
+                            <input type="text" id="city" name="city-state-zip" pattern="[A-Za-z]{2,}\s[A-Za-z]{2,}\s[0-9]{5}" placeholder="City State Zip" required/>
+                        </div>
+                        <div id="submitbutt" class="validation">
+                            <button type="submit" id="submit">Submit</button>
+                        </div>
+
+
+                        
+                    </div>
                 </fielset>
             </form>
         </div>

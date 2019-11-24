@@ -1,4 +1,4 @@
-# lab_23.py v1
+# lab_23.py v3
 # CSV
 # Jeff Smith
 from os.path import dirname, abspath, join
@@ -26,37 +26,37 @@ new_color = input('Enter the new color: ',)
 
 contact_list.append({'Name': new_name, 'Address': new_addr, 'Phone Number': new_phone, 'Favorite Fruit': new_fruit, 'Favorite Color': new_color})
 
-print(contact_list)
+# print(contact_list)
 
-def retrieve():
-    '''Retrieve a record:'''
-    select = input('Who would you like to review? ').lower()
-    display = []
-    for entry in contact_list:
-        if entry['Name'].lower().find(select) >= 0:
-            display.append(entry)
-    print(display)     
-retrieve()
+# def retrieve():
+#     '''Retrieve a record:'''
+#     select = input('Who would you like to review? ').lower()
+#     display = []
+#     for entry in contact_list:
+#         if entry['Name'].lower().find(select) >= 0:
+#             display.append(entry)
+#     print(display)     
+# retrieve()
 
     #'''Update a record: ask the user for the contact's name, then for which attribute of the user they'd like to update and the value of the attribute they'd like to set.'''
 
-def modify():
-    '''Retrieve a record:'''
-    select = input('Who would you like to change? ').lower()
-    update = input('Which section would you like to update? ').lower()
-    change = input('What is the new information? ').lower()
+# def modify():
+#     '''Retrieve a record:'''
+#     select = input('Who would you like to change? ').lower()
+#     update = input('Which section would you like to update? ').lower()
+#     change = input('What is the new information? ').lower()
 
-    for entry in contact_list:
-        if entry['Name'].lower().find(select) >= 0:
-            for key in entry.keys():
-                if key.lower() == update:
-                    entry[key] = change
+#     for entry in contact_list:
+#         if entry['Name'].lower().find(select) >= 0:
+#             for key in entry.keys():
+#                 if key.lower() == update:
+#                     entry[key] = change
 
-    for entry in contact_list:
-        if entry['Name'].lower().find(select) >= 0:
-            print(entry)
+#     for entry in contact_list:
+#         if entry['Name'].lower().find(select) >= 0:
+#             print(entry)
 
-modify()
+# modify()
 
 '''Delete a record: ask the user for the contact's name, remove the contact with the given name from the contact list.'''
 
@@ -69,3 +69,6 @@ def delcon():
         print(contact_list)
 
 delcon()
+############################# Begin Version 3 code
+
+write.csv

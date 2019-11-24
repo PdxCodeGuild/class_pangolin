@@ -3,12 +3,24 @@
 # Jeff Smith
 
 contacts = {}
-for line in open('contacts.csv', 'r').readlines()[0:]:
-    line = line.replace('\n', '')
-    line = line.split(',')
-    contacts[line[0]] = line[1:] 
+with open('contacts.csv', 'r') as file:
+    lines = file.read().split('\n')
+    keys = lines[0].split(',')
+print(keys)
 
-print(contacts)
+for line in lines[1:]:
+    values = line.split(',')
+print(list(zip(keys, values)))
+
+for line in lines[1:]:
+    values = line.split(',')
+
+print(dict(zip(keys, values)))
+contact_list = []
+
+
+contact_list.append(dict(zip(keys, values)))
+print(contact_list)
 ####################################
 '''Version 2 - Implement a CRUD REPL
 
@@ -29,3 +41,4 @@ print(contacts)
     # *Retrieve a record: ask the user for the contact name, find the user with the given name, and display their information
     # *Update a record: ask the user for the contact name, then for which attribute of the user they want to update and the value of the attribute they want to set.
     # *Delete a record: ask the user for the contact name, remove the contact with the given name from the contact list.'''
+    

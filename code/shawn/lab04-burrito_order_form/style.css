@@ -1,17 +1,11 @@
 /* font-family: 'Holtwood One SC', serif;     headings
 font-family: 'Raleway', sans-serif;         paragraphs */
 
-/* dark blue: #5061AD
-ligh blue: #8CA1FA
-red orange: #FA450C
-dark green: #81AD58
-light green: #8FC75B */
-/* 
-gray #9592A6
+/* gray #9592A6
 bluegray #8A92BF
 light brown #FAD2BB    background (for form?)
 med brown #8C5B3F
-dark brown #401201    text          */
+dark brown #401201    text           */
 html {
     box-sizing: border-box;
   }
@@ -19,15 +13,21 @@ html {
     box-sizing: inherit;
   }
 
+body {
+    background: linear-gradient(to bottom right, rgba(0,0,0,0), rgba(0,0,0,1)), radial-gradient( #8A92BF, #9592A6) ;
+}
+
 header, main {
-    margin: 6px;
+    margin: 24px;
     padding: 12px;
     border: 3px solid #81AD58;
+    background: #FAD2BB;
 }
 
 header {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 h1 {
@@ -35,6 +35,7 @@ h1 {
     margin-left: 12px;
     font-family: 'Holtwood One SC', serif;
     font-size: 3em;
+    color: #401201;
 }
 
 header img {
@@ -45,7 +46,8 @@ header img {
 main {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    font-family: 'Raleway', sans-serif;
 }
 
 main img {
@@ -54,16 +56,26 @@ main img {
 
 form {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
+    width: 70%;
 }
 
 form :last-child {
     align-self: flex-end;
 }
+/* 
+input[type="text"] {
+    width: 140px;
+}
+input[type="date"] {
+    width: 140px;
+} */
+
+
 #burrito-form {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 60%;
     grid-template-rows: auto;
     grid-template-areas: 
     "lab-tort cho-tort"
@@ -74,6 +86,7 @@ form :last-child {
     justify-items: start;
     column-gap: 6px;
     row-gap: 6px;
+    align-items: center;
 }
 
 #tortilla-label {
@@ -133,8 +146,101 @@ form :last-child {
     "lab-bday inp-bday"
     "lab-ssn inp-ssn"
     "lab-stre inp-stre"
-    "lab-city inp-city";
+    "lab-city inp-city"
+    ". ."
+    ". ."
+    ". ."
+    "submit submit";
+
     justify-items: start;
+    align-items: center;
     column-gap: 6px;
     row-gap: 6px;
+}
+
+#personal-form label[for="username"]{
+    grid-area: lab-usnm;
+    justify-self: end;
+}
+
+#username {
+    grid-area: inp-usnm;
+}
+
+#personal-form label[for="password"]{
+    grid-area: lab-pass;
+    justify-self: end;
+}
+
+#password {
+    grid-area: inp-pass;
+}
+
+#personal-form label[for="name"]{
+    grid-area: lab-name;
+    justify-self: end;
+}
+
+#name {
+    grid-area: inp-name;
+}
+
+#personal-form label[for="email"]{
+    grid-area: lab-emal;
+    justify-self: end;
+}
+
+#email {
+    grid-area: inp-emal;
+}
+
+#personal-form label[for="phone"]{
+    grid-area: lab-phon;
+    justify-self: end;
+}
+
+#phone {
+    grid-area: inp-phon;
+}
+
+#personal-form label[for="birthday"]{
+    grid-area: lab-bday;
+    justify-self: end;
+}
+
+#birthday {
+    grid-area: inp-bday;
+}
+
+#personal-form label[for="ssn"]{
+    grid-area: lab-ssn;
+    justify-self: end;
+}
+
+#ssn {
+    grid-area: inp-ssn;
+}
+
+#personal-form label[for="street"]{
+    grid-area: lab-stre;
+    justify-self: end;
+}
+
+#street {
+    grid-area: inp-stre;
+}
+
+#personal-form label[for="city"]{
+    grid-area: lab-city;
+    justify-self: end;
+}
+
+#city {
+    grid-area: inp-city;
+}
+
+input[type="submit"] {
+    grid-area: submit;
+    width: 100%;
+    margin-top: 36px;
 }
