@@ -1,0 +1,89 @@
+/* css form for burrito lab */
+
+html { 
+background: url(burrito.jpg) no-repeat center center fixed; 
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+  
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+h1 {
+    color: whitesmoke;
+    text-shadow: 0 0 15px black;
+    text-align: center;
+}
+/*-------------- general Body styling---------- */
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 0 0 15px whitesmoke;
+    padding: 20px;
+}
+/* ----------- form styling------------ */
+form {
+    /* -ms-flex-align: center; */
+    text-align: center;
+    justify-content: space-around;
+    -ms-flex-align: center;
+    color: black;
+    text-shadow: 0 0 15px whitesmoke;
+}
+
+/* ----------- feildset styling for account-ifo ------------ */
+fieldset#account-info { 
+    display: inline-block;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 35%;
+    background: url(parchment.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* ---------- feildset styling for personal-info */
+fieldset#personal-info {
+    display: inline-block; 
+    border-radius: 8px;
+    width: 40%;
+    background: url(parchment.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/*------- feildset styling for customer-address------------ */
+fieldset#customer-address { 
+    display: inline-block;
+    flex-flow: column;
+    border-radius: 8px;
+    width: 40%;
+    background: url(parchment.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* ------- feildet styling for order------------- */
+fieldset#order { 
+    display: inline-block;
+    border-radius: 8px;
+    width: 40%;
+    background: url(parchment.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+/*--------- footer styling --------  */
+footer{
+    text-align: center;
+    text-shadow: 0 0 15px whitesmoke;
+}
