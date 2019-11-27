@@ -1,14 +1,26 @@
-<h1>Latest Question List</h1>
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet"  href="{% static 'polls/style.css' %}"/>
+    </head>
+    <body>
+        <h1>Question List</h1>
 
-{% if latest_question_list %}
-    <ul>
-        {% for question in latest_question_list %}
-            <li><a href="/poll/{{ question.id }}/">{{ question.question_text }}</a></li>
-        {% endfor %} 
-    </ul>
+        {% if latest_question_list %}
+            <ul>
+                {% for question in latest_question_list %}
+                    {% comment %} This is the manual way of specifying path...not preferred in case you need to change the url later {% endcomment %}
+                    {% comment %} <li><a href="/poll/{{ question.id }}/">{{ question.question_text }}</a></li> {% endcomment %}
 
-{% else %}
-    <p>No polls are available</p>
+                    {% comment %} Shortcut method...tell Django to get a URL, point it to the URL's name attribute, then send it the question id {% endcomment %}
+                    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+                {% endfor %} 
+            </ul>
 
-{% endif %}
+        {% else %}
+            <p>No polls are available</p>
 
+        {% endif %}
+    </body>
+</html>
