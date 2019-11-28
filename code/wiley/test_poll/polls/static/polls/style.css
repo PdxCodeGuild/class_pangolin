@@ -1,0 +1,7 @@
+a {
+    color: coral;
+}
+
+body {
+    background: linear-gradient(rgba(255,255,255,.3), rgba(255,255,255,.3)), url("giphy.gif") repeat;
+}
