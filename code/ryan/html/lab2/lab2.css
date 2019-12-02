@@ -1,0 +1,146 @@
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+p {
+  text-align: center;
+  margin-top: 0;
+}
+
+.title {
+  letter-spacing: 1em;
+}
+
+h1 {
+  margin-bottom: 0px auto;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  font-family: 'Metamorphous', cursive;
+}
+
+h2 {
+  background: rgba(167, 177, 181, .5);
+  width: 60%;
+  margin: 10px auto 10px;
+}
+
+p {
+  font-family: 'Nanum Gothic', sans-serif;
+} 
+
+nav p{
+    margin: 0 auto;
+    padding: 3px;
+    background: rgba(255, 255, 255, .2);
+    color: #CEE4F2;
+    width: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.7);
+}
+
+img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 10px auto;
+    border: 3px solid rgba(0, 0, 0, 0.5);
+}
+
+body {
+  background-image:
+  linear-gradient(
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.7)
+  ),
+  url("brickwall.jpg");
+}
+
+header {
+  background-image: 
+  linear-gradient(
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.6)
+  ),
+  url("bandana.jpeg");
+  color: #CEE4F2;
+}
+
+#flex-section div {
+  border: 5px solid rgba(0, 0, 0, 0.5);
+  margin: 10px auto 10px;
+  padding: 5px;
+  background-image: 
+  linear-gradient(
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.6)
+  ),
+  url("bandana.jpeg");
+  color: #CEE4F2;
+  box-shadow: 5px 5x rgba(0, 0, 0, .5);
+  width: 70%;
+}
+
+a {
+  color: #CEE4F2;;
+  margin: 5px;
+  text-decoration: none;
+}
+
+header, main, footer {
+  border: 5px solid rgba(0, 0, 0, 0.5);
+  margin: 10px 10px;
+  padding: 5px;
+}
+
+footer {
+  background-image: 
+  linear-gradient(
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.6)
+  ),
+  url("bandana.jpeg");
+  color: #CEE4F2;
+  }
+
+@media (min-width: 690px) {
+  header, main, footer {
+    width: 650px;
+    margin: 10px auto;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  nav p {
+    width: auto;
+  }
+
+  #flex-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  #flex-section div {
+    width: 40%;
+  }
+
+}
+
+@media (min-width: 960px) {
+  header, main, footer {
+    width: 920px;
+  }
+
+  #flex-section div {
+    width: 30%;
+  }
+    
+}
