@@ -1,0 +1,118 @@
+html {
+  box-sizing: border-box;
+}
+  *, *:before, *:after {
+    box-sizing: inherit;
+}
+   
+.grid-container {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-areas:
+  'header header header'
+  'logo1 info info logo2'
+  'logo1 info info logo2'
+  'logo1 info2 info2 logo2'
+  'logo1 info2 info2 logo2'
+  'footer footer footer';
+  grid-gap: 10px;
+  background-color: red;
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+}
+
+.grid {
+  display: flex;
+  grid-template-columns: 150px auto 150px;
+  /* grid-template-rows: repeat(3, 100px); */
+  grid-gap: 10px;
+  background-color: red;
+}
+
+header {
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  /* grid-column: 1 / 4; */
+  background-color: red;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.info {
+  grid-area: 'info';
+  margin: auto;
+  max-width: 800px;
+  padding: 10px 10px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 70%;  
+  background-color: red;
+}
+
+.info2 {
+  grid-area: 'info';
+  margin: auto;
+  max-width: 800px;
+  padding: 10px 10px;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  width: 70%;  
+  background-color: red;
+}
+
+.logo1 img {
+  grid-area: 'logo1';
+  max-width: 250px;
+  max-height: 500px;
+  justify-content: left;
+  width: 20%;
+  background-color: black;
+}
+
+.logo2 img {
+  grid-area: 'logo2';
+  max-width: 250px;
+  max-height: 500px;
+  justify-content: right;
+  width: 20%;
+  background-color: black
+}
+
+/* 
+.grid > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+
+/* On smaller screens, where height is less than 450px, 
+change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+.logo1 {padding-top: 15px;}
+.logo2 {padding-top: 15px;}
+}
+
+  /* medium screen */
+@media all and (min-width: 600px) {
+/* if screen > 600px, logos appears alongside blog getting 1/3rd of space */
+.info { flex: 2 0px; }
+.logo1 { flex: 1 0px; }
+.logo2 { flex: 1 0px; }
+}
+
+/* Large screens */
+@media all and (min-width: 800px) {
+/* On bigger screens, logos now only gets 1/4 of space */
+.info { flex: 3 0px; }
+.logo1 { flex: 1 0px; }
+.logo2 { flex: 1 0px; }
+
+}
