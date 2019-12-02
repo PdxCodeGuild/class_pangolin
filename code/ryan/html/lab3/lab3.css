@@ -1,0 +1,272 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: rgba(35, 42, 45, 0.974);
+  font-family: 'Open Sans Condensed', sans-serif;
+
+}
+
+header {
+  margin: 0;
+  padding: 20px 0 0;
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, .5),
+      rgba(0, 0, 0, .4)
+    ),
+  url(wood.jpeg);
+  color: rgba(255, 255, 255, 0.8);
+  position: sticky;
+  top: 0;
+}
+
+main {
+    /* linear-gradient(
+      rgba(0,0,0,.7),
+      rgba(0,0,0,.7)
+    ),
+  url(background.jpeg); */
+  /* padding: 20px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  letter-spacing: 4px;
+  
+}
+
+footer {
+  background: lightblue;
+  padding: 20px;
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, .5),
+      rgba(0, 0, 0, .4)
+    ),
+  url(wood.jpeg);
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+footer p {
+  margin: 10px; 
+  color: rgba(255, 255, 255, 0.5);
+}
+
+
+.main-div {
+  background: rgba(196, 185, 185, .3);
+  width: 90%;
+  margin: 10px 20px;
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, .5),
+      rgba(255, 255, 255, .5)
+    ),
+  url(wood.jpeg);
+  display: flex; 
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+#sidebar {
+  display: none;
+}
+#title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2em;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+  font-family: 'Rye', cursive;
+  letter-spacing: 5px;
+}
+
+#motto {
+  font-family: 'Rochester', cursive;
+  font-size: 1.5em;
+  letter-spacing: 3px;
+  margin: 10px 0 0;
+  
+}
+
+#nav-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 5px;
+}
+
+nav a {
+  padding: 20px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.3em;
+  }
+
+.main-div img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 10px;
+  padding: 10px;
+  /* width: 60%; */
+  order: -1;
+}
+
+h3 {
+  font-family: 'Rye', cursive;
+  margin: 0 0 10px;
+}
+
+.main-div p {
+  margin: 0 20px 20px;
+  text-align: center;
+}
+
+#rolling-pic {
+  padding: 10px 70px;
+}
+
+#social-footer img {
+  width: 50px;
+  margin: 10px;
+  }
+
+@media (min-width: 690px) {
+  #sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 175px;
+  }
+  #sidebar nav {
+    display: none;
+  }
+  main {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+ .main-div {
+   width: 80%;
+   margin-left: 0;
+  }
+
+  #motto {
+    margin: 10px 0 0;
+  }
+
+ #social img {
+  width: 50px;
+  margin: 10px;
+  }
+
+  #social p {
+    text-align: end;
+  }
+
+  #social-footer {
+    display: none;
+  }
+
+  #social {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    /* font-family: 'Rochester', cursive; */
+    font-size: 1.5em;
+    color: black;
+  }
+
+  #title {
+    font-size: 1.5em;
+  }
+}
+
+ @media (min-width: 960px) {
+   main {
+     flex-direction: row;
+     align-items: flex-start;
+   }
+  .main-div {
+    width: 80%;
+    margin-left: 0;
+  }
+
+  header {
+    position: static;
+    /* width: 70%; */
+    margin: 0 auto;
+  }
+
+  #sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+  }
+
+  #sidebar nav {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #nav-container {
+    display: none;
+  }
+
+  nav a {
+    text-align: end;
+    padding: 10px 0 5px 20px;
+    margin-top: 10px;
+    font-size: 1.3em;
+  }
+  #social {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    /* font-family: 'Rochester', cursive; */
+    font-size: 1.5em;
+    color: black;
+  }
+
+  #title {
+    font-size: 2em;
+  }
+
+}
+
+  
+
+  
