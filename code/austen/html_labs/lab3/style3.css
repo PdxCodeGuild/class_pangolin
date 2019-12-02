@@ -1,0 +1,178 @@
+html {
+    box-sizing: border-box;
+    background-image: url(paper.jpg);
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+main, header{
+    background-image: url(paper.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+header{
+    border: 5px ridge blue
+}
+.top-section{
+    color: black;
+    text-align: center;
+    padding:24px;
+    vertical-align: middle;
+    margin-top: 6px;
+    background-image: url(banner.jfif)
+}
+.lower-section {
+
+    display:grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "why is"
+        "this so"
+        "hard today";
+    margin: auto;
+    justify-items: center;
+    grid-column-gap:10px;
+    grid-row-gap:10px;
+    /* background-color: violet; */
+    flex-wrap: nowrap;
+    /* border: ridge yellow; */
+    text-align: center;
+    padding: 10px;
+    background-image: url(paper.jpg)  ;
+} 
+#pic1{
+    grid-area: why;
+    margin:20px;
+}
+#pic2{
+    grid-area: this;
+    margin:20px;
+}
+#pic3{
+    grid-area: hard;
+    margin:20px;
+}
+.our-mision{
+    grid-area: is;
+    align-self: center;
+    margin-right: 20px;
+    background-color:gray
+    
+   
+}
+.projects{
+    grid-area: so;
+    align-self: center;
+    margin-right: 20px;
+    background-color:rgb(160, 238, 212);
+}
+.contact{
+    grid-area: today;
+    align-self: center;
+    margin-right: 20px;
+    background-color:gray;
+}
+.our-mission{
+   position: relative;
+}
+.our-mission,img{
+    display: inline-block;
+    vertical-align: top;
+}
+@media (min-width: 1024px){
+    header, main, footer{
+        width: 1020px;
+    } 
+    .flex-nav{
+        display:flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: stretch;
+        padding: 10px;
+    }
+    .middle-section{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        margin-top: 20px;
+        /* background-color: rgb(191, 202, 202); */
+        /* border: ridge red; */
+    }
+    .item{
+        max-width: 50%;
+        text-align: start;
+        /* margin-top: 20px; */
+        border: 5px solid rgb(87, 87, 87);
+        background-color: rgb(248, 245, 245);
+        padding: 10px;
+        margin: 15px;
+    }
+    .item2{
+        display:grid;
+        grid-template-columns:90px 90px 90px;
+        grid-template-rows: auto;
+        grid-template-areas: 
+            "thing1 thing2 thing3";
+        margin: auto;
+        align-self: center;
+        /* background-color: violet; */
+        grid-column-gap: 10px;
+        flex-wrap: nowrap;
+        /* height: 90px; */
+        background-color: rgb(248, 245, 245);
+        border: 5px solid rgb(87, 87, 87);
+        padding: 10px;
+        margin: 15px;
+        /* border: ridge yellow; */
+    }
+    .hello{
+        grid-area: thing1;
+        align-self: center;
+        height: 100px;
+        background-image: url(smile.jfif);
+        background-size: cover;
+    }
+    .click{
+        grid-area: thing2;
+        align-self: center;
+        height: 100px;
+        background-image: url(tooth.png);
+        background-size: cover;
+    }
+    .click{
+        /* padding: 6px; */
+    }
+    .here{
+        grid-area: thing3;
+        align-self: center;
+        height:100px;
+        background-image: url(toothbrush.jfif);
+        background-size: cover;
+    }
+    .click{
+    }
+}
+    .text-block1,.text-block2,.text-block3{
+        position: absolute;
+        bottom: -100px;
+        left: 50px;
+        mix-blend-mode: difference;
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .text-block2{
+        bottom: -400px;
+        left: 50px;
+    }
+    .text-block3{
+        bottom: -700px;
+        left: 50px;
+    }
+}
+
+

@@ -1,0 +1,92 @@
+header{
+    /* background-image: url(header.jpeg); */
+    text-decoration: underline black;
+    text-align: center;
+    }
+main, header{
+    margin: 6px;
+}
+main img{
+    image-resolution: 25%;
+    width: 90%;
+    height: 100px;
+    margin: 20px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border: double black 10px;
+ 
+}
+
+#grid-form-container{
+    display: grid;
+    grid-template-columns:30% 25% 25% 25%;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "personal-info tortilla tortilla tortilla"
+        "personal-info rice beans protein"
+        "personal-info cheese cheese cheese";
+    column-gap: 6px;
+    row-gap: 6px;
+    /* justify-items: end; */
+    justify-content: start;
+    /* justify-self: end; */
+    margin-top: 6px;
+    background-color: rgb(218, 197, 170);
+}
+
+#personal-info{
+    grid-area: personal-info;
+    margin-right: 6px;
+    justify-items: center;
+    
+}
+
+#tortilla{
+    grid-area: tortilla;
+}
+#tortilla input{
+    margin: 3px;
+}
+#rice{
+    grid-area: rice;
+}
+#beans{
+    grid-area: beans;
+}
+#prtein{
+    grid-area: protein;
+}
+#cheese{
+    grid-area: cheese;
+}
+legend{
+    background-color: goldenrod;
+}
+input[type="text"]{
+    text-align: center;
+    width: 175px;
+    background-color: lightgoldenrodyellow;
+    /* margin-left: 3px; */
+}
+input[type="email"]{
+    text-align: center;
+    background-color: lightgoldenrodyellow;
+    width: 175px;
+}
+input[type="password"]{
+    text-align: center;
+    background-color: lightgoldenrodyellow;
+    width: 175px;
+}
+input[type="tel"]{
+    text-align: center;
+    background-color: lightgoldenrodyellow;
+    width: 175px;
+}
+input[type="date"]{
+    background-color: lightgoldenrodyellow;
+    width: 175px;
+}
+#personal-info{
+    margin-left: 6px;
+}

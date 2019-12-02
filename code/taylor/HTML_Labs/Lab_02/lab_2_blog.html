@@ -1,60 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Lab_2_blog</title>
+    <title>Document</title>
 </head>
     <body>
-        <div id="Box">
-            <div id="Banner">
-                <h1>Title Lobo href</h1>
-            </div> <!-- Banner -->
-    
-            <div id="Sidebar">
-                <p><strong>Some Text</strong></p>
-                
-                <ul>
-                    <li>Link 1</li>
-                    <li> Link 2</li>
-                    <li> Link 3</li>
-                    <li> Link 4</li>
-                    <li> Link 5</li>
-                </ul>
-                
-            </div> <!-- Sidebar -->
-                
-            <div id="Main">
-                <dl class="linkedlist">
-                <dt>Linked Title href</dt>
-                <dd>
-                    <p>Quote</p>
-                    <blockquote>
-                        <p>Quote From ARticle</p>
-                        <p>Quote From Article</p>
-                    </blockquote>
-                        <p>Blog Author Opinoin</p>
-                </dd>
-                </dl>
-        
-        <h2 class="dateline">Blog Post Date</h2>
-        
-                <dl class="linkedlist">
-                <dt>Linked Title href</dt>
-                <dd>e
-                        <p>Quote</p>
+        <div class="wrapper">
+                <nav role="full-horizontal">
+                    <ul style="padding-left: 0;">
+                      <li><a href="#"> Link 1</a></li>
+                      <li><a href="#"> Link 2</a></li>
+                      <li><a href="#"> Link 3</a></li>
+                      <li><a href="#"> Link 4</a></li>
+                      <li><a href="#"> Link 5</a></li>
+                    </ul>
+                  </nav>
+                 <aside class="aside aside-1">
+                    <div class="banner">
+                        <h1>Title For The Side</h1>
+                        <p><strong>More Text</strong></p>
+                    </div> <!-- Banner -->
+                </aside>
+            <!-- Latest Post Template-->
+            <article class="main">
+                <div class="main">
+                    <div class="post">
+                        <dl class="linkedlist">
+                        <!-- Images from http://lorempixel.com/ -->
+                        <img class="picky" src="./img3.jpg" alt="City" width="300" height="150">   
+                        <dt>Title For the Blog Post</dt>
+                            <dd>
+                                <p>Quote Snip It</p>
+                            <blockquote>
+                                <p>Hey Rambo, my class isn't for posers. This is aerobics. It's serious.</p>
+                                <p></p>
+                            </blockquote>
+                                <p>Some Text</p>
+                            </dd>
+                        </dl>
+                    </div>
+                     <!-- Begin Archive Post Template  -->
+                    <div class="post">
+                    <h4>Blog Post Date</h4>
+                        <dl class="linkedlist">
+                        <!-- Images from http://lorempixel.com/ -->
+                        <img src="./img2.jpg" alt="City" width="300" height="150">   
+                        <dt>Title For the Blog Post</dt>
+                            <dd>
+                                <p>Quote Snip It</p>
+                            <blockquote>
+                                <p>Idol only plays one way. Full throttle.</p>
+                                <p>Text Text Text, I like Text</p>
+                            </blockquote>
+                                <p>Some Text</p>
+                            </dd>
+                        </dl>
+                    </div>
+                    <!-- End Archive Post Template -->
+                    <!-- Begin Archive Post Template  -->
+                    <div class="post">
+                    <h4>Blog Post Date</h4>
+                    <dl class="linkedlist">
+                    <!-- Images from http://lorempixel.com/ -->
+                    <img src="./img1.jpg" alt="City" width="300" height="150">   
+                    <dt>Title For the Blog Post</dt>
+                        <dd>
+                            <p>Quote Snip It</p>
                         <blockquote>
-                            <p>Quote From ARticle</p>
-                            <p>Quote From Article</p>
+                            <p>Idol only plays one way. Full throttle.</p>
+                            <p>Text Text Text, I like Text</p>
                         </blockquote>
-                            <p>Blog Author Opinoin</p>
-                    </dd>
+                            <p>Some Text</p>
+                        </dd>
                     </dl>
-            <div id="Footer">
-            </div> <!--Footer -->
-            </div> <!-- Main -->
-        </div> <!-- Box -->
+                    </div>
+                    <!-- End Archive Post Template -->
+            </article>
+            <footer class="footer">Footer</footer>
+        </div>
     </body>
 </html>
