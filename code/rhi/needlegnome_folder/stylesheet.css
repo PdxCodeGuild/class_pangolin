@@ -23,7 +23,6 @@ html {
       font-family: 'Reem Kufi', serif;
   }
     .outer-col-1 {
-      /* background: lightgrey; */
       flex: 1;
       text-emphasis-color: black;
       text-shadow: 0 0 25px black;
@@ -57,12 +56,10 @@ html {
     }
 
     .inner-row aside {
-      /* background: lightgrey; */
       flex: 1;
     }
     header, footer {
       justify-content: center;
-      /* background: beige; */
       height: 20vh;
       text-emphasis-color: black;
       text-shadow: 0 0 25px black;
@@ -70,81 +67,6 @@ html {
     header, footer, article, nav, aside {
       padding: 1em;
     }
-  /* </style> */
-/* html {
-    box-sizing: content-box;
-}
-*, *:before, *:after {
-    margin: 0%;
-    padding: 0%;
-
-    box-sizing: content-box;
-}
-/* ---------- general styling for the body------------- */
-/* .body {
-    display: inline-block;
-    font-family: 'Alata', sans-serif;
-} */
-/* h1, h2, h3, h4, h5, h6 {
-    font-family: 'Reem Kufi', serif;
-}    */
-/* header h1, h4{
-    color: #818181;
-} */
-/* main {
-    position: relative;
-    height: auto;
-    width: auto;
-    background-color: black;
-    padding-top: 3px;
-    padding-bottom: 5px;
-    flex-wrap: wrap;
-    clear: inline-start;
-
-}  */
-/* main p {
-    padding: 3px 3px 3px 3px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: inline-block;
-   
-} */
-
-/* nav, header {
-    position: relative;
-    background-color: #111; /* Black*/
-    /* transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-  /* } */  
-  /* The navigation menu links */
-/* nav a, header h1 h4 {
-    padding: 8px 8px 8px 5px;
-    font-size: 25px;
-    color: #818181;
-    justify-content: center;
-    transition: 0.3s;
-    flex-wrap: wrap;
-  } */
-  /* When you mouse over the navigation links, change their color */
-/* nav a:hover {
-    color: #f1f1f1;
-  } */
-/* footer {
-    position: absolute;
-    bottom: 0;
-    background-color: black;
-    padding-top: 3px;
-    padding-bottom: 5px;
-   
-} */
-/* footer p{
-    padding: 3px 3px 3px 3px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: inherit;
-    flex-wrap: wrap;
-} */
 
 @media (min-width: 768px) {
     
