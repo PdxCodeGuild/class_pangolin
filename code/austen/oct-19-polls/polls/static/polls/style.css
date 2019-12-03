@@ -1,0 +1,36 @@
+a {
+    color:rgb(160, 35, 35);
+}
+h1 {
+    text-align: center;
+}
+body {
+    background: linear-gradient( rgba(255, 255, 255,.8),rgba(255, 255, 255,.5)), url("images/giphy.gif");
+}
+.home_page {
+    text-align: center;
+    list-style-position: inside;
+}
+    
+li {
+    margin: 10px;
+}
+.detail {
+    text-align: center;
+    list-style-position: inside;
+    background: url("images/second.gif");
+    background-size: cover;
+    height: 100%;
+    padding: 10px;
+  
+}
+.results {
+    text-align: center;
+    list-style-position: inside;
+    background: linear-gradient( rgba(255, 255, 255,.8),rgba(255, 255, 255,.05)), url("images/third.gif");
+    background-size: cover;
+    height: 100%;
+}
+input {
+    margin: 5px;
+}

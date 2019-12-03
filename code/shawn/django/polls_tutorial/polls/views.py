@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 # from django.http import HttpResponse, Http404, HttpResponseRedirect       # for functional views
 from django.http import HttpResponseRedirect
@@ -14,11 +15,13 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
-        return Question.objects.order_by('-pub_date')[:5]
+        return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]  # the list of data to send to HMTL template
         
 class DetailView(generic.DetailView):
     template_name = 'polls/details.html'
-    model = Question                                                        # this will look for 'pk' by default
+    
+    def get_queryset(self):
+        return Question.objects.filter(pub_date__lte=timezone.now())            # the list of data that will be used to search detail view
 
 class ResultsView(generic.DetailView):
     model = Question
