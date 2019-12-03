@@ -27,7 +27,7 @@ def hidden_add(request):
         return HttpResponseRedirect(reverse("list:index"))
 
     # create new item on list using input description
-    GroceryItem.objects.create(description_text=input_description, created_date=timezone.now(), completed_date=timezone.now(), is_completed=False)
+    GroceryItem.objects.create(description_text=input_description, created_date=timezone.now(), is_completed=False)
 
     # redirect to home
     return HttpResponseRedirect(reverse('list:index'))
