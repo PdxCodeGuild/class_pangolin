@@ -1,0 +1,12 @@
+a {
+    color: coral;
+}
+a:visited {
+    color: coral;
+}
+
+body {
+    background: linear-gradient(rgba(255,0,0,.75), rgba(0,0,0,.75)), url(img/crazy_cage.gif) center no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
