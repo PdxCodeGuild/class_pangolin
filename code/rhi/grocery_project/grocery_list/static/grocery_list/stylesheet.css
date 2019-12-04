@@ -1,0 +1,32 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-family: Roboto, sans-serif;
+    background: url(shopping-list.jpg) no-repeat center center fixed;
+    background-size: cover;
+    align-items: center;
+}
+
+
+
+.error-message {
+    color: green;
+}
+
+
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.item {
+    display: flex;
+    flex-direction: row
+}
