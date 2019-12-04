@@ -24,7 +24,7 @@
         <!-- Output shortened url -->
         {% if short_url %}
             <h5>Your shortened URL:</h5>
-            <p>{{short_url}}</p>
+            <p><a href="{% url 'url_shortener:go' short_url %}">localhost:8000/url_shortener/go/{{short_url}}</a></p>
         {% endif %}
         
     </body>
