@@ -1,0 +1,12 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static '/GroceryList/styles.css' %}">
+<h2>List of items</h2>
+
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}&nbsp;&nbsp;Is done:&nbsp;{{ choice.is_done }}</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'GroceryList:detail' question.id %}">Add another item.</a>
