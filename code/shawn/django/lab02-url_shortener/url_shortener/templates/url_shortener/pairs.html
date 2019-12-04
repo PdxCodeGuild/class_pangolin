@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Bootstrap -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'url_shortener/theme.css' %}" />
+
+    <title>URL Shortener</title>
+</head>
+
+<body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'url_shortener:submit_url' %}">URL Shortener</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{% url 'url_shortener:submit_url' %}">Submit URL</a></li>
+                    <li class="active"><a href="{% url 'url_shortener:pairs' %}">URL Pairs</a></li>
+                    <li><a href="{% url 'url_shortener:contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% for pair in pair_list %}
+        <section class="bg-info">
+        <h5><strong>URL Pair:</strong> &nbsp;&nbsp; <a href="{{pair.long_url}}">{{pair.long_url}}</a> &nbsp;&nbsp; <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> &nbsp;&nbsp; <a href="{% url 'url_shortener:go' pair.code %}">go/{{pair.code}}</a> </h5>
+        <p>Total number of hits: <strong>{{pair.hit_set.count}}</strong></p>
+        {% if pair.hit_set.all %}
+            <table class="table table-hover table-bordered bg-warning">
+                <tr>
+                    <th>Hit #</th>
+                    <th>IP Address</th>
+                    <th>Location</th>
+                </tr>
+
+                {% for hit in pair.hit_set.all %}
+                    <tr>
+                        <td>{{hit.pk}}</td>
+                        <td>{{hit.ip_address}}</td>
+                        <td>{{hit.location}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+
+        </section>
+    {% endfor %}
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
