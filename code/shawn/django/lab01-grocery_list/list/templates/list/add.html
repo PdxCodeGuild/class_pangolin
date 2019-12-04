@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'list/style.css' %}"/>
+        <title>Add Item</title>
+    </head>
+    <body>
+        <a href="{% url 'list:index' %}">Back to list...</a>
+        <form action="{% url 'list:hidden_add' %}" method="post">
+            {% csrf_token %}
+            <label for="description">Item description: </label>
+            <input type="text" name="description" id="description" required/><br>
+            <input type="submit" value="Add to Grocery List"/>
+        </form>
+    </body>
+</html>
+
+
