@@ -1,0 +1,22 @@
+.strike {
+    text-decoration: line-through;
+}
+h1 {
+    color: yellow;
+}
+li {
+    list-style: inside;
+}
+.thing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 350px;
+    margin: auto;
+    text-align: left;
+    background-color: rgba(100, 148, 237, 0.767);
+    padding: 16px;
+}
+body {
+    background: cornflowerblue url("store.jpg") no-repeat center;
+}

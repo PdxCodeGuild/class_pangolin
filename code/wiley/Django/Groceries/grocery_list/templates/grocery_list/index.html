@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <title>Grocery List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'grocery_list/style.css' %}">
+</head>
+<header>
+    <h1 class="thing"> Your Grocery List</h1>
+</header>
+<body>
+    <div class="thing"> <p>Welcome to Your Grocery List! Add an item to your list by entering the name of the item to the form below and click submit.  Once you buy an item, click the button next to the item on the list and click the "save purchased items" button.  Purchased items will still be on the list, with a line through the text. To delete purchased items, simply hit the delete button on the bottom of the page!<p>
+    </div>
+    <div class="thing">
+    <form action="{% url 'grocery_list:add_item' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="add_item" id="add_item" placeholder="Enter a new item here" >
+    <input type="submit" value="submit">
+    </form>
+    </div>
+    <div class="thing">
+        {% if items %}
+            <form action="{% url 'grocery_list:purchased' %}" method="post">
+            {% csrf_token %}
+            <ul>
+            {% for x in items %}
+
+                <li {% if x.completed %} class ="strike" {% endif %}>{{x}}<input type="radio" name="purchased" id="purchased" placeholder="purchased" value="{{x.id}}">
+                </li>
+            {% endfor %}
+            </ul>
+            <input type="submit" value="save purchased items">
+            </form>
+        {% else %}
+            <p>No Grocery Lists available.</p>
+        {% endif %}
+        <br>
+    </div>
+    <div class="thing">
+        <form action="{%url 'grocery_list:delete' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete All Purchased Items" name="delete_completed" id="delete_completed">
+        </form>
+
+    </div>
+</body>
