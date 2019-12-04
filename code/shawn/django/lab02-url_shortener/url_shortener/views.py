@@ -57,3 +57,15 @@ def redirect_to_long_url(request, short_code):
 
     # redirect to long URL
     return HttpResponseRedirect(pair.long_url)
+
+# a view for the pairs page
+def pairs(request):
+    context = {'pair_list': UrlPair.objects.all()}
+    print("rendering pairs")
+    return render(request, 'url_shortener/pairs.html', context)
+
+# a view for the contacts page
+def contact(request):
+    context = {}
+    print("rendering contacts")
+    return render(request, 'url_shortener/contact.html', context)
