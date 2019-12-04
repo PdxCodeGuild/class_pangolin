@@ -1,0 +1,59 @@
+{% extends 'grocery_list/base.html' %}
+
+{% block title %}
+Shopping List
+{% endblock %}
+{% block content%}
+    {% if error %}
+    <h2 class="error-message"><strong>{{ error }}</strong></h2>
+    {% endif %}
+
+    <h3>Add an item to your shopping list here:</h3>
+    <form action="{% url 'grocery_list:add_item'%}"method="post">
+        {% comment %} <label for="add_name">Shopping list item:</label><input type="text" name="name" id="add_name"> {% endcomment %}
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Add to list">
+    </form>
+
+
+     <h3>Shopping list</h3>
+    {% if incomplete_items %}
+        <div>
+        {% for item in incomplete_items %}
+        <div class="item">
+            <p>{{ item.name }}</p>
+            <form action="{% url 'grocery_list:mark_complete' item.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="I got this item!">
+            </form>
+            <form action="{% url 'grocery_list:delete' item.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="No I don't want it!">
+            </form>
+        </div>
+        {% endfor %}
+        </div>
+        {% else %}
+            <p>Start a new shopping list, You bought everything that was on the list before. </p>
+    {% endif %}
+
+
+    
+    <h3>Completed items</h3>
+    {% if complete_items %}
+        <div>
+        {% for item in complete_items %}
+        <div class="item">
+            <p>{{ item.name }}</p>
+            <form action="{% url 'grocery_list:delete' item.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Check off my list!">
+            </form>
+        </div>
+        {% endfor %}
+        </div>
+    {% else %}
+        <p>You still have a full list! Take better care of yourself!!</p>
+    {% endif %}
+    {% endblock %}
