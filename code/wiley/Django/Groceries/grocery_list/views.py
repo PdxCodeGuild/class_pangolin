@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse
@@ -29,8 +29,9 @@ def add_item(request):
     GroceryItem.objects.create(text_description=item_name, date_created=timezone.now())
     return HttpResponseRedirect(reverse('grocery_list:index'))
 
-def purchased(request):
-    grocery_item = get_object_or_404(GroceryItem, pk=request.POST["purchased"])
+def purchased(request, GroceryItem_id):
+    grocery_item = get_object_or_404(GroceryItem, pk=GroceryItem_id)
+    
     if grocery_item.completed == False:
         grocery_item.completed = True
         grocery_item.date_completed = timezone.now()
@@ -42,7 +43,7 @@ def purchased(request):
 
 def delete(request):
     completed_items = GroceryItem.objects.filter(completed=True)
-    print(completed_items)  
+      
     for completed_item in completed_items:
         completed_item.delete()  
     return HttpResponseRedirect(reverse('grocery_list:index'))

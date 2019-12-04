@@ -1,22 +1,26 @@
 .strike {
     text-decoration: line-through;
 }
-h1 {
-    color: yellow;
-}
+
 li {
     list-style: inside;
 }
 .thing {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    width: 350px;
+    width: 300px;
     margin: auto;
     text-align: left;
-    background-color: rgba(100, 148, 237, 0.767);
-    padding: 16px;
+    background-color:  rgba(100, 148, 237, 0.767) ;
+    padding: 6px;
 }
 body {
     background: cornflowerblue url("store.jpg") no-repeat center;
+}
+h1 {
+    color: yellow;
+    
+}
+#deletebutton {
+    align-self: auto;
 }
