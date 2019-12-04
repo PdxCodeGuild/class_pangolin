@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'url_shortener/style.css' %}"/>
+        <title>URL Shortener</title>
+    </head>
+    <body>
+
+        <!-- Long URL submission form  -->
+        <form action="{% url 'url_shortener:generate_code' %}" method="post">
+            {% csrf_token %}
+            <label for="long-url">Long URL:</label>
+            <input type="text" id="long-url" name="long-url" placeholder="Paste your long URL here..." required><br>
+            <input type="submit" value="Generate Short URL"/>
+        </form>
+
+        <!-- Error message in case invalid form submission -->
+        {% if error_message %}
+            <h5>{{error_message}}</h5>
+        {% endif %}
+
+        <!-- Output shortened url -->
+        {% if short_url %}
+            <h5>Your shortened URL:</h5>
+            <p>{{short_url}}</p>
+        {% endif %}
+        
+    </body>
+</html>
