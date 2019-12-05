@@ -1,0 +1,12 @@
+body {
+    color: blue;
+}
+
+li {
+    color: green;
+}
+
+input {
+    margin: 4px;
+    padding: 4px;
+}

@@ -1,0 +1,31 @@
+<h1>this is the grocery list page.</h1>
+<ul>
+    {% for grocery_item in incomplete_items %}
+    <li>{{ grocery_item.content }}
+    <form action="/deleteItem/{{grocery_item.id}}/" 
+        style="display: inline;"
+        method="post">{% csrf_token %}
+    <input type="submit" value="Delete"/>
+    </form>
+    <form action="/completeItem/{{grocery_item.id}}/"
+        style="display: inline;"
+        method="post">{% csrf_token %}
+    <input type="submit" value="Complete"/></li>
+    </form>
+    {% endfor %}
+    <div>
+    {% for grocery_item in complete_items %}
+    <li>{{ grocery_item.content }} completed {{ grocery_item.date_completed}}<form action="/deleteItem/{{grocery_item.id}}/" 
+        style="display: inline;"
+        method="post">{% csrf_token %}
+    <input type="submit" value="Delete"/>
+    </form>
+    </li>
+    {% endfor %}
+    </div>
+</ul>
+
+<form action="/addItem/" method="post">{% csrf_token %}
+<input type="text" name="content"/>
+<input type="submit" value="Add"/>
+</form>

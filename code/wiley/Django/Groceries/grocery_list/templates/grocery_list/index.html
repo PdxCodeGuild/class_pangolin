@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <title>Grocery List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'grocery_list/style.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1 class="thing"> Your Grocery List</h1>
+    </header>
+    <div class="thing"> <p>Welcome to Your Grocery List! Add an item to your list by entering the name of the item to the form below and click submit.  Once you buy an item, click the button next to the item on the list to confirm the purchase.  Purchased items will still be on the list, with a line through the text. To delete purchased items, simply hit the delete button on the bottom of the page!<p>
+    </div>
+    <div class="thing">
+        <form action="{% url 'grocery_list:add_item' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="add_item" id="add_item" placeholder="Enter a new item here" >
+            <input type="submit" value="submit">
+        </form>
+    </div>
+    <div class="thing">
+        {% if items %}
+            
+            <ul>
+            {% for x in items %}
+                <form action="{% url 'grocery_list:purchased' x.id%}" method="post">
+                {% csrf_token %}
+                <li {% if x.completed %} class ="strike" {% endif %}>{{x}} <input type="submit" value="✔" obj>
+                </form>
+                </li>
+            {% endfor %}
+            </ul>
+            
+        {% else %}
+            <p>No Grocery List available.</p>
+        {% endif %}
+        <br>
+    </div>
+    <div class="thing" id="deletebutton">
+        <form action="{%url 'grocery_list:delete' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete All Purchased Items" name="delete_completed" id="delete_completed">
+        </form>
+
+    </div>
+</body>
