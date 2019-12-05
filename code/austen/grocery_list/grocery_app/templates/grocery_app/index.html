@@ -1,11 +1,8 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'grocery_app/style.css' %}">
 <body>
-{% comment %} <h1>LETS GO SHOPPING</h1> {% endcomment %}
 <div class="not_completed">
     <h1> Take a look at the Grocery list </h1>
-    {% comment %} <h1>{{ text.text_discription }}</h1> {% endcomment %}
-
     {% for stuff in latest_grocery_list %}
         <div class="stuff-list">
             <p>{{stuff.text_discription}}</p>
@@ -13,9 +10,6 @@
             <p><a class="complete" href="{% url 'grocery_app:purchase' stuff.id %}">***Tap to purchase***</a></p>
         </div>
     {% endfor %}
-
-
-
     <form action="{% url 'grocery_app:add_stuff' %}" method="post">
         {% csrf_token %}
         <label for="stuff">Item description: </label><br>
