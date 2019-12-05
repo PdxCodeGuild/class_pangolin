@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import GroceryItem
 from django.utils import timezone
+import pytz
 
 def listView(request):
     incomplete_items = GroceryItem.objects.filter(is_completed=False).order_by('-date_created')
@@ -33,7 +34,7 @@ def deleteItem(request, item_id):
 def completeItem(request, item_id):
     item_to_complete = GroceryItem.objects.get(id=item_id)
     item_to_complete.is_completed = True
-    item_to_complete.completed_date = timezone.now()
+    item_to_complete.date_completed = timezone.now()
     item_to_complete.save()
     return HttpResponseRedirect('/grocery_app/')
 # Create your views here.
