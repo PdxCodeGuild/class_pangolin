@@ -2,30 +2,76 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'url_shortener/style.css' %}"/>
-        <title>URL Shortener</title>
-    </head>
-    <body>
 
-        <!-- Long URL submission form  -->
-        <form action="{% url 'url_shortener:generate_code' %}" method="post">
-            {% csrf_token %}
-            <label for="long-url">Long URL:</label>
-            <input type="text" id="long-url" name="long-url" placeholder="Paste your long URL here..." required><br>
-            <input type="submit" value="Generate Short URL"/>
-        </form>
+<head>
+    <!-- Bootstrap -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'url_shortener/theme.css' %}"/>
+    <link rel="icon" href="{% static 'url_shortener/favicon.ico'  %}"/>
+    <title>URL Shortener</title>
+</head>
 
-        <!-- Error message in case invalid form submission -->
-        {% if error_message %}
-            <h5>{{error_message}}</h5>
-        {% endif %}
+<body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'url_shortener:submit_url' %}">URL Shortener</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{% url 'url_shortener:submit_url' %}">Submit URL</a></li>
+                    <li><a href="{% url 'url_shortener:pairs' %}">URL Pairs</a></li>
+                    <li><a href="{% url 'url_shortener:contact' %}">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <!-- Output shortened url -->
-        {% if short_url %}
-            <h5>Your shortened URL:</h5>
-            <p><a href="{% url 'url_shortener:go' short_url %}">localhost:8000/url_shortener/go/{{short_url}}</a></p>
-        {% endif %}
-        
-    </body>
+    <!-- Long URL submission form  -->
+    <form action="{% url 'url_shortener:generate_code' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+                <label for="long-url">Long URL:</label>
+            <input type="text" class="form-control" id="long-url" name="long-url" placeholder="Paste your long URL here..." pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" title="URL must start with http:// or https://" required><br>
+        </div>
+        <input type="submit" class="btn btn-default" value="Generate Short URL" />
+    </form>
+
+    <!-- Error message in case invalid form submission -->
+    {% if error_message %}
+    <div class="alert alert-danger" role="alert">
+        <strong>{{error_message}}</strong>
+    </div>
+    {% endif %}
+
+    <!-- Output shortened url -->
+    {% if short_url %}
+        <div class="alert alert-success" role="alert">
+            <strong>Your shortened URL: </strong><a href="{% url 'url_shortener:go' short_url %}">localhost:8000/url_shortener/go/{{short_url}}</a>
+        </div>
+    {% endif %}
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>

@@ -1,0 +1,32 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'grocery_app/style.css' %}">
+<body>
+<div class="not_completed">
+    <h1> Take a look at the Grocery list </h1>
+    {% for stuff in latest_grocery_list %}
+        <div class="stuff-list">
+            <p>{{stuff.text_discription}}</p>
+            {% comment %} <p>{{stuff.created_date}}</p> {% endcomment %}
+            <p><a class="complete" href="{% url 'grocery_app:purchase' stuff.id %}">***Tap to purchase***</a></p>
+        </div>
+    {% endfor %}
+    <form action="{% url 'grocery_app:add_stuff' %}" method="post">
+        {% csrf_token %}
+        <label for="stuff">Item description: </label><br>
+        <input type="text" name="stuff" id="stuff"/><br>
+        <input type="submit" value="Add to Grocery List"/>
+    </form>
+</div>
+<img id="cart" value="Lets Go Shopping" src="{% static 'grocery_app/images/cart.jpg' %}">
+<div class="completed">
+    <h1>Purchased Items:</h1>
+    {% for stuff in finished_grocery_list %}
+        <p>{{stuff.text_discription}}</p>
+    {% endfor %}
+
+<form action="{% url 'grocery_app:delete' %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete your purchased items"/>
+</form>
+</div>
+</body>

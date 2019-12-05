@@ -22,17 +22,24 @@ def generate_code(request):
     except:
         return render(request, 'url_shortener/submit_url.html', {'error_message': "Couldn't get URL"})
 
-    # generate random 5 character code
-    generated_code = ''
-    possible_characters = string.ascii_letters + '1234567890'
-    for i in range(5):
-        generated_code += random.choice(possible_characters)
+    # continue looping until unique code is found
+    while True:
+        # generate random 5 character code
+        generated_code = ''
+        possible_characters = string.ascii_letters + '1234567890'
+        for i in range(5):
+            generated_code += random.choice(possible_characters)
+
+        # check to see if it already exists in db.  break while look if it does not exist
+        try:
+            UrlPair.objects.get(code=generated_code)
+        except UrlPair.DoesNotExist:
+            break
 
     # store long_url and code in db
     UrlPair.objects.create(code=generated_code, long_url=get_long_url)
 
     # redirect back to submit page
-    # return HttpResponseRedirect(reverse('url_shortener:submit_url'))            ### how to get this redirect to send in args for the generated code?
     return HttpResponseRedirect(reverse('url_shortener:submit_url_with_code', args=(generated_code,)))
 
 # A view to send user to long url
@@ -45,7 +52,7 @@ def redirect_to_long_url(request, short_code):
     ip = request.META['REMOTE_ADDR']
     user_agent = request.META['HTTP_USER_AGENT']
     
-    # lookup location of ip using ipstack api
+    # lookup location of ip using ipstack.com api
     ip_lookup_url = f"http://api.ipstack.com/{ip}?access_key={secrets.api_key}"
     response = requests.get(ip_lookup_url).json()
     location_string = f"{response['city']}, {response['country_name']}"
@@ -57,3 +64,13 @@ def redirect_to_long_url(request, short_code):
 
     # redirect to long URL
     return HttpResponseRedirect(pair.long_url)
+
+# a view for the pairs page
+def pairs(request):
+    context = {'pair_list': UrlPair.objects.all()}
+    return render(request, 'url_shortener/pairs.html', context)
+
+# a view for the contacts page
+def contact(request):
+    context = {}
+    return render(request, 'url_shortener/contact.html', context)
