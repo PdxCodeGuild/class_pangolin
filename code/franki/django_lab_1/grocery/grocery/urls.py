@@ -16,7 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from grocery_app.views import listView, addItem, deleteItem, completeItem
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('grocery_app/', listView),
