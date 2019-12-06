@@ -1,0 +1,20 @@
+#top {
+    text-align: center;
+    color: #0F4C81;
+}
+body {
+    background: khaki;
+}
+.container {
+    display: flex;;
+    flex-direction: column;
+    width: 200px;
+    height: auto;
+    margin: auto;
+    color: #0F4C81;
+    padding:6px;
+}
+#submit_id {
+    margin: 3px;
+
+}
