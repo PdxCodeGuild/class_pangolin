@@ -1,5 +1,5 @@
 .page-header {
-    background-color: #C25100;
+    background-color: #0F4C81;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -43,4 +43,9 @@ h1, h2, h3, h4 {
 
 .entries h2 a, .post h2 a:visited {
     color: #000000;
+}
+
+.strike {
+    text-decoration:line-through;
+    text-decoration-color: red;
 }

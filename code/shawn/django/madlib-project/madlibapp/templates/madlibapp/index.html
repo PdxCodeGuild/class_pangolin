@@ -1,0 +1,31 @@
+{% load static %}
+
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'madlibapp/style.css' %}"/>
+        <link rel="icon" href="{% static 'madlibapp/img/favicon.ico' %}"/>
+        <Title>Mad Lib - Index</Title>
+    </head>
+    <body>
+        {% if madlibs_list %}
+            <table>
+                <tr>
+                    <th>Mad Lib Title</th>
+                    <th>Edit Button</th>
+                    <th>Delete Button</th>
+                </tr>
+                {% for madlib in madlibs_list %}
+                    <tr>
+                        <td>{{madlib.title}}</td>
+                        <td><a href="">Edit...</a></td>
+                        <td><a href="">Delete...</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h3>No Mad Libs created.</h3>
+        {% endif %}
+        <a href="{% url 'madlibapp:edit' 0 %}">Create Mad Lib...</a>        {# pass in a 0 if creating new madlib #} 
+    </body>
+</html>
