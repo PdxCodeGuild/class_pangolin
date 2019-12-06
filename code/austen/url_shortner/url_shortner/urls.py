@@ -1,4 +1,4 @@
-"""polls URL Configuration
+"""url_shortner URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+
 urlpatterns = [
+    path('url_shortner_app/', include('url_shortner_app.urls')),
     path('admin/', admin.site.urls),
-    path('poll/', include('polls_app.urls')),
 ]
