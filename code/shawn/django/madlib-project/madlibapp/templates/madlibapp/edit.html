@@ -8,6 +8,24 @@
         <Title>Mad Lib - Edit/Create</Title>
     </head>
     <body>
-        Edit {{this_madlib}}
+        <p>
+            Substitute MadLibWords for the following:
+            <div class='madlibword-options'>
+                <div>***noun***</div>
+                <div>***adjective***</div>
+                <div>***verb***</div>
+                <div>***pronoun***</div>
+                <div>***plural noun***</div>
+                <div>***adverb***</div>
+            </div>
+        <p>
+        <div class="madlib-form">
+            <input type='Text' placeholder='Enter a title here...' name='madlibtitle' form='madlib-textarea' value='{{this_madlib.title}}' required>
+            <textarea form="madlib-textarea" placeholder="Create Madlib here..." name='madlibtextarea'>{{this_madlib.text}}</textarea>
+            <form action="{% url 'madlibapp:hidden_edit' this_madlib_id %}" method="post" id='madlib-textarea'>
+                {% csrf_token %}
+                <input type="submit">
+            </form>
+        </div>
     </body>
 </html>
