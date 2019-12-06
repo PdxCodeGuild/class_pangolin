@@ -1,0 +1,19 @@
+{% load static %}
+
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'madlibapp/style.css' %}"/>
+        <link rel="icon" href="{% static 'madlibapp/img/favicon.ico' %}"/>
+        <Title>Mad Lib - Play!</Title>
+    </head>
+    <body>
+        {% for word in this_madlib.text %}
+            {% if word.is_madlibword %}
+                {{word.word}} 
+            {% else %}
+                {{word}}
+            {% endif %}
+        {% endfor %}
+    </body>
+</html>
