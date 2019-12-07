@@ -1,0 +1,43 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+form, footer {
+    margin: 7px;
+    padding: 12px;
+    border: 12px solid rgb(255, 145, 0);
+    background-color: rgb(252, 242, 102);
+}
+
+header {
+    font-size: 120%;
+    margin: 7px;
+    padding: 12px;
+    border: 12px solid rgb(255, 145, 0);
+    background-color: rgb(252, 242, 102);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+h1, h2, h3, footer, legend {
+    font-family: Impact, sans-serif;
+    padding: 2px;
+}
+
+label {
+    font-family: Tahoma, sans-serif;
+    padding: 5px; 
+}
+
+.grid-form-container, h1, footer {
+    text-align: center;
+}
+
+
+

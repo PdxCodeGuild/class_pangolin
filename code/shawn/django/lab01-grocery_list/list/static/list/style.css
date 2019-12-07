@@ -1,0 +1,41 @@
+body {
+    display: grid;
+    background: rgba(255,0,0,.2);
+}
+
+.food-item {
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+h4 {
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+}
+
+a {
+    margin-top: 2em;
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    color: red;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 1em;
+}
+

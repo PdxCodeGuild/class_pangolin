@@ -1,0 +1,13 @@
+{% extends 'grocerylist_app/base.html' %}
+
+{% block content %}
+    <div class="item">
+        {% if item.published_date %}
+            <div class="date">
+                {{ item.published_date }}
+            </div>
+        {% endif %}
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.text }}</p>
+    </div>
+{% endblock %}

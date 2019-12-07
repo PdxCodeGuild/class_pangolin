@@ -1,0 +1,32 @@
+{% extends 'grocerylist_app/base.html' %}
+
+{% block content %}
+    {% for item in items %}
+        <div class='entries'>
+            <div class='date'>
+                <p>published: {{ item.created_date }}</p>
+            </div>
+            <!-- <h2><a href="{% url 'grocerylist_app:item_detail' pk=item.pk %}"></a></h2> -->
+            <h3 {% if item.completed %}class="strike" {%endif%}>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+            <p>completed: {{ item.completed_date }}</p>
+            <form action="/grocerylist_app/completedItem/{{item.pk}}/" 
+                style="display:inline"
+                method="post">{% csrf_token %}
+                <input type="submit" value="Complete"/>
+            </form>
+            
+            <form action="/grocerylist_app/deleteItem/{{item.pk}}/" 
+                style="display:inline"
+                method="post">{% csrf_token %}
+                <input type="submit" value="Delete"/>
+            </form>
+        </div>
+    {%endfor%}
+
+    <form action="/grocerylist_app/addItem/" method="post">{% csrf_token %}
+        <input type="text" name="title"/>
+        <input type="text" name="description"/>
+        <input type="submit" value="Add Item"/>    
+    </form>
+{% endblock %}
