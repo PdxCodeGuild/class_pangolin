@@ -17,9 +17,9 @@
                 </tr>
                 {% for madlib in madlibs_list %}
                     <tr>
-                        <td>{{madlib.title}}</td>
-                        <td><a href="">Edit...</a></td>
-                        <td><a href="">Delete...</a></td>
+                        <td><a href="{% url 'madlibapp:play' madlib.id %}">{{madlib.title}}</a></td>
+                        <td><a href="{% url 'madlibapp:edit' madlib.id %}">Edit...</a></td>
+                        <td><a href="{% url 'madlibapp:hidden_delete' madlib.id %}">Delete...</a></td>
                     </tr>
                 {% endfor %}
             </table>

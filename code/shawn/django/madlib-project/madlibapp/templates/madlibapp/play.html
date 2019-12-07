@@ -8,6 +8,12 @@
         <Title>Mad Lib - Play!</Title>
     </head>
     <body>
-        Play
+        {% for word in this_madlib.text %}
+            {% if word.is_madlibword %}
+                {{word.word}} 
+            {% else %}
+                {{word}}
+            {% endif %}
+        {% endfor %}
     </body>
 </html>
