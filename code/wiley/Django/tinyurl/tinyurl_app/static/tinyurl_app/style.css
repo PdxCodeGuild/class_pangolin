@@ -44,7 +44,7 @@ p {
     .container {
         display: flex;
         flex-wrap: wrap;
-        width: 80%;
+        width: 60%;
         height: auto;
         margin: auto;
         color: #0F4C81;
@@ -67,4 +67,15 @@ p {
         margin: 12px;
     }
     
+}
+@media only screen and (min-width: 1440px){
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 700px;
+        height: auto;
+        margin: auto;
+        color: #0F4C81;
+        justify-content: center;
+    }
 }
