@@ -11,11 +11,11 @@
         <h1>{{this_madlib.title}}</h1>
         {% for word in madlibwords %}
             <label for='madlibword{{forloop.counter}}'>Please enter a {{word}}:</label>
-            <input type='text' form='matlib-play' placeholder='{{word}}' id='madlibword{{forloop.counter}}' required/> <br>
+            <input type='text' form='madlib-play' placeholder='{{word}}' name="madlibword{{forloop.counter}}" id='madlibword{{forloop.counter}}' required/> <br>
         {% endfor %}
         <form action="{% url 'madlibapp:view' this_madlib.id %}" name="finish-madlib" method='post' id='madlib-play'>
             {% csrf_token %}
-            <input type='submit'>
+            <input type='submit' value='View Completed Madlib'>
         </form>
     </body>
 </html>

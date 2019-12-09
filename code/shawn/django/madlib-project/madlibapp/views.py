@@ -43,7 +43,7 @@ def hidden_edit(request, madlib_id):
     # get the input title
     input_title = request.POST['madlibtitle']
 
-    # get input text and split into list on " ".  Currently, stripping out all newlines as well
+    # get input text and split into list on " ".  Currently, stripping out all newlines?
     input_string = request.POST['madlibtextarea'].replace('\n',' ').split(' ')
 
     # if madlib_id is zero, create new madlib
@@ -101,7 +101,39 @@ def play(request, madlib_id):
 # viewing a madlib 
 def view(request, madlib_id):
 
+    # print(f"post is {request.POST.body}")
+
+    # get the madlib from db
+    ml = get_object_or_404(MadLib, pk=madlib_id)
+
+    # get madlib and it's count of 
+    num_words = ml.count_madlibwords()
+
+    # make a pretty string version of the madlib 
+    count = 1
+    pretty_madlib = ''
+    for word in MadLibWord.objects.filter(madlib=ml):
+        try:
+            if word.word[0] != '*':
+                pretty_madlib += word.word + " "
+            else:
+                pretty_madlib += request.POST[f'madlibword{count}']
+                # check to see if last character is punctuation
+                if word.word[len(word.word)-1] in ',.?!"':
+                    pretty_madlib += word.word[len(word.word)-1] + ' '
+                # add space if not
+                else:
+                    pretty_madlib += ' '
+
+                count += 1
+        except IndexError:
+            continue
+
     # get input MadLib from db, load into context
-    context = { 'this_madlib': MadLib.objects.get(pk=madlib_id) }
+    context = { 'this_madlib': ml,
+                'num_words': num_words,
+                'completed_madlib': pretty_madlib}
+
     # render view.html template
     return render(request, 'madlibapp/view.html', context)
+  
