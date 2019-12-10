@@ -66,6 +66,9 @@ In all three presentations, you should first explain the development process and
 An Illustrated (and Musical) Guide to Map, Reduce, and Filter Array Methods  
 https://css-tricks.com/an-illustrated-and-musical-guide-to-map-reduce-and-filter-array-methods/
 
+Willam Vincent's tutorials and articles  
+https://wsvincent.com/  
+
 Django by example  
 https://www.youtube.com/playlist?list=PLAF3anQEEkzS-mjdX7s-D63bjLWRdhuFM
 
