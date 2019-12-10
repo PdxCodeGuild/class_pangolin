@@ -4,7 +4,7 @@
 
   {% for post in object_list %}
     <div class="post-entry">
-      <h2><a href="#">{{ post.title }}</a></h2>
+      <h2><a href="{% url 'posts:detail' post.id %}">{{ post.title }}</a></h2>
       <h5><em>{{ post.author.username}} -- {{ post.created }}</em></h5>
       <p>{{ post.body }}</p>
     </div>
