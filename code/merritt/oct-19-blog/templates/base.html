@@ -13,10 +13,12 @@
       </div>
       <div class="nav-right">
         {% if user.is_authenticated %}
-        <p>Hello, {{ user.username }}</p>
+        <p>Hello, <a href="{% url 'users:profile' request.user.username %}">{{ request.user.username }}</a></p>
+        <p><a href="{% url 'logout' %}">Logout</a></p>
         <p><a href="{% url 'posts:new' %}">+ New Blog Post</a></p>
         {% else %}
         <p><a href="{% url 'login' %}">Login</a></p>
+        <p><a href="{% url 'users:signup' %}">Sign Up</a></p>
         {% endif %}
       </div>
     </header>
