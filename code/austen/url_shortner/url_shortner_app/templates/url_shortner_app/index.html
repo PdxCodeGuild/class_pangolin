@@ -1,15 +1,32 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'url_shortner_app/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
 <h1>Short url generator</h1>
-{% comment %} {% for urls in long_url %}
-    <p>{{urls.long_url}}</p> {% endcomment %}
+<div class="form">
+    <div class="type_text">
+        <p>Type your Url bellow</p>
+    </div>
+    <form action="{% url 'url_shortner_app:user_input' %}" method="post">
+        {% csrf_token %}
+        {% comment %} <label for="long">Place your URL Here: </label><br> {% endcomment %}
+        <input type="text" name="long" id="long" placeholder="Place your URL Here"/><br>
+        <input type="submit" value="Get the short Url"/>
+    </form>
+</div>
+<div class="link">
+    {% if new_link%}
+        <p>Your Short link is: <a href="{% url 'url_shortner_app:redirect' new_link.short_url %}">{{new_link}}</a></p>
+        <p>Click the link to return to site^</p>
+    {% endif %}
+</div>
 
-<form action="{% url 'url_shortner_app:user_input' %}" method="post">
-    {% csrf_token %}
-    {% comment %} <label for="long">Place your URL Here: </label><br> {% endcomment %}
-    <input type="text" name="long" id="long" placeholder="Place your URL Here"/><br>
-    <input type="submit" value="Get the short Url"/>
-</form>
-{% comment %} {% if request.user_input == short_url %} {% endcomment %}
 
-{% if new_link %}
+
+{% comment %} the comment below was just to display the link that was trying to be hyperlinked by short url {% endcomment %}
+{% comment %} {% if new_link %}
 {{new_link}}
-{% endif %}
+{% endif %} {% endcomment %}
+
+

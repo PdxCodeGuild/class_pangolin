@@ -6,7 +6,7 @@
     <h1>{{ question.question_text }}</h1>
 </header>
 <body>
-    <div>
+    <div id="forms">
         <form action="{% url 'polls:vote' question.id %}" method="post" id="options">
             {% csrf_token %}
             {% for choice in question.choice_set.all %}
@@ -18,22 +18,22 @@
             {% endif %}
             <input type="submit" value="Vote">
         </form>
-        </div>
+    </div>
         <section class="selection">
             <div id="luka" class="bio">
-                <img src="../../static/polls/luka.jpg">
+                <img src="/../../static/polls/luka.jpg">
                 Luka Doncic AKA "Boy Wonder" is off to a hot start to his sophmore seasons.  Averaging a near triple double on great effeciency, Luka has brought the Mavericks to a respectable 12 and 6 record. 
             </div>
             <div id="lebron" class="bio">
-                <img src="../../static/polls/lebron.jpg">
+                <img src="/../../static/polls/lebron.jpg">
                 You can always count of 3 things: death, taxes, and Lebron James being an MVP candidate.  Who said he was taking a backseat to shiny new LA toy Anthony Davis.  Lebron has taken his offensive game to new levels, controlling the offensive through the point guard position and having more energy on defense.  
             </div>
             <div id="harden" class="bio">
-                 <img src="../../static/polls/harden.jpg">
+                 <img src="/../../static/polls/harden.jpg">
                  It would be a shame if James Harden loses out on MVP again this year.  Harden is averaging nearly 40 points per game in Houston.  Every year we forget just how good James Harden is.  He is truly a walking bucket.
             </div>
             <div id="giannis" class="bio">
-                <img src="../../static/polls/giannis.jpg">
+                <img src="/../../static/polls/giannis.jpg">
                 The Defending Most Valuable Player: "The Greek Freak", Giannis Antetekoumpo! Giannis is leading the Bucks towards what looks like a deep play-off run.  He is shooting the ball from deep this year, only impoving his unstoppable offensive game.  Oh, and did I mention that he is one of the best defenders in the league?
             </div>
         </section>

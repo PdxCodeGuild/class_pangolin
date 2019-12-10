@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+  <!-- Masthead -->
+  <header class="masthead text-white text-center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-9 mx-auto">
+            <h1 class="mb-5">Input your grocery item below!</h1>
+          </div>
+          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+            <form>
+              <div class="form-row">
+                <div class="col-12 col-md-9 mb-2 mb-md-0">
+                  <input type="text" class="form-control form-control-lg" placeholder="Enter your item">
+                </div>
+                <div class="col-12 col-md-3">
+                  <button type="submit" class="btn btn-block btn-lg btn-primary">Add</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+  
+    <!-- Icons Grid -->
+    <section class="features-icons bg-light text-center">
+      <div class="container">
+        <div class="row">
+          <table class="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Date Completed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Milk</td>
+                <td>9/8/1999</td>
+                <td>9/9/1999<button type="submit" class="btn btn-block btn-sm btn-primary">Completed</button></td>
+              </tr>
+            </tbody>
+          </table>
+         
+        </div>
+      </div>
+    </section>
+  
+    <!-- Testimonials -->
+    <section class="testimonials text-center bg-light">
+      <div class="container">
+        <h2 class="mb-5">What people are saying...</h2>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="{% static 'img/testimonials-1.jpg' %}" alt="">
+              <h5>Margaret E.</h5>
+              <p class="font-weight-light mb-0">"Grocery list? I mean... Taylor's pretty awesome"</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              
+              <h5>Shawn</h5>
+              <p class="font-weight-light mb-0">"Taylor is amazing, but I wish he'd stop cloning my projects..."</p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+              <img class="img-fluid rounded-circle mb-3" src="{% static 'img/testimonials-3.jpg' %}" alt="">
+              <h5>Sarah W.</h5>
+              <p class="font-weight-light mb-0">"For Christmas, Taylor gave me this instead of a Peloton; we're no longer dating."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}
