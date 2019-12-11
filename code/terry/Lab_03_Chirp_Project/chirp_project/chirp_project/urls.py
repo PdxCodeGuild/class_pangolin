@@ -1,4 +1,4 @@
-"""Lab_02_URLShort URL Configuration
+"""chirp_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -17,6 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('URLShort/', include('URLShort.urls')),
     path('admin/', admin.site.urls),
+    path('', include('chirpApp.urls')),
 ]
