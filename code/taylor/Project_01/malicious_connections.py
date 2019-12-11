@@ -25,15 +25,16 @@ def time_virus_total_requests(ip_list):
         else:
             time.sleep(15)
             continue
+        
 def format_and_send_preamble_email(ip_list):
-
+        ''' Formats the preamble email listing IP connections on the local system '''
         connection_rows = '\n>    '.join(ip_list)
         message_subject_preamble = f"Warning: {len(ip_list)} Connection Reports in Queue."
         message_body_preamble = f"\nRemote Connections:\n\n>    {connection_rows}"
         return send_outlook_mail(config.to_email,message_subject_preamble, message_body_preamble)
 
 def format_and_send_report_email(report):
-        ''' This function formats the report email and calls the send_outlook_email() functions to deliver a report '''
+        ''' Formats the report email and calls the send_outlook_email() functions to deliver a report '''
         message_subject_report = f"Connection report"
         try:
             address_owner = f"\nAddress Owner: {report['as_owner']}"
@@ -43,7 +44,6 @@ def format_and_send_report_email(report):
             address_owner = 'Address Owner: Unavailable.'
             country_of_origin = 'Country: Unavailable.'
             pass
-   
         # Retreives and stores the 2 most recent DNS resolutions for the given ip
         resolutions = 'None'
         whois_timestamp = 'None'
@@ -58,8 +58,6 @@ def format_and_send_report_email(report):
             resolutions = 'None'
             whois_timestamp = 'None'
             message_subject_report = f"ALERT Suspicious Connection"
-            pass
-        finally:
             pass
         try:
             print('samples length', len(list(report['detected_downloaded_samples'])))
@@ -80,13 +78,11 @@ def send_outlook_mail(to_email, subject, body ):
     mail = outlook.CreateItem(0)
     mail.To = to_email
     mail.Subject = subject
-    mail.Body = body #mail.HTMLBody = '<h2></h2>'; attachment  = "Path to the attachment"; mail.Attachments.Add(attachment)
+    mail.Body = body
     return mail.Send()
-
 
 connections_dict = remote_connections(list(psutil.net_connections(kind='inet4')))
 ip_list = list(connections_dict.keys())
-
 
 format_and_send_preamble_email(ip_list)
 time_virus_total_requests(ip_list)

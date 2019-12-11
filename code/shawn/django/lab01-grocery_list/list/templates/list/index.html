@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'list/style.css' %}"/>
+        <title>Grocery List</title>
+    </head>
+    <body>
+        {% if error_message %}
+            <h2>{{error_message}}</h2>
+        {% endif %}
+        <a href="{% url 'list:add' %}">Add new item...</a>
+        {% if incomplete_list %}
+            <h1>Groceries to buy:</h1>
+            <div class="food-item">
+                <h4>Item Description</h4>
+                <h4>Date Created    </h4>
+                <h4>Date Completed  </h4>
+                <h4>Actions         </h4>
+            </div>
+            {% for food in incomplete_list %}
+                <div class="food-item">
+                    <p>{{food.description_text}}</p>
+                    <p>{{food.created_date}}</p>
+                    <p><a href="{% url 'list:buy' food.id %}">Click to complete...</a></p>
+                    <p><a href="{% url 'list:delete' food.id %}">Click to delete...</a></p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h1>You have no groceries to buy.</h1>
+        {% endif %}
+
+        {% if complete_list %}
+            <h1>Groceries already purchased:</h1>
+            <div class="food-item">
+                <h4>Item Description</h4>
+                <h4>Date Created    </h4>
+                <h4>Date Completed  </h4>
+                <h4>Actions         </h4>
+            </div>
+            {% for food in complete_list %}
+                <div class="food-item">
+                    <p>{{food.description_text}}</p>
+                    <p>{{food.created_date}}</p>
+                    <p>{{food.completed_date}}</p>
+                    <p><a href="{% url 'list:delete' food.id %}">Click to delete...</a></p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h1>You have not bought any groceries.</h1>
+        {% endif %}
+    </body>
+</html>
+
+

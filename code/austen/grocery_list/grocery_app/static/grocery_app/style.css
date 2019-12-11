@@ -1,0 +1,35 @@
+a:link{
+    color: red;
+}
+
+body{
+    display:flex;
+    justify-content: space-around;
+    background: url("images/yellow.png");
+    margin: 6px;
+}
+.completed{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    width:250px;
+    margin-left:-300px;
+   
+    
+}
+.not_completed{
+    display:flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-content: flex-start;
+    width:250px;
+    margin-right: -100px;
+   
+}
+#cart{
+    width:400px;
+    height:400px;
+    margin-top: 200px;
+    margin-right: 200px;
+    border-radius: 125px;
+}

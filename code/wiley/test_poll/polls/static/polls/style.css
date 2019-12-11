@@ -1,0 +1,69 @@
+
+body {
+    background: linear-gradient(rgba(90,255,255,.3), rgba(255,30,255,.3)), url("giphy.gif") no-repeat center;
+    color: black;
+}
+
+#content {
+    display: flex;
+    flex: 30%;
+}
+#options {
+    display: flex;
+    flex-direction: column;
+    background: paleturquoise;
+    border: 2px solid blueviolet;
+    justify-content: center;
+    width: 300px;
+       
+}
+#forms {
+    display: flex;
+    height: auto;
+    
+    justify-content: center;
+    
+}
+header h1 {
+    text-align: center;
+    border-bottom: 6px dotted crimson;
+    margin-top: 18px;
+    
+}
+.selection {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+    "luka lebron"
+    "harden giannis";
+    width: 100%;
+    margin: auto;
+    justify-items: center;
+}
+.bio {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid red;
+    background-color:  rgba(213, 213, 213, 0.782);
+    padding: 12px;
+    margin: 5%;
+
+
+}
+img {
+    width: 150px;
+    height: auto;
+    padding: 3px;
+}
+#links {
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+    border-top: 12px dotted crimson;
+}
+.link {
+    text-decoration: none;
+    padding: 6px;
+    color: black;
+}

@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" href="{% static 'grocery/groceryapp.css' %}">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+      <h1><strong>Grocery List</strong></h1>
+
+      <ul class="list">
+        {% for grocery_item in incomplete_items %}
+          <li class="list">{{ grocery_item.content }}
+            <form action="/deleteGrocery/{{grocery_item.id}}/" 
+                  style="display: inline;" 
+                  method="post">{% csrf_token %}
+              <input type="submit" value="Delete"/>
+            </form>
+            <form action="/completeGrocery/{{grocery_item.id}}/"
+                  style="display: inline;"
+                  method="post">{% csrf_token %}
+              <input type="submit" value="Bought"/></li>
+            </form>
+          </li>
+        {% endfor %}
+        <div>
+          {% for grocery_item in completed_items %}
+            <li>{{ grocery_item.content }}: bought {{ grocery_item.date_completed}}
+              <form action="/deleteGrocery/{{grocery_item.id}}/" 
+                style="display: inline;"
+                method="post">{% csrf_token %}
+                <input type="submit" value="Delete"/>
+              </form>
+            </li>
+          {% endfor %}
+          </div>
+      </ul>
+      
+      <form action="/addGrocery/" method="post">{% csrf_token %}
+        <input type="text" name="content" placeholder="Enter item here"/>
+        <input type="submit" value="Add"/>
+      </form>      
+  </body>
+</html>

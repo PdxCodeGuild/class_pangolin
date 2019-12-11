@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Groceries and Stuff</title>
+    <meta name="author" content="merritt">
+    <meta name="description" content="groceries and stuff">
+    <meta name="keywords" content="groceries, stuff">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'grocery/styles.css' %}" type="text/css">
+  </head>
+  <body>
+    <header>
+      <h1>Super Cool Grocery List Application Thing 2020 Classic</h1>
+    </header>
+    <main>
+      <div>
+        <h3>Add an item, help America:</h3>
+        <form method='post' action="{% url 'grocery:add_item' %}">
+          {% comment %} <label for="add_name">Name of your glorious patriotic foodstuff:</label>
+          <input type="text" name="name" id="add_name"> {% endcomment %}
+          {{ form.as_p }}
+          {% csrf_token %}
+          <input type="submit" value="Defeat communism">
+        </form>
+        {% if error %}
+          <p>{{ error }}</p>
+        {% endif %}
+      </div>
+
+      {% if incomplete_items %}
+        <div>
+        {% for item in incomplete_items %}
+          <div>
+            <p>{{ item.name }}</p>
+            <form method="post" action="{% url 'grocery:mark_complete' item.id %}">
+              {% csrf_token %}
+              <input type="submit" value="I've contributed to capitalism.">
+            </form>
+            <form method="post" action="{% url 'grocery:delete' item.id %}">
+              {% csrf_token %}
+              <input type="submit" value="I hate the strong American economy.">
+            </form>
+          </div>
+        {% endfor %}
+        </div>
+      {% else %}
+        <p>Nothing on your list. You're letting capitalism down.</p>
+      {% endif %}
+
+      {% if complete_items %}
+        <div>
+        {% for item in complete_items %}
+          <div>
+            <p>{{ item.name }}</p>
+            <form method="post" action="{% url 'grocery:delete' item.id %}">
+              {% csrf_token %}
+              <input type="submit" value="I hate the strong American economy.">
+            </form>
+          </div>
+        {% endfor %}
+        </div>
+      {% else %}
+        <p>You haven't supported America's economy yet. Do you want a recession?!?</p>
+      {% endif %}      
+    </main>
+  </body>
+</html>

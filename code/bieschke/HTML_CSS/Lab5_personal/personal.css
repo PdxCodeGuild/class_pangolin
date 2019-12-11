@@ -1,0 +1,101 @@
+/*personal.css*/ 
+
+.header {
+    max-width: 100%;
+    max-height: 200px;
+}
+/*nav*/
+.nav ul {
+    display: grid;
+    grid-gap: 10px;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  /* styling for the nav buttons */
+  .nav a {
+    /* background: var(--primary); */
+    display: block;
+    text-decoration: none;
+    padding: 12px;
+    text-align: center;
+    /* color: var(--dark); */
+    text-transform: uppercase;
+    font-size: 18px;
+  }
+.body {
+    align-items: center;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 20px;
+    text-align: center;
+    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+    grid-template-areas:
+    'nav nav nav nav'
+    'columns columns'
+    'musings'
+    'projects projects' 
+    'bckgrd bckgrd'
+    'contact';
+  }
+.moi img {
+    border-radius: 50%;
+}
+
+.bckgrnd img {
+    float: left;
+    align-items: left; 
+}    
+
+/* Media query section */
+@media(max-width: 700px) {
+    .wrapper {
+      grid-template-areas:
+      'nav nav nav nav'
+      'columns'
+      'musings'
+      'projects' 
+      'bckgrd'
+      'contact';
+    }
+  
+    .nav ul {
+      grid-template-columns: 1fr;
+    }
+    .bckgrnd {
+      grid-template-columns: 1fr;
+    }
+  
+    .contact .btn {
+      display: block;
+      text-align: center;
+      margin: auto;
+    }
+  }
+  
+  @media(max-width: 500px) {
+    .wrapper {
+      grid-template-areas:
+      'nav'
+      'columns'
+      'musings'
+      'projects' 
+      'bckgrd'
+      'contact';
+    }
+  
+    .nav ul {
+      grid-template-columns: 1fr;
+    }
+    .bckgrnd {
+      grid-template-columns: 1fr;
+    }
+  
+    .contact .btn {
+      display: block;
+      text-align: center;
+      margin: auto;
+    }
+  }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>TinyUrl Maker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tinyurl_app/style.css' %}">
+</head>
+<body>
+    <h1 id="top"> Tiny URL Maker</h1>
+    <br>
+    <div class="container">
+        <form action="{% url 'tinyurl_app:shorten' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="user_url" id="user_url" placeholder="Enter your long URL here" pattern="^(http|https):\/\/.+" title="All submitted URLs must begin with https://"/>
+        <button type="submit" value="Make Tiny" id="submit_id" class="btn btn-primary">
+            <div id="button_text">
+                Make it Tiny!
+            </div>
+        </button>
+        </form>
+        {% if tiny_text %}
+            <p id="tiny_id"> Your tiny url is:  <a href="{% url 'tinyurl_app:redirecting' tiny_text=tiny_text %}"> tinyurl/tu/{{tiny_text}} </a></p>
+        {% else %}
+            <p id="no_tiny"> Please enter a URL to shorten. </p>
+        {% endif %}
+    </div>
+</body>
+
