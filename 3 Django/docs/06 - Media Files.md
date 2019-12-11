@@ -10,7 +10,7 @@ Web applications often allow users to upload files. This document covers how to 
 In your project's `settings.py`, set the following variables.
 
 ```python
-MEDIA_URL = 'uploaded_files/'
+MEDIA_URL = '/uploaded_files/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploaded_files')
 ```
 
