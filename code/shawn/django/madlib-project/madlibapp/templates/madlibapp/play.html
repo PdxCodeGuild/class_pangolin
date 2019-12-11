@@ -1,0 +1,21 @@
+{% load static %}
+
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'madlibapp/style.css' %}"/>
+        <link rel="icon" href="{% static 'madlibapp/img/favicon.ico' %}"/>
+        <Title>Mad Lib - Play!</Title>
+    </head>
+    <body>
+        <h1>{{this_madlib.title}}</h1>
+        {% for word in madlibwords %}
+            <label for='madlibword{{forloop.counter}}'>Please enter a {{word}}:</label>
+            <input type='text' form='madlib-play' placeholder='{{word}}' name="madlibword{{forloop.counter}}" id='madlibword{{forloop.counter}}' required/> <br>
+        {% endfor %}
+        <form action="{% url 'madlibapp:view' this_madlib.id %}" name="finish-madlib" method='post' id='madlib-play'>
+            {% csrf_token %}
+            <input type='submit' value='View Completed Madlib'>
+        </form>
+    </body>
+</html>

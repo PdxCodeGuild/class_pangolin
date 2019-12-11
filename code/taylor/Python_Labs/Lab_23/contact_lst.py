@@ -91,12 +91,12 @@ def upd_rcd(fnd, atr, val):
 # Validate user input
 def usr_inp(msg, emsg, *args):
     """This function validates user input."""
-     while True:
-          usr_inp = input(msg).lower()
-          if usr_inp.lower() not in args:
-               print(f"\n{emsg}")
-          else:
-               return usr_inp
+    while True:
+        usr_inp = input(msg).lower()
+        if usr_inp.lower() not in args:
+            print(f"\n{emsg}")
+        else:
+            return usr_inp
 
 # Create a new contact loop
 new_contact = 'y'
