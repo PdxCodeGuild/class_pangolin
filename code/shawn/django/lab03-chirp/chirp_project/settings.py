@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'posts.apps.PostsConfig'
+    'posts.apps.PostsConfig',
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -132,5 +133,8 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 
 # for saving media to server
-MEDIA_URL = 'uploaded_files/'
-MEDIA_ROOT = os.path.join(BASE_DIR, MEDIA_URL)
+MEDIA_URL = '/uploaded_files/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploaded_files')
+
+import mimetypes
+mimetypes.add_type("text/css", ".css", True)

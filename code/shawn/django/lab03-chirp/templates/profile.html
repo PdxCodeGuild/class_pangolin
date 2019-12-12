@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="off-canvas-wrapper">
+    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
+            <div class="row column">
+                <br>
+                <img class="thumbnail" src="https://placehold.it/550x350">
+                <h5>{{ object.profile.first_name }} {{ object.profile.last_name }}</h5>
+                <p>Location: {{ object.profile.location }}</p>
+
+            </div>
+        </div>
+        <div class="off-canvas-content" data-off-canvas-content>
+            <div class="title-bar hide-for-large">
+                <div class="title-bar-left">
+                    <button class="menu-icon" type="button" data-open="my-info"></button>
+                    <span class="title-bar-title">Mike Mikerson</span>
+                </div>
+            </div>
+            <div class="callout primary">
+                <div class="row column">
+                    <h1>{{ object.profile.headline }}</h1>
+                    <p class="lead">{{ object.profile.summary }}</p>
+                    {% if request.user.id == object.id %}
+                        <p><a href="{% url 'users:profile_edit' object.id %}">edit profiile...</a></p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="row small-up-2 medium-up-3 large-up-4">
+
+            <!-- if no posts, create a placeholder -->
+            {% if object.chirp_set.all %}
+                <!-- iterate through each post and create a thumbnail -->
+                {% for post in object.chirp_set.all %}
+                    <div class="column">
+                        {% if post.picture %}
+                            <img class="thumbnail" src="{{ post.picture.url }}">
+                        {% endif %}
+                        <h5>{{ post.text }}</h5>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="column">
+                    <img class="thumbnail" src="https://placehold.it/550x550">
+                    <h5>No chirps yet.</h5>
+                </div>
+            {% endif %}
+
+        </div>
+        <hr>
+        </div>  
+    </div>
+</div>
+</div>
+
+
+
+{% endblock content %}
