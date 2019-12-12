@@ -1,0 +1,97 @@
+body {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("/static/img/produce.jpg") center / cover no-repeat fixed;
+  background-color: lightskyblue;
+  color: black;
+  text-shadow: 0 0 1px whitesmoke;
+  font-family: Roboto, sans-serif;
+  margin-top: 30px;
+}
+
+header {
+  /* background-color: lightskyblue; */
+  overflow: hidden;
+  position: fixed;
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  margin-bottom: 20px;
+}
+
+.sticky {
+  position: fixed;
+  left: 85px;
+  /* top: 0; */
+  /* width: 100%; */
+}
+
+.sticky + .content {
+  padding-top: 30px;
+}
+
+#boxes {
+  height: 10em;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  border-width: 2px;
+  margin-top: 150px;
+}
+
+#boxheader {
+  /* height: 10em; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-width: 2px;
+  margin-top: 50px;
+  /* background-color: darkgoldenrod; */
+}
+
+#leftbox {
+  float: left;
+  width: 33%;
+  border-width: 1px;
+  /* background-color: darkseagreen; */
+}
+#midbox {
+  float: center;
+  width: 33%;
+  /* background-color: darkviolet; */
+}
+#rightbox {
+  float: right;
+  width: 33%;
+  /* background-color: darkolivegreen; */
+}
+
+.main {
+  margin-top: 100px; /* Add a top margin to avoid content overlay */
+}
+
+h1 {
+  text-align: center;
+}
+
+h3 {
+  text-decoration: underline;
+  text-align: center;
+}
+
+.error-message {
+  color: salmon;
+}
+
+form {
+  display: inline;
+}
+
+.item {
+  display: flex;
+  justify-content: center;
+  text-align: start;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+}

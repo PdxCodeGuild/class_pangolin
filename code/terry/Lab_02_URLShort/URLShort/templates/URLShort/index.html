@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Short URL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One&display=swap" rel="stylesheet">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'URLShort/style.css' %}">
+</head>
+
+<body>
+    <h1 id="top">The URL to Shorten</h1>
+    <br>
+    <div class="container">
+        <form action="{% url 'URLShort:short' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="user_url" id="user_url" placeholder="Long URL Here" pattern="^(http|https):\/\/.+">
+            <button type="submit" value="Shorten" id="submit_id" class="btn btn-primary">
+                <div id="button_text">
+                    Short This URL
+                </div>
+            </button>
+        </form>
+        {% if shortURL %}
+        <p id="tiny_id">The short URL is: <a href="{% url 'URLShort:redirect' shortURL=shortURL %}">
+                {{shortURL}}</a></p>
+        {% else %}
+        <p id="no_tiny">The URL to shorten is?</p>
+        {% endif %}
+    </div>
+</body>
