@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="twitter-entry">
+    <div class="twitter-detail">
         <h2>{{ twitter.title }}</h2>
         <h5><em>Posted on {{ twitter.created }}</em></h5>
         <h5><em>Last updated on {{ twitter.updated }}</em></h5>
         <p>{{ twitter.body }}<p>
-    </div>
     <div class="post-buttons">
         <p><a class="detail-button" href="{% url 'posts:delete' twitter.pk %} ">Delete tweet</a></p>
         <p><a class="detail-button" href="{% url 'posts:home_page'%}">Return home</a></p>
+    </div>
     </div>
 {% endblock content %}
     
