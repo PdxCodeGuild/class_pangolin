@@ -1,0 +1,30 @@
+header {
+    display:flex;
+    border-bottom: 1px solid red;
+}
+
+.nav-left {
+    margin-right: auto;
+}
+
+.nave-right {
+    display:flex;
+
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:600px;
+    margin-left: 25%;
+    align-items: center;
+    border: 1px solid red ;
+
+}
+.post-buttons{
+    display: flex;
+    flex-direction: row;  
+}
+.detail-button{
+    padding:5px;
+}

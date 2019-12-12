@@ -1,0 +1,204 @@
+ html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  
+body {
+    background-image: url("images/fade.png");
+    background-color: #2C3F46;
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+}
+
+.container {
+  padding: 20px 40px 40px;
+  max-width: 640px;
+  display: flex;
+  border-radius: 3%;
+  margin: 10px;
+  max-width: 100%;
+  padding: 6px;
+  &__image {
+      margin: 20px 30px 0 0;
+      width: 200px;
+      object-fit: contain;
+      align-self: flex-start;
+  }
+  &__text {
+      flex: 1 1 auto;
+  }
+}
+
+h1, h3 {
+  text-align: center;
+  color:whitesmoke;
+} 
+  
+header, main, footer, .article1, .article2, .article3 {
+    /* max-width: 100%; */
+    margin: 5px;
+    padding: 6px;
+}
+ /* Style the header */
+ .header {
+  padding: 10px 16px;
+}
+
+/* Page content */
+.content {
+  padding: 16px;
+}
+
+.flex-nav p {
+  border: 1px solid 2C3F46;
+  border-radius: 3%;
+  margin: 6px;
+  padding: 3px;
+}
+.container {
+  display: flex; /* or inline-flex */
+  justify-content: space-around;
+}
+
+#img1 {
+  border-radius: 5%;
+  margin: 0.5px;
+  display: block;
+  max-width: 100%;
+  box-sizing: 0 0 5 black;
+}
+
+img:hover {
+  opacity: 1.0;
+  filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+img {
+  border-radius: 5%;
+  margin: 0.5px;
+  display: block;
+  max-width: 100%;
+  box-sizing: 0 0 5 black;
+}
+  /* The navigation menu links */
+
+  /* When you mouse over the navigation links, change their color */
+  a:hover {
+    color: #f1f1f1;
+  }
+  
+  /* Style page content */
+  .main {
+    margin-left: 160px; 
+    padding: 0px 10px;
+  }
+ 
+  #rcorners {
+    border-radius: 35px;
+    background-position: left top;
+    background-repeat: repeat;
+    padding: 20px;
+  }
+
+header {
+  background-color: rgba(0,0,0,.5);
+  color: whitesmoke;
+  font-size: 1.5em;
+  text-align: center;
+  padding: 1em;
+} 
+footer {
+  text-align: center;
+  color:whitesmoke;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #2C3F46;
+  opacity: .7;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  color:whitesmoke;
+  text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  background-color: #2C3F46;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: whitesmoke;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #064579;
+}
+
+.main {
+  margin-left: 140px; /* Same width as the sidebar + left position in px */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */  
+ @media (min-width: 768px) {
+
+  header, main, footer, .article1, .article2, .article3 {
+    margin: 18px auto;
+    max-width: 100%;
+    width: 760px;
+    max-width: 100%;
+  }
+
+  .flex-nav {
+    display: flex;
+  }
+
+  .item {
+    width: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+
+  header, main, footer, .article1, .article2, .article3 {
+    width: 960px;
+  }
+
+  .item {
+    width: 280px;
+  }
+}
