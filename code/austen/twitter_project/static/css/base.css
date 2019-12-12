@@ -92,3 +92,6 @@ header {
     margin-bottom: 1px;
     padding:6px;
 }
+.upercase{
+    text-transform: uppercase;
+}

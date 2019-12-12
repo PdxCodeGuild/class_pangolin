@@ -6,9 +6,6 @@
 {% for twitter in object_list %}
     <div class="twitter-entry">
         <div class="post-box">
-            <div class="avatar">
-			    <img src="images/avatar.png">
-		    </div>
             <h1><a href="{% url 'posts:detail' twitter.id %}">{{ twitter.title }}</a></h1>
         </div>
         <h6><em>{{ post.author.username }} -- {{ post.created }}</em></h5>

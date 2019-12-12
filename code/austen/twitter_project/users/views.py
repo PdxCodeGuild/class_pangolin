@@ -8,6 +8,7 @@ class SignUpView(generic.CreateView):
     form_class= UserCreationForm
     success_url= reverse_lazy('login')
     template_name= 'signup.html'
+    avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
 
 class UserProfileView(generic.DeleteView):
     model = User
