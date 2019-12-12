@@ -8,15 +8,15 @@ from django.dispatch import receiver
 class Profile(models.Model):
     headline = models.CharField(max_length=40, default="Please add a headline.")
     summary = models.CharField(max_length=250, default="Please add a summary.")
-    picture = models.ImageField(upload_to='images/profiles/', null=True, blank=True)
+    picture = models.ImageField(upload_to='images/profiles/', default='images/profiles/default-profile.png')
     location = models.CharField(max_length=30, default="Please add a location.")
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=12, default="Please add a first name.")
     last_name = models.CharField(max_length=15, default="Please add a last name.")
+    users_followed = models.ManyToManyField('Profile')
 
     # to redirect after creating new 
     def get_absolute_url(self):
-        print(f"in get absolute url, self.user.username is {self.user.username}")
         return reverse('users:profile', args=(self.user.username,))
 
 @receiver(post_save, sender=User)
