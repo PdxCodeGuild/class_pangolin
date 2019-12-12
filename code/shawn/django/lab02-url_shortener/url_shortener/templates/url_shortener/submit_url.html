@@ -44,7 +44,7 @@
         {% csrf_token %}
         <div class="form-group">
                 <label for="long-url">Long URL:</label>
-            <input type="text" class="form-control" id="long-url" name="long-url" placeholder="Paste your long URL here..." pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" title="URL must start with http:// or https://" required><br>
+            <input type="text" class="form-control" id="long-url" name="long-url" placeholder="Paste your long URL here..." title="URL must start with http:// or https://" required><br>
         </div>
         <input type="submit" class="btn btn-default" value="Generate Short URL" />
     </form>
