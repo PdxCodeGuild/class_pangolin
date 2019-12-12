@@ -1,4 +1,4 @@
-"""grocery URL Configuration
+"""url_shortener URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.0/topics/http/urls/
@@ -14,12 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from grocery_app.views import listView, addItem, deleteItem, completeItem
+from django.urls import path
+from shorten_url.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('grocery_app/', listView),
-    path('addItem/', addItem),
-    path('deleteItem/<int:item_id>/', deleteItem),
-    path('completeItem/<int:item_id>/', completeItem),
+    path('home/', homeView),
+    path('', redirectUser),
 ]
