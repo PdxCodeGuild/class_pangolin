@@ -109,3 +109,6 @@ venv.bak/
 
 # Misc
 token.txt
+
+#django uploaded files
+uploaded_files/
