@@ -1,0 +1,55 @@
+
+body{
+    margin:6px;
+    text-align: center;
+    /* background-color: rgb(172, 169, 169);
+    background: url('images/computer.jpg'); */
+
+    background: center / contain no-repeat url("images/computer.jpg"), rgb(172, 169, 169) 35%;
+}
+.form{
+    color: white;
+    margin-top:120px;
+    margin-bottom:3px;
+}
+.link{
+    color: white;
+}
+a:link{
+    color: goldenrod;
+}
+h1{
+    font-family: 'Source Code Pro', monospace;
+    font-size: 40px;
+    font-weight: 900;
+    margin-top: 100px;
+    background: -webkit-linear-gradient(goldenrod, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.type_text{
+    text-align: center;
+    color: rgb(231, 178, 43); 
+    font-family: "Courier";
+    font-size: 20px;
+    margin-left: 42%;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 250px;
+    animation: type 4s steps(40);
+}
+
+@keyframes type{ 
+    from { width: 0; } 
+}
+/* @media screen and (min-width: 1024px) {
+    body{
+        width: 1000px;
+    }
+
+    /* .type_text{
+        margin-top:200px;
+    } */
+
+} */

@@ -1,0 +1,192 @@
+# Create .gitignore to place in your project folder
+https://www.gitignore.io
+
+mkdir <folder name>
+
+cd <folder name>
+
+pipenv install
+
+pipenv shell
+
+pipenv isntall django
+
+pipenv install <other packages>
+
+# Make a requrements.txt
+pip freeze > requirements.txt
+
+# Install a requirements.txt
+pip install -r requirements.txt
+
+django-admin startproject <config> | <project name>
+
+mv config source
+
+cd source
+
+mkdir templates
+
+./manage.py startapp <app_name>
+
+cd config 
+
+mkdir static
+
+cd ..
+
+cd <app_name> 
+
+touch | New-Item urls.py
+
+cd ..
+
+cd templates
+
+mkdir partials
+mkdir <app_name>
+
+touch | New-Item base.html
+
+cd <app_name>
+touch | New-Item index.html
+
+# Add the app to the settings.py in the source/config folder
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    # first party
+    '<app_name>.apps.<app_name>Config'
+]
+
+# Set up the <app_name> urls.py so that it references the methonds in the views.py 
+
+from django.urls import path 
+from . import views
+
+urlpatterns = [
+  path('', views.index, name='index')
+]
+
+# Create a function / method in the <app_name> views.py to render the packages
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+
+def index(request):
+  return render(request, '<app_name>/index.html')
+
+# Link the source/config/urls.py to the app urls
+
+from django.contrib import admin
+from django.urls import path, include # Add include to this line #
+
+urlpatterns = [
+    path('', include('<app_name>.urls')), # Add the path here #
+    path('admin/', admin.site.urls),
+]
+
+# Confirm seeing INDEX on the page @ http://127.0.0.1:8000/
+
+cd source
+./manage.py runserver
+
+# Tell Django where to look for templates
+
+cd source/config/settings.party
+
+# We placd the templates in the root of the project so...
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # ADD THIS TO REFERENCE TEMPLATES #
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+# Set up source/templates/base.html. This will use Jinja syntasx {% %}. Template example below
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>App Name</title>
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  {% include 'partials/_navbar.html' %}
+
+  <!-- Block Content -->
+  {% block content %} {% endblock %}
+
+  <!-- Footer -->
+  {% include 'partials/_footer.html' %}
+
+  <!-- Bootstrap core JavaScript -->
+
+</body>
+</html> # End template example
+
+# Extend the layout to the source/templates/<app_name>/index.html
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>TINY INDEX</h1>
+{% endblock %}
+
+# Runserver and you should see TINY INDEX on the page @ http://127.0.0.1:8000/
+
+./manage.py runserver
+
+# Adding the Bootstrap4 theme
+
+Copy and paste / drag and drop the Bootstrap4 css, img, scss, vendor folders to the source/config/static/ folder
+
+# In source/config/settings.py set up the static paths so that the command  [collectstatic] will place all static items to a root static folder
+
+STATIC_ROOT= os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'config/static')
+]
+
+# ./manage.py help will display commands available. Build the static directory for the project
+
+./manage.py collectstatic
+
+# The following will return to the console - <number of files> static files copied to <your project root path> 
+
+# Add the items from the main Boostrap index.html to the /partials/_footer.html or _navbar.html as an example
+# Use Jinja syntax to adjust all local links/hrefs paths. Examples below
+
+<link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+ 
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"> # Note no Jinja required for non-local items
+
+<img class="img-fluid rounded-circle mb-3" src="{% static 'img/testimonials-1.jpg' %}" alt="">

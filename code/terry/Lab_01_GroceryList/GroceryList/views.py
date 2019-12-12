@@ -61,3 +61,8 @@ def is_done(request, question_id):
         selected_choice.save()
         
         return HttpResponseRedirect(reverse('GroceryList:results', args=(question.id,)))
+
+def update_list(request):
+    new_item = request.POST['update_item']
+    Choice.objects.create(choice_text=new_item, created_date=timezone.now())
+    return HttpResponseRedirect(reverse('GroceryList:index'))

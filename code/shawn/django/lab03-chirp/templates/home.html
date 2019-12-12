@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="callout large primary">
+    <div class="row column text-center">
+        <h1>News Feed</h1>
+    </div>
+</div>
+
+<div class="row" id="content">
+    <div class="medium-8 columns">
+        {% for post in object_list %}
+            <div class="blog-post">
+                <h3><a href='{% url "users:profile" post.author %}'> {{ post.author }} </a><small>{{ post.date_created }}</small></h3>
+
+                {% if post.picture %}
+                    <img class="thumbnail" src="{{ post.picture.url }}">
+                {% endif %}
+                {% if post.text %}
+                <p>{{ post.text }}</p>
+                {% endif %}
+
+                <div class="callout">
+                    <ul class="menu simple">
+
+                        {% if post.comment_set.count > 0 %}
+                            <li><a href="#">Comments: (count here))</a></li>
+                        {% else %}
+                            <li>No comments yet.</li>
+                        {% endif %}
+
+                        {% if post.reaction_set.count > 0 %}
+                            <li><a href="#">Reactions?</a></li>
+                        {% endif %}
+
+                    </ul>
+                    <div class="custom-edit-delete">
+                        {% if user.username == post.author.username %}
+                            <a href="{% url 'posts:edit' post.pk %}"><small>edit</small></a>
+                            <a href="{% url 'posts:delete' post.pk %}"><small>delete</small></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="medium-3 columns" data-sticky-container>
+        <div class="sticky" data-sticky data-anchor="content">
+            <h4>Trending</h4>
+            <ul>
+                <li><a href="#">First</a></li>
+                <li><a href="#">Second</a></li>
+                <li><a href="#">Third</a></li>
+                <li><a href="#">Fourth</a></li>
+            </ul>
+            <h4>Friends</h4>
+            <ul>
+                <li><a href="#">Friend #1</a></li>
+                <li><a href="#">Friend #2</a></li>
+                <li><a href="#">Friend #3</a></li>
+                <li><a href="#">Friend #4</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row column">
+    <ul class="pagination" role="navigation" aria-label="Pagination">
+        <li class="disabled">Previous</li>
+        <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+        <li><a href="#" aria-label="Page 2">2</a></li>
+        <li><a href="#" aria-label="Page 3">3</a></li>
+        <li><a href="#" aria-label="Page 4">4</a></li>
+        <li class="ellipsis"></li>
+        <li><a href="#" aria-label="Page 12">12</a></li>
+        <li><a href="#" aria-label="Page 13">13</a></li>
+        <li><a href="#" aria-label="Next page">Next</a></li>
+    </ul>
+</div>
+
+{% endblock content %}
+

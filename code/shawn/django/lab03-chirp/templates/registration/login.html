@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="callout large primary">
+        <div class="row column text-center">
+            <h1>Login</h1>
+        </div>
+    </div>
+
+    <form method="post" action=''>
+        {% csrf_token %}
+        {{ form.as_p }}                 
+        <input type="submit" value="Login"/>
+    </form>
+{% endblock content %}

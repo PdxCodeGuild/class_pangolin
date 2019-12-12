@@ -1,0 +1,7 @@
+a {
+  color: #0F4C81;
+}
+
+body {
+  background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)), url("images/th.jpeg") repeat;
+}

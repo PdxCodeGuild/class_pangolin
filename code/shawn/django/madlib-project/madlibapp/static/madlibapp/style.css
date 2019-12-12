@@ -1,0 +1,25 @@
+body {
+    background: rgba(255,0,0,.2)
+}
+.madlib-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input[type='text']{
+    width: 60vw;
+}
+textarea {
+    height: 60vh;
+    width: 60vw;
+}
+
+.madlibword-options {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+p {
+    text-align: center;
+}

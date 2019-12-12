@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ object.username }}</h2>
+<h6><em>Twitter memeber since {{ object.date_joined }}</em></h6>
+{% for twitter in object_list %}
+    <div class="twitter-entry">
+        <div class="post-box">
+            <div class="avatar">
+			    <img src="images/avatar.png">
+		    </div>
+            <h1><a href="{% url 'posts:detail' twitter.id %}">{{ twitter.title }}</a></h1>
+        </div>
+        <h6><em>{{ post.author.username }} -- {{ post.created }}</em></h5>
+        <p>{{ twitter.body }}</p>
+    </div>
+{% endfor %}
+
+{% endblock content %}
