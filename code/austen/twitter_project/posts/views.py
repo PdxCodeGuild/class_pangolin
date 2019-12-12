@@ -16,11 +16,12 @@ class TweetDetailView(DetailView):
 class TweetCreateView(LoginRequiredMixin, CreateView):
     model = Twitter
     template_name = 'post_new_post.html'
-    fields = ['title', 'body', 'author']
+    fields = ['title', 'body']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
 
 class TweetDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Twitter

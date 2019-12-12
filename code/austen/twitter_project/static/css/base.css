@@ -1,15 +1,42 @@
+html{
+    cursor: pointer;
+
+}
+body{
+    background-color: darkmagenta;
+}
+
 header {
     display:flex;
     border-bottom: 1px solid red;
+    margin:10px;
 }
 
 .nav-left {
     margin-right: auto;
 }
 
-.nave-right {
-    display:flex;
-
+.right-nav{
+    display: inline-block;
+    height: 20px;
+    padding: 0 10px;
+    margin: 3px;
+    color:black;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid rgb(69, 140, 221);
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.right-nav:hover{
+    background-color:rgba(0, 0, 0, 0.1)
 }
 .container {
     display: flex;
@@ -17,14 +44,54 @@ header {
     justify-content: center;
     width:600px;
     margin-left: 25%;
-    align-items: center;
-    border: 1px solid red ;
+    /* align-items: center; */
+    /* border: 1px solid red; */
 
 }
 .post-buttons{
     display: flex;
-    flex-direction: row;  
+    flex-direction: row;
+    
 }
+
 .detail-button{
     padding:5px;
+    display: inline-block;
+    height: 45px;
+    padding: 0 30px;
+    margin: 20px;
+    color:black;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 45px;
+    letter-spacing: .1rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background-color: transparent;
+    border-radius: 12px;
+    border: 1px solid rgb(69, 140, 221);
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.twitter-entry {
+    text-align: left;
+    border:1px solid rgb(69, 140, 221);
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding:6px;
+    /* border-radius: 25px; */
+}
+.twitter-entry:hover{
+    background-color:rgba(0, 0, 0, 0.1)
+}
+.twitter-detail{
+    text-align: left;
+    border:1px solid rgb(69, 140, 221);
+    margin-top: 1px;
+    margin-bottom: 1px;
+    padding:6px;
+}
+.upercase{
+    text-transform: uppercase;
 }
