@@ -1,4 +1,4 @@
 from django.contrib import admin
-from url_shortener.models import Abbreviation
+from .models import ShortUrl
 
-admin.site.register(Abbreviation)
+admin.site.register(ShortUrl)
