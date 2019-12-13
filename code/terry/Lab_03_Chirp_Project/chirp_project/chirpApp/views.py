@@ -13,14 +13,31 @@ class ChirpDetail(DetailView):
     model = Chirp
     template_name = 'detail.html'
 
-class ChirpCreate(CreateView):
+class ChirpCreate(LoginRequiredMixin, CreateView):
     model = Chirp
     template_name = 'create.html'
+    fields = ['body_text']
 
-class ChirpUpdate(UpdateView):
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class ChirpUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Chirp
     template_name = 'edit.html'
+    fields = ['body_text']
 
-class ChirpDelete(DeleteView):
+    def test_func(self):
+        obj = self.get_object()
+        return self.request.user == obj.author
+
+
+class ChirpDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Chirp
     template_name = 'delete.html'
+    success_url = reverse_lazy('chirpApp:index')
+
+    def test_func(self):
+        obj = self.get_object()
+        return self.request.user == obj.author
+
