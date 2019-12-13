@@ -18,7 +18,7 @@
 
     <div class="top-bar">
         <div class="top-bar-left">
-            <img src="{% static 'img/logo.png' %}" id='logo'/>
+            <a href="{% url 'posts:home' %}"><img src="{% static 'img/logo.png' %}" id='logo'/></a>
             {% if request.user.is_authenticated %}
                 <h6>Hi {{ request.user.username }}!</h6>
             {% endif %}

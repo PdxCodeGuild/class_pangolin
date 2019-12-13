@@ -6,9 +6,9 @@
         <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
             <div class="row column">
                 <br>
-                <img class="thumbnail" src="https://placehold.it/550x350">
-                <h5>{{ object.profile.first_name }} {{ object.profile.last_name }}</h5>
-                <p>Location: {{ object.profile.location }}</p>
+                <img class="thumbnail" src="{{ object.picture.url }}">
+                <h5>{{ object.first_name }} {{ object.last_name }}</h5>
+                <p>Location: {{ object.location }}</p>
 
             </div>
         </div>
@@ -16,15 +16,22 @@
             <div class="title-bar hide-for-large">
                 <div class="title-bar-left">
                     <button class="menu-icon" type="button" data-open="my-info"></button>
-                    <span class="title-bar-title">Mike Mikerson</span>
+                    <span class="title-bar-title">{{ object.first_name }} {{ object.last_name }}</span>
                 </div>
             </div>
             <div class="callout primary">
                 <div class="row column">
-                    <h1>{{ object.profile.headline }}</h1>
-                    <p class="lead">{{ object.profile.summary }}</p>
-                    {% if request.user.id == object.id %}
-                        <p><a href="{% url 'users:profile_edit' object.id %}">edit profiile...</a></p>
+                    <h1>{{ object.headline }}</h1>
+                    <p class="lead">{{ object.summary }}</p>
+                    {% if request.user.id == object.user.id %}
+                        <a href="{% url 'users:profile_edit' object.id %}" class='button'>edit profile</a>
+                    {% else %}
+                        <form method='post' action="{% url 'users:profile_follow' %}">
+                            {% csrf_token %}
+                            <input type='hidden' name='username' value='{{ object.user.username }}'/>
+                            <input type='submit' value='follow'/>
+                        </form>
+                        <!-- <a href="{% url 'users:profile_follow' %}" class='button'>follow</a> -->
                     {% endif %}
                 </div>
             </div>
@@ -32,9 +39,9 @@
             <div class="row small-up-2 medium-up-3 large-up-4">
 
             <!-- if no posts, create a placeholder -->
-            {% if object.chirp_set.all %}
+            {% if object.user.chirp_set.all %}
                 <!-- iterate through each post and create a thumbnail -->
-                {% for post in object.chirp_set.all %}
+                {% for post in object.user.chirp_set.all %}
                     <div class="column">
                         {% if post.picture %}
                             <img class="thumbnail" src="{{ post.picture.url }}">
@@ -44,7 +51,7 @@
                 {% endfor %}
             {% else %}
                 <div class="column">
-                    <img class="thumbnail" src="https://placehold.it/550x550">
+                    
                     <h5>No chirps yet.</h5>
                 </div>
             {% endif %}
