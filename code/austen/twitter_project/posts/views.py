@@ -16,7 +16,7 @@ class TweetDetailView(DetailView):
 class TweetCreateView(LoginRequiredMixin, CreateView):
     model = Twitter
     template_name = 'post_new_post.html'
-    fields = ['title', 'body']
+    fields = ['title', 'body', 'my_image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user

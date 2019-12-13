@@ -5,7 +5,9 @@
         <div class="twitter-entry">
             <h1><a href="{% url 'posts:detail' twitter.id %}">{{ twitter.title }}</a></h1>
             <p><em>Author:</em> {{ twitter.author }}</p>
-            <p>{{ twitter.body }}</p>
+            <img src="{{twitter.my_image.url}}"/>
+            
+            <p class="body">{{ twitter.body }}</p>
         </div>
     {% endfor %}
 

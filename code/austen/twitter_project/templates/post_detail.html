@@ -5,7 +5,8 @@
         <h2>{{ twitter.title }}</h2>
         <h5><em>Posted on {{ twitter.created }}</em></h5>
         <h5><em>Last updated on {{ twitter.updated }}</em></h5>
-        <p>{{ twitter.body }}<p>
+        <p class="body">{{ twitter.body }}<p>
+        <img src="{{twitter.my_image.url}}"/>
     <div class="post-buttons">
         <p><a class="detail-button" href="{% url 'posts:delete' twitter.pk %} ">Delete tweet</a></p>
         <p><a class="detail-button" href="{% url 'posts:home_page'%}">Return home</a></p>
