@@ -4,7 +4,7 @@
 
 <div class="callout large primary">
     <div class="row column text-center">
-        <h1>News Feed</h1>
+        <h1>All Chirps</h1>
     </div>
 </div>
 
@@ -12,10 +12,10 @@
     <div class="medium-8 columns">
         {% for post in object_list %}
             <div class="blog-post">
-                <h3><a href='{% url "users:profile" post.author %}'> {{ post.author }} </a><small>{{ post.date_created }}</small></h3>
+                <h3><a href='{% url "users:profile" post.author %}'> {{ post.author }} </a><a href='{% url "posts:view" post.id %}'><small>{{ post.date_created }}</small></a></h3>
 
                 {% if post.picture %}
-                    <img class="thumbnail" src="{{ post.picture.url }}">
+                    <a href="{% url 'posts:view' post.id %}"><img class="thumbnail" src="{{ post.picture.url }}"></a>
                 {% endif %}
                 {% if post.text %}
                 <p>{{ post.text }}</p>
@@ -55,12 +55,11 @@
                 <li><a href="#">Third</a></li>
                 <li><a href="#">Fourth</a></li>
             </ul>
-            <h4>Friends</h4>
+            <h4>Followed</h4>
             <ul>
-                <li><a href="#">Friend #1</a></li>
-                <li><a href="#">Friend #2</a></li>
-                <li><a href="#">Friend #3</a></li>
-                <li><a href="#">Friend #4</a></li>
+                {% for friend in request.user.profile.friends.all %}
+                    <li><a href="{% url 'users:profile' friend.user.username %}">{{ friend.user.profile.first_name }} {{ friend.user.profile.last_name }}</a></li>
+                {% endfor %}
             </ul>
         </div>
     </div>
