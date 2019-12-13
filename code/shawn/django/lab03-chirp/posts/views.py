@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
@@ -9,6 +9,10 @@ from .models import Chirp, Comment, Reaction
 class ChirpHomeView(ListView):
     model = Chirp
     template_name = 'home.html'
+
+class FeedView(ListView):
+    model = Chirp
+    template_name = 'home_filtered.html'
 
 class ChirpCreateView(LoginRequiredMixin, CreateView):
     model = Chirp
@@ -40,3 +44,9 @@ class ChirpDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         obj = self.get_object()
         return self.request.user == obj.author
+
+class ChirpDetailView(DetailView):
+    model = Chirp
+    template_name = 'chirp.html'
+
+    

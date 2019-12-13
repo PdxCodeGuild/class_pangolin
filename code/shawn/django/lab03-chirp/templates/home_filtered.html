@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="callout large primary">
+    <div class="row column text-center">
+        <h1>Your Feed</h1>
+    </div>
+</div>
+
+<div class="row" id="content">
+    <div class="medium-8 columns">
+        {% for post in object_list %}
+            <!-- only show posts if author is in user's followed list -->
+            {% if post.author.profile in request.user.profile.friends.all %}
+                <div class="blog-post">
+                    <h3><a href='{% url "users:profile" post.author %}'> {{ post.author }} </a><a href='{% url "posts:view" post.id %}'><small>{{ post.date_created }}</small></a></h3>
+
+                    {% if post.picture %}
+                        <a href="{% url 'posts:view' post.id %}"><img class="thumbnail" src="{{ post.picture.url }}"></a>
+                    {% endif %}
+                    {% if post.text %}
+                    <p>{{ post.text }}</p>
+                    {% endif %}
+
+                    <div class="callout">
+                        <ul class="menu simple">
+
+                            {% if post.comment_set.count > 0 %}
+                                <li><a href="#">Comments: (count here))</a></li>
+                            {% else %}
+                                <li>No comments yet.</li>
+                            {% endif %}
+
+                            {% if post.reaction_set.count > 0 %}
+                                <li><a href="#">Reactions?</a></li>
+                            {% endif %}
+
+                        </ul>
+                        <div class="custom-edit-delete">
+                            {% if user.username == post.author.username %}
+                                <a href="{% url 'posts:edit' post.pk %}"><small>edit</small></a>
+                                <a href="{% url 'posts:delete' post.pk %}"><small>delete</small></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="medium-3 columns" data-sticky-container>
+        <div class="sticky" data-sticky data-anchor="content">
+            <h4>Followed</h4>
+            <ul>
+                {% for friend in request.user.profile.friends.all %}
+                    <li><a href="{% url 'users:profile' friend.user.username %}">{{ friend.user.profile.first_name }} {{ friend.user.profile.last_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row column">
+    <ul class="pagination" role="navigation" aria-label="Pagination">
+        <li class="disabled">Previous</li>
+        <li class="current"><span class="show-for-sr">You're on page</span> 1</li>
+        <li><a href="#" aria-label="Page 2">2</a></li>
+        <li><a href="#" aria-label="Page 3">3</a></li>
+        <li><a href="#" aria-label="Page 4">4</a></li>
+        <li class="ellipsis"></li>
+        <li><a href="#" aria-label="Page 12">12</a></li>
+        <li><a href="#" aria-label="Page 13">13</a></li>
+        <li><a href="#" aria-label="Next page">Next</a></li>
+    </ul>
+</div>
+
+{% endblock content %}
+

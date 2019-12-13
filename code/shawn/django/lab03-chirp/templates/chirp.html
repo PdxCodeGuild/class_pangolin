@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card-flex-article card">
+    <div class="card-image">
+        {% if object.picture %}
+        <img src="{{ object.picture.url }}">
+        {% endif %}
+    </div>
+    <div class="card-section">
+        <h3 class="article-title"><a href="{% url 'users:profile' object.author.username %}">{{ object.author.username }} </a><small>{{ object.date_created }}</small></h3>
+        <div class="article-details">
+            <span class="author">{{ object.author.profile.first_name }} {{ object.author.profile.last_name }}</span> &#8226; 
+            <span class="location">{{ object.author.profile.location }}</span> 
+        </div>
+        <p class="article-summary">{{ object.text }}</p>
+    </div>
+
+    <!-- <div class="card-divider align-middle">
+           <div class="avatar with-add-icon">
+             <img src="https://placehold.it/35" alt="avatar" />
+             <i class="fa fa-plus-circle" aria-hidden="true"></i>
+           </div>
+          <div class="user-info">
+            <p class="user-name">Name</p>
+            <p class="category">added to <strong>Category</strong></p>
+          </div>
+        </div>
+        <div class="card-divider align-justify">
+          <div class="notability">
+            <span class="publications">Publication Number</span> &#8226;
+            <span class="likes"># Likes</span>
+          </div>
+          <div class="card-actions">
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+          </div>
+        </div> -->
+</div>
+
+
+
+{% endblock content %}
