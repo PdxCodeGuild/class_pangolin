@@ -9,7 +9,7 @@ pipenv install
 
 pipenv shell
 
-pipenv isntall django
+pipenv isntall django==3.0 # Best practice to include version number.
 
 pipenv install <other packages>
 
@@ -92,11 +92,6 @@ urlpatterns = [
     path('', include('<app_name>.urls')), # Add the path here #
     path('admin/', admin.site.urls),
 ]
-
-# Confirm seeing INDEX on the page @ http://127.0.0.1:8000/
-
-cd source
-./manage.py runserver
 
 # Tell Django where to look for templates
 
