@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Sign up</h1>
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Sign up">
+</form>
+{% comment %} <form action="<myurl>" method="POST" enctype="multipart/form-data">
+    <input type="file" name="my_image" accept="image/*" required>
+    <button type="submit">Post img</button>
+</form> {% endcomment %}
+{% endblock content %}
