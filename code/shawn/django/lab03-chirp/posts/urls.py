@@ -9,4 +9,6 @@ urlpatterns = [
     path('view/<int:pk>', views.ChirpDetailView.as_view(), name='view'),
     path('delete/<int:pk>', views.ChirpDeleteView.as_view(), name='delete'),
     path('edit/<int:pk>/', views.ChirpEditView.as_view(), name='edit'),
+    path('like/', views.like, name='like'),
+    path('dislike/', views.dislike, name='dislike'),
 ]
