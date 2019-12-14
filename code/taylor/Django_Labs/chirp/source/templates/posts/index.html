@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+     <!-- Banner  -->
+     {% include '../partials/_banner.html' %}
+
+<!--Micro Posts Display Main Section-->
+  <section id="feature" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <!-- Headliner -->
+        <div class="header-section text-center">
+          <h2>Recent Kuips - </h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
+          <hr class="bottom-line">
+        </div>  <!-- /Headliner-->
+        
+      <!-- Micro Post -->
+      {%for post in posts %}
+        <div class="feature-info">
+          <div class="fea">
+            <div class="col-md-4">
+              <div class="heading pull-right">
+                <h4>{{ post.title }}</h4>
+                <p>By  {{ post.author }} on {{ post.date_posted }} </p>
+                <p>{{ post.content }}</p>
+              </div>
+              <div class="fea-img pull-left">
+                <img src="{% static './img/raven.png' %}" alt="raven" height="40px" width="40px">
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <!-- / Micro Post -->
+    </div>
+  </section>
+  <!--/ Micro Posts Section-->
+{% endblock %}
