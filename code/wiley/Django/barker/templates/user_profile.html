@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+
 {% block content %}
-    <div class="bark_entry">
+
+    {% for bark in object.bark_set.all %}
+        <div class="bark_entry">
             <div class="name">
-                {{ bark.author }}
+                <a href="{% url 'users:profile' bark.author.username %}">
+                    {{ bark.author }}
+                </a>
             </div>
             <div class="date">        
                 {{ bark.created }}
@@ -18,7 +23,10 @@
             {% else %}
             {% endif %}
             <div class="text">
-                {{ bark.body }}
+                <a href="{% url 'barker_app:detail' bark.id %}">
+                    {{ bark.body }}
+                </a>
             </div>
         </div>
-{% endblock content %}
+    {% endfor %}
+{% endblock %}

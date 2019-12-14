@@ -11,16 +11,17 @@
     </head>
     <body>
         <div class="container">
-            <header>
-                
+            <header  id="header">
                     Barker: Because dogs deserve social media too!
-                
             </header>
             <div class="post">
                 {% if user.is_authenticated %}
-                Welcome {{ user.username }}
+                <p class="welcome">
+                    Welcome {{ user.username }}
+                </p>
+                
                 <a href="{% url 'barker_app:fresh' %}" id="new_bark" class="toplinks">
-                     Bark! 
+                    Bark! 
                 </a>
                 <a href="{% url 'barker_app:home' %}"  class="toplinks">
                     <img src="{% static 'home.png' %}" class="imglink"/>
