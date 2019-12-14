@@ -1,24 +1,28 @@
 {% extends 'base.html' %}
 
+{% load static %}
 {% block content %}
-
     {% for bark in bark_list %}
         <div class="bark_entry">
             <div class="name">
-                {{ bark.author }}
+                <a href="{% url 'users:profile' bark.author.username %}">
+                    {{ bark.author }}
+                </a>
             </div>
             <div class="date">        
                 {{ bark.created }}
             </div>
             {% if bark.author == request.user %}
-                <div class="delete">
+                <div>
                     <form method="post" action="{% url 'barker_app:delete' bark.id %}">
                         {% csrf_token %}
                         {{ form.as_p }}
-                            <input type="submit" value="delete">
+                            <input type="submit" value="delete" class="delete">
                     </form>
                 </div>
             {% else %}
+                <div>
+                </div>
             {% endif %}
             
             <div class="text">
@@ -26,7 +30,19 @@
                     {{ bark.body }}
                 </a>
             </div>
+            <div class="score">
+                <form method="post" action="{% url 'barker_app:likes' bark.id %}">
+                    {% csrf_token %}
+                    <input type="image" src="{% static 'bone.png' %}" class="vote" alt="like">
+                </form>
+                <form method="post" action="{% url 'barker_app:dislike' bark.id %}">
+                    {% csrf_token %}
+                    <input type="image" src="{% static 'vacuum.png' %}" class="vote" alt="dislike">
+                </form>
+                <p class="netscore">
+                    Bark Score: {{ bark.netlikes }}
+                </p>
+            </div>
         </div>
     {% endfor %}
-
 {% endblock content %}

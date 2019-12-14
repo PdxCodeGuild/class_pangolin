@@ -17,11 +17,12 @@ body {
     padding: 6px;
     margin: auto;
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 1fr 2fr;
+    grid-template-columns:  1fr 1fr 1fr;
+    grid-template-rows: 1fr 2f 1fr;
     grid-template-areas: 
     "name date delete"
-    "text text text";
+    "text text text"
+    "score score score";
     background: #2c7873;
     color: #ffd800;
     border: 2px solid #6fb98f;
@@ -67,7 +68,29 @@ header {
     width: 30px;
     height: auto;
 }
-.toplinks {
-    padding:20px;
- 
+
+.delete {
+    background-color: #6fb98f;
+    color: #ffd800;
+    padding: 3px 2px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid white;
+    float: right;
+}
+.delete:hover, .delete:active {
+    background-color: rgba(176, 201, 246, 0.63);
+}
+.score {
+    grid-area: score;
+    display: flex;
+    flex-direction: row;
+}
+
+.vote {
+    width:25px;
+    height: auto;
+}
+.post > .welcome {
+    margin-right:auto;
 }
