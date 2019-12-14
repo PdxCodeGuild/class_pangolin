@@ -8,11 +8,11 @@
                 {{ bark.created }}
             </div>
             {% if bark.author == request.user %}
-                <div class="delete">
+                <div>
                     <form method="post" action="{% url 'barker_app:delete' bark.id %}">
                         {% csrf_token %}
                         {{ form.as_p }}
-                            <input type="submit" value="delete">
+                            <input type="submit" value="delete" class="delete">
                     </form>
                 </div>
             {% else %}

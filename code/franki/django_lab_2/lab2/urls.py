@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from url_shortener.views import homeView, redirectUser
+from url_shortener import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', homeView),
-    path('', redirectUser),
+    path('', views.Make, name = "Make new"),
+    path('<str:token>', views.Home, name = "Home")
+    
 ]
