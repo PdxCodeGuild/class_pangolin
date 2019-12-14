@@ -2,23 +2,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Enter the Blogsphere</title>
+        <title>Welcome to the Twitbook!</title>
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
     </head>
 
     <body>
         <header>
             <div class="nav-left">
-            <h1><a href="{% url 'posts:home' %}">Enter the Blogsphere</a></h1>
+            <h1><a href="{% url 'posts:home' %}">Welcome to the Twitbook, {{ user.username }}!</a></h1>
         </div>
         <div class="nav-right">
             {% if user.is_authenticated %}
             <p>Hello, <a href="{% url 'users:profile' request.user.username %}">{{ request.user.username }}</a></p>
             <a href="{% url 'logout' %}">Logout</a>
-            <a href="{% url 'posts:new' %}">+New Blog Post</a>
+            <a href="{% url 'posts:new' %}">New Post</a>
             {% else %}
             <p><a href="{% url 'login' %}">Login</a></p>
-            <p><a href="{% url 'users:signup' %}">Sign Up</a></p>
+            <p><a href="{% url 'users:profile_create' %}">Sign Up</a></p>
             {% endif %}
         </div>
         </header>
