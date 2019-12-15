@@ -1,0 +1,8 @@
+<h1>Welcome to the Url Shortener! Please enter your long link below</h1>
+<label for="id_link">Link:</label> <input type="text" name="link" maxlength="250" id="id_link">
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="button">Save</button>
+</form>
+<h3>{{ Links.shortcode }}</h3>
