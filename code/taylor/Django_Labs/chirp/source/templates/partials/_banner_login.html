@@ -1,0 +1,40 @@
+<!--Banner-->
+<style>
+  .alert{
+    color: #ffffff !important;
+    background-color: transparent;
+    border: 5px solid #5FCF80;
+    text-transform: uppercase;
+    font-family: Open Sans, sans-serif;
+    font-weight: 700;
+    border-color: #5FCF80;
+    max-width: 300px;
+  }
+</style>
+<div class="banner">
+  <div class="bg-color">
+    <div class="container">
+      <div class="row">
+        <div class="banner-text text-center">
+          <div class="text-border">
+            <h2 class="text-dec">kakaw login</h2>
+          </div>
+          <br>
+          <br>
+
+
+        </div>
+      </div>
+    </div>
+    {% if messages  %}
+    {% for message in messages %}
+    <div class="container text-center alert alert-{{ message.tags }}">
+    {{ message }}
+    </div>
+    {% endfor  %}
+    {% endif %}
+  </div>
+    </div>
+  </div>
+</div>
+<!--/ Banner-->

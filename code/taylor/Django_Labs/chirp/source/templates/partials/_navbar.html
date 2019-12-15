@@ -19,12 +19,13 @@
     
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#logout">Sign Out</a></li>
-          <li><a href="#" data-target="#login" data-toggle="modal">Sign in</a></li>
-          <li class="btn-trial"><a href="/users/registration">Sign Up</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout'  %}">Sign Out</a></li>
+          {% else %}
+            <li><a href="/login/">Sign in</a></li>
+            <li class="btn-trial"><a href="/users/registration">Sign Up</a></li>
+            {% endif %}
         </ul>
-    
-        
       </div>
   
     </div>
