@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.urls import reverse_lazy
-from .models import Chirp, Comment, Reaction
-
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
+from .models import Chirp, Comment 
 
 class ChirpHomeView(ListView):
     model = Chirp
@@ -49,4 +50,51 @@ class ChirpDetailView(DetailView):
     model = Chirp
     template_name = 'chirp.html'
 
+@login_required
+def like(request):
+
+    # figure out who the liker is
+    liker = request.user
+    # figure out post to be liked
+    chirp_to_be_liked = Chirp.objects.get(id=request.POST['chirp_id'])
+    # create many-to-many like link in DB
+    liker.profile.chirps_liked.add(chirp_to_be_liked)
+    # remove dislike and remove if necessary
+    liker.profile.chirps_disliked.remove(chirp_to_be_liked)
+
+    return HttpResponseRedirect(reverse('posts:home'))
+
+@login_required
+def dislike(request):
+
+    # figure out who the disliker is
+    disliker = request.user
+    # figure out post to be disliked
+    chirp_to_be_disliked = Chirp.objects.get(id=request.POST['chirp_id'])
+    # create many-to-many link in DB
+    disliker.profile.chirps_disliked.add(chirp_to_be_disliked)
+    # remove like if necessary
+    disliker.profile.chirps_liked.remove(chirp_to_be_disliked)
     
+    return HttpResponseRedirect(reverse('posts:home'))
+
+# for reference, from following
+# @login_required
+# def follow(request):
+#     # user1 is logged in user
+#     user1 = request.user
+#     # user2 is who use1 wants to follow
+#     user2 = User.objects.get(username=request.POST['username'])
+#     # add as many-to-many in db
+#     user2.profile.users_followed.add(user1.profile)
+
+#     return HttpResponseRedirect(reverse('users:profile', args=(request.POST['username'],)))
+
+# @login_required
+# def unfollow(request):
+#     # person to unfollow
+#     person_to_unfollow = User.objects.get(username=request.POST['username'])
+#     # remove their profile from friends list
+#     link_to_delete = request.user.profile.friends.remove(person_to_unfollow.profile)
+
+#     return HttpResponseRedirect(reverse('users:profile', args=(request.POST['username'],)))

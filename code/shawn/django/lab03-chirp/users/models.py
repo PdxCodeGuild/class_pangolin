@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.urls import reverse
 from django.dispatch import receiver
+from posts.models import Chirp
 
 # Create your models here.
 class Profile(models.Model):
@@ -14,6 +15,8 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=12, default="Please add a first name.")
     last_name = models.CharField(max_length=15, default="Please add a last name.")
     users_followed = models.ManyToManyField('Profile', related_name='friends')
+    chirps_liked = models.ManyToManyField(Chirp, related_name='likes')
+    chirps_disliked = models.ManyToManyField(Chirp, related_name='dislikes')
 
     # to redirect after creating new 
     def get_absolute_url(self):
