@@ -37,6 +37,23 @@
       {% endfor %}
       <!-- / Micro Post -->
     </div>
+    {% if user.is_authenticated %}
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <a href="users/" name="submit" type="submit" class="btn btn-submit">
+            Kuip <img src="{% static './img/raven.png' %}" alt="raven" height="20px" width="20px"></a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+  {% endif %}
+
   </section>
+
+
+
+
+
   <!--/ Micro Posts Section-->
 {% endblock %}

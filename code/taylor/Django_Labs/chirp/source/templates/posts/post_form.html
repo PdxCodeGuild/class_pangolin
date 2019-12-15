@@ -1,0 +1,30 @@
+{% load crispy_forms_tags %}
+
+<div class="container">
+  <div>
+    <h1></h1>
+  </div>
+  
+  
+  <form method="POST" class="mc-trial row">
+    {% csrf_token %}
+    <div class="form-group col-md-3  col-sm-4">
+      <div class=" controls">
+        {{ form }}
+      </div>
+    </div>
+    
+    <div class="form-group col-md-3  col-sm-4">
+      <div class=" controls">
+    
+      </div>
+    </div>
+    
+    <div class="col-md-2 col-sm-1">
+      <p>
+        <button name="submit" type="submit" class="btn btn-block btn-submit">
+        Submit <i class="fa fa-arrow-right"></i></button>
+      </p>
+    </div>
+  </div>
+  </form>
