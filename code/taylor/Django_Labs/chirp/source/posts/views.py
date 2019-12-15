@@ -4,13 +4,6 @@ from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
 from django.contrib.auth.models import User
 
-
-# def index(request):
-#   context = {
-#     'posts': Post.objects.all()
-#     }
-#   return render(request, 'posts/index.html', context)
-
 class PostListView(ListView):
   model = Post
   template_name = 'posts/index.html'
@@ -22,13 +15,11 @@ class UserPostListView(ListView):
   model = Post
   template_name = 'posts/user_posts.html'
   context_object_name = 'posts'
-
   paginate_by = 6
 
   def get_queryset(self):
     user = get_object_or_404(User, username=self.kwargs.get('username'))
     return Post.objects.filter(author=user).order_by('-date_posted')
-
 
 class PostCreateView(CreateView):
   model = Post

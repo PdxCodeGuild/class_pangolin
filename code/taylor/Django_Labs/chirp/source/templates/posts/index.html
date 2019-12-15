@@ -17,7 +17,7 @@
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.  numquam nihil rerum hic est nam voluptatem nisi.,<br> Clearly we have a great community.</p>
           <hr class="bottom-line">
         </div>  <!-- /Headliner-->
-        
+
       <!-- Micro Post -->
       {%for post in posts %}
         <div class="feature-info">
@@ -37,7 +37,8 @@
       {% endfor %}
       <!-- / Micro Post -->
     </div>
- 
+</section>
+<div style="text-align: center;">
     {% if is_paginated %}
       {% if page_obj.has_previous %}
         <a class="btn btn-outline-info mb-4"href="?page1">First</a>
@@ -61,7 +62,7 @@
 
 
     {% endif %}
-
+</div>
     {% if user.is_authenticated %}
     <div class="container">
       <div class="row">
@@ -74,7 +75,7 @@
   {% else %}
   {% endif %}
 
-  </section>
+  
 
 
 
