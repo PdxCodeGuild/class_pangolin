@@ -12,5 +12,8 @@
         {{ form.as_p }}
         <input type="submit" value="Post" />
     </form>
+    <br>
+    <a href="{{request.META.HTTP_REFERER}}">Go back...</a>
 </div>
+        
 {% endblock content %}
