@@ -13,7 +13,7 @@
                 <h1><a class="header-text" href = "{% url 'posts:home_page' %}">Twitter Clone</a></h1>
             </div>
             <div class="navbar">
-                {% if user.is_authenticated %}
+                {% if request.user.is_authenticated %}
                 <p>Hello, <a href="{% url 'users:profile' request.user.username %}">{{ request.user.username }}</a></p>
                 <p><a class="right-nav" href="{% url 'logout' %}">Logout</a></p>
                 <p><a class="right-nav" href="{% url 'posts:new_post' %}">Make Tweet</a></p>

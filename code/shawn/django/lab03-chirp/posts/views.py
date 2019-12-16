@@ -25,11 +25,36 @@ class ChirpCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+class CommentAddView(LoginRequiredMixin, CreateView):
+    model = Comment
+    template_name = 'comment_create.html'
+
+    fields = ['text']
+
+    def form_valid(self,form):
+        print(f"path is {self.request.path}")
+        chirp_id = self.request.path[9:len(self.request.path)-1]
+        form.instance.chirp = Chirp.objects.get(pk=chirp_id)
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
 class ChirpEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Chirp
     template_name = 'edit.html'
 
     fields = ['text', 'picture']
+
+    def test_func(self):
+        # get the chirp
+        obj = self.get_object()
+        # make sure logged in user (self.request.user) is the same as the author (obj.author)
+        return self.request.user == obj.author
+
+class EditCommentView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Comment
+    template_name = 'comment_edit.html'
+
+    fields = ['text']
 
     def test_func(self):
         # get the chirp
@@ -46,6 +71,16 @@ class ChirpDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         obj = self.get_object()
         return self.request.user == obj.author
 
+class DeleteCommentView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    template_name = "comment_delete.html"
+    success_url = reverse_lazy('posts:home') # must give DeleteView a URL to redirect to once successful
+
+    def test_func(self):
+        obj = self.get_object()
+        return self.request.user == obj.author or self.request.user == obj.chirp.author
+
+
 class ChirpDetailView(DetailView):
     model = Chirp
     template_name = 'chirp.html'
@@ -57,12 +92,18 @@ def like(request):
     liker = request.user
     # figure out post to be liked
     chirp_to_be_liked = Chirp.objects.get(id=request.POST['chirp_id'])
-    # create many-to-many like link in DB
-    liker.profile.chirps_liked.add(chirp_to_be_liked)
-    # remove dislike and remove if necessary
-    liker.profile.chirps_disliked.remove(chirp_to_be_liked)
 
-    return HttpResponseRedirect(reverse('posts:home'))
+    # if the like already exists, otherwise add one
+    if chirp_to_be_liked in liker.profile.chirps_liked.all():
+        # remove it
+        liker.profile.chirps_liked.remove(chirp_to_be_liked)
+    else:  
+        # create many-to-many like link in DB
+        liker.profile.chirps_liked.add(chirp_to_be_liked)
+        # remove dislike and remove if necessary
+        liker.profile.chirps_disliked.remove(chirp_to_be_liked)
+
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 @login_required
 def dislike(request):
@@ -71,12 +112,19 @@ def dislike(request):
     disliker = request.user
     # figure out post to be disliked
     chirp_to_be_disliked = Chirp.objects.get(id=request.POST['chirp_id'])
-    # create many-to-many link in DB
-    disliker.profile.chirps_disliked.add(chirp_to_be_disliked)
-    # remove like if necessary
-    disliker.profile.chirps_liked.remove(chirp_to_be_disliked)
+
+    # if the like already exists
+    if chirp_to_be_disliked in disliker.profile.chirps_disliked.all():
+        # remove it
+        disliker.profile.chirps_disliked.remove(chirp_to_be_disliked)
+
+    else:
+        # create many-to-many link in DB
+        disliker.profile.chirps_disliked.add(chirp_to_be_disliked)
+        # remove like if necessary
+        disliker.profile.chirps_liked.remove(chirp_to_be_disliked)
     
-    return HttpResponseRedirect(reverse('posts:home'))
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 # for reference, from following
 # @login_required

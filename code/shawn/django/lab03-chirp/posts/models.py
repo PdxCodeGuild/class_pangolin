@@ -18,7 +18,7 @@ class Chirp(models.Model):
 
     # to redirect after creating new 
     def get_absolute_url(self):
-        return reverse('posts:home')
+        return reverse('posts:view', args=(self.id,))
 
 class Comment(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
@@ -30,22 +30,9 @@ class Comment(models.Model):
     def __str__(self):
         return f"{self.author} commented at {self.date_created}"
 
-    # to make it show items in chronological order
     class Meta:
-        ordering = ['-date_created']
+        ordering = ['date_created']
 
-# class Like(models.Model):
-#     date_created = models.DateTimeField(auto_now_add=True)
-#     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)   # link it back to the author
-#     chirp = models.ForeignKey(Chirp, on_delete=models.CASCADE)          # link it back to chirp
-
-#     def __str__(self):
-#         return f"{self.author} liked!"
-
-# class Dislike(models.Model):
-#     date_created = models.DateTimeField(auto_now_add=True)
-#     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)   # link it back to the author
-#     chirp = models.ForeignKey(Chirp, on_delete=models.CASCADE)          # link it back to chirp
-
-#     def __str__(self):
-#         return f"{self.author} disliked."
+    # to redirect after creating new 
+    def get_absolute_url(self):
+        return reverse('posts:view', args=(self.chirp.id,))
