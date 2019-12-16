@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Barker: The twitter for dogs! </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Corben|Modak&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'style.css' %}"/>
+    </head>
+    <body>
+        <div class="container">
+            <header  id="header">
+                    Barker: Because dogs deserve social media too!
+            </header>
+            <div class="post">
+                {% if user.is_authenticated %}
+                <p class="welcome">
+                    Welcome {{ user.username }}
+                </p>
+                
+                <a href="{% url 'barker_app:fresh' %}" id="new_bark" class="toplinks">
+                    Bark! 
+                </a>
+                <a href="{% url 'barker_app:home' %}"  class="toplinks">
+                    <img src="{% static 'home.png' %}" class="imglink"/>
+                </a>
+                <a href="{% url 'logout' %}"  class="toplinks">
+                    logout
+                </a>
+                {% else %}
+                <a href="{% url 'login' %}"  class="toplinks">
+                    login
+                </a>
+                <a href="{% url 'barker_app:home' %}"  class="toplinks">
+                    <img src="{% static 'home.png' %}" class="imglink"/>
+                </a>
+                <a href="{% url 'users:signup' %}" class="toplinks">
+                    Sign Up
+                </a>
+                {% endif %}
+            </div>
+            
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>
+

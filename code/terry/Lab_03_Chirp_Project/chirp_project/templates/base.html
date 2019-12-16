@@ -1,0 +1,29 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chirp: The Better Twitter Clone</title>
+        <link rel="stylesheet" href="{%static '/css/base.css'%}">
+    </head>
+    <body>
+        <header>
+            <div class="nav-left">
+                {% if request.user.is_authenticated %}
+                <p><a href="{% url 'users:profile' request.user.username %}">{{ request.user.username }}</a></p>
+                <p><a href="{% url 'logout' %}">Logout</a></p>
+                <p><a href="{% url 'chirpApp:create' %}">New Chirp</a></p>
+                {% else %}
+                <p><a href="{% url 'login' %}">Login</a></p>
+                <p><a href="{% url 'users:signup' %}">Sign Up</a></p>
+                {% endif %}
+                <div class="container">
+            {% block content %}
+            {% endblock content %}
+        </div>
+            </div>            
+        </header>
+        <div class="container">
+            <a href="{% url 'chirpApp:index' %}">Main Page</a>
+        </div>
+    </body>
+</html>

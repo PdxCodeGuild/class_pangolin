@@ -5,12 +5,13 @@
 }
 .box {
     display: grid;
-    grid-template-columns: 35% 60%;
-    grid-template-rows: 100px auto auto;
+    grid-template-columns: 80%;
+    grid-template-rows: auto;
     grid-template-areas:
-    "top-header top-header"
-    "left-logo order-form"
-    "bottom-side bottom-side";
+    "top-header"
+    "left-logo"
+    "order-form"
+    "bottom-side";
     margin:auto;
     
 }
@@ -97,21 +98,26 @@ img {
 }
 #bottom-side {
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: auto auto auto auto auto;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
     grid-template-areas: 
-    "username password"
-    "name email"
-    "phone birth"
-    "street city"
-    "ssn submit"
+    "username"
+    "password"
+    "name"
+    "email"
+    "phone"
+    "birth"
+    "street"
+    "city"
+    "ssn"
+    "submit"
     ;
     text-align: center;
 
 }
 .validation {
     margin: auto;
-    padding: 6px;
+    padding: 3px;
 }
 #user {
     grid-area: username;
@@ -142,4 +148,122 @@ img {
 }
 #submitbutt {
     grid-area: submit;
+}
+
+@media screen and (min-width:420px) {
+    *{
+        box-sizing: border-box;
+        margin:0;
+        padding:0;
+    }
+    .box {
+        display: grid;
+        grid-template-columns: 90%;
+        grid-template-rows: auto;
+        grid-template-areas:
+        "top-header top-header"
+        "left-logo order-form"
+        "bottom-side bottom-side";
+        margin:auto;
+        
+    }
+    .item {
+        padding:12px;
+        margin: 6px;
+        background-color: moccasin;
+    }
+    #top-header {
+        grid-area: top-header;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size: xx-large;
+        text-align: center;
+        text-shadow: 2px 0px rgb(207, 21, 8);
+    
+    }
+    img {
+        size: auto;
+    }
+    #left-logo {
+        grid-area: left-logo;
+        margin: auto;
+    }
+    
+    #order-form {
+        grid-area: order-form;
+    }
+    
+    #bottom-side {
+        grid-area: bottom-side;
+    }
+    .order-area {
+        display: grid;
+        grid-template-columns: 45% 45%;
+        grid-template-rows: 20% 20% 20% 30%;
+        grid-template-areas:
+        "order-header order-header"
+        "tortilla rice"
+        "beans meat"
+        "toppings toppings";
+        background-color: rgb(174, 243, 165);
+        text-align: center;
+    }
+    #order-header {
+        grid-area: order-header;
+        margin: 6px;
+        padding:12px;
+        font-size: x-large;
+    
+        
+    }
+    .order {
+        padding: 3px;
+    }
+    #tortilla {
+        grid-area: tortilla ;
+        margin: 6px;
+        padding:15px;
+        
+    }
+    #rice {
+        grid-area:rice;
+        margin: 6px;
+        padding:18px;
+        
+    }
+    #meat {
+        grid-area: meat;
+        margin: 6px;
+        padding:15px;
+        
+    }
+    #beans {
+        grid-area: beans;
+        margin: 6px;
+        padding:15px;
+        
+    }
+    #toppings {
+        grid-area: toppings;
+        margin: 6px;
+        padding:15px;
+        
+    }
+    #bottom-side {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto auto auto auto auto;
+        grid-template-areas: 
+        "username password"
+        "name email"
+        "phone birth"
+        "street city"
+        "ssn submit"
+        ;
+        text-align: center;
+    
+    }
+    .validation {
+        margin: auto;
+        padding: 6px;
+    }
 }

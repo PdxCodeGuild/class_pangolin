@@ -1,0 +1,96 @@
+body {
+    background: #6fb98f;
+    color: #ffd800;
+    font-family: 'Corben', cursive;
+}
+.container {
+    width: 85%;
+    margin: 3px;
+    padding: 3px;
+}
+.post {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.bark_entry {
+    padding: 6px;
+    margin: auto;
+    display: grid;
+    grid-template-columns:  1fr 1fr 1fr;
+    grid-template-rows: 1fr 2f 1fr;
+    grid-template-areas: 
+    "name date delete"
+    "text text text"
+    "score score score";
+    background: #2c7873;
+    color: #ffd800;
+    border: 2px solid #6fb98f;
+    
+}
+
+.name {
+    grid-area: name;
+}
+
+.date {
+    grid-area: date;
+}
+
+.text {
+    grid-area: text;
+    text-align: center;
+    background: rgba(176, 201, 246, 0.63);
+}
+.post > a:link, .post > a:visited {
+    background-color: #2c7873;
+    color: #ffd800;
+    padding: 3px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid white;
+  }
+  
+.post > a:hover, .post > a:active {
+    background-color: rgba(176, 201, 246, 0.63);
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    font-family: 'Modak', cursive;
+    color: #ffd800;
+    font-size: 250%;
+    text-shadow: 2px 2px #2c7873;
+}
+.imglink {
+    width: 30px;
+    height: auto;
+}
+
+.delete {
+    background-color: #6fb98f;
+    color: #ffd800;
+    padding: 3px 2px;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid white;
+    float: right;
+}
+.delete:hover, .delete:active {
+    background-color: rgba(176, 201, 246, 0.63);
+}
+.score {
+    grid-area: score;
+    display: flex;
+    flex-direction: row;
+}
+
+.vote {
+    width:25px;
+    height: auto;
+}
+.post > .welcome {
+    margin-right:auto;
+}
