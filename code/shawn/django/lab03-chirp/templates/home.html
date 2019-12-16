@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 
 <div class="callout large primary">
@@ -23,17 +23,38 @@
 
                 <div class="callout">
                     <ul class="menu simple">
-
-                        {% if post.comment_set.count > 0 %}
-                            <li><a href="#">Comments: (count here))</a></li>
-                        {% else %}
-                            <li>No comments yet.</li>
-                        {% endif %}
-
-                        {% if post.reaction_set.count > 0 %}
-                            <li><a href="#">Reactions?</a></li>
-                        {% endif %}
-
+                        <li>
+                            <form method='post' action="#">
+                                {% csrf_token %}
+                                <input type='hidden' name='chirp_id' value='{{ post.id }}'/>
+                                <input type='image' src="{% static 'img/fi-comment.svg' %}"/>
+                                
+                            </form>
+                        </li>
+                        <li>
+                            {{ post.comment_set.count }} &nbsp;
+                        </li>
+                        <li>
+                            <form method='post' action="{% url 'posts:like' %}">
+                                {% csrf_token %}
+                                <input type='hidden' name='chirp_id' value='{{ post.id }}'/>
+                                <input type='image' src="{% static 'img/fi-like.svg' %}"/>
+                                
+                            </form>
+                        </li>
+                        <li>
+                            {{ post.likes.count }}&nbsp;
+                        </li>
+                        <li>
+                            <form method='post' action="{% url 'posts:dislike' %}">
+                                {% csrf_token %}
+                                <input type='hidden' name='chirp_id' value='{{ post.id }}'/>
+                                <input type='image' src="{% static 'img/fi-dislike.svg' %}"/>
+                            </form>
+                        </li>
+                        <li>
+                            {{ post.dislikes.count }} &nbsp;
+                        </li>
                     </ul>
                     <div class="custom-edit-delete">
                         {% if user.username == post.author.username %}
@@ -54,12 +75,6 @@
                 <li><a href="#">Second</a></li>
                 <li><a href="#">Third</a></li>
                 <li><a href="#">Fourth</a></li>
-            </ul>
-            <h4>Followed</h4>
-            <ul>
-                {% for friend in request.user.profile.friends.all %}
-                    <li><a href="{% url 'users:profile' friend.user.username %}">{{ friend.user.profile.first_name }} {{ friend.user.profile.last_name }}</a></li>
-                {% endfor %}
             </ul>
         </div>
     </div>
