@@ -57,10 +57,16 @@ def like(request):
     liker = request.user
     # figure out post to be liked
     chirp_to_be_liked = Chirp.objects.get(id=request.POST['chirp_id'])
-    # create many-to-many like link in DB
-    liker.profile.chirps_liked.add(chirp_to_be_liked)
-    # remove dislike and remove if necessary
-    liker.profile.chirps_disliked.remove(chirp_to_be_liked)
+
+    # if the like already exists, otherwise add one
+    if chirp_to_be_liked in liker.profile.chirps_liked.all():
+        # remove it
+        liker.profile.chirps_liked.remove(chirp_to_be_liked)
+    else:  
+        # create many-to-many like link in DB
+        liker.profile.chirps_liked.add(chirp_to_be_liked)
+        # remove dislike and remove if necessary
+        liker.profile.chirps_disliked.remove(chirp_to_be_liked)
 
     return HttpResponseRedirect(reverse('posts:home'))
 
@@ -71,10 +77,17 @@ def dislike(request):
     disliker = request.user
     # figure out post to be disliked
     chirp_to_be_disliked = Chirp.objects.get(id=request.POST['chirp_id'])
-    # create many-to-many link in DB
-    disliker.profile.chirps_disliked.add(chirp_to_be_disliked)
-    # remove like if necessary
-    disliker.profile.chirps_liked.remove(chirp_to_be_disliked)
+
+    # if the like already exists
+    if chirp_to_be_disliked in disliker.profile.chirps_disliked.all():
+        # remove it
+        disliker.profile.chirps_disliked.remove(chirp_to_be_disliked)
+
+    else:
+        # create many-to-many link in DB
+        disliker.profile.chirps_disliked.add(chirp_to_be_disliked)
+        # remove like if necessary
+        disliker.profile.chirps_liked.remove(chirp_to_be_disliked)
     
     return HttpResponseRedirect(reverse('posts:home'))
 

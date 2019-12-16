@@ -34,6 +34,7 @@
                                     
                                 </form>
                             </li>
+
                             <li>
                                 {{ post.comment_set.count }} &nbsp;
                             </li>
@@ -45,8 +46,12 @@
                                     
                                 </form>
                             </li>
+                            {% if post in request.user.profile.chirps_liked.all %}
+                            <li  class="custom-like-item" >
+                            {% else %}
                             <li>
-                                {{ post.likes.count }}&nbsp;
+                            {% endif %}
+                                <strong>{{ post.likes.count }}</strong>&nbsp;
                             </li>
                             <li>
                                 <form method='post' action="{% url 'posts:dislike' %}">
@@ -55,10 +60,14 @@
                                     <input type='image' src="{% static 'img/fi-dislike.svg' %}"/>
                                 </form>
                             </li>
-                            <li>
-                                {{ post.dislikes.count }} &nbsp;
+                            {% if post in request.user.profile.chirps_disliked.all %}
+                                <li  class="custom-dislike-item" >
+                            {% else %}
+                                <li>
+                            {% endif %}
+                                <strong>{{ post.dislikes.count }}</strong> &nbsp;
                             </li>
-                            
+                                
                         </ul>
                         <div class="custom-edit-delete">
                             {% if user.username == post.author.username %}

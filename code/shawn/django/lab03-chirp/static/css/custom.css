@@ -34,6 +34,18 @@
     margin: auto;
 }
 
+.custom-like-item {
+  color: rgb(6, 192, 6);
+}
+
+.custom-dislike-item {
+  color: red;
+}
+
+.custom-comment-item {
+  color: blue;
+}
+
 .card-flex-article {
     max-width: 80vw;
     margin: auto;
