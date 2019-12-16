@@ -9,7 +9,7 @@ pipenv install
 
 pipenv shell
 
-pipenv isntall django
+pipenv isntall django==3.0 # Best practice to include version number.
 
 pipenv install <other packages>
 
@@ -92,11 +92,6 @@ urlpatterns = [
     path('', include('<app_name>.urls')), # Add the path here #
     path('admin/', admin.site.urls),
 ]
-
-# Confirm seeing INDEX on the page @ http://127.0.0.1:8000/
-
-cd source
-./manage.py runserver
 
 # Tell Django where to look for templates
 
@@ -190,3 +185,7 @@ STATICFILES_DIRS = [
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"> # Note no Jinja required for non-local items
 
 <img class="img-fluid rounded-circle mb-3" src="{% static 'img/testimonials-1.jpg' %}" alt="">
+
+./manage.py makemigrations
+./manage.py migrate
+./manage.py createsuperuser

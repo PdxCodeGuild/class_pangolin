@@ -5,20 +5,16 @@ from django.utils import timezone
 from django.views import generic
 
 from .models import Links
-from django.http import HttpResponse
+
+def redirect_view(request):
+    return HttpResponse("Hello!")
+
 
 def index(request):
-    links = Links.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
-    return render(request, 'shortener_app/index.html', {'links':links})
+    links = Links.objects.filter(created__lte=timezone.now()).order_by('created')
+    return render(request, 'index.html', {'links':links})
     # return HttpResponse('<h1>Hello World Wide Web!</h1>')
 
 def shorten(request):
-    shorten_link = models.Links.shorten.link
-    return HttpResponseRedirect(reverse('shorten_app:index'))
-
-
-def lengthen(request):
-    lengthen_link = models.Links.lengthen.link
-    return HttpResponseRedirect(reverse('shorten_app:index'))
-
-    
+    shorten_link = models.Links.shortencode
+    return HttpResponseRedirect(reverse('shortener_app:index'))

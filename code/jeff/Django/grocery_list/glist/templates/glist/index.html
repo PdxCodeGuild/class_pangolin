@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Grocery List</title>
+    <meta name="author" content="Jeff Smith" />
+    <meta name="description" content="My Shopping List" />
+    <meta name="keywords" content="groceries, shopping" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="static/main.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <h1>My Grocery List</h1>
+      <div id="boxheader">
+        <div id="leftbox">
+          <h3>Add an item:</h3>
+        </div>
+        <div id="midbox">
+          <h3>Grocery list</h3>
+        </div>
+        <div id="rightbox">
+          <h3>Completed items</h3>
+        </div>
+      </div>
+    </header>
+    <div class="main">
+      {% block content %} {% if error %}
+      <h2 class="error-message"><strong>{{ error }}</strong></h2>
+      {% endif %}
+
+      <div id="boxes">
+        <div id="leftbox" class="sticky">
+          <form action="{% url 'glist:add_item' %}" method="post">
+            {% csrf_token %}
+            <label for="add_name">Item name: </label>
+            <input type="text" name="name" id="add_name" />
+            <input type="submit" value="Add to List" />
+          </form>
+        </div>
+
+        <div id="leftbox"></div>
+
+        <div id="midbox">
+          <i class="fas fa-shopping-basket"></i>
+          {% if incomplete_items %}
+          <div>
+            {% for item in incomplete_items %}
+            <div class="item">
+              <p>{{ item.name }}</p>
+              <form
+                action="{% url 'glist:mark_complete' item.id %}"
+                method="post"
+              >
+                {% csrf_token %}
+                <input type="submit" value="Got it!" />
+              </form>
+              <form action="{% url 'glist:delete' item.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Not Today" />
+              </form>
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <p>There's nothing here- would you like to add an item?</p>
+          {% endif %}
+        </div>
+
+        <div id="rightbox">
+          {% if complete_items %}
+          <div>
+            {% for item in complete_items %}
+            <div class="item">
+              <p>{{ item.name }}</p>
+              <form action="{% url 'glist:delete' item.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Delete me!" />
+              </form>
+            </div>
+            {% endfor %}
+          </div>
+          {% else %}
+          <p>Your list is empty! Good Job!</p>
+        </div>
+        {% endif %} {% endblock %}
+      </div>
+    </div>
+    <!-- JavaScript section-->
+    <script>
+      window.onscroll = function() {
+        myFunction();
+      };
+
+      var header = document.getElementById("myHeader");
+      var sticky = header.offsetTop;
+
+      function myFunction() {
+        if (window.pageYOffset > sticky) {
+          header.classList.add("sticky");
+        } else {
+          header.classList.remove("sticky");
+        }
+      }
+    </script>
+    <!-- End JavaScript section-->
+  </body>
+</html>

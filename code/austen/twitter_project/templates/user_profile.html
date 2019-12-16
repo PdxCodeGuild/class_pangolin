@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ object.username }}</h2>
+<h6><em>Twitter memeber since {{ object.date_joined }}</em></h6>
+{% for twitter in object.twitter_set.all %}
+    {% if user.is_authenticated %}
+        <div class="twitter-entry">
+            <h1><a href="{% url 'posts:detail' twitter.id %}">{{ twitter.title }}</a></h1>
+            {% comment %} <p>{{ twitter.body }}</p> {% endcomment %}
+            <img src="{{twitter.my_image.url}}"/>
+        </div>
+    {% endif %}
+{% endfor %}
+
+{% endblock content %}
