@@ -7,9 +7,14 @@
         </div>
     </div>
 
-    <form method="post" action='' enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}          
-        <input type="submit" value="Save"/>
-    </form>
+    <div class="custom-form">
+        <form method="post" action='' enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}          
+            <input type="submit" value="Save"/>
+        </form>
+        <br>
+    <a href="{{request.META.HTTP_REFERER}}">Go back...</a>
+    </div>
+            
 {% endblock content %}

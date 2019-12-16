@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+     <!-- Banner  -->
+{% include '../partials/_banner.html' %}
+
+<!--Micro Posts Display Main Section-->
+  <section id="feature" class="section-padding">
+    <div class="container">
+      <div class="row">
+        <!-- Headliner -->
+        <div class="header-section text-center">
+          <h2>Recent Kuips - </h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.  numquam nihil rerum hic est nam voluptatem nisi.,<br> Clearly we have a great community.</p>
+          <hr class="bottom-line">
+        </div>  <!-- /Headliner-->
+
+      <!-- Micro Post -->
+      {%for post in posts %}
+        <div class="feature-info">
+          <div class="fea">
+            <div class="col-md-4" style="height: 18em;">
+              <div class="heading pull-right">
+                <h4 style="word-wrap: break-word;">{{ post.title }}</h4>
+                <a href="{% url 'user-post' post.author.username %}" style="word-wrap: break-word;">By  {{ post.author }} on {{ post.date_posted }} </a>
+                <p style="word-wrap: break-word;">{{ post.content }}</p>
+              </div>
+              <div class="fea-img pull-left">
+                <img src="{% static './img/raven.png' %}" alt="raven" height="40px" width="40px">
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      <!-- / Micro Post -->
+    </div>
+</section>
+<div style="text-align: center;">
+    {% if is_paginated %}
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4"href="?page1">First</a>
+        <a class="btn btn-outline-info mb-4"href="?page{{page_obj.previous_page_number}}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+
+        {% if page_obj.number == num %}
+        <a class="btn btn-outline-info mb-4"href="?page{{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+        <a class="btn btn-outline-info mb-4"href="?page{{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+      <a class="btn btn-outline-info mb-4"href="?page={{ page_obj.next_page_number }}">Next</a>
+      <a class="btn btn-outline-info mb-4"href="?page{{page_obj.paginator.num_pagess }}">Last</a>
+    {% endif %}
+
+
+
+
+    {% endif %}
+</div>
+    {% if user.is_authenticated %}
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <a href="users/" name="submit" type="submit" class="btn btn-submit">
+            Kuip <img src="{% static './img/raven.png' %}" alt="raven" height="20px" width="20px"></a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+  {% endif %}
+
+  
+
+
+
+
+
+  <!--/ Micro Posts Section-->
+{% endblock %}

@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Twitbook!</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    </head>
+
+    <body>
+        
+        <header>
+            <div class="nav-left">
+                <!-- forward slash necessary to mandate a lookup in the same location -->
+            <img src="/static/img/birdbrain.png"> 
+            <h1><a href="{% url 'posts:home' %}">Welcome to the Twitbook, {{ user.username }}!</h1>
+            
+        </div>
+        <div class="nav-right">
+            {% if user.is_authenticated %}
+            <p>Hello, <a href="{% url 'users:profile' request.user.username %}">{{ request.user.username }}</a></p>
+            <p><a href="{% url 'logout' %}">Logout</a></p>
+            <p><a href="{% url 'posts:new' %}">New Post</a></p>
+            {% else %}
+            <p><a href="{% url 'login' %}">Login</a></p>
+            <p><a href="{% url 'users:profile_create' %}">Sign Up</a></p>
+            {% endif %}
+        </div>
+        </header>
+    <div class="container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    </body>
+
+    <footer>
+        <h5>Copyright Bigby 2019</h5>
+    </footer>
+</html>

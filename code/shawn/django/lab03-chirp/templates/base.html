@@ -20,13 +20,15 @@
         <div class="top-bar-left">
             <a href="{% url 'posts:home' %}"><img src="{% static 'img/logo.png' %}" id='logo'/></a>
             {% if request.user.is_authenticated %}
+                <img src="{{ request.user.profile.picture.url }}" id="custom-user-avatar">
                 <h6>Hi {{ request.user.username }}!</h6>
             {% endif %}
         </div>
         <div class="top-bar-right">
             <ul class="menu">
                 {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'posts:home' %}">News Feed</a></li>
+                    <li><a href="{% url 'posts:home' %}">All Chirps</a></li>
+                    <li><a href="{% url 'posts:home_filtered' %}">Your Feed</a></li>
                     <li><a href="{% url 'posts:create' %}">New Chirp</a></li>
                     <li><a href="{% url 'users:profile' request.user.username %}">My Profile</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
