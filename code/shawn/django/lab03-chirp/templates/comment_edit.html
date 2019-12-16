@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="callout large primary">
+        <div class="row column text-center">
+            <h1>Edit Comment</h1>
+        </div>
+    </div>
+    <div class='custom-form-login'>
+    <form method="post" action='' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}          
+        <input type="submit" value="Save"/>
+    </form>
+    </div>
+            <br>
+    <a href="{{request.META.HTTP_REFERER}}">Go back...</a>
+{% endblock content %}

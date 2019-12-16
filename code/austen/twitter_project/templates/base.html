@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Twitter Clone</title>
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    </head>
+    <body>
+        <header>
+            <div class="nav-left">
+                <h1><a class="header-text" href = "{% url 'posts:home_page' %}">Twitter Clone</a></h1>
+            </div>
+            <div class="navbar">
+                {% if request.user.is_authenticated %}
+                <p>Hello, <a href="{% url 'users:profile' request.user.username %}">{{ request.user.username }}</a></p>
+                <p><a class="right-nav" href="{% url 'logout' %}">Logout</a></p>
+                <p><a class="right-nav" href="{% url 'posts:new_post' %}">Make Tweet</a></p>
+                {% else %}
+                <p><a class="right-nav" href="{% url 'login' %}">Login</a></p>
+                <p><a class="right-nav" href="{% url 'users:signup' %}"> Sign Up</a></p>
+                {% endif %}
+            
+            </div>
+        </header>
+        <div class="container">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="off-canvas-wrapper">
+    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+        <div class="off-canvas position-left reveal-for-large" id="my-info" data-off-canvas data-position="left">
+            <div class="row column">
+                <br>
+                <img class="thumbnail" src="{{ object.picture.url }}">
+                <h5>{{ object.first_name }} {{ object.last_name }}</h5>
+                <p>Location: {{ object.location }}</p>
+
+            </div>
+        </div>
+        <div class="off-canvas-content" data-off-canvas-content>
+            <div class="title-bar hide-for-large">
+                <div class="title-bar-left">
+                    <button class="menu-icon" type="button" data-open="my-info"></button>
+                    <span class="title-bar-title">{{ object.first_name }} {{ object.last_name }}</span>
+                </div>
+            </div>
+            <div class="callout primary">
+                <div class="row column">
+                    <h1>{{ object.headline }}</h1>
+                    <p class="lead">{{ object.summary }}</p>
+                    {% if request.user.id == object.user.id %}
+                        <a href="{% url 'users:profile_edit' object.id %}" style="color:white">edit profile...</a>
+                    {% else %}
+
+                        
+                        {% if object in request.user.profile.friends.all %}
+                            <form method='post' action="{% url 'users:profile_unfollow' %}">
+                                {% csrf_token %}
+                                <input type='hidden' name='username' value='{{ object.user.username }}'/>
+                                    <input type='submit' value='unfollow'/>
+                            </form>
+                        {% else %}
+                            <form method='post' action="{% url 'users:profile_follow' %}">
+                                {% csrf_token %}
+                                <input type='hidden' name='username' value='{{ object.user.username }}'/>
+                                    <input type='submit' value='follow'/>
+                            </form>
+                        {% endif %}
+
+
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="row small-up-2 medium-up-3 large-up-4">
+
+            <!-- if no posts, create a placeholder -->
+            {% if object.user.chirp_set.all %}
+                <!-- iterate through each post and create a thumbnail -->
+                {% for post in object.user.chirp_set.all %}
+                    <div class="column">
+                        <h5><small><a href="{% url 'posts:view' post.id %}">{{ post.date_created }}</a></small></h5>
+                        {% if post.picture %}
+                            <a href="{% url 'posts:view' post.id %}"><img class="thumbnail" src="{{ post.picture.url }}"></a>
+                        {% endif %}
+                        <h6>{{ post.text }}</h6>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="column">
+                    <img class="thumbnail" src="{% static 'img/default-chirp.png' %}">
+                    <h5>No chirps yet.</h5>
+                </div>
+            {% endif %}
+
+        </div>
+        <hr>
+        </div>  
+    </div>
+</div>
+</div>
+
+
+
+{% endblock content %}

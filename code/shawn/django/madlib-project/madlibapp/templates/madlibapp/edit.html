@@ -9,19 +9,11 @@
     </head>
     <body>
         <p>
-            Substitute MadLibWords for the following:
-            <div class='madlibword-options'>
-                <div>***noun***</div>
-                <div>***adjective***</div>
-                <div>***verb***</div>
-                <div>***pronoun***</div>
-                <div>***plural noun***</div>
-                <div>***adverb***</div>
-            </div>
+            Type your Mad Lib below!  Add substitute Mad Lib words by placing an asterick in front of the type, eg. *noun or *verb
         <p>
         <div class="madlib-form">
             <input type='Text' placeholder='Enter a title here...' name='madlibtitle' form='madlib-textarea' value='{{this_madlib.title}}' required>
-            <textarea form="madlib-textarea" placeholder="Create Madlib here..." name='madlibtextarea'>{{this_madlib.text}}</textarea>
+            <textarea form="madlib-textarea" placeholder="Create Madlib here..." name='madlibtextarea'>{{this_madlibwords}}</textarea>
             <form action="{% url 'madlibapp:hidden_edit' this_madlib_id %}" method="post" id='madlib-textarea'>
                 {% csrf_token %}
                 <input type="submit">

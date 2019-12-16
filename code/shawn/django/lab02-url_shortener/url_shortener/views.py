@@ -27,7 +27,7 @@ def generate_code(request):
         # generate random 5 character code
         generated_code = ''
         possible_characters = string.ascii_letters + '1234567890'
-        for i in range(5):
+        for i in range(6):
             generated_code += random.choice(possible_characters)
 
         # check to see if it already exists in db.  break while look if it does not exist
@@ -49,7 +49,7 @@ def redirect_to_long_url(request, short_code):
     pair = UrlPair.objects.get(code=short_code)
 
     # try to get metadata information from user
-    ip = request.META['REMOTE_ADDR']
+    ip = request.META['HTTP_X_FORWARDED_FOR']
     user_agent = request.META['HTTP_USER_AGENT']
     
     # lookup location of ip using ipstack.com api

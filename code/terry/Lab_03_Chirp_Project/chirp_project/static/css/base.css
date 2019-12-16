@@ -1,0 +1,79 @@
+body {
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 18px;
+    background-color: aqua;
+    color: whitesmoke;
+    text-shadow: 1px 1px 2px pink;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'EB Garamond', serif;
+  }
+  
+  header {
+    border-bottom: 1px solid #999;
+    margin-bottom: 2rem;
+    display: flex;
+    text-shadow: 1px 1px 2px pink;
+  }
+  
+  header h1 a {
+    color: #0f4c81;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px pink;
+  }
+  
+  .nav-left {
+    margin-right: auto;
+  }
+  
+  .nav-right {
+    display: flex;
+    padding-top: 2rem;
+  }
+  
+  .nav-right p {
+    margin-left: .25rem;
+    margin-right: .25rem;
+  }
+  
+  .Chirp-entry {
+    margin-bottom: 2rem;
+  }
+  
+  .Chirp-entry h2 {
+    margin: 0.5rem 0;
+  }
+  
+  .Chirp-entry h2 a, .Chirp-entry h2 a:visited {
+    color: #92A8D1;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px pink;
+  }
+  
+  .Chirp-entry h5, .Chirp-entry h6 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .Chirp-entry p {
+    margin: 0;
+    font-weight: 400;
+  }
+  
+  .Chirp-entry h2 a:hover {
+    color: #0f4c81;
+    text-shadow: 1px 1px 2px pink;
+  }
+
+  input[type=button], input[type=reset], input[type=submit] {
+    background-color: blue;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    text-shadow: 1px 1px 2px pink;
+    padding: 8px 8px;
+    text-decoration: none;
+    margin: 4px 4px;
+    cursor: pointer;  
+}
