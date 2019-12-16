@@ -1,0 +1,17 @@
+<h1>My Grocery List</h1>
+
+<ul>
+    {% for item in full_list %}
+    <li>
+        <p>jimminy</p>
+        {{ item.content }} 
+        <form action="/delete_item/{{item.id}}/" method="post">{% csrf_token %}
+        <input type="submit" value="Delete"></form>
+    </li>
+    {% endfor %}
+</ul>
+
+<form action="/add_item/" method="post">{% csrf_token %}
+    <input type="text" name="content">
+    <input type="submit" value="Add">
+</form>

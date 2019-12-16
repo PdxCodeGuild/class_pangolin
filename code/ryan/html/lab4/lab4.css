@@ -1,0 +1,12 @@
+header, main, footer, div {
+    border: 1px solid black;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+main div {
+    /* width: 30%; */
+}
