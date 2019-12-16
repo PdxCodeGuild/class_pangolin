@@ -14,6 +14,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=12, default="Please add a first name.")
     last_name = models.CharField(max_length=15, default="Please add a last name.")
+    
     users_followed = models.ManyToManyField('Profile', related_name='friends')
     chirps_liked = models.ManyToManyField(Chirp, related_name='likes')
     chirps_disliked = models.ManyToManyField(Chirp, related_name='dislikes')
