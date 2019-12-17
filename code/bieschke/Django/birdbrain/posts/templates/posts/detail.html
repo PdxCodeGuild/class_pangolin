@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+{% extends 'posts/base.html' %}
+
+{% block content %}
+<div class="post-entry">
+    <h3>{{ post.brain }}</h3>
+    <h5><em>Posted on {{ post.created }}</em></h5>
+    <h5><em>Last updated on {{ post.updated }}</em></h5>
+    {% if post.peekchure %}
+    <img class="fullsize" src="{{ post.peekchure.url }}">
+    {% endif %}
+    
+    <p><label for="id_peekchure">Peekchure:</label> <input type="file" name="peekchure" accept="image/*" id="id_peekchure"></p>
+</div>
+<form method='post' action="{% url 'posts:edit' post.pk %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p><label for="id_brain">Brain:</label> <input type="text" name="brain" maxlength="200" id="id_brain"></p>
+    <input type="submit" value="Edit">
+    </form>
+
+<form method='post' action="{% url 'posts:delete' post.pk %}">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+</form>
+
+<a href="{% url 'posts:home' %}">Back to the Birdnest</a>
+
+{% endblock content %}

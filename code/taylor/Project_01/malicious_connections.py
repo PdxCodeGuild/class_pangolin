@@ -1,4 +1,4 @@
-import psutil, config, requests, time, json, pprint, win32com.client as w32c
+import psutil, config, requests, time, json, win32com.client as w32c
 
 def remote_connections(connections):
     ''' Function that takes in a list of (IPv4, Port) connections and returns a (k, v) pair dictionary '''
@@ -8,7 +8,7 @@ def remote_connections(connections):
     return  dict(list(filter(None, b))) # Filter funciton removes empty (k, v) pairs in the list.
 
 def virus_total(url, api_key, ip):
-    ''' Virus Total API function, returns a python dict of the results '''
+    ''' Virus Total API function, returns a python dict/JSON of the results '''
     params = {'apikey': api_key, 'ip':ip}
     report = requests.get(url, params=params).json()
     return format_and_send_report_email(report)
@@ -44,7 +44,6 @@ def format_and_send_report_email(report):
             address_owner = 'Address Owner: Unavailable.'
             country_of_origin = 'Country: Unavailable.'
             pass
-        # Retreives and stores the 2 most recent DNS resolutions for the given ip
         resolutions = 'None'
         whois_timestamp = 'None'
         try:
@@ -52,7 +51,7 @@ def format_and_send_report_email(report):
             resolutions_list = []
             for i in range(len(report['resolutions'])):
                 resolutions_list.append(report['resolutions'][i]['hostname'])
-                resolutions = f"Top Resolutions: {'; '.join(resolutions_list[0:2])}"
+                resolutions = f"Top Resolutions: {'; '.join(resolutions_list[0:2])}" # Retreives and stores the 2 most recent DNS resolutions for the given ip
         except (KeyError, UnboundLocalError):
             print('Error1')
             resolutions = 'None'

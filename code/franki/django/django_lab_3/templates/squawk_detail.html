@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+        <div class="squawk-entry">
+            <h5><em><a href="{% url 'users:profile' squawk.author.username %}">
+            {{ squawk.author.username }}</a> -- {{ squawk.posted }}</em></h5>
+            <h5><em>Last Updated on {{ squawk.updated }}</em></h5>
+            <p>{{ squawk.body }}</p>
+        </div>
+
+        {% if author == squawk.author %}
+        <p><a href="{% url 'squawks:edit' squawk.pk %}">+ Edit Squawk</a></p>
+        <p><a href="{% url 'squawks:delete' squawk.pk %}">+ Delete Squawk</a></p>
+        {% endif %}
+{% endblock content %}

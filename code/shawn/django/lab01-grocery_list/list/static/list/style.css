@@ -1,6 +1,6 @@
 body {
     display: grid;
-    background: rgba(255,0,0,.2);
+    background: rgba(0, 255, 98, 0.2);
 }
 
 .food-item {
