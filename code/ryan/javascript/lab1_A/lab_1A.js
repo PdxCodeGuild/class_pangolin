@@ -21,12 +21,13 @@ let calculations = {
 };
 
 if (operation === '+') {
-    alert(calculations.add(first, second));
+    result = calculations.add(first, second);
 } else if (operation === '-') {
-    alert(calculations.subtract(first, second));
+    result = calculations.subtract(first, second);
 } else if (operation === '*') {
-    alert(calculations.multiply(first, second));
+    result = (calculations.multiply(first, second));
 } else {
-    alert(calculations.divide(first, second));
+    result = (calculations.divide(first, second));
 }
 
+alert('Your result is:  ' + result);
