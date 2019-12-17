@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 class SquawkFeedView(ListView):
     model = Squawk
     template_name = 'home.html'
+    def get_queryset(self):
+        return Squawk.objects.all().order_by('-posted')
 
 class SquawkDetailView(DetailView):
     model = Squawk
