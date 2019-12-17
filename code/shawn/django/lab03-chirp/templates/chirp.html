@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -16,6 +17,66 @@
         </div>
         <p class="article-summary">{{ object.text }}</p>
     </div>
+          <div class="custom-reactions">
+                  <form method='post' action="{% url 'posts:like' %}">
+                      {% csrf_token %}
+                      <input type='hidden' name='chirp_id' value='{{ object.id }}'/>
+                      <input type='image' src="{% static 'img/fi-like.svg' %}"/>
+                      
+                  </form>
+                  <div {% if object in request.user.profile.chirps_liked.all %} class="custom-like-item" {% endif %}>
+                      <strong>{{ object.likes.count }}</strong>&nbsp;
+                  </div>
+                  <form method='post' action="{% url 'posts:dislike' %}">
+                      {% csrf_token %}
+                      <input type='hidden' name='chirp_id' value='{{ object.id }}'/>
+                      <input type='image' src="{% static 'img/fi-dislike.svg' %}"/>
+                  </form>
+                  <div {% if object in request.user.profile.chirps_disliked.all %} class="custom-dislike-item" {% endif %}>
+                      <strong>{{ object.dislikes.count }}</strong>&nbsp;
+                  </div>
+          </div>       
+    <div class="custom-edit-delete">
+        {% if request.user.username == object.author.username %}
+            <a href="{% url 'posts:edit' object.pk %}"><small>edit</small></a>
+            <a href="{% url 'posts:delete' object.pk %}"><small>delete</small></a>
+        {% endif %}
+    </div>
+    <div class="comment-section-container">
+      <h3>Comments ({{ object.comment_set.count }})</h3>
+      
+        {% for comment in object.comment_set.all %}
+        <div class="custom-comment">
+          <div class="comment-section-author">
+            <img src="{{ comment.author.profile.picture.url }}" alt="">
+            <div class="comment-section-name">
+              <h5><a href="">{{ comment.author.profile.first_name }} {{ comment.author.profile.last_name }}</a></h5>
+              <p>{{ comment.date_created }}</p>
+            </div>
+          </div>
+          <div class="comment-section-text">
+            <p>{{ comment.text }}
+            </p>
+          </div>       
+          <div class="custom-edit-delete">
+            {% if request.user.username == comment.author.username %}
+                <a href="{% url 'posts:edit_comment' comment.pk %}"><small>edit</small></a>
+                <a href="{% url 'posts:delete_comment' comment.pk %}"><small>delete</small></a>
+            {% endif %}
+            {% if request.user.username == object.author.username  and request.user.username != comment.author.username%}
+              <a href="{% url 'posts:delete_comment' comment.pk %}"><small>delete</small></a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      
+    <!--/comments-->
+
+    <!-- comment form -->
+    <h5><a href="{% url 'posts:add_comment' object.id %}">Leave a comment...</a></h5>
+    <!--/comment box-->
+
+
 
     <!-- <div class="card-divider align-middle">
            <div class="avatar with-add-icon">

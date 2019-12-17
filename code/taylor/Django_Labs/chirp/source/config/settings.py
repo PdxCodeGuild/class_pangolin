@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     # first party apps
     'posts.apps.PostsConfig',
     'users.apps.UsersConfig',
+    # third party apps
+    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -125,3 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'config/static')
 ]
+
+CRISPY_TEMPLATE_PACK='bootstrap3'
+
+LOGIN_REDIRECT_URL = 'users-home'

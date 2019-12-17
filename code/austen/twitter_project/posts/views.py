@@ -1,9 +1,9 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
-from .models import Twitter
+from .models import Twitter, Tweet
 
 class TweetListView(ListView):
     model = Twitter
@@ -31,3 +31,16 @@ class TweetDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         obj = self.get_object()
         return self.request.user == obj.author
+
+
+class FollowView(View):
+    def get(self, request, *args, **kwargs):
+        content = {}
+        if 'pk' in self.kwargs:
+            user = request.user
+            newuserobj = User.objects.get(id=self.kwargs['pk'])
+            newuserobj.follower.add(user)
+            newuserobj.save()
+            return redirect(reverse('home_page'))
+        content['users'] = User.objects.all().exclude(id=request.user.id)
+        return render_to_response('home_page.html', content, {})

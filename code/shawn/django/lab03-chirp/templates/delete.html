@@ -6,11 +6,13 @@
             <h1>Delete Chirp</h1>
         </div>
     </div>
-
+<div class='custom-form-login'>
     <form method="post" action=''>
             {% csrf_token %}
-            <p>Are you sure you want to delete "{{ post.title }}"?</p>
+            <p>Are you sure you want to delete this chirp?</p>
             <input type="submit" value="Delete"/>
         </form>
-    <p><a href="{% url 'posts:home' %}">Go back...</a></p>
+        <br>
+    <a href="{{request.META.HTTP_REFERER}}">Go back...</a>
+    </div>
 {% endblock content %}

@@ -34,6 +34,27 @@
     margin: auto;
 }
 
+.custom-like-item {
+  color: rgb(6, 192, 6);
+}
+
+.custom-dislike-item {
+  color: red;
+}
+
+.custom-comment-item {
+  color: blue;
+}
+
+.custom-reactions {
+  display: flex;
+  align-items: center;
+}
+
+.menu.simple a {
+  margin-right: 0;
+}
+
 .card-flex-article {
     max-width: 80vw;
     margin: auto;
@@ -118,4 +139,62 @@
     opacity: 0.5;
   }
   
+  .comment-section-container {
+    background-color: #fefefe;
+    padding: 1rem;
+  }
   
+  .comment-section-author {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+  }
+  
+  .comment-section-author .comment-section-name {
+    margin-left: 1rem;
+  }
+  
+  .comment-section-author .comment-section-name p {
+    margin-bottom: 0;
+  }
+
+  .comment-section-author img {
+    max-width: 50px;
+    max-height: 50px;
+  }
+
+  .custom-avatar {
+    max-width: 50px;
+    max-height: 50px;
+  }
+  
+  #custom-user-avatar{
+    max-width: 80px;
+    max-height: 80px;
+  }
+
+  .comment-section-box {
+    background-color: #e6e6e6;
+    padding: 1rem;
+  }
+  
+  .custom-comment {
+    background-color: rgba(166, 155, 241, 0.2);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+  
+  .comment-section-text p{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+
+  .custom-comment .custom-edit-delete {
+    margin-left: 1rem;
+  }

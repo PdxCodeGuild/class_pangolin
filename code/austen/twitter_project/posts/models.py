@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django.db import models
 
+from django.conf import settings
+
 class Twitter(models.Model):
     title = models.CharField(max_length=140)
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
@@ -18,3 +20,6 @@ class Twitter(models.Model):
     
     class Meta:
         ordering = ['-created']
+
+class Tweet(models.Model):
+    favourite = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='user_favourite')

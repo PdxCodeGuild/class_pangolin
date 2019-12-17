@@ -20,6 +20,7 @@
         <div class="top-bar-left">
             <a href="{% url 'posts:home' %}"><img src="{% static 'img/logo.png' %}" id='logo'/></a>
             {% if request.user.is_authenticated %}
+                <img src="{{ request.user.profile.picture.url }}" id="custom-user-avatar">
                 <h6>Hi {{ request.user.username }}!</h6>
             {% endif %}
         </div>

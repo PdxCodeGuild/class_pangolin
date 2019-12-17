@@ -5,7 +5,7 @@
       
       <h5><em><a href="{% url 'users:profile' chirp.author.username %}">{{ chirp.author.username}}</a></em></h5>
       <h5><em>Chirped on {{ chirp.date_created }}</em></h5>
-      
+      <br>
       <p>{{ chirp.body_text }}</p>
     </div>
 

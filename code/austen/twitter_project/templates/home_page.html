@@ -4,9 +4,8 @@
     {% for twitter in object_list %}
         <div class="twitter-entry">
             <h1><a href="{% url 'posts:detail' twitter.id %}">{{ twitter.title }}</a></h1>
-            <p><em>Author:</em> {{ twitter.author }}</p>
+            <p><em>Author:</em> <a href="{% url 'users:profile' twitter.author.username %}">{{ twitter.author.username }}</a></p>
             <img src="{{twitter.my_image.url}}"/>
-            
             <p class="body">{{ twitter.body }}</p>
         </div>
     {% endfor %}

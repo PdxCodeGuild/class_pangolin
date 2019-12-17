@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 {% block content %}
-<h1>Users</h1>
+
+{% include '../partials/_banner_post.html' %}
+{% include '../posts/post_form.html' %}
+
 {% endblock %}

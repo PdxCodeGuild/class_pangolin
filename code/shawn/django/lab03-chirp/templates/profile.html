@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="off-canvas-wrapper">
@@ -24,7 +25,7 @@
                     <h1>{{ object.headline }}</h1>
                     <p class="lead">{{ object.summary }}</p>
                     {% if request.user.id == object.user.id %}
-                        <a href="{% url 'users:profile_edit' object.id %}">edit profile...</a>
+                        <a href="{% url 'users:profile_edit' object.id %}" style="color:white">edit profile...</a>
                     {% else %}
 
                         
@@ -63,7 +64,7 @@
                 {% endfor %}
             {% else %}
                 <div class="column">
-                    
+                    <img class="thumbnail" src="{% static 'img/default-chirp.png' %}">
                     <h5>No chirps yet.</h5>
                 </div>
             {% endif %}
