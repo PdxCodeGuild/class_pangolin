@@ -1,0 +1,30 @@
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+main {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "x-input . y-input"
+    "top-left top-center top-right"
+    "middle-left middle-center middle-right"
+    "bottom-left bottom-center bottom-right";
+}
+
+#x-input{grid-area: x-input;}
+#y-input{grid-area: y-input;}
+
+#c00 {grid-area: top-left;}
+#c10 {grid-area: top-center;}
+#c20 {grid-area: top-right;}
+#c01 {grid-area: middle-left;}
+#c11 {grid-area: middle-center;}
+#c21 {grid-area: middle-right;}
+#c02 {grid-area: bottom-left;}
+#c12 {grid-area: bottom-center;}
+#c22 {grid-area: bottom-right;}
