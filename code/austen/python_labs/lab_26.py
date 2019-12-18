@@ -23,9 +23,16 @@ class Board(object):
         print(self.cells[6] + '|' + self.cells[7] + '|' + self.cells[8])
 
     #updates board
-    def update(self, cell_num, player):
+    def update(self, cell_num,player):
         if self.cells[cell_num-1] == " ":
-            self.cells[cell_num-1] = player.token
+            self.cells[cell_num-1] = player
+        return player
+    
+    def update2(self,cell_num,player):
+        if self.cells[cell_num-1] == " ":
+            self.cells[cell_num-1] = player
+        return player
+           
             
     #checks all conditions for winner
     def iswinner(self, player):
@@ -79,16 +86,16 @@ Welcome()
 
 p1= Player(input('what is your name?'), 'x')
 p2= Player(input('what is your name?'), 'o')
-token1 = (p1)
-token2 = (p2)
+token1 = ('x')
+token2 = ('o')
 # print(p1.__dict__)
 # print(p2.__dict__)
 
 while True:
     
     #get X input 
-    x = int(input(f"\n Please choose from 1-9\n {token1}\n "))
-    board.update(x, token1)
+    x = int(input(f"\n Please choose from 1-9\n {p1}\n "))
+    board.update(x,token1)
     board.display()
 
     #check if X is winner
@@ -110,8 +117,8 @@ while True:
             break
         
     #get o input
-    o = int(input(f"\n Please choose from 1-9\n {token2}\n "))
-    board.update(o, token2)
+    o = int(input(f"\n Please choose from 1-9\n {p2}\n "))
+    board.update2(o, token2)
     board.display()
 
     #check if o is winner
