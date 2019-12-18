@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-    {% for squawk in object_list %}
-        <div class="squawk-entry">
-            <h5><em>{{ squawk.author.username }} -- {{ squawk.posted }}</em></h5>
-            <p><a href="{% url 'squawks:detail' squawk.id %}">{{ squawk.body }}</p></a>
-        </div>
-    {% endfor %}
-{% endblock content %}

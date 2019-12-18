@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>URL Shorty</title>
+</head>
+<body>
+    <header>
+        <h1>Make Short Code for Long URL!!!!</h1>
+    </header>
+     <form action="{% url 'short_url:short' %}" method="post">
+        {% csrf_token %} 
+        <input type="text" placeholder="Enter URL Here" name="long">
+        <input type="submit">
+    </form>
+    <div>
+        <ul>
+        {% for item in full_list %}
+            <li>
+                <p>Full URL:  {{ item.long_url }}</p>
+                <p>Short Code:  <a href="{% url 'short_url:redirect' item.short %}">{{ item.short }}</a></p>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

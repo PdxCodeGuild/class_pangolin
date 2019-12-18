@@ -11,7 +11,7 @@ class BlogListView(ListView):
     template_name = 'home.html'
 
     def get_queryset(self):
-        return Post.objects.all().order_by('-created')
+        return Squawk.objects.all().order_by('-created')
 
 class BlogDetailView(DetailView):
     model = Post
