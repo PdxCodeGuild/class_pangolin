@@ -1,0 +1,54 @@
+programming paradigms**
+
+there are 4:
+-------------------+        These are just ways to organize your code
+imprerative -- most basic programing (give machine instruction)
+
+logical -- oposite of imperative. (you give your desired result. computer                                    does it)
+functional -- (the most abstract of the 4 and views almost everything as                functions. Most complicated and takes the most time to                    understand )
+object-orented -- (represent objects and they can be real world things)
+
+- it is the skeleton of the page 
+
+- WEBSITE caniuse.com
+
+website to determin if you can use something on the front end 
+
+- elements are never going to overlap
+
+- nothing in the head is going to get shown on the page
+-the body is the only thing that will show up on the page 
+-comments are <--comment-->
+
+
+
+----------------------------------
+CSS:
+
+propertys and selctors are two major parts:
+
+-properties set the color, shape and positioning
+-seletors determin what HTML elements receive the given arguments 
+
+!important; overides everyting dont use this normaly it gives weird bugs 
+
+
+SELECtORS
+
+
+css box model
+
+margin and padding 
+
+
+Box Sizing:
+lets you control how width and height calculations account for the contents sizing 
+
+common image sizing 
+img{
+    display: block;
+    max-width: 100%;
+}
+
+
+
