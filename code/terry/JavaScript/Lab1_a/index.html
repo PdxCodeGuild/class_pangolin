@@ -1,0 +1,49 @@
+<!doctype html >
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <title> My Web Page </title>
+    <script>
+        let wordOne;
+        let wordTwo;
+        let word_one = prompt('Type the first word: ');
+        let word_two = prompt('Type the second word: ');
+
+        function transformOne(word_one) {
+            word_one = word_one.replace(" ", "");
+            wordOne = word_one.toLowerCase();
+            wordOne = wordOne.split('');
+            wordOne = wordOne.sort();
+            wordOne = wordOne.toString();
+
+            return wordOne;
+        }
+
+        function transformTwo(word_two) {
+            word_two = word_two.replace(" ", "");
+            wordTwo = word_two.toLowerCase();
+            wordTwo = wordTwo.split('');
+            wordTwo = wordTwo.sort();
+            wordTwo = wordTwo.toString();
+
+            return wordTwo;
+        }
+
+        transformOne(word_one);
+        transformTwo(word_two);
+
+        if (wordOne == wordTwo) {
+            alert('Yes, these are anagrams.');
+        } else {
+            alert('No, these are not anagrams.');
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
