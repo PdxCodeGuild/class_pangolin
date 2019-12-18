@@ -143,9 +143,7 @@ header{
         background-image: url(tooth.png);
         background-size: cover;
     }
-    .click{
-        /* padding: 6px; */
-    }
+   
     .here{
         grid-area: thing3;
         align-self: center;
@@ -153,9 +151,8 @@ header{
         background-image: url(toothbrush.jfif);
         background-size: cover;
     }
-    .click{
-    }
-}
+    
+
     .text-block1,.text-block2,.text-block3{
         position: absolute;
         bottom: -100px;

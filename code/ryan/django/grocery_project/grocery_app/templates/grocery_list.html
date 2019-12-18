@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}" type="text/css">
+    <title>Grocery List</title>
+</head>
+<body>
+    <header>
+        <h1>My Grocery List</h1>
+    </header>
+    <ul>
+        <div id="column">
+            {% for item in full_list %}
+                <p class="data" id="added">Added:  {{ item.date_created }}</p>
+                {% if item.completed %}
+                    <p class="data" id="purchased">Purchased On: {{ item.date_completed }}</p>
+                {% endif %}
+                <li>{{ item.content }}
+                    <div id="button_row">
+                        <form action="{% url 'grocery_app:delete' item.id %}" method='post'>{% csrf_token %}
+                            <input type="submit" value="Delete">
+                        </form>
+                        <form action="{% url 'grocery_app:complete' item.id %}" method='post'>{% csrf_token %}
+                            <input type="submit" value="Purchase">
+                        </form>
+                    </div> 
+                </li>
+            {% endfor %}
+        </div>
+    </ul>
+    
+    <form action="{% url 'grocery_app:add' %}" method='post'>{% csrf_token %}
+        <input type="text" name="content">
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

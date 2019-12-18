@@ -9,7 +9,7 @@ def code_generator(size=6, chars=(string.ascii_lowercase + string.digits)):
 
 class Links(models.Model):
 
-    link = models.CharField(max_length=500)
+    link = models.URLField(max_length=500)
     shortcode = models.CharField(max_length=15, unique=True, blank=True)
     hits = models.IntegerField(default=0)
     active = models.BooleanField(default=True)

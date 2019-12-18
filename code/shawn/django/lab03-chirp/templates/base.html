@@ -7,30 +7,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chirp</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}"/>
     <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/foundation.min.css' %}"/> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/app.css' %}"/> -->
 </head>
 
 <body>
 
     <div class="top-bar">
         <div class="top-bar-left">
-            <ul class="menu">
-                <li class="menu-text">Chirp</li>
-            </ul>
+            <a href="{% url 'posts:home' %}"><img src="{% static 'img/logo.png' %}" id='logo'/></a>
+            {% if request.user.is_authenticated %}
+                <img src="{{ request.user.profile.picture.url }}" id="custom-user-avatar">
+                <h6>Hi {{ request.user.username }}!</h6>
+            {% endif %}
         </div>
         <div class="top-bar-right">
             <ul class="menu">
-                <li><a href="{% url 'posts:home' %}">Home</a></li>
-                <li><a href="#">My Profile</a></li>
-                <li><a href="#">New Chirp</a></li>
-                <!-- <li><a href="#">Four</a></li> -->
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'posts:home' %}">All Chirps</a></li>
+                    <li><a href="{% url 'posts:home_filtered' %}">Your Feed</a></li>
+                    <li><a href="{% url 'posts:create' %}">New Chirp</a></li>
+                    <li><a href="{% url 'users:profile' request.user.username %}">My Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'users:signup' %}">Sign up</a></li>
+                {% endif %}
             </ul>
-        </div>
-    </div>
-
-    <div class="callout large primary">
-        <div class="row column text-center">
-            <h1>Your Feed</h1>
         </div>
     </div>
 

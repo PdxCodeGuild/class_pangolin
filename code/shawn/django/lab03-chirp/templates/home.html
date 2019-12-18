@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+
+<div class="callout large primary">
+    <div class="row column text-center">
+        <h1>All Chirps</h1>
+    </div>
+</div>
 
 <div class="row" id="content">
     <div class="medium-8 columns">
         {% for post in object_list %}
             <div class="blog-post">
-                <h3> {{ post.author }} <small>{{ post.date_created }}</small></h3>
+                <h3><a href='{% url "users:profile" post.author %}'> <img src="{{ post.author.profile.picture.url }}" class="custom-avatar"> {{ post.author }} </a><a href='{% url "posts:view" post.id %}'><small>{{ post.date_created }}</small></a></h3>
+
                 {% if post.picture %}
-                    <img class="thumbnail" src="{{ post.picture.url }}">
+                    <a href="{% url 'posts:view' post.id %}"><img class="thumbnail" src="{{ post.picture.url }}"></a>
                 {% endif %}
                 {% if post.text %}
                 <p>{{ post.text }}</p>
@@ -16,38 +23,62 @@
 
                 <div class="callout">
                     <ul class="menu simple">
+                        <li>
+                            <a href="{% url 'posts:view' post.id %}"><img src="{% static 'img/fi-comment.svg' %}"/></a>
+                        </li>
+                        <li>
+                            <strong>{{ post.comment_set.count }}</strong> &nbsp;
+                        </li>
+                        <li>
+                            <form method='post' action="{% url 'posts:like' %}">
+                                {% csrf_token %}
+                                <input type='hidden' name='chirp_id' value='{{ post.id }}'/>
+                                <input type='image' src="{% static 'img/fi-like.svg' %}"/>
+                                
+                            </form>
+                        </li>
 
-                        {% if post.comment_set.count > 0 %}
-                            <li><a href="#">Comments: (count here))</a></li>
+                        {% if post in request.user.profile.chirps_liked.all %}
+                            <li  class="custom-like-item" >
                         {% else %}
-                            <li>No comments yet.</li>
+                            <li>
                         {% endif %}
-
-                        {% if post.reaction_set.count > 0 %}
-                            <li><a href="#">Reactions?</a></li>
+                            <strong>{{ post.likes.count }}</strong>&nbsp;
+                        </li>
+                        <li>
+                            <form method='post' action="{% url 'posts:dislike' %}">
+                                {% csrf_token %}
+                                <input type='hidden' name='chirp_id' value='{{ post.id }}'/>
+                                <input type='image' src="{% static 'img/fi-dislike.svg' %}"/>
+                            </form>
+                        </li>
+                        {% if post in request.user.profile.chirps_disliked.all %}
+                            <li  class="custom-dislike-item" >
+                        {% else %}
+                            <li>
                         {% endif %}
-
+                            <strong>{{ post.dislikes.count }}</strong> &nbsp;
+                        </li>
                     </ul>
+                    <div class="custom-edit-delete">
+                        {% if user.username == post.author.username %}
+                            <a href="{% url 'posts:edit' post.pk %}"><small>edit</small></a>
+                            <a href="{% url 'posts:delete' post.pk %}"><small>delete</small></a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         {% endfor %}
     </div>
 
-    <div class="medium-3 columns" data-sticky-container>
+    <!-- <div class="medium-3 columns" data-sticky-container>
         <div class="sticky" data-sticky data-anchor="content">
-            <h4>Categories</h4>
+            <h4>Trending</h4>
             <ul>
-                <li><a href="#">Skyler</a></li>
-                <li><a href="#">Jesse</a></li>
-                <li><a href="#">Mike</a></li>
-                <li><a href="#">Holly</a></li>
-            </ul>
-            <h4>Authors</h4>
-            <ul>
-                <li><a href="#">Skyler</a></li>
-                <li><a href="#">Jesse</a></li>
-                <li><a href="#">Mike</a></li>
-                <li><a href="#">Holly</a></li>
+                <li><a href="#">First</a></li>
+                <li><a href="#">Second</a></li>
+                <li><a href="#">Third</a></li>
+                <li><a href="#">Fourth</a></li>
             </ul>
         </div>
     </div>
@@ -64,7 +95,7 @@
         <li><a href="#" aria-label="Page 13">13</a></li>
         <li><a href="#" aria-label="Next page">Next</a></li>
     </ul>
-</div>
+</div> -->
 
 {% endblock content %}
 
