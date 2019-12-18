@@ -39,6 +39,9 @@ header {
 h4 {
     margin-bottom: 0px;
 }
+h1 {
+    margin: 3px;
+}
 #x-input{grid-area: x-input;}
 #y-input{grid-area: y-input;}
 

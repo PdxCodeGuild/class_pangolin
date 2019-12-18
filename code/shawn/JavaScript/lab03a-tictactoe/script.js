@@ -82,7 +82,7 @@ function go(cellCoord){
         var player = player2;
         var nextPlayer = player1;
     }
-
+    
     gameBoard.playTurn(player, cellCoord);
     let winnerChar = gameBoard.calcWinner();
     if(winnerChar){
@@ -95,18 +95,18 @@ function go(cellCoord){
         else {
             winnerName = player2.name;
             player2.wins++;
-            document.getElementById('player1-wins').innerText = player1.wins;
+            document.getElementById('player2-wins').innerText = player2.wins;
         }
         document.getElementById('message').innerText = `${winnerName} wins!`;
         let buttons = document.querySelectorAll('.cell-button');
         for (let button of buttons){
             button.remove();
         }
-        document.getElementById('play-again').innerHTML = '<br><button onclick=newGame() class="play-again">Play again?</button>';
+        document.getElementById('play-again').innerHTML = '<br><button onclick=newGame() class="play-again-button">Play again?</button>';
 
     } else if (gameBoard.isFull()){
         document.getElementById('message').innerText = `The board is full...tie.`;
-        document.getElementById('play-again').innerHTML = '<br><button onclick=newGame() class="play-again">Play again?</button>';
+        document.getElementById('play-again').innerHTML = '<br><button onclick=newGame() id="play-again-button">Play again?</button>';
     } else {
         counter++;
         document.getElementById('message').innerText = `${nextPlayer.name}'s turn.  Click a button to place your ${nextPlayer.token} symbol: `
@@ -149,6 +149,9 @@ function newGame(){
             <button onclick="go('c22')" class="cell-button">Play Here!</button>
         </div>
     </div>`
+
+    // remove play again button
+    document.getElementById('play-again-button').remove();
 }
 //manually setup first game
 let start = gameInit();
