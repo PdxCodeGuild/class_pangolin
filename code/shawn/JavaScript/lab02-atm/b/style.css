@@ -1,0 +1,47 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 180px 180px 72px 20px;
+    grid-template-rows: auto;
+    grid-gap: 12px;
+    grid-template-areas: 
+    "label-balance output-balance . ."
+    "label-deposit input-deposit button-deposit message-deposit"
+    "label-withdraw input-withdraw button-withdraw message-withdraw"
+}
+
+#label-balance {grid-area: label-balance;}
+#output-balance {grid-area: output-balance;}
+#label-deposit {grid-area: label-deposit;}
+#input-deposit {grid-area: input-deposit;}
+#button-deposit {grid-area: button-deposit;}
+#message-deposit {grid-area: message-deposit;}
+#label-withdraw {grid-area: label-withdraw;}
+#input-withdraw {grid-area: input-withdraw;}
+#button-withdraw {grid-area: button-withdraw;}
+#message-withdraw {grid-area: message-withdraw;}
+#label-transactions {grid-area: label-transactions;}
+#log {
+    display: flex;
+    flex-direction: column;
+}
+
+p {
+    margin: 0;
+}
+
+.transaction {
+    border: 1px solid blue;
+    margin-bottom: 6px;
+    max-width: 50vw;
+}
+.entry-msg {
+    font-weight:bold;
+}
+.entry-date{
+    color: gray;
+    font-style: italic;
+}
+.fade-me {
+    opacity: 0;
+    transition: opacity 3s ease-in 0s;
+}
