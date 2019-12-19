@@ -1,0 +1,47 @@
+#input {
+    display:flex;
+
+}
+#input-text {
+    width: 320px;
+}
+.target {
+    display:flex;
+    flex-direction: column;
+}
+.todo-item-outer {
+    border: 3px solid darkblue;
+    background-color: lightblue;
+}
+.todo-item-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-text{
+    font-weight: bold;
+    
+}
+
+.item-date {
+    color: gray;
+    font-style: italic;
+    margin: 6px;
+    display: inline;
+    font-size: 1rem;
+}
+.date-label{
+    margin: 6px;
+    display: inline;
+    font-size: 1rem;
+}
+
+.item-checkbox{
+
+}
+.item-complete-button{
+    
+}
+.item-remove-button{
+
+}

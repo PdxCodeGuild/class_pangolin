@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Todo List</title>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+    <body>
+        <header>
+            <h1>Todo List</h1>
+        </header>
+        <main>
+            <section id="input">
+                <label for="input-text">New item:</label>
+                <input type='text' id="input-text" placeholder="input item here...">
+                <button id='button-submit'>Add</button>
+            </section>
+            <section id="selection-actions">
+                <button id="button-complete-selection">Complete selected</button>
+                <button id="button-delete-selection">Delete selected</button>
+            </section>
+            <h3>Active items:</h3>
+            <section id="target-active" class='target'>
+
+            </section>
+            <h3>Complete items:</h3>
+            <section id="target-completed" class='target'>
+
+            </section>
+        </main>
+        <footer>
+
+        </footer>
+        <script src="script.js"></script>
+    </body>
+</html>
