@@ -1,0 +1,26 @@
+h1 {
+    background: red;
+    margin-top: 0;
+    text-align: center;
+}
+
+li {
+    order: 1;
+}
+
+#added {
+}
+
+#button_row {
+    order: 3;
+}
+
+#column {
+    display: flex;
+    flex-direction: column;
+}
+
+.data {
+    order: 2;
+}
+

@@ -1,0 +1,24 @@
+#new-post {
+    width: 640px;
+    height: 320px;
+}
+
+.post {
+    border: 1px solid black;
+    width: 640px;
+    min-height: 160px;
+}
+
+.time-stamp {
+    text-align: right;
+}
+
+.button {
+    display: block;
+    height: auto;
+
+}
+
+p {
+    
+}
