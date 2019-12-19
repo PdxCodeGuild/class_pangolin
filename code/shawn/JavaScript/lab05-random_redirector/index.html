@@ -3,19 +3,43 @@
 
 <head>
     <title>Random Redirector</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
     <main>
-        <h5>Version 1 and 2</h5>
-        <p style="color: red;">countdown currently disabled...uncomment setInterval() to enable:</p>
-        <button id="redirect">redirecting in 5 sec...</button>
-        <hr>
-        <h5>Version 3</h5>
-        <button id="next-site-button">You are at <strong>http://www.shawnstolsig.com</strong>....click for next site!</button>
-        <div>
-            <iframe title="v1 window" id="myiframe" width="1000" height="480" src="http://www.shawnstolsig.com"></iframe>
+        <div id="version1-div" class="version-box">
+            <h4>Version 1 - Redirect Button</h4>
+            <hr>
+            <div class="button-div">
+                <button id="redirect">click to redirect</button>
+            </div>
+        </div>
+        <div id="version2-div" class="version-box">
+            <h4>Version 2 - Redirect Countdown</h4>
+            <hr>
+            <p>Enable countdown? </p>
+            <div class="button-div">
+                <label for="countdown-enabled">Yes: </label>
+                <input type="radio" id="countdown-enabled" name="countdown-radio">
+                <label for="countdown-disabled">No: </label>
+                <input type="radio" id="countdown-disabled" name="countdown-radio" checked="true">
+            </div>
+            <p id="redirect-countdown" class="not-counting">countdown disabled</p>
+            <hr>
+        </div>
+        <div id="version3-div" class="version-box">
+            <h4>Version 3 - StumbleUpon Clone <small style="color:gray;">Relying on wikipedia due to iframe embedding limitations.</small></h4>
+            <hr>
+            <div class="button-div">
+                <button id="next-site-button">You are at <strong>http://www.shawnstolsig.com</strong>....click for next
+                    site!</button>
+            </div>
+            <div>
+                <iframe title="v1 window" id="myiframe" width="1000" height="360"
+                    src="http://www.shawnstolsig.com"></iframe>
+            </div>
         </div>
     </main>
     <footer>
