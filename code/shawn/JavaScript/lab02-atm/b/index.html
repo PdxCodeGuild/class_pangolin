@@ -1,9 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    </head>
-    <body>
-        ATM
-        <script src='script.js'></script>
-    </body>
+
+<head>
+    <title>ATM</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>ATM</h1>
+    </header>
+    <section class='grid-container'>
+
+        <label id="label-balance">Current Balance:</label>
+        <p id="output-balance">$0</p>
+
+
+        <label id="label-deposit" for="input-deposit">Deposit:</label>
+        <input type="number" id="input-deposit" placeholder="Amount here...">
+        <button id="button-deposit">Deposit</button>
+        <p id="message-deposit"></p>
+        
+        <label id="label-withdraw" for="input-withdraw">Withdraw:</label>
+        <input type="number" id="input-withdraw" placeholder="Amount here...">
+        <button id="button-withdraw">Withdraw</button>
+        <p id="message-withdraw"></p>
+
+    </section>
+
+    <h3 id="label-transactions">Transaction History:</h3>
+
+    <div id="log">
+        <!-- this is the target for adding log entries -->
+    </div>
+
+    <script src='script.js'></script>
+</body>
+
 </html>

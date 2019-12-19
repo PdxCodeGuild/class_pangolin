@@ -5,16 +5,16 @@
 let contact = [];
 
 function contact_new(){
-    let question = prompt('Would you like to add a contact? ');
-    if (question === 'yes'){
-        var dict = {
-            first: prompt('What is your first name? '),
-            last: prompt('What is your last name? '),
-            color: prompt('What is your favorite color? '),
-        };
-        contact.push(dict);
+    // let question = prompt('Would you like to add a contact? ');
+    // if (question === 'yes'){
+    var dict = {
+        first: prompt('What is your first name? '),
+        last: prompt('What is your last name? '),
+        color: prompt('What is your favorite color? '),
+    };
+    contact.push(dict);
         // return dict;
-    }
+    
 }
 // contact.push(dict);
 // contact.push(contact_new());
