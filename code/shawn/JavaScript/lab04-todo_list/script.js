@@ -5,6 +5,7 @@ class ToDo{
         this.dateCreated = new Date().toString();
         this.dateCompleted;
         this.isCompleted = false;
+        this.id = Math.random();    // id will be used for looking up items when doing selection actions
     }
 }
 
@@ -15,11 +16,13 @@ let buttonCompleteSelected = document.getElementById("button-complete-selection"
 let buttonDeleteSelected = document.getElementById("button-delete-selection");
 let targetActive = document.getElementById("target-active");
 let targetCompleted = document.getElementById("target-completed");
+let activeCount = document.getElementById("active-count");
+let completedCount = document.getElementById("completed-count");
 
 // list for holding todo items
 var toDoList = []
 
-// event listener for submit button.  adds todo item to list
+// event listener for submit button (mouse).  adds todo item to list
 buttonSubmit.addEventListener("click", function(){
     // create new item
     let item = new ToDo(inputText.value);
@@ -27,30 +30,70 @@ buttonSubmit.addEventListener("click", function(){
     // add to list
     toDoList.push(item);
 
+    // clear text from input field
+    inputText.value = '';
+
     // update items
     renderToDoList();
     
 });
+// event listener for submit button (enter).  adds todo item to list
+inputText.addEventListener("keydown", function(event){
+    if(event.key === 'Enter'){
+        // create new item
+        let item = new ToDo(inputText.value);
 
-// PICK UP HERE   selection action buttons
+        // add to list
+        toDoList.push(item);
+        
+        // clear text from input field
+        inputText.value = '';
+
+        // update items
+        renderToDoList();
+    }
+});
+
+// event listener for group completions
 buttonCompleteSelected.addEventListener('click', function(){
     let checkboxes = document.querySelectorAll("input[type='checkbox'].item-checkbox");
     for (let box of checkboxes){
         if(box.checked){
-            // need to figure out how to lookup the item in ToDo list?  maybe create a hidden element for index?
-            box.parentElement.remove();
+            // get index of item to be marked completed
+            let id = box.getAttribute("itemId");
+            let x;
+            for (let i = 0; i < toDoList.length; i++){
+                if(id === toDoList[i].id.toString()){
+                    x = i;
+                }
+            }
+            // complete item at index x
+            toDoList[x].isCompleted = true;
+            // render items
+            renderToDoList();
         }
     }
 });
-buttonRemoveSelected.addEventListener('click', function(){
+// event listener for group deletions
+buttonDeleteSelected.addEventListener('click', function(){
     let checkboxes = document.querySelectorAll("input[type='checkbox'].item-checkbox");
     for (let box of checkboxes){
         if(box.checked){
-
+            // get index of item to be marked completed
+            let id = box.getAttribute("itemId");
+            let x;
+            for (let i = 0; i < toDoList.length; i++){
+                if(id === toDoList[i].id.toString()){
+                    x = i;
+                }
+            }
+            // remove item at index x
+            toDoList.splice(x,1);
+            // render items
+            renderToDoList();
         }
     }
 });
-
 
 // function for rendering all ToDo items
 function renderToDoList(){
@@ -60,7 +103,9 @@ function renderToDoList(){
     targetCompleted.innerHTML = ''; 
 
     // iterate through all ToDo items
-    // for (let item of toDoList){
+    let activeCounter = 0;
+    let completedCounter = 0;
+
     for(let i = 0; i < toDoList.length; i++){
         
         // create HTML elements
@@ -91,37 +136,40 @@ function renderToDoList(){
         completeBut.innerText = "Complete";
         removeBut.innerText = "Remove";
         checkbox.type = "checkbox";
+        checkbox.setAttribute("itemId", toDoList[i].id.toString());
         itemText.innerText = toDoList[i].text;
         createdLabel.innerText = "created: "
         completedLabel.innerText = "completed: "
         itemCreatedDate.innerText = toDoList[i].dateCreated;
         itemCompletedDate.innerText = toDoList[i].dateCompleted;
-        itemCompletedDate.hidden = true;
-        completedLabel.hidden = true;
 
-        // set target for item...active or completed
+        // by default, rendered as active items.  do these additional actions if completed
         let target;
         if(toDoList[i].isCompleted){
             target = targetCompleted;
             completeBut.hidden = true;
             toDoList[i].dateCompleted = new Date().toString();
             itemCompletedDate.innerText = toDoList[i].dateCompleted;
-            itemCompletedDate.hidden = false;
-            completedLabel.hidden = false;
+            outerDiv.classList.add("completed")
+            completedCounter++;
         } else {
+            outerDiv.classList.add("active")
             target = targetActive;
+            activeCounter++;
         }
 
         // add to page
-        outerDiv.append(completeBut);
-        outerDiv.append(removeBut);
-        outerDiv.append(checkbox);
-        outerDiv.append(createdLabel);
-        outerDiv.append(itemCreatedDate);
-        outerDiv.append(completedLabel);
-        outerDiv.append(itemCompletedDate);
-        innerDiv.append(itemText);
+        innerDiv.append(completeBut);
+        innerDiv.append(removeBut);
+        innerDiv.append(checkbox);
+        innerDiv.append(createdLabel);
+        innerDiv.append(itemCreatedDate);
+        if(toDoList[i].isCompleted) {
+            innerDiv.append(completedLabel);
+            innerDiv.append(itemCompletedDate);
+        }
         outerDiv.append(innerDiv);
+        outerDiv.append(itemText);
         target.append(outerDiv)
 
         // event listeners for newly created buttons
@@ -135,5 +183,9 @@ function renderToDoList(){
         });
 
     }
+     
+    // update counts
+    activeCount.innerText = activeCounter;
+    completedCount.innerText = completedCounter;
 };
 

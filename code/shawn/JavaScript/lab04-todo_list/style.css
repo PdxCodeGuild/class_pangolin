@@ -1,30 +1,70 @@
+html{
+    background-image: linear-gradient(white, gray);
+    height: 100%;
+}
+
+body {
+    margin: 24px;
+}
+
 #input {
     display:flex;
-
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black;
+    border-radius: 12px;
+    max-width: 512px;
+}
+#input > * {
+    margin: 6px;
+}
+#selection-actions {
+    margin-top: 6px;
 }
 #input-text {
     width: 320px;
+}
+#target-active {
+    background-color: rgba(255, 0, 0, 0.2);
+    border-radius: 12px;
+}
+#target-completed {
+    background-color: rgba(0, 255, 0, 0.2);
+    border-radius: 12px;
+}
+h3 {
+    margin: .5em;
 }
 .target {
     display:flex;
     flex-direction: column;
 }
+.active{
+    border: 3px solid darkred;
+    background-color: lightcoral;
+    border-radius: 12px;
+}
+.completed {
+    border: 3px solid darkgreen;
+    background-color: lightgreen;
+    border-radius: 12px;
+}
 .todo-item-outer {
-    border: 3px solid darkblue;
-    background-color: lightblue;
+    margin: 3px;
 }
 .todo-item-inner {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    margin: 6px;
+    margin-top: 0;
 }
 
 .item-text{
-    font-weight: bold;
-    
+    font-weight: bold;  
+    margin: 6px;  
 }
 
 .item-date {
-    color: gray;
     font-style: italic;
     margin: 6px;
     display: inline;
@@ -40,7 +80,7 @@
 
 }
 .item-complete-button{
-    
+
 }
 .item-remove-button{
 
