@@ -1,0 +1,50 @@
+body{
+    align-content: center;
+    background: url('pbunyan.jpg') no-repeat center center fixed;
+    background-size: cover;
+    align-items: center;
+}  
+
+#content {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 1400px;
+    margin-bottom: 60px;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+header {
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    clear: both;
+}
+
+#spacer {
+    padding: 175px;
+}
+
+#wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+    display: inline;
+    max-width: 700px;
+    margin: 5px 10px 10px 10px;
+    padding: 10px;
+    text-shadow: 0 0 5px whitesmoke;
+}
+
+#url-result {
+    color: #00e000;
+    display: hidden;
+}
+#submitButton{
+    background-color: red;
+}
