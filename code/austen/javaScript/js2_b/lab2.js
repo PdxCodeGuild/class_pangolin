@@ -1,10 +1,11 @@
-let winningTicket = document.getElementById("winningTicket");
-let guesses = document.getElementById("guesses");
-let play = document.getElementById("play");
-let totalBallance = document.getElementById("totalBallance");
+// let winningTicket = document.getElementById("winningTicket");
+// let guesses = document.getElementById("guesses");
+// let play = document.getElementById("play");
+// let totalBallance = document.getElementById("totalBallance");
 let resetGame = document.getElementById("reset");
 let ticketView = document.getElementById("ticketView").style.display = "none";
 let totals = document.getElementById("totals").style.display = "none";
+let main = document.getElementById("main").style.display = "none";
 
 let ticket;
 let plays;
@@ -20,6 +21,7 @@ function game(){
     totalBallance.innerText = ballance;
     guesses.value = null;
     document.getElementById("totals").style.display = "none"
+    document.getElementById("main").style.display = "block";
 }
 function yourTicket(){
     ticket = [];
