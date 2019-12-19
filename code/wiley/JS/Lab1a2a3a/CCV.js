@@ -80,7 +80,7 @@ console.log(finalCheck);
 let verify = parseInt(finalCheck)
 if (verify === checkNum) {
     document.write("Credit card verification passed! ");
-}
+} 
 else {
     document.write("Verification Error. ")
 }
