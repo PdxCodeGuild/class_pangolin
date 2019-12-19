@@ -1,0 +1,7 @@
+#stumble-menu {
+    display: flex;
+}
+
+#stumble-menu p {
+    margin: 24px;
+}
