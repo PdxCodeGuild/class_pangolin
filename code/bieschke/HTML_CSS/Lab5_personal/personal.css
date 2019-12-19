@@ -44,6 +44,17 @@
     border-radius: 50%;
 }
 
+a .bckgrnd {
+  align-self: center;
+}
+
+.bckgrnd_icons {
+  display: grid;
+  max-width: 200px;
+  max-height: 200px;
+  align-self: center;
+}
+
 .bckgrnd img {
     float: left;
     align-items: left; 
@@ -53,7 +64,7 @@
 @media(max-width: 700px) {
     .wrapper {
       grid-template-areas:
-      'nav nav nav nav'
+      'nav nav nav'
       'columns'
       'musings'
       'projects' 

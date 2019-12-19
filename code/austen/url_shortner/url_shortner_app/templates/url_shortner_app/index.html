@@ -6,7 +6,7 @@
 <h1>Short url generator</h1>
 <div class="form">
     <div class="type_text">
-        <p>Type your Url bellow</p>
+        <p>Type your Url below</p>
     </div>
     <form action="{% url 'url_shortner_app:user_input' %}" method="post">
         {% csrf_token %}

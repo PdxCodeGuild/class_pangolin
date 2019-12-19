@@ -1,0 +1,56 @@
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.grid-border {
+    background-color: red;
+    width: 407px;
+    height: 407px;
+}
+.grid {
+    display: grid;
+    grid-template-columns: 128px 128px 128px;
+    grid-template-rows: 128px 128px 128px;
+    grid-template-areas: 
+    "top-left top-center top-right"
+    "middle-left middle-center middle-right"
+    "bottom-left bottom-center bottom-right";
+    grid-gap: 12px;
+    justify-items: stretch;
+}
+
+.grid > div{
+    background-color: white;
+}
+
+.cell-button {
+    width: 100%;
+    height: 100%;
+}
+.play-again {
+    width: 128px;
+}
+
+.name-input {
+    width: 128px;
+}
+
+h4 {
+    margin-bottom: 0px;
+}
+h1 {
+    margin: 3px;
+}
+#x-input{grid-area: x-input;}
+#y-input{grid-area: y-input;}
+
+#c00 {grid-area: top-left;}
+#c10 {grid-area: top-center;}
+#c20 {grid-area: top-right;}
+#c01 {grid-area: middle-left;}
+#c11 {grid-area: middle-center;}
+#c21 {grid-area: middle-right;}
+#c02 {grid-area: bottom-left;}
+#c12 {grid-area: bottom-center;}
+#c22 {grid-area: bottom-right;}
