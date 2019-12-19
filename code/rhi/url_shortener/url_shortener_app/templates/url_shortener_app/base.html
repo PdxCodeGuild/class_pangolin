@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %}Lets Hack It!{% endblock %}</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'url_shortener_app/stylesheet.css' %}"
+    />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <script type="text/javascript">
+    $(function() {
+      $("#submitButton").click(function() {
+        $.ajax({
+          type: "POST",
+          url: "/makeshort/",
+          data: {
+            url: $("#url").val(),
+            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
+          },
+          success: returnSuccess,
+          dataType: "json"
+        });
+      });
+    });
+    function returnSuccess(data, textStatus, jqXHR) {
+      if (data.url) {
+        $("#url-result").text(data.url);
+        $("#url").val("");
+      } else {
+        $("#url-result").text("Do not submit blank.");
+      }
+    }
+  </script>
+  <body>
+    <div id="spacer"></div>
+    <div id="wrap">
+      <header>
+        <h1>
+          <small
+            >Is your URL just. too. LONG?<br />
+            Don't type it.... </small
+          ><a href="{% url 'url_shortener_app:index' %}">HACK</a> IT!
+        </h1>
+      </header>
+      <div id="content">
+        {% block content %} {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>
