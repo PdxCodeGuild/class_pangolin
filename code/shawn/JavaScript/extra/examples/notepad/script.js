@@ -84,4 +84,3 @@ deleteSelectedButton.addEventListener('click', function(){
         }
     }
 });
-styling, nested anonymous listening functions
