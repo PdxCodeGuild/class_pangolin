@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hit/NoHit</title>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+    <h1>Welcome to <em>Hit/NoHit!</em></h1>
+    <h3>Your friendly Blackjack advice Bot</h3>
+    <p>To get advice, simply tell me the values of your cards. I will divine the best move for you to take next.</p>
+    <p>Enter your card values like this:<br> A, 2-10, J, Q, K</p>
+    <form>
+        <h6>Card 1:</h4>
+            <input type="text" id="one">
+            <h6>Card 2:</h4>
+                <input type="text" id="two">
+                <h6>Card 3:</h4>
+                    <input type="text" id="three"><br>
+                    <input type="reset" value="Clear cards">
+    </form>
+    <button id="advise-btn">Advise Me!</button>
+    <div id='container'></div>
+
+    <script src='script.js'></script>
+</body>
+
+</html>

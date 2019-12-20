@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Unit Conversion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Alata|Reem+Kufi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <form id="myForm">
+        <p>Unit Conversion</p>
+        <div class="dropdown">
+            <p>From: </p>
+            <select id="userUnit">
+                <option value="mi">Miles</option>
+                <option value="ft">Feet</option>
+                <option value="m">Meters</option>
+                <option value="km">Kilometers</option>
+                <option value="yd">Yards</option>
+                <option value="in">Inches</option>
+            </select>
+        </div>
+
+        <div class="dropdown">
+            <p>To: </p>
+            <select id="userOutput">
+                <option value="mi">Miles</option>
+                <option value="ft">Feet</option>
+                <option value="m">Meters</option>
+                <option value="km">Kilometers</option>
+                <option value="yd">Yards</option>
+                <option value="in">Inches</option>
+            </select>
+        </div>
+
+        <input type="number" id="userDistance" placeholder="Distance">
+    </form>
+    <br>
+    <button id="submit" type="submit" value="Check">Convert</button>
+    <br><br>
+    <div id="results">
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
