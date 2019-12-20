@@ -1,11 +1,12 @@
 main div {
     margin: 6px;
 }
-#version1 {
-    background-color: rgba(0, 0, 0, 0.205);
+.version {
     border-radius: 12px;
     padding: 6px;
+    background-color: rgba(0, 0, 0, 0.205);
 }
+
 #time-formats {
     display: flex;
     justify-content: space-evenly;
@@ -23,4 +24,10 @@ main div {
 h2 {
     text-align: center;
     margin: .5rem;
+}
+#laps {
+    
+}
+.lap {
+
 }
