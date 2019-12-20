@@ -60,3 +60,22 @@ oper.addEventListener('input', doTheMath);
 //   li.innerText = answer;
 //   results.appendChild(li);
 // });
+
+let myArray = [1,2,3,4,5,6,7,8,9,8,7,6,5,4,3,2,1];
+
+let sumOfSquaredGreaterThanSixEveryOtherDouble = myArray.map(function(x, i, originalArray) {
+  if (i % 2 === 0) {
+    return x*2;
+  }
+  return x;
+}).filter(function(x) {
+  return x > 6;
+}).map((x, i, originalArray) => x**2).reduce(function(runningTotal, x) {
+  return runningTotal + x;
+}, 0);
+
+// function(x) {
+//   return x**2;
+// }
+
+console.log(sumOfSquaredGreaterThanSixEveryOtherDouble);
