@@ -1,6 +1,6 @@
 <html lang="en">
 <head>
-  <title>Simple Calculator</title>
+  <title>Todo List</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -9,18 +9,17 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container-fluid">
-    <h1>Simple Calculator</h1>
-    <p><h3>First Number:</h3></p>
-    <input type="number" id="num1">
-    <p><h3>Operation:</h3></p>
-    <input type="text" id="oper">
-    <p><h3>Second Number:</h3></p>
-    <input type="number" id="num2">
-    <p></p>
-    <button type="button" id="btn"><h4>Calculate!</h4></button>
-    <h1 id="results"></h1>
-</div>
-    <script src="simple_calculator.js"></script>
+    <h1>✺Todo List✺</h1>
+    <div class="container-fluid">
+        <p><h3>Add A List Item</h3></p>
+        <input type="text" id="item">
+        <p></p>
+        <button type="button" id="add"><h4>Save Item To List</h4></button>
+        <p></p>
+        <ul id="list"></ul>
+        <p><h3>✺Completed✺</h3></p>
+        <ul id="completed"></ul>
+    </div>
+    <script src="todo.js"></script>
 </body>
 </html>

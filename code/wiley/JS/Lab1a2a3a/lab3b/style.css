@@ -1,0 +1,45 @@
+body {
+    display: grid;
+    grid-template-rows: auto;
+    justify-items: center;
+    align-items: center;
+    margin: auto;
+    background-color: gainsboro;
+}
+.container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "title title"
+    "user-number submit-btn"
+    "return another";
+    width: 500px;
+    min-width: 300px;
+    
+   
+}
+#title {
+    grid-area: title;
+}
+#user-number {
+    grid-area: user-number;
+    width: 240px;
+    
+}
+#submit-btn {
+    grid-area: submit-btn;
+    margin-left: 3px;
+    width: 100px;
+    height: 25px;
+}
+#return {
+    grid-area: return;
+    justify-self: center;
+}
+#another {
+    grid-area: another;
+    width: 100px;
+    height: 25px;
+    margin: 3px;
+}

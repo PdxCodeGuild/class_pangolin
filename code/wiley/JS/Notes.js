@@ -70,3 +70,16 @@ let add = function(a,b) {
 }
 
 //the first one is a hoisted function, and the second on is undefined until it runs.  //
+
+
+//day 2 JS notes//
+/* DOM Manipulation.  Document Object Model 
+You can select elements by class, type, name, tag and more.  
+Basic example: document.getElementByID("id-name-here")
+
+document.querySelector() returns the first found match
+document.querySelectorAll() returns an array like object of all matches
+
+Once you have a document object you can change its attributes 
+ex: d.setAttriute("name", "so-bad")
+*/
