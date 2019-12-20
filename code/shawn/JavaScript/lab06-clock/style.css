@@ -26,8 +26,15 @@ h2 {
     margin: .5rem;
 }
 #laps {
-    
+
 }
 .lap {
 
+}
+.timer-stopwatch-text {
+    display: flex;
+    align-items: center;
+}
+.timer-stopwatch-text h3 {
+    margin-right: 6px;
 }

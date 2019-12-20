@@ -26,10 +26,29 @@
         <div id="version2" class="version">
             <h2>Version 2: Stopwatch</h2>
             <button id="stopwatch-button">Start</button>
-            <h3>Stopwatch: <p id="stopwatch">(not running)</p></h3>
+            <div class="timer-stopwatch-text">
+                <h3>Stopwatch:</h3>
+                <p id="stopwatch">(not running)</p>
+            </div>
             <div id="laps">
 
             </div>
+        </div>
+        <div id="version3" class="version">
+            <h2>Version 3: Countdown Timer</h2>
+            <label for="countdown-hours">Hours:</label>
+            <input type="number" id="countdown-hours" value=0>
+            <label for="countdown-minutes">Minutes:</label>
+            <input type="number" id="countdown-minutes" value=0>
+            <label for="countdown-seconds">Seconds:</label>
+            <input type="number" id="countdown-seconds" value=0>
+            <button id="timer-button">Start new timer</button>
+            <div class="timer-stopwatch-text">
+                <h3>Timer: </h3>
+                <p id="timer"></p>
+            </div>
+            <p id="timer-status">Not running</p>
+
         </div>
     </main>
     <footer>

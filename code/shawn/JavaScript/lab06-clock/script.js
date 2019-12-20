@@ -7,6 +7,12 @@ let timeOutput12 = document.getElementById("p-time-12");
 let stopwatchButton = document.getElementById("stopwatch-button");
 let stopwatchText = document.getElementById("stopwatch");
 let lapList = document.getElementById("laps");
+let countdownHours = document.getElementById("countdown-hours");
+let countdownMinutes = document.getElementById("countdown-minutes");
+let countdownSeconds = document.getElementById("countdown-seconds");
+let timerButton = document.getElementById("timer-button");
+let timerText = document.getElementById("timer");
+let timerStatus = document.getElementById("timer-status");
 
 // set some variables to be referenced outside of tick function
 let nowDay;                     // DD 1-31
@@ -92,7 +98,7 @@ function clockTick() {
     // date formats
     nowDateStringObjectShort = now.toDateString();
     nowDateStringObjectLong = `${nowMonthString} ${nowDay}, ${nowYear}`
-    nowDateStringHomebrew = `${nowMonth + 1}/${nowDay}/${nowYear}`
+    nowDateStringHomebrew = `${nowMonth + 1}/${nowDay}/${nowYear}` 
 
     // update clock
     updateClock();
@@ -111,6 +117,7 @@ function updateClock() {
     timeOutput12.innerText = nowTime12;
 
 }
+
 // event listener for stopwatch button
 stopwatchButton.addEventListener("click", function () {
     if (!stopwatchIsRunning) {
@@ -129,7 +136,7 @@ stopwatchButton.addEventListener("click", function () {
         stopwatchButton.insertAdjacentElement("afterend", lapButton);
 
         // lap button event listener
-        lapButton.addEventListener('click', function(){
+        lapButton.addEventListener('click', function () {
             let lapPara = document.createElement("p");
             lapPara.classList.add("lap");
             lapPara.innerText = `Lap ${lapCounter}: ` + stopwatch.toTimeString().split(" ")[0] + ":" + getPaddedMs();
@@ -141,7 +148,6 @@ stopwatchButton.addEventListener("click", function () {
         // clear previous laps
         lapList.innerHTML = '';
 
-
     } else {
         // clear interval
         clearInterval(stopwatchInterval);
@@ -151,10 +157,11 @@ stopwatchButton.addEventListener("click", function () {
         stopwatchIsRunning = false;
         //  remove lap button
         stopwatchButton.nextElementSibling.remove();
+        // reset lap counter
+        lapCounter = 1;
     }
 
 });
-
 
 // interval function for stopwatch
 function stopwatchTick() {
@@ -162,16 +169,89 @@ function stopwatchTick() {
     let newMs = ms + 10;
     stopwatch.setMilliseconds(newMs);
     // update stopwatch text
-    // stopwatchText.innerText = `${stopwatch.getHours()}:${stopwatch.getMinutes()}:${stopwatch.getSeconds()}:${ms}`
     stopwatchText.innerText = stopwatch.toTimeString().split(" ")[0] + ":" + getPaddedMs();
 }
 
-function getPaddedMs(){
+// a function for returning 3-digit padded ms as string
+function getPaddedMs() {
     let ms = stopwatch.getMilliseconds();
-    if (ms<10){
-        return `00${ms/10}`
-    } else if (ms>=10 && ms < 100) {
-        return `0${ms/10}`
-    } 
-    return `${ms/10}`
+    if (ms < 10) {
+        return `00${ms / 10}`
+    } else if (ms >= 10 && ms < 100) {
+        return `0${ms / 10}`
+    }
+    return `${ms / 10}`
 }
+
+// for countdown
+let timer;
+let timerInterval;
+let timerIsRunning = false;
+let timerIsPaused = false;
+
+// event listener when timer button clicked
+timerButton.addEventListener("click", function () {
+
+    // if timer is already running
+    if (timerIsRunning) {
+        // clear interval, remove pause button, set timerIsPaused to false
+        clearInterval(timerInterval);
+        timerButton.nextElementSibling.remove();
+        timerIsPaused = false;
+    }
+
+    //....proceed with setting up new timer
+    // create a new timer object
+    timer = new Date();
+    // set equal to user input
+    timer.setHours(countdownHours.value, countdownMinutes.value, countdownSeconds.value, 0);
+    // assign timer tick
+    timerText.innerText = timer.toTimeString().split(" ")[0];
+    timer.setSeconds(timer.getSeconds() - 1);
+    timerInterval = window.setInterval(timerTick, 1000);
+    // update timer running bool
+    timerIsRunning = true;
+    timerStatus.innerText = "Timer Running"
+    timerStatus.style.color = "blue";
+
+    // pause button:
+    let pauseButton = document.createElement("button");
+    pauseButton.innerText = "Pause";
+    timerButton.insertAdjacentElement("afterend", pauseButton);
+
+    // lap button event listener
+    pauseButton.addEventListener('click', function () {
+        if (timerIsPaused) {
+            timerIsPaused = false;
+            timerInterval = window.setInterval(timerTick, 1000);
+            pauseButton.innerText = "Pause"
+            timerStatus.innerText = "Timer Running"
+            timerStatus.style.color = "blue";
+        } else {
+            timerIsPaused = true;
+            clearInterval(timerInterval)
+            pauseButton.innerText = "Unpause"
+            timerStatus.innerText = "Timer Paused"
+            timerStatus.style.color = "yellow";
+        }
+    });
+
+});
+
+//interval function for timer
+function timerTick() {
+
+    // check to see if timer is zero
+    if (timer.getSeconds() === 0 && timer.getMinutes() === 0 && timer.getHours() === 0) {
+        timerText.innerText = timer.toTimeString().split(" ")[0];
+        timerIsRunning = false;
+        clearInterval(timerInterval);
+        timerButton.nextElementSibling.remove();
+        timerStatus.innerText = "Timer complete.";
+        timerStatus.style.color = "green";
+    }
+
+    timerText.innerText = timer.toTimeString().split(" ")[0];
+    timer.setSeconds(timer.getSeconds() - 1);
+
+};
