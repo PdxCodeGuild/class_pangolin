@@ -1,0 +1,26 @@
+main div {
+    margin: 6px;
+}
+#version1 {
+    background-color: rgba(0, 0, 0, 0.205);
+    border-radius: 12px;
+    padding: 6px;
+}
+#time-formats {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgba(1, 1, 95, 1);
+    border-radius: 12px;
+    color: white;
+}
+#date-formats {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgba(95, 47, 1, 1);
+    border-radius: 12px;
+    color: white;
+}
+h2 {
+    text-align: center;
+    margin: .5rem;
+}
