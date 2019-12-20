@@ -1,10 +1,10 @@
 let conversions = {
-  ft: '.3084',
-  mi: '1609.34',
-  km:'1000',
-  m: '1',
-  yd:'.9144',
-  nchz:'.0254'
+  'ft': '.3084',
+ 'mi': '1609.34',
+  'km':'1000',
+ 'm': '1',
+  'yd':'.9144',
+  'nchz':'.0254'
 }
 
 let message1 = "Enter the length / distance as a number: > "
