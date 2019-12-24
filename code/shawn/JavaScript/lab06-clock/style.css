@@ -1,29 +1,91 @@
-main div {
-    margin: 6px;
+html {
+    background: url(bg.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Courier New', Courier, monospace;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
 }
 .version {
     border-radius: 12px;
     padding: 6px;
-    background-color: rgba(0, 0, 0, 0.205);
-}
+    background-color: rgba(0, 0, 0, 0.6);
+    color: red;
 
+}
+#version1 {
+    position: fixed; 
+    bottom: 50px;
+    right: 50px;
+    width: 300px;
+    border: darkred 3px solid;
+}
+#version1 p {
+    margin: .5em;
+}
+#version2 {
+    display: none; 
+    position: fixed; 
+    top: 50px;
+    left: 50px;
+    width: 300px;
+    border: darkred 3px solid;
+}
+.slide-left {
+    
+}
+#version3 {
+    display: none; 
+    position: fixed; 
+    top: 50px;
+    right: 50px;
+    width: 300px;
+    border: darkred 3px solid;
+}
 #time-formats {
     display: flex;
     justify-content: space-evenly;
-    background-color: rgba(1, 1, 95, 1);
-    border-radius: 12px;
-    color: white;
+    font-size: 2em;
+    margin: 0;
+}
+#p-time-24 {
+    display: none;
+}
+#icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#timer-icon-div {
+   background-image: radial-gradient(red, black 80%);
+   padding: 12px;
+}
+#stopwatch-icon-div {
+    background-image: radial-gradient(red, black 80%);
+    padding: 12px;
 }
 #date-formats {
     display: flex;
     justify-content: space-evenly;
-    background-color: rgba(95, 47, 1, 1);
-    border-radius: 12px;
-    color: white;
+    color: darkred;
+}
+#p-date-nums {
+    display: none;
+}
+#p-date-short {
+    display:none;
+}
+#p-date-long {
+    display:static;
 }
 h2 {
     text-align: center;
     margin: .5rem;
+    display: none;
 }
 #laps {
 
