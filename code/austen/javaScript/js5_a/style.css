@@ -1,0 +1,119 @@
+html {
+    background-color:#00F0F6;
+    text-align: center;
+    font-family: 'Special Elite', cursive;
+}
+header{
+    transform: rotate(20deg);
+    position: absolute;
+    top: 70px;
+    right: 50px;
+    width: auto;
+    height: auto;
+    font-size: 28px;
+}
+#stationary{
+    transform: rotate(20deg);
+    position: absolute;
+    top: 160px;
+    right: 200px;
+    width: auto;
+    height: auto;
+    font-size: 20px;
+    
+}
+#browse{
+    transform: rotate(20deg);
+    position: absolute;
+    top: 280px;
+    right: 260px;
+    width: auto;
+    height: auto;
+}
+#inlineFrame{
+    position: absolute;
+    top: 360px;
+    right: 125px;
+}
+#target{
+    font-size: 200px;
+}
+
+#find, #stop, #browse{
+    background-color: #F6F400;
+    border: none;
+    color: #DA015C;
+    padding: 5px 12px;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    font-size: 16px;
+    border-radius: 12px;
+}
+#find:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+#stop{
+    margin-left: 20px;
+}
+#stop:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+#browse:hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+#image1,#image2,#image3,#image4,#image5,#image6,#image7,#image8 {
+    width: 300px;
+    height: 200px;
+    position: absolute;
+}
+#image1{
+    transform: rotate(-20deg);
+    /* position: a; */
+    top: 80px;
+    left: 100px;
+
+}
+#image2{
+    transform: rotate(40deg);
+    
+    bottom: 450px;
+    right: 600px;
+}
+#image3{
+    transform: rotate(-50deg);
+   
+    top: 340px;
+    right: 700px;
+}
+#image4{
+    transform: rotate(-20deg);
+    
+    bottom: 80px;
+    right: 640px;
+
+}
+#image5{
+    transform: rotate(60deg);
+  
+    bottom: 80px;
+    left: 100px;
+}
+#image6{
+    transform: rotate(-50deg);
+    
+    top: 130px;
+    left: 280px;
+}
+#image7{
+    transform: rotate(-20deg);
+   
+    top: 380px;
+    left: 100px;
+
+}
+#image8{
+    transform: rotate(10deg);
+    bottom: 160px;
+    left: 300px;
+}
