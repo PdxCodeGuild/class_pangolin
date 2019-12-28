@@ -1,0 +1,12 @@
+body {
+    text-align: center;
+    padding: 10px;
+}
+
+select {
+    margin: 4px;
+}
+
+input {
+    margin: 2px;
+}

@@ -4,15 +4,19 @@ let dateOutputShort = document.getElementById("p-date-short");
 let dateOutputLong = document.getElementById("p-date-long");
 let timeOutput24 = document.getElementById("p-time-24");
 let timeOutput12 = document.getElementById("p-time-12");
+let version2 = document.getElementById("version2");
 let stopwatchButton = document.getElementById("stopwatch-button");
 let stopwatchText = document.getElementById("stopwatch");
 let lapList = document.getElementById("laps");
+let version3 = document.getElementById("version3");
 let countdownHours = document.getElementById("countdown-hours");
 let countdownMinutes = document.getElementById("countdown-minutes");
 let countdownSeconds = document.getElementById("countdown-seconds");
 let timerButton = document.getElementById("timer-button");
 let timerText = document.getElementById("timer");
 let timerStatus = document.getElementById("timer-status");
+let stopwatchIconDiv = document.getElementById("stopwatch-icon-div");
+let timerIconDiv = document.getElementById("timer-icon-div");
 
 // set some variables to be referenced outside of tick function
 let nowDay;                     // DD 1-31
@@ -255,3 +259,37 @@ function timerTick() {
     timer.setSeconds(timer.getSeconds() - 1);
 
 };
+
+// variables for stopwatch
+let stopwatchActive = false;
+
+// event listener for launching stopwatch
+stopwatchIconDiv.addEventListener('click', function(){
+    console.log("stopwatch div clicked")
+    if (stopwatchActive){
+        stopwatchActive = false;
+        version2.style.display = 'none';
+        stopwatchIconDiv.setAttribute("style", "background-image: radial-gradient(red, black 80%);");
+    } else {
+        stopwatchActive = true;
+        stopwatchIconDiv.setAttribute("style", "background-image: radial-gradient(green, black 80%);");
+        version2.style.display = 'unset';
+    }
+});
+
+// variables for timer
+let timerActive = false;
+
+// event listener for launching timer (on div)
+timerIconDiv.addEventListener('click', function(){
+    console.log("timer div clicked")
+    if (timerActive){
+        timerActive = false;
+        version3.style.display = 'none';
+        timerIconDiv.setAttribute("style", "background-image: radial-gradient(red, black 80%);");
+    } else {
+        timerActive = true;
+        version3.style.display = 'unset';
+        timerIconDiv.setAttribute("style", "background-image: radial-gradient(green, black 80%);");
+    }
+});
