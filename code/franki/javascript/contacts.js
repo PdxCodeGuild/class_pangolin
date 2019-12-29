@@ -1,27 +1,18 @@
-with open('contacts_copy.csv') as file:
-    lines = file.read().split('\n')
-    lines = list(lines)
-    keys = lines[0].split(',')
+let contactList = [{'name': 'matthew', 'favoriteFruit': 'blackberries', 'favoriteColor': 'orange'}, {'name': 'Sam', 'favoriteFruit': 'pineapple', 'favoriteColor': 'green'}, {'name': 'Al', 'facoriteFruit': 'kiwi', 'favoriteColor': 'green'}]
 
-contact_list = []
-for i in range(1, len(lines)):
-    dict = {}
-    values = lines[i].split(',')
-    for j in range(len(values)):
-        key = keys[j] 
-        dict[key] = values[j]
-    contact_list.append(dict)
-
-print("Welcome to the contact list.")
-while True:
-    search_term = input("Enter the name you are looking for, or 'exit' to quit. ").lower()
-    if search_term == "exit":
+while (True) {
+    let searchTerm = prompt("Enter the name you are looking for, or 'exit' to quit. ").toLowerCase()
+    if (search_term === "exit") {
         break
-    else: 
-        for i in range(len(contact_list)):
-            if contact_list[i]['name'] == search_term:
-                index = i
+    }
+    else { 
+        for (let i=0; i<contactList.length; i++) {
+            if (contactList[i]['name'] === searchTerm) {
+                let index = i;
                 break
+            }
+        }
+        
             else: 
                 index = 'none'
         if index == 'none':
@@ -60,7 +51,8 @@ while True:
                         continue
                     else:
                         break
-
+    }
+}
 new_list = []
 key_list = list(contact_list[0].keys())
 new_list.append(','.join(key_list))
@@ -70,6 +62,7 @@ for i in range(len(contact_list)):
         mini_list.append(contact_list[i][key])
     new_list.append(",".join(mini_list))
 new_list = "\n".join(new_list)
+print(new_list)
 with open('new_contacts.csv', 'w') as file:
     file.write(new_list)
 print("Bye!")
