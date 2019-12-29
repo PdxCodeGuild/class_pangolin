@@ -7,7 +7,7 @@ Purpose/goal: Have the computer play pick6 many times and determine net balance.
 
     - Start your balance at 0 - D
 
-    - Loop 100,000 times, for each loop: - D
+    - Loop 1000 times, for each loop: - D
     
     - Generate a list of 6 random numbers representing the ticket - D
     
@@ -53,22 +53,9 @@ while lottery < 1000:
     index = len(matches)
     win_list = [0, 4, 7, 100, 5000, 1000000, 25000000]
     balance += win_list[index]
-    # if len(matches) == 1:
-    #     balance += 4
-    # if len(matches) == 2:
-    #     balance += 7
-    # if len(matches) == 3:
-    #     balance += 100
-    # if len(matches) == 4:
-    #     balance += 50000
-    # if len(matches) == 5:
-    #     balance += 1000000
-    # if len(matches) == 6:
-    #     balance += 25000000
-    # increase lottery counter
     lottery += 1
     print(ticket)
     print(winner)
     print(matches)
-    
-print(f"After playing the lottery 1000 times, you have a blanace of {balance} dollars.\nVery sad.")
+
+print(f"After playing the lottery 1000 times, you have a blanace of {balance} dollars.")

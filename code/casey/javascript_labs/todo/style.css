@@ -1,0 +1,26 @@
+body, h1, h3 {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: darkmagenta;
+    color: aquamarine;
+}
+
+button {
+    color: darkmagenta;
+}
+
+input {
+    font-size: large;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: darkmagenta;
+    width: 200px;
+    height: 40px;
+}
+
+ul {
+    text-align: center;
+    font-size: 15pt;
+    list-style: none;
+    word-wrap: break-word;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Todo List</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <header>
+        <h1>***Todo List***</h1>
+    </header>
+    <body>
+        <form id="stationary">
+            <label><h4>Enter your items below:</h4></label><br>
+            <textarea id="newPost" placeholder="Type Here" maxlength ="100"></textarea><br>
+            <input type="submit" value="Add to list!" id ="first" placeholder="Type Here" required><br>
+        </form>
+        <div id="target">
+            <br>
+            <label>Delete or move checked Items:</lable><br>
+            <button id="deleteIt">Delete It</button>
+            <button id="moveIt">Move to done!</button>
+        </div><br>
+        <div id="done">
+            <lable> This list is done:</lable>
+        </div>
+        <script src ="lab4.js"></script>
+    </body>
+</html>
