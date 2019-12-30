@@ -1,0 +1,123 @@
+html {
+    background: url(images/fbback.png) no-repeat left fixed;
+    background-size: 25%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: black;
+    /* -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover; */
+}
+
+body {
+    /* font-family: "Arial, Helvetica, sans-serif"; */
+    font-family: 'Pacifico', cursive;
+    color: whitesmoke;
+}
+
+h4,
+p {
+    display: flex;
+    text-align: right;
+}
+
+blockquote {
+    display: flex;
+    justify-content: right;
+}
+
+label {
+    text-underline-position: below;
+    display: block;
+    width: 200px;
+    margin-right: 30px;
+    text-align: left;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding-top: 200px;
+    padding: 10px;
+}
+
+.container1 {
+    /* max-width: 200px; */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+    padding: 10px;
+}
+
+form {
+    border-radius: 25px;
+    color: #FEFEFE;
+    text-shadow: 0 0 15px #020202;
+    margin: 0 auto;
+    /* background-color: #F62; */
+    text-align: left;
+}
+
+input {
+    float: left;
+}
+
+label {
+    clear: left;
+    display: block;
+}
+
+fieldset {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0px auto;
+    position: absolute;
+    left: 50%;
+    /* top: 100px; */
+    border: 1px;
+    /* width: 500px; */
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    display: flex;
+    flex: 50%;
+}
+
+
+/* code that is here, until the first @media block, will apply to any screen size */
+
+#somethingorother {
+    width: 800px;
+}
+
+@media screen and (max-width: 320px) {
+    /* comes into effect for screens less than or equal to 320 pixels */
+    #somethingorother {
+        width: 120px;
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 480px) {
+    /* comes into effect for screens between 321 and 480 pixels (inclusive) */
+    #somethingorother {
+        width: 320px;
+    }
+}
+
+@media screen and (min-width: 481px) {
+    /* comes into effect for screens larger than or equal to 481 pixels */
+    #somethingorother {
+        width: 480px;
+    }
+}
+
+
+/* code that is here will apply to any screen size */

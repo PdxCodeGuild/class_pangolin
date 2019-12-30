@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+        <form action="" method="post">
+            <div id="username-div" class="entry">
+                <label for="username">Username: </label>
+                <input type="text" id="username" name="username">
+                <p id="username-msg">at least 6 characters long</p>
+            </div>
+            <div id="password-div" class="entry">
+                <label for="password">Password: </label>
+                <input type="text" id="password" name="password">
+                <p id="password-msg">at least 6 characters long</p>
+            </div>
+            <div id="name-div" class="entry">
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name">
+                <p id="name-msg">one or more letters, space, one or more letters</p>
+            </div>
+            <div id="email-div" class="entry">
+                <label for="email">Email: </label>
+                <input type="text" id="email" name="email">
+                <p id="email-msg">one or more numbers/letters, @, one or more numbers/letters, ., one or more numbers/letters</p>
+            </div>
+            <div id="phone-div" class="entry">
+                <label for="phone">Phone: </label>
+                <input type="text" id="phone" name="phone">
+                <p id="phone-msg">e.g. 293-213-5555</p>
+            </div>
+            <div id="birthday-div" class="entry">
+                <label for="birthday">Birthday: </label>
+                <input type="text" id="birthday" name="birthday">
+                <p id="birthday-msg">e.g. 2/13/2627</p>
+            </div>
+            <div id="ssn-div" class="entry">
+                <label for="ssn">SSN: </label>
+                <input type="text" id="ssn" name="ssn">
+                <p id="ssn-msg">e.g. 415-25-2627</p>
+            </div>
+            <input type="submit" id="submit" disabled>
+        </form>
+
+    </main>
+    <footer>
+
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
