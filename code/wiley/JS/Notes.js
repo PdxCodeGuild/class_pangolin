@@ -83,3 +83,26 @@ document.querySelectorAll() returns an array like object of all matches
 Once you have a document object you can change its attributes 
 ex: d.setAttriute("name", "so-bad")
 */
+
+// MAP REDUCE AND FILTER //
+// map is similar to list comprehension,  does something to an array, and returns a new value //
+
+let myArray = [1,2,3,4,5,6,5,4,3,2,1]
+
+let squaredArray = myArray.map(function(x) {
+    return x**2;
+});
+// This is basically a list comprehension of (in python) squared_list=[x**2 for x in old_list] //
+// in map() you can apply an iteration number (i=), this is not possible with list comprehension
+// In the function you can now 
+let squaredArray = myArray.map(function(x, i) {
+    if (i % 2 == 0) {
+        return x*2;
+    }
+    else {
+        return x;
+    };
+});
+
+// this above map function only doubles x if its index is even.
+

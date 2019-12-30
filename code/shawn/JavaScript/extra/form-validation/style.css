@@ -1,0 +1,12 @@
+.entry {
+    display: flex;
+    margin: 1rem;
+    align-items: center;
+}
+p {
+    margin: .25rem;
+    color: red;
+}
+#submit {
+    color: rgba(255,0,0,.3);
+}

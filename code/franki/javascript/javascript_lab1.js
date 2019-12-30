@@ -41,10 +41,24 @@ function playGame(userChoice, computerChoice) {
         }
 }
 
-let userChoice = prompt("Rock, paper, or scissors? ");
-let computerChoice = chooseRandomObject();
-let result = playGame(userChoice, computerChoice);
-let winner = determineWinner(result);
-alert(`Your choice: ${userChoice}\n
-Computer choice: ${computerChoice}\n
-${winner}`);
+function rps(e) {
+    console.log(e.target.id)
+    let selectedObject = e.target.id
+    let userChoice = selectedObject;
+    let computerChoice = chooseRandomObject();
+    let result = playGame(userChoice, computerChoice);
+    let winner = determineWinner(result);
+    // let div = document.getElemebtById("text")
+    alert(`Your choice: ${userChoice}\n
+    Computer choice: ${computerChoice}\n
+    ${winner}`);   
+
+}
+
+let rockBtn = document.getElementById("rock");
+let paperBtn = document.getElementById("paper");
+let scissorsBtn = document.getElementById("scissors");
+
+rockBtn.addEventListener('click', rps);
+paperBtn.addEventListener('click', rps);
+scissorsBtn.addEventListener('click', rps);

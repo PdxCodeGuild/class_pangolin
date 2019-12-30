@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Phone Book</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <header>
+        <h1>***Phone Book***</h1>
+    </header>
+    <body>
+        <div id="crudl">
+            <p>Select Select a option below:</p>
+            <button id="c">Create</button>
+            <button id="f">Look Up</button>
+            <button id="u">Update</button>
+            <button id="d">Delete</button>
+        </div>
+        <form id="create" name="create" method="post">
+            <input type="text" name="fname"  id ="first" placeholder="First Name" required>
+            <input type="text" name="lname" id ="last" placeholder="Last Name" required>
+            <input type="text" name="color" id= "favcolor" Placeholder="Favorite Color" required>
+            <input type="button" id="enter" value="Enter">
+        </form>
+        <br>
+        <div id="whoFind">
+            <input type="text" id= "lookupQuestion" Placeholder="Who would you like to search?" required>
+            <input type="button" id="go" value="Enter">
+        </div>
+        <form id="updateIt">
+            <input type="text" name="fname"  id ="who" placeholder="Who would you like to update?" required>
+            <input type="text" name="what" id ="what" placeholder="Update What? First, Last, Color?" required>
+            <input type="text" name="color" id= "with_what" Placeholder="What would you like it to say" required>
+            <input type="button" id="new1" value="Enter">
+        </form>
+        <div id="deleted">
+            <lable>Who would you like to delete?</lable><br>
+            <input type="text" name="color" id= "later" required>
+            <input type="button" id="thatsAll" value="Enter">
+        </div>
+        <ul id="seeya"></ul>
+        <ul id="newUpdate"></ul>
+        <ul id="finder"></ul>
+        
+        <script src ="lab3.js"></script>
+    </body>
+</html>
