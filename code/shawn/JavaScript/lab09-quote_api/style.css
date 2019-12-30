@@ -1,0 +1,14 @@
+main {
+    background-image: radial-gradient(gray, black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+h1, h3 {
+    margin: 18px 30%;
+    text-align: center;
+}
