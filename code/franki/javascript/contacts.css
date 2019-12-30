@@ -1,0 +1,33 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+/* @media (min-width: 768px) {
+
+    header, main, footer, form {
+      margin: 18px auto;
+      width: 760px;
+    }
+  
+    .flex-nav {
+      display: flex;
+    }
+  
+    .flex-three-column {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+  
+    .item {
+      width: 320px;
+    }
+   */

@@ -1,15 +1,38 @@
-var userArray = []; // User input array
-var maxLength = 10; // Max array length
-var total = 0; // Variable initialization for summing user array values
-
-for(var i=0; i<maxLength; i++) {  // For loop, receives input up to maxLength value
-	
-	userArray[i] = parseInt(prompt('Enter a Number: ' + (i+1)));
+let conversions = {
+  'ft': '.3084',
+  'mi': '1609.34',
+  'km':'1000',
+  'm': '1',
+  'yd':'.9144',
+  'nchz':'.0254'
 }
 
-for(var i = 0; i < userArray.length; i++) {
-    total += userArray[i];
+let user_starting_unit = document.querySelector('#strt_unit')
+let user_number_input = document.querySelector('#number')
+let user_unit_conversion_input = document.querySelector('#conv_unit')
+let meters = 0;
+let conversion = 0;
+  
+submit_btn.onclick = function() {
+    function convertToMeters(conversions, user_number_input){
+      Object.keys(conversions).forEach(function eachKey(key) {
+        if (key === user_starting_unit.value){
+          return meters = (conversions[key] * parseInt(user_number_input.value))
+        }
+      })
+    };
+
+  convertToMeters(conversions, user_number_input)
+  
+    function convertToSelectedUnit(conversions, user_unit_conversion_input, meters){
+      Object.keys(conversions).forEach(function eachKey(key) {
+        if (key === user_unit_conversion_input.value){
+          conversion = ( meters / conversions[key])
+        }
+      })
+    };
+
+  convertToSelectedUnit(conversions, user_unit_conversion_input, meters)
+
+  output_div.innerText = conversion;
 }
-console.log(total / userArray.length);
-
-

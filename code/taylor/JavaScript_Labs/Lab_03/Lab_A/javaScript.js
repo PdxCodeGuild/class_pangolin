@@ -17,7 +17,6 @@ let operators = {
 
 function  addFunct(aNum, bNum){
   return aNum + bNum
-  
 }
 function  subFunct(aNum, bNum){
   return aNum - bNum
@@ -34,11 +33,10 @@ function perfomrCalculation(operators, usrOperator){
       if (key === usrOperator){
         console.log(operators[key])
         calc = operators[key]
-        
       }
-    })
-    return calc
-  };
+  })
+  return calc
+};
 
- alert(perfomrCalculation(operators, usrOperator))
+alert(perfomrCalculation(operators, usrOperator))
  

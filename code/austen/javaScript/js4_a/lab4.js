@@ -31,9 +31,6 @@ submit.addEventListener('click', function(e){
   
     target.insertBefore(div, target.firstChild);
 
-    // let postValue = postBody.innerText;
-    // postBody.style.display = "none";
-
 });
 
 deleteIt.addEventListener('click', function(){

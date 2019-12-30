@@ -1,0 +1,28 @@
+html{
+    background-image: url(img.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* body{
+    position: absolute;
+    top: 400px;
+    right:200px;
+} */
+header{
+    font-size: larger;
+    text-align: center;
+}
+#crudl, #create, #whoFind, #updateIt, #deleted, #seeya, #newUpdate {
+    font-size: larger;
+    text-align: center;
+}
+#finder{
+    font-size: larger;
+    position: absolute;
+    top:500px;
+    right: 600px;
+}
+#c,#f,#u,#d{
+    border-radius: 8px;
+    margin:3px
+}
