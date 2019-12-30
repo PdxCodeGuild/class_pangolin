@@ -1,0 +1,50 @@
+html {
+    font-family: 'Raleway', sans-serif;
+}
+#stumble-menu {
+    display: flex;
+}
+
+#stumble-menu p {
+    margin: 24px;
+}
+
+#version1-div {
+    background-color: rgba(0, 0, 128, 0.2);
+}
+#version2-div {
+    background-color: rgba(0, 128, 0, 0.2);
+}
+#version3-div {
+    background-color:  rgba(128, 0, 0, 0.2);
+}
+
+.version-box {
+    border-radius: 12px;
+    padding: 3px;
+    margin: 6px;
+}
+
+.version-box > * {
+    text-align: center;
+    /* align-self: center; */
+}
+
+.button-div {
+    text-align: center;;
+}
+.counting {
+    color: red;
+}
+.not-counting {
+    color:gray;
+}
+h4 {
+    margin: .5rem;
+}
+p {
+    margin: .5rem;
+}
+#next-site-button {
+    width: 1000px;
+}

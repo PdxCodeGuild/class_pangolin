@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+    <link 
+        href="https://fonts.googleapis.com/css?family-Work+Sans:300,400,700,900&display=swap" rel="stylesheet"
+    />
+    <link href="todo_list.css" rel="stylesheet"/>
+    <script defer src="todo_list.js"></script>
+</head>
+
+<body>
+    <h1 class="title">Stuff I need to do</h1>
+    
+    <div class="all-tasks">
+        <h2 class="task-list-title">My List</h2>
+        <ul class="task-list" data-lists>
+        </ul>
+
+        <form action="" data-new-list-form>
+            <input
+                type="text"
+                class="new list"
+                data-new-list-input
+                placeholder="new list name"
+                aria-label="new list name"
+            />
+                <button class="btn create">+</button>
+        </form>
+    </div>
+
+    <div class="todo-list">
+        <div class="todo-header">
+            <h2 class='list-title'>Workouts</h2>
+            <p class="task-count">2 tasks remaining</p>
+        </div>
+
+        <div class="todo-body">
+            <div class="task">
+                 <input type="checkbox"
+                    id="task-1"
+                />
+            <label for="task-1">
+                <span class="custom-checkbox"></span>make todo list app  
+            </label>
+            </div>
+            <div class="task">
+                <input type="checkbox"
+                        id="task-2"
+                />
+            <label for="task-2">
+                <span class="custom-checkbox"></span>finish javascript lab 2  
+            </label>
+            </div>
+            
+            <div class="new-task-creator">
+                <form action="">
+                    <input
+                        type="text"
+                        class="new task"
+                        placeholder="new task name"
+                        aria-label="new task name"
+                    />
+                    <button class="btn create" aria-label="create new task">+</button>
+                </form>
+            </div>
+            <div class="delete-stuff">
+                <button class="btn delete">Clear completed tasks</button>
+                <button class="btn delete">Delete list</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
