@@ -1,14 +1,49 @@
-main {
-    background-image: radial-gradient(gray, black);
+html {
+    /* background-image: linear-gradient(gray, black 90%); */
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+#qotd {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
+    background-color: lightsalmon;
+    padding: 12px;
+}
+
+#settings {
+    display: flex;
+    justify-content: center;
+    border: 3px solid black;
+    width: 100%;
+}
+
+#settings div {
+    
+    padding: 12px;
+
+
+}
+.list-quote-div {
+    display: flex;
+    background-color: rgb(166, 209, 250);
+}
+.list-quote-text {
+    margin: 3px;
+}
+.list-quote-author {
+    margin: 3px;
+    font-weight: bold;
 }
 
 h1, h3 {
-    margin: 18px 30%;
+    margin: 6px;
     text-align: center;
 }
