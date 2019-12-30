@@ -32,7 +32,7 @@ Lab 08 Bouncing Ball
 #### Optional JavaScript Labs
 
 Optional Calculator  
-Optional Form Validation
+Optional Form Validation  
 Lab 07 Hacker Typer  
 
 ## Django Labs Assigned:
