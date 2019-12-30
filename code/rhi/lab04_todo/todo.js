@@ -22,6 +22,14 @@ for (i = 0; i < close.length; i++) {
         div.style.display = "none"; 
     }
 }
+// move a clicked item in the list to the bottom of the list
+let list1 = document.querySelector("ul");
+list1.addEventListener('click', function(ev){
+    if (ev.target.tagName === "LI"){
+        list1.removeChild(ev.target)
+        list1.appendChild(ev.target)
+    }
+}, false);
 
 // Add a "checked" symbol when clicking on a list item
 var list = document.querySelector("ul");
@@ -57,33 +65,3 @@ function newElement() {
         }
     }
 }
-
-// move an item on the todo list to the bottom of the list
-
-// function move(arr, old_index, new_index) {
-//     arr = myNodelist.values()
-//     while (old_index < 0) {
-//         old_index += arr.length;
-//     }
-//     while (new_index < 0) {
-//         new_index += arr.length;
-//     }
-//     if (new_index >= arr.length) {
-//         var k = new_index - arr.length;
-//         while ((k--) + 1) {
-//             arr.push(undefined);
-//         }
-//     }
-//      arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);  
-//    return arr;
-// }
-
-// function moveElement() {
-//     list = myNodelist.values()
-//     list.addEventListener('click', function(ev) {
-//        if (ev.target.tagName === 'LI'){
-//         ev.target.classList.array.push(array.splice(array.indexOf(list), 1)[0])
-//        } 
-//     }, false);
-// }
-  
