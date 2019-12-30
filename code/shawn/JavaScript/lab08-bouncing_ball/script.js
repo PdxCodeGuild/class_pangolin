@@ -35,12 +35,17 @@ canvas.setAttribute("height", height);
 // let balls = [ballGreen, ballRed, ballBlue];
 let balls = [];
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 25; i++) {
+    // randomize colors
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
 
-    balls.push(new Sphere(`rgb(${r},${g},${b})`, 10, 1.0));
+    // randomize size, up to 100
+    let size = Math.floor(Math.random() * 10)+10;
+
+    // create new Sphere
+    balls.push(new Sphere(`rgb(${r},${g},${b})`, size, 1.0));
 }
 
 

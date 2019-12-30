@@ -70,7 +70,6 @@ for i in range(len(contact_list)):
         mini_list.append(contact_list[i][key])
     new_list.append(",".join(mini_list))
 new_list = "\n".join(new_list)
-print(new_list)
 with open('new_contacts.csv', 'w') as file:
     file.write(new_list)
 print("Bye!")
