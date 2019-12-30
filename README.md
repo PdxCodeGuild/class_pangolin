@@ -26,7 +26,7 @@ Lab 01-03a Pick 3 (alert/prompt)
 Lab 01-03b Pick 3 (input/events)  
 Lab 04 Todo  
 Lab 05 Redirector  
-Lab 06 Clock
+Lab 06 Clock  
 Lab 08 Bouncing Ball  
 
 #### Optional JavaScript Labs
