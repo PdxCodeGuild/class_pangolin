@@ -28,42 +28,146 @@ let buttonTan = document.getElementById("button-tan");
 let buttonClear = document.getElementById("button-clear");
 let buttonBackspace = document.getElementById("button-backspace");
 
-// number event listeners for buttons
-button1.addEventListener('click', function () {
-    result.value += "1";
-});
-button2.addEventListener('click', function () {
-    result.value += "2";
-});
-button3.addEventListener('click', function () {
-    result.value += "3";
-});
-button4.addEventListener('click', function () {
-    result.value += "4";
-});
-button5.addEventListener('click', function () {
-    result.value += "5";
-});
-button6.addEventListener('click', function () {
-    result.value += "6";
-});
-button7.addEventListener('click', function () {
-    result.value += "7";
-});
-button8.addEventListener('click', function () {
-    result.value += "8";
-});
-button9.addEventListener('click', function () {
-    result.value += "9";
-});
-button0.addEventListener('click', function () {
-    result.value += "0";
-});
-// event listener for number keys
+// array for holding numbers and operations 
+let runningTotal = 0;
+let numbers = [];
+let isResult = true;
+let mode = "numberOrOperator";
+let activeOperation = '';
+
+// number event listeners: mouse
+let numButtons = document.getElementsByClassName("num-button");
+for (let button of numButtons){
+    button.addEventListener("click", function(){
+        if (isResult) {
+            result.innerText = this.innerText;
+            isResult = false;
+        } else {
+            result.innerText += this.innerText;
+        }
+    });
+}
+
+// number event listener: keyboard
 window.addEventListener('keydown', function (event) {
-    console.log(event.code)
     if (event.code.toString().indexOf("Digit") != -1) {
-        result.value += event.code.toString().slice(-1);
+        let dig = event.code.toString().slice(-1);
+        if (isResult) {
+            result.innerText = dig.toString();
+            isResult = false;
+        } else {
+            result.innerText += dig.toString();
+        }
     }
 });
 
+// operations event listeners
+buttonAdd.addEventListener('click', function () {
+    // set addition to active operation
+    activeOperation = "+";
+
+    // if a non-result is showing, do math
+    if (!isResult) {
+        numbers.push(" + ");
+        updateEquation();
+        doMath();
+    } else {
+        numbers.pop();
+        numbers.push(" + ");
+        updateEquation();
+    }
+});
+// operations event listeners
+buttonSubtract.addEventListener('click', function () {
+    // set addition to active operation
+    activeOperation = "-";
+
+    // if a non-result is showing, do math
+    if (!isResult) {
+        numbers.push(" - ");
+        updateEquation();
+        doMath();
+    } else {
+        numbers.pop();
+        numbers.push(" - ");
+        updateEquation();
+    }
+});
+// operations event listeners
+buttonEqual.addEventListener('click', function () {
+    // set addition to active operation
+    doMath(true);
+});
+// non-math operations event listeners
+buttonClear.addEventListener('click', function () {
+    numbers = [];
+    result.innerText = '';
+    equation.innerText = '';
+    runningTotal = 0;
+    updateEquation();
+});
+buttonBackspace.addEventListener('click', function () {
+    result.innerText = '';
+});
+
+
+function updateEquation() {
+    equation.innerText = '';
+    for (let num of numbers) {
+        equation.innerText += num.toString();
+    }
+}
+
+function doMath(isFinal = false) {
+
+
+    // get working number, push to numbers array
+    let workingNumber = parseFloat(result.innerText);
+    numbers.push(workingNumber);
+
+
+    // do math assuming equal sign not pressed
+    if (!isFinal) {
+        if (activeOperation === "+") {
+
+            result.innerText = (parseFloat(runningTotal) + workingNumber).toString();
+        }
+        else if (activeOperation === "-") {
+            result.innerText = (parseFloat(runningTotal) - workingNumber).toString();
+        }
+        else if (activeOperation === "*") {
+            numbers.push(" × ");
+            result.innerText = (parseFloat(runningTotal) * workingNumber).toString();
+        }
+        else if (activeOperation === "/") {
+            numbers.push(" ÷ ");
+            result.innerText = (parseFloat(runningTotal) / workingNumber).toString();
+        }
+        // update running equation
+        updateEquation();
+    } else {
+        numbers.push(" = ");
+        let finalResult;
+        if (activeOperation === "+") {
+            finalResult = (parseFloat(runningTotal) + workingNumber).toString();
+        }
+        else if (activeOperation === "-") {
+            finalResult = (parseFloat(runningTotal) - workingNumber).toString();
+        }
+        else if (activeOperation === "*") {
+            finalResult = (parseFloat(runningTotal) * workingNumber).toString();
+        }
+        else if (activeOperation === "/") {
+            finalResult = (parseFloat(runningTotal) / workingNumber).toString();
+        }
+        result.innerText = finalResult;
+        numbers.push(finalResult);
+        // update running equation
+        updateEquation();
+        numbers = [finalResult];
+    }
+
+    // update result bool and runningTotal
+    isResult = true;
+    runningTotal = result.innerText;
+}

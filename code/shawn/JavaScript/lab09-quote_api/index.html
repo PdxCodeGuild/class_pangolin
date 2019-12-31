@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Quotes</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <main>
+        <div id="qotd">
+            <h1 id="quote"></h1>
+            <h3 id="author"></h3>
+            <button id="next-quote">next quote</button>
+        </div>
+        <div id="settings">
+            <div>
+                <label for="pages">Jump to page...</label>
+                <input type="number" id="pages" value=1>
+            </div>
+            <div>
+                <label for="keywords">Filter:</label>
+                <input type="text" id="keywords" placeholder="keywords here...">
+                <button id="filter-button">Add keyword filter</button>
+            </div>
+        </div>
+        <div id="quote-list">
+
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
