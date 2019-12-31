@@ -106,3 +106,11 @@ let squaredArray = myArray.map(function(x, i) {
 
 // this above map function only doubles x if its index is even.
 
+//the const declaration demands a variables and information with it.  It is (mostly) immutable.  Dictionaries can be updates, but strings are immutable.  Same scope as let
+const me = "wiley";
+
+// canvas in HTML.  getContext('2d'), for a 2d canvas
+// cheat sheet for canvas is in the calss github and more stuff in mdn and w3school
+// to center text you need to put the x at (x - (ctx.measureText('text').width / 2), y)
+// this works by measuring the width of the text you are entering and subtracts half of that from the x point you entered.  This should be cetnered if done correctly. 
+// you have to et canvas width and height in HTML, not css
