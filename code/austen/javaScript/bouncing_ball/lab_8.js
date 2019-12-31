@@ -6,10 +6,10 @@ for (let i=0; i<50; ++i){
     let ball = {
         //ball radius
         radius: 20,
-        px: Math.random()*cnv.width,
-        py: Math.random()*cnv.height,
-        vx: (2*Math.random()-1)*10,
-        vy: (2*Math.random()-1)*10,
+        px: Math.random()*cnv.width-25,
+        py: Math.random()*cnv.height+25,
+        vx: (2*Math.random()-1)*30,
+        vy: (2*Math.random()-1)*30,
     };
     balls.push(ball);
 };
