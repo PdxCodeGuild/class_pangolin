@@ -19,30 +19,36 @@ class Sphere {
 // get DOM elements
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
+let ballQtyNum = document.getElementById("num-of-balls");
+let frictionSlider = document.getElementById("friction-slider");
+let agitateButton = document.getElementById("agitate");
+let frictionAmount = document.getElementById("frictionAmount");
+let gravityAmount = document.getElementById("gravityAmount");
+
 
 // some variables 
+let ballCount = ballQtyNum.value;
+let maxBallSize = 50;
+let minBallSize = 20;
 let width = window.innerWidth - 10;
 let height = window.innerHeight - 10;
-let friction = .9;
+let friction = frictionAmount.value;
+let gravity = gravityAmount.value;
 
 // setup canvas
 canvas.setAttribute("width", width);
 canvas.setAttribute("height", height);
 
-// let ballGreen = new Sphere("green", 40, 1.0);
-// let ballRed = new Sphere("red", 40, 1.0);
-// let ballBlue = new Sphere("blue", 40, 1.0);
-// let balls = [ballGreen, ballRed, ballBlue];
 let balls = [];
 
-for (let i = 0; i < 25; i++) {
+for (let i = 0; i < ballCount; i++) {
     // randomize colors
     let r = Math.floor(Math.random() * 256);
     let g = Math.floor(Math.random() * 256);
     let b = Math.floor(Math.random() * 256);
 
     // randomize size, up to 100
-    let size = Math.floor(Math.random() * 10)+10;
+    let size = Math.floor(Math.random() * maxBallSize) + minBallSize;
 
     // create new Sphere
     balls.push(new Sphere(`rgb(${r},${g},${b})`, size, 1.0));
@@ -57,25 +63,45 @@ for (let ball of balls) {
 }
 
 function drawBall(ball) {
+
+    // // physics
+    // let Cd = 0.47;       // coefficient of drag, influenced by shape of object
+    // let rho = 1.22;      // fluid density that ball is in
+    // let ag = 9.81;       // connect to input gravity
+    // let A = Math.PI * ball.radius * ball.radius / (10000);
+    // let Fx = -0.5 * Cd * A * rho * ball.vx * ball.vx * ball.vx / Math.abs(ball.vx);
+    // let Fy = -0.5 * Cd * A * rho * ball.vy * ball.vy * ball.vxy / Math.abs(ball.vy);
+
+    // Fx = (isNaN(Fx) ? 0 : Fx)
+    // Fy = (isNaN(Fy) ? 0 : Fy)
+
+    // // calculate acceleration (F=ma)
+    // let ax = Fx / ball.mass;
+    // let ay = ag + (Fy / ball.mass);
+
+    // // integrate to get velocity (using framerate as time)
+    // ball.vx += ax*frameRate;  // where to get framerate?
+    // ball.vy += ay*frameRate;  // where to get framerate? 
+
     // update the ball's position
     ball.px += ball.vx;
     ball.py += ball.vy;
 
     // gravity
-    // ball.vy += .5;
+    ball.vy += parseFloat(gravity);
 
     // check if it hit a boundary
     if (ball.px - ball.radius < 0) {
-        ball.vx *= -1 * friction;
+        ball.vx *= -1 * (1 - friction);
         ball.px = ball.radius;
     } else if (ball.px + ball.radius > width) {
-        ball.vx *= -1 * friction;
+        ball.vx *= -1 * (1 - friction);
         ball.px = width - ball.radius;
     } else if (ball.py - ball.radius < 0) {
-        ball.vy *= -1 * friction;
+        ball.vy *= -1 * (1 - friction);
         ball.py = ball.radius;
     } else if (ball.py + ball.radius > height) {
-        ball.vy *= -1 * friction;
+        ball.vy *= -1 * (1 - friction);
         ball.py = height - ball.radius;
     }
 
@@ -125,6 +151,10 @@ function checkCollisions(firstBall) {
 
 function main_loop() {
 
+    // for debug, print out some variables:
+    // console.log(`gravity: ${gravity} friction: ${friction}`)
+
+
     // clear the canvas
     ctx.clearRect(0, 0, width, height);
 
@@ -148,6 +178,44 @@ function reportWindowSize() {
     canvas.setAttribute("height", height);
 }
 
+// event listeners
+ballQtyNum.addEventListener("input", function () {
+    let diff = ballQtyNum.value - ballCount;
+    console.log(`diff is ${diff}`)
+    if (diff < 0) {
+        for (let i = 0; i < Math.abs(diff); i++) {
+            balls.pop();
+        }
+    } else {
+        for (let i = 0; i < diff; i++) {
+            // randomize colors
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+
+            // randomize size, up to 100
+            let size = Math.floor(Math.random() * maxBallSize) + minBallSize;
+
+            // create new Sphere
+            balls.push(new Sphere(`rgb(${r},${g},${b})`, size, 1.0));
+        }
+    }
+
+    ballCount = ballQtyNum.value;
+
+});
+frictionAmount.addEventListener("input", function () {
+    friction = frictionAmount.value;
+})
+gravityAmount.addEventListener("input", function () {
+    gravity = gravityAmount.value;
+})
+agitateButton.addEventListener("click", function () {
+    for (let ball of balls) {
+        ball.vx = (2 * Math.random() - 1) * 50;
+        ball.vy = (2 * Math.random() - 1) * 50;
+    }
+})
 window.onresize = reportWindowSize;
 
 window.requestAnimationFrame(main_loop);

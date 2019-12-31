@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
     <head>
-        <title>Vue Getting Started Tutorial</title>
+        <title></title>
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
@@ -9,12 +9,15 @@
 
         </header>
         <main>
-
-
+            <div id="app">
+                <p>{{ message }}</p>
+                <input v-model="message">
+            </div>
         </main>
         <footer>
 
         </footer>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="script.js"></script>
     </body>
 </html>
