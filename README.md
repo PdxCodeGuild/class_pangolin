@@ -18,6 +18,49 @@ New Years Day -- January 1st, 2019
     
 - Al Burns, TA
     - al.burns.email@gmail.com
+    
+
+## JavaScript Labs Assigned:
+
+Lab 01-03a Pick 3 (alert/prompt)  
+Lab 01-03b Pick 3 (input/events)  
+Lab 04 Todo  
+Lab 05 Redirector  
+Lab 06 Clock  
+Lab 08 Bouncing Ball  
+
+#### Optional JavaScript Labs
+
+Optional Calculator  
+Optional Form Validation  
+Lab 07 Hacker Typer  
+
+## Django Labs Assigned:
+
+Lab 01 Grocery List  
+Lab 02 URL Shortener  
+Lab 03 Chirp  
+
+#### Optional Django Labs
+
+Optional Mad Libs  
+Lab 04 Library  
+Lab 05 BLog  
+
+## HTML/CSS Labs Assigned:
+
+Lab 01 Bio  
+Lab 02 Blog  
+Lab 03 Business  
+Lab 04 Burrito Order Form  
+Lab 05 Personal Portfolio  
+
+#### Optional HTML/CSS Labs
+
+Optional Animations  
+Grid Garden  
+Flexbox Froggy  
+CSS Diner  
 
 ## Python Labs Assigned:
 
