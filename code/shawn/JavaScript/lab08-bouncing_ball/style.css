@@ -9,3 +9,25 @@ html,body {
   overflow: hidden;
   display: block;
 }
+
+.slider {
+
+}
+
+.slidecontainer {
+  /* width: 100%; */
+}
+
+#settings {
+  position: absolute;
+  bottom: 50px;
+  left: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.num-field {
+  width: 40px;
+}
