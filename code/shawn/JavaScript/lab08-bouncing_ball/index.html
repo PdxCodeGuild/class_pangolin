@@ -1,19 +1,40 @@
 <!doctype html>
 <html>
-    <head>
-        <title></title>
-        <link rel="stylesheet" href="style.css"/>
-    </head>
-    <body>
-        <header>
 
-        </header>
-        <main>
-            <canvas id="canvas"></canvas>
-        </main>
-        <footer>
+<head>
+    <title>Bouncing Balls</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
 
-        </footer>
-        <script src="script.js"></script>
-    </body>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <canvas id="canvas"></canvas>
+        <div id="settings">
+            <div id="ball-qty">
+                <label for="num-of-balls">ball qty: </label>
+                <input type="number" value="3" id="num-of-balls" class="num-field">
+            </div>
+            <div id="friction-div">
+                <label for="frictionAmount">friction: </label>
+                <input type="number" value="0.1" step = ".1" class="num-field" id="frictionAmount">
+            </div>
+            <div id="gravity-div">
+                <label for="gravityAmount">gravity: </label>
+                <input type="number" value="0.5" step = ".1"  class="num-field" id="gravityAmount">
+            </div>
+            <div id="agitate-button">
+                <button id="agitate">agitate</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="script.js"></script>
+</body>
+
 </html>
