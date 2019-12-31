@@ -1,5 +1,5 @@
 function startTimer(duration, display) {
-  var timer = duration, seconds;
+  let timer = duration, seconds;
   let url_lst = [ 'https://www.drudgereport.com',
                   'https://www.yahoo.com',
                   'https://www.bing.com',
@@ -13,7 +13,7 @@ function startTimer(duration, display) {
       seconds = seconds < 10 ? "0" + seconds : seconds;
       display.textContent = seconds;
 
-      if (--timer <= 0) {
+      if (-- timer <= -2) {
         
         window.location = url_lst[destination];
         alert(`You're headed to ${url_lst[destination]}`)
