@@ -1,0 +1,43 @@
+
+body {
+    background: linear-gradient(to right, hsl(266, 46%, 45%), hsl(135, 91%, 22%));
+    display: flex;
+    align-items: center;
+    min-height: 30vh;
+    overflow: hidden;
+    justify-content: center;
+    align-content: center;
+}
+.split {
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.stopwatch {
+    background: #eee;
+    border: 1px solid #999;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 250px;
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.controls {
+    position: fixed;
+    text-align: center;
+    top: 1em;
+    width: 100%;
+}
+
+  .button {
+    width: auto;
+    box-sizing: padding-box;
+    padding: 10px;
+    display: inline-block;
+    background: #4e0a63;
+    border: 4px;
+    color: #fff;
+  }
