@@ -20,14 +20,16 @@ toggleBtn.addEventListener('click', function(){
 resetBtn.addEventListener('click', function(){
     watch.reset();
     // var lapTimes = document.getElementsByClassName('lapTimes');
-    var lapTimes = document.getElementById('laps').nodeType;
-    console.log(lapTimes);
-    lapTimes.forEach(element => {
+    var lapTimes = document.getElementsByClassName('lapTimes');
+    // lapTimes[0].remove();
+    // });
+    Array.from(lapTimes).forEach(element => {
         element.remove()
-    });
+    })
+    lapCounter = 0;
+});
     //need to figure out how to remove previous laps upon reset
 
-});
 lapBtn.addEventListener('click', function() {
     // watch.lap();
     lapCounter++;
