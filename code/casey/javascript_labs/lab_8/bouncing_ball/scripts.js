@@ -3,7 +3,7 @@ var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 
 // draw border
-ctx.strokeStyle = "#2C0502";
+ctx.strokeStyle = "#00FFCC";
 ctx.lineWidth = 15;
 ctx.strokeRect(20, 20, 860, 560);
 
@@ -15,12 +15,6 @@ let ball = {
     vx: (2*Math.random()-1)*10,
     vy: (2*Math.random()-1)*10
 };
-
-// // draw ball
-// ctx.beginPath();
-// ctx.arc(ball.px, ball.py, ball.radius, 0, 2 * Math.PI, false);
-// ctx.fillStyle = "#2C0502";
-// ctx.fill();
 
 // create loop that moves ball 
 function main_loop() {
@@ -43,7 +37,7 @@ function main_loop() {
     // draw ball
     ctx.beginPath();
     ctx.arc(ball.px, ball.py, ball.radius, 0, 2 * Math.PI, false);
-    ctx.fillStyle = "#2C0502";
+    ctx.fillStyle = "#00FFCC";
     ctx.fill();
     window.requestAnimationFrame(main_loop);
 }

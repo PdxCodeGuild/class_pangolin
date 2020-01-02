@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Crazy Clock</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
+      
+    </head>
+    <header>
+        <h1>Crazy Clock</h1>
+    </header>
+    <body>
+        <div id="show">
+            <p>The Current time is:</p>
+            <p id="showIt"></p>
+            <p><strong>Choose an Item Below</strong></p>
+        </div>
+        <input id="stop" type="button" value="Stopwatch!"><br>
+        <input id="countDown" type="button" value="Countdown!"><br>
+        <div id="target">
+        </div>
+        
+        <div id="lapTimes">
+        </div>
+        <div id="timer">
+            <form>
+                <input id="number" type="number" placeholder="enter your number">
+                <select id="selector">
+                    <option id="operation" value="home">Selcet a Operator</option>
+                    <option id=" seconds" value="seconds">Seconds</option>
+                    <option id="minutes" value="minutes">Minutes</option>
+                    <option id="hours" value="hours">Hours</option>
+                </select>
+                <input id="submit" type="submit">
+            </form>
+        </div>
+        <script src ="lab6.js"></script>
+    </body>
+</html>
