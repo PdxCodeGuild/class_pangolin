@@ -1,13 +1,29 @@
+// Bot nom nom 44462dcda4bba9533e2d37b1b089f7b5
 
 
+// axios.get('/user?ID=12345')
+//   .then(function (response) {
+//     // handle success
+//     console.log(response);
+//   })
+//   .catch(function (error) {
+//     // handle error
+//     console.log(error);
+//   })
+//   .finally(function () {
+//     // always executed
+//   });
 
-
-
-
-
-
-
-
+axios({
+  method: 'get',
+  url: 'https://favqs.com/api/qotd',
+  headers: {
+    Authorization: 'Token token="44462dcda4bba9533e2d37b1b089f7b5"'
+  }
+})
+  .then(function (response) {
+    console.log(response)
+  });
 
 
 
