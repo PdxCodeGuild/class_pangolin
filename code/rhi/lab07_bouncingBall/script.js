@@ -5,6 +5,8 @@ let y = canvas.height -30;
 let dx = 2;
 let dy = -2;
 let ballRadius = 10;
+let velocityX = 2;
+let velocityY = 2;
 let paddleHeight = 10;
 let paddleWidth = 75;
 let paddleX = (canvas.width-paddleWidth) / 2;
@@ -99,6 +101,7 @@ function collisionDetection() {
             if(b.status == 1){
                 if(x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
                     dy = -dy;
+                    velocityY = -velocityY * 0.99;
                     b.status = 0;
                     score++;
                     if(score == brickRowCount*brickColumnCount) {
@@ -135,12 +138,15 @@ function draw() {
     collisionDetection();
     if (x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
         dx = -dx;
+        velocityX = -velocityX * 0.99;
     }
     if (y + dy < ballRadius) {
         dy = -dy;
+        velocityY = -velocityY * 0.99;
     } else if(y + dy > canvas.height-ballRadius) {
         if(x > paddleX && x < paddleX + paddleWidth){
             dy = -dy;
+            velocityY = -velocityY * 0.99;
         }
         else {
             lives--;
