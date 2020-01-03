@@ -2,6 +2,7 @@ let randomBtn = document.getElementById("randomBtn");
 let quotes = document.getElementById("quotes");
 // let userInput = document.getElementById("text").value;
 let submit = document.getElementById("submit");
+let clearIt = document.getElementById("clear").style.display = "none";
 
 
 submit.addEventListener('click',function(e){
@@ -24,12 +25,14 @@ submit.addEventListener('click',function(e){
         // `;
 //the one below gets all and puts all on page
         
-        let clear = document.createElement("button")
-        clear.innerHTML = "Clear"
-        quotes.append(clear);
+        // let clear = document.createElement("button")
+        // clear.innerHTML = "Clear"
+        // quotes.append(clear);
+        document.getElementById("clear").style.display = "block";
         clear.addEventListener('click',function(e){
             while(quotes.firstChild){
                 quotes.removeChild(quotes.firstChild);
+                document.getElementById("clear").style.display = "none";
             }
         })
 
@@ -58,12 +61,14 @@ randomBtn.addEventListener('click',function(e){
     })
     .then(function(response){
 
-        let clear = document.createElement("button")
-        clear.innerHTML = "Clear"
-        quotes.append(clear);
+        // let clear = document.createElement("button")
+        // clear.innerHTML = "Clear"
+        // clearIt.append(clear);
+        document.getElementById("clear").style.display = "block";
         clear.addEventListener('click',function(e){
             while(quotes.firstChild){
                 quotes.removeChild(quotes.firstChild);
+                document.getElementById("clear").style.display = "none";
             }
         })
         let resultsHTML = `
