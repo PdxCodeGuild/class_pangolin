@@ -22,7 +22,17 @@ submit.addEventListener('click',function(e){
         // <h3>${response.data.quotes[0].body}</h3>
         // <p>${response.data.quotes[0].author}</p>
         // `;
-//the one below gets all and puts all on page 
+//the one below gets all and puts all on page
+        
+        let clear = document.createElement("button")
+        clear.innerHTML = "Clear"
+        quotes.append(clear);
+        clear.addEventListener('click',function(e){
+            while(quotes.firstChild){
+                quotes.removeChild(quotes.firstChild);
+            }
+        })
+
         Array.from(response.data.quotes).forEach(element => {
             let resultsHTML = `
             <h4>* ${element.body}</h4>
@@ -32,10 +42,8 @@ submit.addEventListener('click',function(e){
 
             newquote.innerHTML = resultsHTML;
             quotes.appendChild(newquote);
-
-            let clear = document.createElement("button")
-            clear.innerHTML = "Clear"
         });
+       
         console.log(response);
     })
     .catch(function(error){
@@ -49,6 +57,15 @@ randomBtn.addEventListener('click',function(e){
         method: 'get'
     })
     .then(function(response){
+
+        let clear = document.createElement("button")
+        clear.innerHTML = "Clear"
+        quotes.append(clear);
+        clear.addEventListener('click',function(e){
+            while(quotes.firstChild){
+                quotes.removeChild(quotes.firstChild);
+            }
+        })
         let resultsHTML = `
         <h4>* ${response.data.quote.body}</h4>
         <p><em>-- ${response.data.quote.author}</em></p>
