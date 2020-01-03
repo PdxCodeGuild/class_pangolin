@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Random Quotes</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <header><h1>Random Quote Generator</h1></header>
+    <body>
+        <div class="main">
+            <form>
+                <div>
+                    <input type="text" id="search" placeholder="Search Quotes by Author, Tag..." size="30" class="no-outline">
+                </div><br>
+                <div>
+                    <button id="seachButton"><h2>Search!</h2></button>
+                </div>
+                </div><br>
+            </form> 
+            <div id="filter-target" class="quote-text"></div>
+            <form>
+                <button id="quote-button"><h1>Get Random Quote!
+                </h1></button><br>
+            </form>
+            <div id="random-target" class="quote-text"></div>
+        </div>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="scripts.js"></script>
+    </body>
+</html>

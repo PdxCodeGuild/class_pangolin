@@ -1,0 +1,54 @@
+input {
+    font-size: 15pt;
+    height: 44px;
+    background-color: transparent;
+    color: saddlebrown;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    border-bottom-color: darksalmon;
+    text-align: left;
+}
+
+.no-outline:focus {
+    outline: none;
+}
+
+::placeholder {
+    color: saddlebrown;
+}
+
+body {
+    background-color: bisque;
+    font-family: Arial, Helvetica, sans-serif;
+    color: darksalmon;
+    background-image: url(quote-wallpaper_17.jpg);
+}
+
+button {
+    background-color: transparent;
+    color: saddlebrown;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-color: darksalmon;
+    border-bottom-style: groove;
+    padding-bottom: 0px;
+}
+
+header {
+    font-size: 30pt;
+    text-align: center;
+}
+
+form {
+    text-align: right;
+}
+
+.quote-text {
+    font-family: Arial, Helvetica, sans-serif;
+    color: saddlebrown;
+    font-size: 17pt;
+    text-align: center;
+}
