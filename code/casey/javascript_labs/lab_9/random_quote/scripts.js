@@ -1,8 +1,7 @@
 let quoteButton = document.getElementById("quote-button");
-let randomTarget = document.getElementById("random-target");
 let searchButton = document.getElementById("search-button");
 let search = document.getElementById("search");
-let filterTarget = document.getElementById("filter-target");
+let target = document.getElementById("target");
 
 quoteButton.addEventListener("click", function(e) {
     e.preventDefault();
@@ -14,10 +13,10 @@ quoteButton.addEventListener("click", function(e) {
         }
     }).then(function(response) {
         let resultHTML = `
-        <p><i>"${response.data.quote.body}"</i></p>
-        <p><i><a href="${response.data.quote.url}">${response.data.quote.author}</a></i></p>
+        <p "quote-display"><i>"${response.data.quote.body}"</i></p>
+        <p "quote-display"><i><a href="${response.data.quote.url}">${response.data.quote.author}</a></i></p>
         `
-        randomTarget.innerHTML = resultHTML;
+        target.innerHTML = resultHTML;
     }).catch(function(error) {
         console.log(error);
     })
@@ -40,10 +39,10 @@ searchButton.addEventListener("click", function(e) {
         Array.from(quotes).forEach(quote =>{
             console.log(quote);
             let resultHTML = `
-            <p>${quote.body}</p>
-            <p><i><a href="${quote.url}">${quote.author}</a></i></p>
+            <p id="quote-display"><i>"${quote.body}"</i></p>
+            <p "quote-display"><i><a href="${quote.url}">${quote.author}</a></i></p>
             `
-            filterTarget.innerHTML = resultHTML;
+            target.innerHTML = resultHTML;
         });
     }).catch(function(error) {
         console.log(error);
