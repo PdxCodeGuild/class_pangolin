@@ -1,0 +1,27 @@
+body {
+    text-align: center;
+    margin-top: 200px;
+    font-family: "Lato";
+
+}
+#timer {
+    font-size: 100px;
+    font-weight: 300;
+
+}
+button {
+    width: 100px;
+    height: 35px;
+}
+button:hover {
+    cursor: pointer;
+}
+p {
+    font-size: 45px;
+    font-weight: 200;
+    border-bottom: 3px solid rgb(47, 224, 255);
+}
+#laps {
+    width: 400px;
+    margin: 1px auto;
+}

@@ -16,20 +16,31 @@ function stopWatch() {
     var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds;
 
     var textField = document.getElementById("sw-time");
-    textField.innerHTML = currentTimeString;
+    textField.innerText = currentTimeString;
 
-    console.log(currentTimeString)
-
+    console.log(currentTimeString);
     currentTime.setSeconds(currentTime.getSeconds() + 1);
+    return currentTimeString;
 }
 
+// function saveTime() {
+
+// }
+let stopwatch_interval;
 var currentTime = clearClock();
 document.getElementById("sw-start").addEventListener("click", function() {
-    stopWatch();
-    setInterval(stopWatch, 1000)
+    currentTimeString = stopWatch();
+    stopwatch_interval = setInterval(stopWatch, 1000)
 });
 
-document.getElementById("sw-reset").addEventListener("click", clearClock()
-);
+document.getElementById("sw-reset").addEventListener("click", function() {
+    currentTime = clearClock()
+    document.getElementById("sw-time").innerText = "00:00:00"});
 
-document.getElementById("sw-stop").addEventListener("click", clearInterval(stopWatch));
+document.getElementById("sw-stop").addEventListener("click", function() {
+    clearInterval(stopwatch_interval)});
+
+document.getElementById("sw-save").addEventListener("click", function() {
+    document.getElementsByTagName("")
+    appendChild
+})
