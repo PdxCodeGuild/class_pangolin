@@ -4,9 +4,9 @@
 
 ## Preview
 
-[![Grayscale Preview](https://github.com/PdxCodeGuild/class_pangolin/blob/master/code/taylor/JavaScript_Labs/Lab_09/img/landing_page_preview.PNG)]
+!(https://github.com/PdxCodeGuild/class_pangolin/blob/master/code/taylor/JavaScript_Labs/Lab_09/img/landing_page_preview.PNG)
 
-[![Grayscale Preview](./random_quotes_preview.PNG)]
+![Grayscale Preview](https://github.com/PdxCodeGuild/class_pangolin/blob/master/code/taylor/JavaScript_Labs/Lab_09/img/random_quotes_preview.PNG)
 
 ## Status
 
