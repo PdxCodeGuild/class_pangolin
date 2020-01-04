@@ -2,9 +2,11 @@
 
 [Grayscale](http://startbootstrap.com/template-overviews/grayscale/) is a multipurpose, one page HTML theme for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
 
-## Preview
+## Splash Preview
 
-!(https://github.com/PdxCodeGuild/class_pangolin/blob/master/code/taylor/JavaScript_Labs/Lab_09/img/landing_page_preview.PNG)
+![Grayscale Preview](https://github.com/PdxCodeGuild/class_pangolin/blob/master/code/taylor/JavaScript_Labs/Lab_09/img/landing_page_preview.PNG)
+
+## Random Quote Preview
 
 ![Grayscale Preview](https://github.com/PdxCodeGuild/class_pangolin/blob/master/code/taylor/JavaScript_Labs/Lab_09/img/random_quotes_preview.PNG)
 
