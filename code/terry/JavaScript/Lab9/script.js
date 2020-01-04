@@ -21,8 +21,13 @@ function myQuote() {
         .then(function(response) {
             console.log(response);
             Array.from(response.data.quotes).forEach(function(quote) {
-                let pageInput = `${quote.body}<p><em>--${quote.author}</em></p>`;
-                result.innerHTML = pageInput;
+                // let pageInput = `${quote.body}<p><em>--${quote.author}</em></p>`;
+                // result.innerHTML = pageInput;
+                let node = document.createElement('p');
+                let textnode = document.createTextNode(`${quote.body} --${quote.author}`);
+                node.appendChild(textnode);
+                document.getElementById('result').appendChild(node);
+
             });
 
         })
