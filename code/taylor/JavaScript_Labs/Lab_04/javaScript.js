@@ -19,7 +19,7 @@ itm_add.onclick = function() {
     cmp_btn.innerHTML = '&#x2615;';
   
     cmp_btn.onclick = function() {
-        usr_lst.removeChild(this.parentElement);
+        // usr_lst.removeChild(this.parentElement);
         let li = document.createElement('li');
         li.innerText = inp;
         cmp_lst.appendChild(li);

@@ -79,3 +79,28 @@ let sumOfSquaredGreaterThanSixEveryOtherDouble = myArray.map(function(x, i, orig
 // }
 
 console.log(sumOfSquaredGreaterThanSixEveryOtherDouble);
+
+
+
+
+
+
+
+
+let timedBtns = document.getElementsByClassName("timed-btn");
+
+for (let i=0; i < timedBtns.length; i++) {
+  timedBtns[i].addEventListener("click", function() {
+    let interval = setInterval(function() {
+      // cancel.remove();
+      console.log(i);
+    }, i*1000);
+    let cancel = document.createElement("button");
+    cancel.innerText = "cancel";
+    cancel.addEventListener("click", function() {
+      clearInterval(interval);
+      cancel.remove();
+    });
+    document.body.append(cancel);
+  });
+}

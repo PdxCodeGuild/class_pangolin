@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Clock</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body onload="newClock()">
+
+    <h2>Countdown</h2>
+    <p></p>
+    <input type="datetime" id="input">
+    <select id="userUnit">
+            <option value="hours">Hours</option>
+            <option value="minutes">Minutes</option>
+            <option value="seconds">Seconds</option>
+    </select>
+    <button id='startCount'>Start</button>
+    <p id='result4'></p>
+    <br><br>
+    <h2>Clock</h2>
+    <p></p>
+    <p id='result'></p>
+    <br><br>
+    <h2>Stopwatch</h2>
+    <p></p>
+    <p id='result2'></p>
+    Lap time:
+    <p id='result3'></p>
+    <button id='start'>Start</button>
+    <button id='lap'>Lap</button>
+    <ol id='list'></ol>
+    <script type="text/javascript" src="scripts.js"></script>
+</body>
+
+</html>

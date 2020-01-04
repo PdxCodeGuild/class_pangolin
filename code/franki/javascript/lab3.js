@@ -7,7 +7,7 @@ while (jackalopes.length < 1000) {
     }
     console.log(jackalopes);
     
-    jackalopes.forEach(function(jackalope)); {
+    for (let i=0; i<=jackalopes.length; i++) {
         if (jackalope in range(4,9)) {
             jackalopes.push(0)
         }

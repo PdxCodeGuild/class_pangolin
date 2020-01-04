@@ -31,94 +31,25 @@ let buttonBackspace = document.getElementById("button-backspace");
 // array for holding numbers and operations 
 let runningTotal = 0;
 let numbers = [];
-let isResult = false;
+let isResult = true;
+let mode = "numberOrOperator";
 let activeOperation = '';
 
-// number event listeners for buttons
-button1.addEventListener('click', function () {
-    if (isResult) {
-        result.innerText = "1";
-        isResult = false;
-    } else {
-        result.innerText += "1";
-    }
-});
-button2.addEventListener('click', function () {
-    if (isResult) {
-        result.innerText = "2";
-        isResult = false;
-    } else {
-        result.innerText += "2";
-    }
-});
-button3.addEventListener('click', function () {
-    if (isResult) {
-        result.innerText = "3";
-        isResult = false;
-    } else {
-        result.innerText += "3";
-    }
-});
-button4.addEventListener('click', function () {
-    if (isResult) {
-        result.innerText = "4";
-        isResult = false;
-    } else {
-        result.innerText += "4";
-    }
-});
-button5.addEventListener('click', function () {
-    if (isResult) {
-        result.innerText = "5";
-        isResult = false;
-    } else {
-        result.innerText += "5";
-    }
-});
-button6.addEventListener('click', function () {
-    if (isResult) {
-        result.innerText = "6";
-        isResult = false;
-    } else {
-        result.innerText += "6";
-    }
-});
-button7.addEventListener('click', function () {
-    if (isResult) {
-        result.innerText = "7";
-        isResult = false;
-    } else {
-        result.innerText += "7";
-    }
-});
-button8.addEventListener('click', function () {
-    if (isResult) {
-        result.innerText = "8";
-        isResult = false;
-    } else {
-        result.innerText += "8";
-    }
-});
-button9.addEventListener('click', function () {
-    if (isResult) {
-        result.innerText = "9";
-        isResult = false;
-    } else {
-        result.innerText += "9";
-    }
-});
-button0.addEventListener('click', function () {
-    if (isResult) {
-        result.innerText = "0";
-        isResult = false;
-    } else {
-        result.innerText += "0";
-    }
-});
+// number event listeners: mouse
+let numButtons = document.getElementsByClassName("num-button");
+for (let button of numButtons){
+    button.addEventListener("click", function(){
+        if (isResult) {
+            result.innerText = this.innerText;
+            isResult = false;
+        } else {
+            result.innerText += this.innerText;
+        }
+    });
+}
 
-// event listener for number keys
+// number event listener: keyboard
 window.addEventListener('keydown', function (event) {
-    console.log(event.code)
     if (event.code.toString().indexOf("Digit") != -1) {
         let dig = event.code.toString().slice(-1);
         if (isResult) {
