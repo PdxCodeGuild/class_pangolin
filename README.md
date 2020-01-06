@@ -28,12 +28,15 @@ Lab 04 Todo
 Lab 05 Redirector  
 Lab 06 Clock  
 Lab 08 Bouncing Ball  
+Lab 09 FavQs  
+Lab 11 Vue Todos  
 
 #### Optional JavaScript Labs
 
 Optional Calculator  
 Optional Form Validation  
 Lab 07 Hacker Typer  
+Lab 10 Any API  
 
 ## Django Labs Assigned:
 
