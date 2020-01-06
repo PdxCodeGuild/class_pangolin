@@ -1,0 +1,49 @@
+body {
+    min-height: 100vh;
+    background-color: #fbb034;
+    background-image: linear-gradient(315deg, #fbb034 0%, #ffdd00 74%);
+    font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+    color: #0f4c81;
+    
+}
+
+
+h1 {
+    text-shadow: white 1px 1px;
+}
+button {
+    border: none;
+    border-radius: 6px;
+    height: 40px;
+    width:170px;
+    background: #0f4c81;
+    color: white;
+}
+#footer {
+    font-size: x-small;
+}
+img {
+    width: 200px;
+    height: 250px;
+    margin: auto;
+    border-radius: 5%;
+    
+}
+#rain {
+    grid-area: "text";
+}
+/*#wet,#dry {
+    grid-area: "pic"
+}
+#target {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "text"
+    "pic";
+} */
+#footer {
+    margin-top: 20%;
+}
