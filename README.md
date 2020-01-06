@@ -48,7 +48,7 @@ Lab 03 Chirp
 
 Optional Mad Libs  
 Lab 04 Library  
-Lab 05 BLog  
+Lab 05 Blog  
 
 ## HTML/CSS Labs Assigned:
 
