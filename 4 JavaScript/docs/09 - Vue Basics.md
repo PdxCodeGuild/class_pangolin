@@ -110,7 +110,7 @@ var app4 = new Vue({
 Again, this should feel familiar. Instead of using template tags, we're using *directives* that look like HTML attributes.
 Note that unlike with templte tags, the directives go directly on the HTML elements.
 
-## Events
+## Events and Input
 
 ```
 <div id="app-5">
