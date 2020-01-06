@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Scratchpad</title>
+
+    <link rel="stylesheet" href="/css/site.css" />
+
+</head>
+
+<body>
+    <div id="app">
+        <p v-if=" message === 'Hello World!' "> {{ message.toUpperCase() }} </p>
+        <p v-else> {{message}} </p>
+        <button v-on:click="reverseFunction">reverse</button>
+        <ul>
+            <li v-for="todo in todos">
+                {{todo.text}}
+                <button v-on:click="deleteTodo(todo)">Delete</button>
+            </li>
+        </ul>
+        <!-- for using multiple lines of HTML per object in js -->
+        <ul>
+            <template v-for="grocery in groceries">
+                <li>{{grocery.food}}</li>
+                <button>Delete</button>
+            </template>
+        </ul>
+        <input type="text" v-model="message"/>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="/js/site.js"></script>
+</body> 
