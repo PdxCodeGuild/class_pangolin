@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grocery List</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <input type="text" placeholder="New Grocery Item" v-model="newGroceryItem.text"/>
+            <button v-on:click.prevent="addGrocery">Add</button>
+            <input type="color" v-model="newGroceryItem.color"/>
+        </form>
+        <ul>
+            <li v-for="(grocery, index) in incompletedItems" v-bind:key="grocery.id">
+                <p v-bind:class="{completed: grocery.completed}" v-bind:style="{color: grocery.color}"> {{ grocery.text }} </p>
+                <input type="checkbox" v-model="grocery.completed"/>
+                <input type="color" v-model="grocery.color"/>
+
+                <button v-on:click="deleteGrocery(grocery,index,$event)">Delete</button>
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(grocery, index) in completedItems" v-bind:key="grocery.id">
+                <p v-bind:class="{completed: grocery.completed}" v-bind:style="{color: grocery.color}"> {{ grocery.text }} </p>
+                <input type="checkbox" v-model="grocery.completed"/>
+                <input type="color" v-model="grocery.color"/>
+                <button v-on:click="deleteGrocery(grocery,index,$event)">Delete</button>
+            </li>
+        </ul>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
