@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <input type="text" placeholder="New grocery Item" v-model="newGroceryItem.text">
+            <input type="color" v-model="newGroceryItem.color">
+            <button v-on:click.prevent="addGrocery">Add</button>
+        </form>
+        <ul>
+            <li v-for ="(grocery, index) in incompletedItems" v-bind:key="grocery.id">
+                <p v-bind:class="{completed: grocery.completed}"v-bind:style="{color: grocery.color}">{{ grocery.text }}</p>
+                <input type="checkbox" v-model="grocery.completed"/>
+                <input type="color" v-model="grocery.color"/>
+                <button v-on:click="deleteGrocery(grocery, index, $event)">Delete</button>
+            </li>
+        </ul>
+        <ul>
+            <li v-for ="(grocery, index) in completedItems" v-bind:key="grocery.id">
+                <p v-bind:class="{completed: grocery.completed}"v-bind:style="{color: grocery.color}">{{ grocery.text }}</p>
+                <input type="checkbox" v-model="grocery.completed"/>
+                <button v-on:click="deleteGrocery(grocery, index, $event)">Delete</button>
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="classTodo.js"></script>
+</body>
+</html>
+
+<!--put in css that has a linethrough for completed complted{
+    text decoration: linethrough
+} you can also just put it in the text just like the checkbox input 

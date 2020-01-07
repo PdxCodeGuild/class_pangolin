@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Mastery Intro </title>
+    <link rel="stylesheet" href="/css/site.css" />
+
+</head>
+
+<body>
+    <div class="nav-bar"></div>
+    <div id="app">
+        <div class="product">
+            <div class="product-image">
+                <a :href="link"><img v-bind:src="image" /></a>
+            </div>
+            <div class="product-info">
+                <h1>{{ product }} goes here.</h1>
+                <h3>{{ description }}</h3>
+                <span v-if="onSale">On sale!</span>
+                <p v-if="inventory > 10">In stock</p>
+                <P v-else-if="inventory <=10 && inventory > 0">Almost sold out</P>
+                <p v-else>Out of stock</p>
+
+                <ul>
+                    <li v-for="detail in details">{{ detail }}</li>
+                </ul>
+                
+                <div v-for="variant in variants" :key="variant.variantId">
+                    <p>{{variant.variantColor}}</p>
+                </div>
+
+                <ul>
+                    <li v-for="size in sizes">{{ size }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="/js/site.js"></script>
+</body>

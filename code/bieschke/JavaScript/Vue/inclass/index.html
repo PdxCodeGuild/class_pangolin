@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue Projekt</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="app">
+        <p v-bind:title="message">Hover me!</p>
+        <p v-if="visible">Invisible?</p>
+        <p v-if=" message === 'Hello World!' ">{{ message.toUpperCase() }}</p>
+        <button v-on:click="redButton">Don't push the button!</button>
+        <ul>
+            <li v-for="todo in todos">
+            {{ todo.text }}
+            <!-- <button v-on:click="deleteTodo(todo)">Delete</button> -->
+            </li>
+        </ul>
+        <input type="text" v-model="message"/>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src='main.js'></script>
+</body>
+
+</html>

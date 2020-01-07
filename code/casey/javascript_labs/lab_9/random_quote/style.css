@@ -74,3 +74,21 @@ form {
     padding-left: 35%;
 }
 
+a:link { 
+    text-decoration: none;
+    color: magenta; 
+} 
+a:visited { 
+    text-decoration: none; 
+}
+a:hover { 
+    text-decoration: underline; 
+}
+a:active { 
+    text-decoration: underline; 
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }

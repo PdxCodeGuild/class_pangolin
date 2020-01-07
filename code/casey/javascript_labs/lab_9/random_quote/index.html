@@ -12,17 +12,16 @@
         <h2>Random Quote Generator</h2>
     </header>
     <body class="main">
-        <div id="filter-target" class="quote-text"></div>
-        <div id="random-target" class="quote-text"></div>
+        <div id="target" class="quote-text"></div>
         <form>
-            <input type="text" id="search" placeholder="Search Quotes by Author, Tag..." size="28" class="no-outline">
+            <input type="text" id="search" placeholder="Search Quotes by Author, Tag..." size="28" class="no-outline" autocomplete="off">
             <div>
-                <button id="search-button"><h2>Search!</h2></button>
+                <button id="search-button" class="btn"><h2>Search!</h2></button>
             </div><br>
             <div>Or</div>
         </form>
         <form>
-            <button id="quote-button"><h1>Get Random Quote!
+            <button id="quote-button" class="btn"><h1>Get Random Quote!
             </h1></button>
         </form>
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
