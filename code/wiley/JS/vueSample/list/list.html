@@ -14,21 +14,21 @@
             <input type="color" v-model="newGroceryItem.color"/>
         </form>
         <ul>
-            <li v-for="(grocery, index) in incompletedItems" v-bind:key="grocery.id">
-                <p v-bind:class="{completed: grocery.completed}" v-bind:style="{color: grocery.color}"> {{ grocery.text }} </p>
-                <input type="checkbox" v-model="grocery.completed"/>
-                <input type="color" v-model="grocery.color"/>
+            <grocery-item 
+            v-for="(grocery, index) in incompletedItems" 
+            v-bind:key="grocery.id" 
+            v-bind:grocery="grocery"
+            v-on:delete-grocery="deleteGrocery($event)"
+            ></grocery-item>
 
-                <button v-on:click="deleteGrocery(grocery,index,$event)">Delete</button>
-            </li>
         </ul>
         <ul>
-            <li v-for="(grocery, index) in completedItems" v-bind:key="grocery.id">
-                <p v-bind:class="{completed: grocery.completed}" v-bind:style="{color: grocery.color}"> {{ grocery.text }} </p>
-                <input type="checkbox" v-model="grocery.completed"/>
-                <input type="color" v-model="grocery.color"/>
-                <button v-on:click="deleteGrocery(grocery,index,$event)">Delete</button>
-            </li>
+            <grocery-item 
+            v-for="(grocery, index) in completedItems" 
+            v-bind:key="grocery.id" 
+            v-bind:grocery="grocery"
+            v-on:delete-grocery="deleteGrocery($event)"
+            ></grocery-item>
         </ul>
     </div>
 

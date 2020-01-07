@@ -1,3 +1,14 @@
+Vue.component('todo', {
+    props: ['todo'],
+    template: `
+    <li>
+    <p v-bind:class="{completed: todo.completed}">{{ todo.toDoText }}</p>
+    <input type="checkbox" v-model="todo.completed"/>
+    <button v-on:click="$emit('delete-todo',todo )">Delete</button>
+    </li>
+    `
+})
+
 let vm = new Vue({
     el: "#app",
     data: {
@@ -19,11 +30,8 @@ let vm = new Vue({
         console.log(this.newToDo)
         this.newToDo.id++; //increasing id# each new Item added
         },
-        editItem: function() {
-            //need to identify this toDo and append new text value
-        },
-        deleteItem: function() {
-            
+        deleteItem: function(toDoItem, toDoIndex, e) {
+                this.toDoList.splice(this.toDoList.indexOf(toDoItem),1)
             }
             //need to identify the desired toDo via checkbox and then remove from the toDoList array. 
             

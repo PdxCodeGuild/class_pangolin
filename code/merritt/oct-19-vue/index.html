@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="app">
-      <add-item v-on:add="addGrocery($event)"></add-item>
+      <add-item v-on:add="addGrocery($event)">Inner Content</add-item>
       <ul>
         <grocery-item
           v-for="(grocery, index) in incompletedItems"
