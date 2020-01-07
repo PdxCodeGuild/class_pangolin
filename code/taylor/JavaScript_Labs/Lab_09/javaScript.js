@@ -1,41 +1,27 @@
 // Bot nom nom 44462dcda4bba9533e2d37b1b089f7b5
 
+let responseData = {};
 
+function callForQuote (){
+  axios({
+  method: 'get',
+  url: 'https://favqs.com/api/qotd',
+  headers: {
+    Authorization: 'Token token="44462dcda4bba9533e2d37b1b089f7b5"'
+  }
+})
+  .then(function (response) {
+    responseData = response.data;
+    return responseData
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+    
+  })};
 
-// axios.get('/user?ID=12345')
-//   .then(function (response) {
-//     // handle success
-//     console.log(response);
-//   })
-  // .catch(function (error) {
-  //   // handle error
-  //   console.log(error);
-  // })
-//   .finally(function () {
-//     // always executed
-//   });
-
-// axios({
-//   method: 'get',
-//   url: 'https://favqs.com/api/qotd',
-//   headers: {
-//     Authorization: 'Token token="44462dcda4bba9533e2d37b1b089f7b5"'
-//   }
-// })
-//   .then(function (response) {
-//     console.log(response);
-//   })
-//   .catch(function (error) {
-//     // handle error
-//     console.log(error);
-//   });
-
-
-
-
-
-
-
+// Preloads responseData with a data object for initial - random quote  
+callForQuote()
 
 // #####################################################################
 // NEEDS EVENT LISTINER ON CLICK
@@ -71,16 +57,41 @@ searchSubmit.onclick = function() {
 // Builds the html recepticles for qoute author and qote
   let h4 = document.createElement('h4');
   h4.className = "text-uppercase m-0 text-wrap";
-  div_3.appendChild(h4)
+  div_3.appendChild(h4);
   let div_4 = document.createElement('div');
   div_4.className = "small text-black-50";
   div_3.appendChild(div_4)
 
 // Adds content to the html build
-  h4.innerHTML = "ZZZZZZZZZZZZZZZZZZZZZZZZZZZ";
+  h4.innerHTML = "Random";
   div_4.innerHTML = "TEST TESsd asdf sadfsdafsadfsadf sadfsdaf sadfsda fasd fsadf sad fsadfsadfT TEST";
-  h4.appendChild(h4)
-  div_4.appendChild(div_4)
-  console.log("SOMETHING HAPPENED >>>>")
+  h4.appendChild(h4);
+  div_4.appendChild(div_4);
+
 };
+
+let randomSubmit = document.getElementById('randomSubmit');
+
+randomSubmit.onclick = function() {
+  callForQuote() // Reloads randomData with a new data / quote object
+  postRandomQuote(responseData) // Call to post a random qoute
+   
+};
+
+// Function to post a random quote
+function postRandomQuote(responseData) {
+
+  // Retreives allQoutes element as target for appends
+  let quoteAuthor = document.getElementById('quoteAuthor')
+  let quoteRandom = document.getElementById('quoteRandom')
+   
+    // Adds content to the html build
+    quoteAuthor.innerText = responseData.quote.author;
+    quoteRandom.innerText = responseData.quote.body;
+    // Replaces the respective DOM text
+    quoteAuthor.replaceWith(quoteAuthor);
+    quoteRandom.replaceWith(quoteRandom);
+  }
+
+
 

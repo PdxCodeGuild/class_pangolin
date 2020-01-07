@@ -1,0 +1,49 @@
+html {
+    background-color: rgb(255, 235, 215);
+}
+
+li {
+    display: flex;
+    align-items: center;
+}
+
+.buttons {
+    margin-right: 18px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    margin: 6px;
+}
+
+p {
+    margin: 3px;
+}
+
+ul {
+    margin: 6px;
+}
+
+#completed-items {
+    border: 1px solid green;
+    border-radius: 3px;
+    margin: 6px;
+}
+#active-items {
+    border: 1px solid red;
+    border-radius: 3px;
+    margin: 6px;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
