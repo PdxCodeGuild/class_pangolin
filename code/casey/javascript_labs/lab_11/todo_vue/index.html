@@ -19,7 +19,7 @@
             <ul>
                 <li v-for="(todo, index) in incompletedItems" v-bind:key="todo.id">
                     <p v-bind:class="{completed: todo.completed}" v-bind:style="{color: todo.color}">{{ todo.text }}</p>
-                    <input type="checkbox" v-model="todo.completed"/>
+                    <input type="checkbox" v-model="todo.completed" class="checkbox"/>
                     <input type="color" v-model="todo.color"/>
                     <button v-on:click="deleteTodo(todo, index, $event)">Delete</button>
                 </li>
