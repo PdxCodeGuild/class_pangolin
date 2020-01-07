@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <div id="app">
+            <add-item v-on:add="addGrocery($event)"></add-item>
+            <ul>
+                <grocery-item 
+                v-for="(grocery, index) in incompletedItems" 
+                v-bind:key="grocery.id" 
+                v-bind:grocery="grocery"
+                v-on:delete-grocery="deleteGrocery($event)"
+                ></grocery-item>
+            </ul>
+            <ul>
+                <grocery-item 
+                v-for="(grocery, index) in completedItems" 
+                v-bind:key="grocery.id" 
+                v-bind:grocery="grocery"
+                v-on:delete-grocery="deleteGrocery($event)"
+                ></grocery-item>
+            </ul>
+        </div>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="lab1.css">
+        <title>Vue Testing</title>
+    </head>
+    <body>
+        <div id="todo-list-example">
+            <form v-on:submit.prevent="addNewTodo">
+                <label for="new-todo">Add To The List:</label><br>
+                <input 
+                v-model="newTodoText"
+                id="new-todo"
+                placeholder="Enter your Todo here!"
+                >
+                
+                <button>Add</button>
+            </form>
+            <ol>
+                <li
+                is="todo-item"
+                v-for="(todo, index) in todos"
+                v-bind:key="todo.id"
+                v-bind:title="todo.title"
+                v-bind:completed="todo.completed"
+                v-on:remove="todos.splice(index, 1)">
+                </li>
+            </ol>
+        </div>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="lab1.js"></script>
+    </body>
+</html>
