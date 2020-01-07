@@ -11,6 +11,7 @@ Vue.component('add-item', {
     <form>
       <input type="text" placeholder="New grocery item" v-model="text" />
       <input type="color" v-model="color" />
+      <slot></slot>
       <button v-on:click.prevent="add">Add</button>
     </form>
   `,
