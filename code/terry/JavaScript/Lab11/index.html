@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lab 11 - To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="app">
+        <form>
+            <input type="text" placeholder="new to do item" v-model="newToDoItem.text">
+            <input type="color" v-model="newToDoItem.color">
+            <button v-on:click.prevent="addToDo">Add</button>
+        </form>
+        <ol>
+
+            <li v-for="toDo in incompletedItems" v-bind:key="toDo.id">
+                <p v-bind:class="{completed: toDo.completed}" v-bind:style="{color: toDo.color}">
+                    {{toDo.text}}</p>
+                <input type="checkbox" v-model="toDo.completed">
+                <input type="color" v-model="toDo.color">
+                <button v-on:click="deleteGrocery(toDo, $event)">Delete</button>
+            </li>
+            <li v-for="toDo in completedItems" v-bind:key="toDo.id">
+                <p v-bind:class="{completed: toDo.completed}" v-bind:style="{color: toDo.color}">
+                    {{toDo.text}}</p>
+                <input type="checkbox" v-model="toDo.completed">
+                <input type="color" v-model="toDo.color">
+                <button v-on:click="deleteGrocery(toDo, $event)">Delete</button>
+            </li>
+
+        </ol>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>

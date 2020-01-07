@@ -26,3 +26,5 @@ rainBtn.addEventListener("click", function(e){
             .catch(function(err){err => console.log(err)});
 
 })
+
+//to do: add button for changing desired location of rain detector.  Allow user to input a desert like location.  

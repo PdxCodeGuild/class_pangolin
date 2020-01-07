@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To Do List</title>
+</head>
+<body>
+    <div id="app">{{toDoList}}
+        <form>
+            <input type="text" placeholder="What do you need to do?" v-model="newToDo.toDoText"/>
+            <button v-on:click.prevent="addItem">Submit</button>
+        </form>
+    <ul>
+        <li v-for="toDo in toDoList">
+            <p> {{ toDo.toDoText }} </p>
+            <input type="text" placeholder="Edit" v-model="toDo.toDoText"/>
+            <input type="checkbox" v-model="toDo.completed" />
+        </li>
+    </ul>
+
+    <button v-on:click="deleteItem()">delete completed</button>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
