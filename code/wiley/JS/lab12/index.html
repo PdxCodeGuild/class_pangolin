@@ -27,6 +27,7 @@
         <num number="8" @inputnumber="numClick($event)"></num>
         <num number="9" @inputnumber="numClick($event)"></num>
         <oper operator="*" @operation="operClick($event)"></oper>
+        <backspace class="operator" backspace="delete" @backspace="backSpaceClick($event)"></backspace>
         <num class="zero" number="0" @inputnumber="numClick($event)"></num>
         <num number="." @inputnumber="numClick($event)"></num>
         <oper operator="=" @operation="operClick($event)"></oper>
