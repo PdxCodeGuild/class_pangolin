@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo List</title>
+
+    <!-- Add your styles here! -->
+    <link rel="stylesheet" href="/css/site.css" />
+
+</head>
+
+<body>
+    <div id="app">
+        <h1>Todo List:</h1>
+        <add-item 
+            v-on:add="addItem($event)" 
+            v-on:clear="clearItems"
+        ></add-item>
+        <div id="active-items">
+            <h3>Active items:</h3>
+            <ul>
+                <todo-item 
+                    v-for="item in incompleteItems" 
+                    v-bind:key="item.id" 
+                    v-bind:item="item"
+                    v-on:delete-item="deleteItem($event)" 
+                ></todo-item>
+            </ul>
+        </div>
+        <div id="completed-items">
+            <h3>Completed items:</h3>
+            <ul>
+                <todo-item 
+                    v-for="item in completedItems" 
+                    v-bind:key="item.id" 
+                    v-bind:item="item"
+                    v-on:delete-item="deleteItem($event)" 
+                ></todo-item>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Include Vue from a CDN of your choice, I chose unpkg -->
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Include your code here... -->
+    <script src="/js/site.js"></script>
+</body>

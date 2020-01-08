@@ -114,3 +114,147 @@ const me = "wiley";
 // to center text you need to put the x at (x - (ctx.measureText('text').width / 2), y)
 // this works by measuring the width of the text you are entering and subtracts half of that from the x point you entered.  This should be cetnered if done correctly. 
 // you have to et canvas width and height in HTML, not css
+
+
+
+
+/* ------------APIs and AJAX------------------
+AJAX stands for  Asynchronys Javascripts And XML 
+API stands for application programming interface
+An API is a standardizd way to get and receive data from a web service via HTTP requests (GET, POST, PUT, DELETE).
+The API URL can contain GET parameters (query parameters).
+API are just text.  Objects and arrays.  No method or functions will be used in it.  Javascript can read and parse the text and make it readable. 
+
+AJAX request, old way: */
+
+let quoteButton = document.getElementById("quoteButton");
+let target = document.getElementById("target");
+
+//create a new XMLHttpRequest
+let req = new XMLHttpRequest();
+
+//Define Event Listeners
+req.addEventListener("progress", function(e){
+    console.log(e.loaded);
+});
+req.addEventListener("error",function(e){
+    console.log(e.status);
+});
+req.addEventListener("load", function(e){
+    console.log(req.responseText);
+});
+
+//Open the request
+//define the method of our request (POST,GET,PUT,DELETE), and the URL to send our request to.
+req.open("GET", "https://favqs.com/api/qotd");
+
+//above, you might want to use a template string in the URL so that you can dynaically generate your URL request.  ex:
+`https://www.wiley.com/${document.getElementById("page-number").value}`;
+
+//Set any request headers
+//request headers can incluse encoded information.  This is more secure, and can include authentication keys from the user.  
+req.setRequestHeader("Authorization", 'TOEKN token="token-key-here"');
+
+//Send the request
+//order matters Make sure your request is in the following oder or you won't get the results you expect:
+//1) create a new respone
+//2) Add event listeners
+//3)Open the request
+//4)Set headers
+//5)Send the Request
+req.send();
+
+
+//Now we need to handle the response.  
+//Our callback functions will work with our new data, instead of just console.log
+req.addEventListener("progress", function(e) {
+    console.log(e.loaded);
+    target.innerText = "Loading...";
+});
+req.addEventListener("error", function(e) {
+    console.log(e.status);
+    target.innerText = "Cannot load quote. Try again later!";
+});
+req.addEventListener("load", function(e){
+    console.log(req.responseText);
+    let resone = JSON.parse(req.responseText);
+    console.log(this.response);
+    let resultHTML =`
+    <p>${response.quote.body}</p>
+    <p><i><a href="${response.quote.url}">${response.quote.author}</a></i></p>`
+    target.innerHtml = resultHTML;
+});
+
+// Use an event listener to fire the request
+let quoteButton = document.getElementById("quoteButton");
+let target = document.getElementById("target");
+let req = new XMLHttpRequest();
+
+quoteButton.addEventListener("click", function(e){ //this button now fires the whole request below
+    let req = new XMLHttpRequest();
+    req.addEventListener("progress", function(e) {
+        console.log(e.loaded);
+        target.innerText = "Loading...";
+    });
+    req.addEventListener("error", function(e) {
+        console.log(e.status);
+        target.innerText = "Cannot load quote. Try again later!";
+    });
+    req.addEventListener("load", function(e) {
+        console.log(req.responseText);
+        let response = JSON.parse(req.responseText);
+        console.log(response);
+        let resultHTML = `
+            <p>${response.quote.body}</p>
+            <p><i><a href="${response.quote.url}">${response.quote.author}</a></i></p>
+            `
+        textTarget.innerHTML = resultHTML;
+    });
+    req.open("GET", "https://favqs.com/api/qotd");
+    req.setRequestHeader("Authorization", 'Token token="YOUR_TOKEN_GOES_HERE"');
+    req.send()
+});
+
+
+//Fetch and Axios are modern methods of to send HTTP requests and their responses
+//uses "Promises", not fetch.  Meaning, there isn't anything here, but there will be soon. 
+fetch('www.api.website.org/?format=json')
+    .then(function(response){
+    return response.joson();
+    })
+    .then(function(myJson) {
+        console.log(myJson);
+    })
+    .catch(error => console.error(error));
+
+//AXIOS: Axios is a third party javascript library.  You need to load this into your HTML, BEFORE your custom javascript files.  This is so that is loads into YOUR Javascript as well, otherwise you will get an undefined error.
+//EXAMPLE:
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+//then in YOUR script
+axios.get(url)
+.then(function(response){
+    console.log(response.data)
+});
+
+//Real use example:
+
+let quoteButton = document.getElementById("quoteButton");
+
+quoteButton.addEventListener('click', function(e) {
+    axios({ //start the axios with a dictionary of the information you need to request.  the URL, Method, Headers, Params, Data etc. 
+        url:"https://favqs.com/api/qotd",
+        method: "GET",
+        headers: {
+            Authorization: 'Token token="98asha9s8dnk3j8skjans9"'
+        }
+    }).then(function(payload){
+        let resultHTML = `
+            <p>${response.quote.body}</p>
+            <p><i><a href="${response.quote.url}">${response.quote.author}</a></i></p>
+            `
+        target.innerHTML = resultHTML;
+    }).catch(function(error){})
+});
+
+//IMPERATIVE: code operating from top to bottom. 

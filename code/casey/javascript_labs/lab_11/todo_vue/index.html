@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Vue Todo App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <header>::Todo List App::</header>
+    <body>
+        <div id="app">
+            <form>
+                <input type="text" placeholder="New todo item" v-model="newTodoItem.text"/>
+                <input type="color" v-model="newTodoItem.color"/>
+                <button v-on:click.prevent="addTodo">Add</button>
+            </form>
+            <ul>
+                <li v-for="(todo, index) in incompletedItems" v-bind:key="todo.id">
+                    <p v-bind:class="{completed: todo.completed}" v-bind:style="{color: todo.color}">{{ todo.text }}</p>
+                    <input type="checkbox" v-model="todo.completed" class="checkbox"/>
+                    <input type="color" v-model="todo.color"/>
+                    <button v-on:click="deleteTodo(todo, index, $event)">Delete</button>
+                </li>
+            </ul>
+            <ul>
+                <li v-for="(todo, index) in completedItems" v-bind:key="todo.id">
+                    <p v-bind:class="{completed: todo.completed}" v-bind:style="{color: todo.color}">{{ todo.text }}</p>
+                    <input type="checkbox" v-model="todo.completed"/>
+                    <input type="color" v-model="todo.color"/>
+                    <button v-on:click="deleteTodo(todo, index, $event)">Delete</button>
+                </li>
+            </ul>
+        </div>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="scripts.js"></script>
+    </body>
+</html>

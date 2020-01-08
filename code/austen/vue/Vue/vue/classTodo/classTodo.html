@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <add-item v-on:add="addGrocery($event)"></add-item>
+        <ul>
+            <grocery-item v-for ="(grocery, index) in incompletedItems" v-bind:key="grocery.id" 
+            v-bind:grocery="grocery" 
+            v-on:delete-grocery="deleteGrocery($event)">
+            </grocery-Item>
+        </ul>
+        <ul>
+            <grocery-item v-for ="(grocery, index) in completedItems" v-bind:key="grocery.id" 
+            v-bind:grocery="grocery"
+            v-on:delete-grocery="deleteGrocery($event)">
+            </grocery-Item>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="classTodo.js"></script>
+</body>
+</html>
+
+<!--put in css that has a linethrough for completed complted{
+    text decoration: linethrough
+} you can also just put it in the text just like the checkbox input 

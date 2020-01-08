@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Grocery List</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <input type="text" placeholder="New Grocery Item" v-model="newGroceryItem.text"/>
+            <button v-on:click.prevent="addGrocery">Add</button>
+            <input type="color" v-model="newGroceryItem.color"/>
+        </form>
+        <ul>
+            <grocery-item 
+            v-for="(grocery, index) in incompletedItems" 
+            v-bind:key="grocery.id" 
+            v-bind:grocery="grocery"
+            v-on:delete-grocery="deleteGrocery($event)"
+            ></grocery-item>
+
+        </ul>
+        <ul>
+            <grocery-item 
+            v-for="(grocery, index) in completedItems" 
+            v-bind:key="grocery.id" 
+            v-bind:grocery="grocery"
+            v-on:delete-grocery="deleteGrocery($event)"
+            ></grocery-item>
+        </ul>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
