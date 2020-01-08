@@ -16,7 +16,7 @@
     <div id="app">
         <h1>Todo List:</h1>
         <form>
-            <input type="text" placeholder="New grocery item" v-model="newItem.text" />
+            <input type="text" placeholder="New item" v-model="newItem.text" />
             <button v-on:click.prevent="addItem">Add</button>
             <button v-on:click.prevent="clearItems">Clear All</button>
         </form>

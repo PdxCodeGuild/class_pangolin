@@ -4,23 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
     <title>To Do List</title>
 </head>
 <body>
-    <div id="app">{{toDoList}}
+    <div id="app">
         <form>
-            <input type="text" placeholder="What do you need to do?" v-model="newToDo.toDoText"/>
+            <input type="text" placeholder="What do you need to do?" v-model="newToDo.toDoText" class="input"/>
             <button v-on:click.prevent="addItem">Submit</button>
         </form>
-    <ul>
-        <li v-for="toDo in toDoList">
-            <p> {{ toDo.toDoText }} </p>
-            <input type="text" placeholder="Edit" v-model="toDo.toDoText"/>
-            <input type="checkbox" v-model="toDo.completed" />
-        </li>
+    <ul class="list">
+        <todo
+        v-for="(todo, index) in incompletedItems"
+        v-bind:key="todo.id"
+        v-bind:todo="todo"
+        v-on:delete-todo="deleteItem($event)">
+        </todo>
     </ul>
-
-    <button v-on:click="deleteItem()">delete completed</button>
+    <p id="splitter"> Completed Tasks</p>
+    <ul class="list">
+        <todo
+        v-for="(todo, index) in completedItems"
+        v-bind:key="todo.id"
+        v-bind:todo="todo"
+        v-on:delete-todo="deleteItem($event)">
+        </todo>
+    </ul>
+    <!-- <button v-on:click="deleteItem()">delete completed</button> -->
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script src="js/script.js"></script>
