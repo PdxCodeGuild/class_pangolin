@@ -5,13 +5,12 @@
     grid-auto-rows: minmax(30px, auto);
     font-size: 30px;
     text-align: center;
-    margin: 30px auto;
+    margin: 0 auto;
 }
 .display {
     grid-column: 1/5;
     background-color: rgb(44, 44, 44);
     color: white;
-    height: 40px;
 }
 .zero {
     grid-column: 1/3;
