@@ -1,14 +1,10 @@
-body{
-    /* position: fixed;
-    top: 25%;
-    left:25% */
-}
 #app{
     border: 3px solid black;
     background-color: rgb(204, 252, 204);
     width:270px;
     padding:3px;
     text-align: center;
+    border-radius: 6px;
 }
 .calc{
     width:60px;
@@ -17,6 +13,7 @@ body{
     background-color: darkslategray;
     color: white;
     font-size: larger;
+    border-radius: 10px;
     
 }
 .equal{
@@ -25,6 +22,7 @@ body{
     background-color: darkslategray;
     color: white;
     font-size: larger;
+    border-radius: 10px;
 }
 input{
     width:260px;
@@ -32,4 +30,9 @@ input{
     font-size: 30px;
     border:2px solid black;
     background-color: rgb(223, 226, 230);
+    border-radius: 3px;
+}
+.readout{
+    margin:3px;
+    border-radius: 3px;
 }
