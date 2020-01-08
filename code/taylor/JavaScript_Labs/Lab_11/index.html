@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Todo List</title>
+    <style>
+    
+    .completed {
+    text-decoration: line-through;
+}
+    
+    </style>
+</head>
+<body>
+    <div id="app">
+      <add-item v-on:add="addGrocery($event)">Inner Content</add-item>
+      <ul>
+        <grocery-item
+          v-for="(grocery, index) in incompletedItems"
+          v-bind:key="grocery.id"
+          v-bind:grocery="grocery"
+          v-on:delete-grocery="deleteGrocery($event)"
+        ></grocery-item>
+      </ul>
+      <ul>
+        <grocery-item
+          v-for="(grocery, index) in completedItems"
+          v-bind:key="grocery.id"
+          v-bind:grocery="grocery"
+          v-on:delete-grocery="deleteGrocery($event)"
+        ></grocery-item>
+      </ul>
+    </div>
+
+    <!-- CDN vue -->
+    <script src="https://unpkg.com/vue"></script>
+    <!-- JavaScript -->
+    <script src="javaScript.js"></script>
+</body>
+</html>
