@@ -13,8 +13,9 @@
 <body>
     <div id="app">
         <div id="grid-container">
-                <p id="equation">{{ prettyEquation }}</p>
-                <p id="answer">{{ subtotal }}</p>
+
+            <p id="equation">{{ prettyEquation }}</p>
+            <p id="answer">{{ subtotal }}</p>
                 
             <number-button @number-input="inputNum($event)" number="0"></number-button>
             <number-button @number-input="inputNum($event)" number="1"></number-button>

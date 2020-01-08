@@ -44,19 +44,13 @@
 #button-backspace {grid-area: bak;}
 #button-percent {grid-area: percent;}
 
-
-/* #button-factorial {grid-area: factorial;}
-#button-sqrt {grid-area: sqrt;}
-#button-modulus {grid-area: modulus;}
-#button-sin {grid-area: sin;}
-#button-cos {grid-area: cos;}
-#button-tan {grid-area: tan;} */
 p {
     margin: 0;
     text-align: right;
     min-height: 60px;
     font-weight: bold;
     font-size: larger;
+
 }
 .op-button {
     background-color: lightblue;
