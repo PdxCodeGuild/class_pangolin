@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="/css/site.css" />
+
+</head>
+
+<body>
+    <div id="app">
+        <div id="grid-container">
+            <p id="equation">{{ numbers }}</p>
+            <p id="answer">{{ subtotal }}</p> 
+            <number-button v-on:number-input="inputNum($event)" number="0"></number-button>
+            <number-button v-on:number-input="inputNum($event)" number="1"></number-button>
+            <number-button v-on:number-input="inputNum($event)" number="2"></number-button>
+            <number-button v-on:number-input="inputNum($event)" number="3"></number-button>
+            <number-button v-on:number-input="inputNum($event)" number="4"></number-button>
+            <number-button v-on:number-input="inputNum($event)" number="5"></number-button>
+            <number-button v-on:number-input="inputNum($event)" number="6"></number-button>
+            <number-button v-on:number-input="inputNum($event)" number="7"></number-button>
+            <number-button v-on:number-input="inputNum($event)" number="8"></number-button>
+            <number-button v-on:number-input="inputNum($event)" number="9"></number-button>
+            <operation-button v-on:operation-input="operate($event)" operation="exponent" symbol="**"></operation-button>
+            <operation-button v-on:operation-input="operate($event)" operation="multiply" symbol="×"></operation-button>
+            <operation-button v-on:operation-input="operate($event)" operation="divide" symbol="÷"></operation-button>
+            <operation-button v-on:operation-input="operate($event)" operation="add" symbol="+"></operation-button>
+            <operation-button v-on:operation-input="operate($event)" operation="subtract" symbol="-"></operation-button>
+            <equals-button @solve="doMath"></equals-button>
+        </div>
+        <!-- for debugging: -->
+        <h3>Mode: {{mode}}</h3>
+        <h3>Operation: {{currentOperation}}</h3>
+        <h3>Total: {{total}}</h3>
+        <h3>Subtotal: {{subtotal}}</h3>
+        <h3>Numbers: {{numbers}}</h3>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="/js/site.js"></script>
+</body>

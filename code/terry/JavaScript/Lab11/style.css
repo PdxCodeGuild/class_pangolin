@@ -1,0 +1,28 @@
+.completed {
+    text-decoration: line-through;
+}
+
+body {
+    text-align: center;
+    padding: 10px;
+    background-color: beige;
+    color: #0F4C81;
+}
+
+select {
+    margin: 4px;
+}
+
+input {
+    margin: 2px;
+}
+
+img {
+    border-radius: 50%;
+}
+
+button {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: medium;
+    border-radius: 6px;
+}

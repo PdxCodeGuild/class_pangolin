@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ToDo with a Vue</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="app">
+        <form>
+            <input type="text" placeholder="new exercise" v-model="newExerciseItem.text" />
+            <input type="color" v-model="newExerciseItem.color" />
+            <button v-on:click.prevent="addExercise">Add</button>   
+            <!-- .prevent automatically prevents the default refresh action of form -->
+            <button v-on:click.prevent="deleteCompleted">Delete Completed</button>
+            <button v-on:click.prevent="completeAll">Complete All</button>
+        <ul>
+            <li v-for="(exercise, index) in incompletedItems" v-bind:key="exercise.id">
+                <p
+                v-bind:class="{completed: exercise.completed}" 
+                v-bind:style="{color: exercise.color}"
+                >
+                {{exercise.text}}
+                </p>
+
+                <input type="checkbox" v-model="exercise.completed"/>
+                <input type="color" v-model="exercise.color" />
+                <button v-on:click.prevent="deleteExercise(exercise, index, $event)">Delete</button>
+
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(exercise, index) in completedItems" v-bind:key="exercise.id">
+                <p
+                v-bind:class="{completed: exercise.completed}" 
+                v-bind:style="{color: exercise.color}"
+                >
+                {{exercise.text}}
+                </p>
+                
+                <input type="checkbox" v-model="exercise.completed"/>
+                <input type="color" v-model="exercise.color" />
+                <button v-on:click.prevent="deleteExercise(exercise, index, $event)">Delete</button>
+
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src='main2.js'></script>
+</body>
+
+</html>
