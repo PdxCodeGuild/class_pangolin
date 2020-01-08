@@ -10,28 +10,14 @@
 
 <body>
     <div id="app">
-        <form>
-            <input type="text" placeholder="new to do item" v-model="newToDoItem.text">
-            <input type="color" v-model="newToDoItem.color">
-            <button v-on:click.prevent="addToDo">Add</button>
-        </form>
+        <add-item v-on:add="addtodo($event)"></add-item>
         <ol>
-
-            <li v-for="toDo in incompletedItems" v-bind:key="toDo.id">
-                <p v-bind:class="{completed: toDo.completed}" v-bind:style="{color: toDo.color}">
-                    {{toDo.text}}</p>
-                <input type="checkbox" v-model="toDo.completed">
-                <input type="color" v-model="toDo.color">
-                <button v-on:click="deleteGrocery(toDo, $event)">Delete</button>
-            </li>
-            <li v-for="toDo in completedItems" v-bind:key="toDo.id">
-                <p v-bind:class="{completed: toDo.completed}" v-bind:style="{color: toDo.color}">
-                    {{toDo.text}}</p>
-                <input type="checkbox" v-model="toDo.completed">
-                <input type="color" v-model="toDo.color">
-                <button v-on:click="deleteGrocery(toDo, $event)">Delete</button>
-            </li>
-
+            <todo-item v-for="todo in incompleteditems" v-bind:key="todo.id" v-bind:todo="todo" v-on:deleteitem="deleteitem($event)">
+            </todo-item>
+        </ol>
+        <ol>
+            <todo-item v-for="todo in completeditems" v-bind:key="todo.id" v-bind:todo="todo" v-on:deleteitem="deleteitem($event)">
+            </todo-item>
         </ol>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
