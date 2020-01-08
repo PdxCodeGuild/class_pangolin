@@ -1,25 +1,61 @@
-let vm = new Vue({
-  el: '#app',
-  data: {
-    groceries: [],
-    newGroceryItem: {
+Vue.component('add-item', {
+  data: function() {
+    return {
       id: 1,
       text: "",
       completed: false,
       color: "#000000"
     }
   },
+  template: `
+    <form>
+      <input type="text" placeholder="New grocery item" v-model="text" />
+      <input type="color" v-model="color" />
+      <slot></slot>
+      <button v-on:click.prevent="add">Add</button>
+    </form>
+  `,
   methods: {
-    addGrocery: function() {
-      this.groceries.push({
-        id: this.newGroceryItem.id,
-        text: this.newGroceryItem.text,
-        completed: this.newGroceryItem.completed,
-        color: this.newGroceryItem.color
-      });
-      this.newGroceryItem.id++;
+    add: function() {
+      this.$emit('add', {id: this.id, text: this.text, completed: this.completed, color: this.color})
+      this.id++
+    }
+  }
+})
+
+Vue.component('grocery-item', {
+  props: ['grocery'],
+  template: `
+    <li>
+      <p
+        v-bind:class="{completed: grocery.completed}"
+        v-bind:style="{color: grocery.color}"
+      >
+        {{ grocery.text }}
+      </p>
+      <input type="checkbox" v-model="grocery.completed"/>
+      <input type="color" v-model="grocery.color" />
+      <button v-on:click="$emit('delete-grocery', grocery)">Delete</button>
+    </li>
+  `,
+  methods: {
+    // <button v-on:click="deleteGrocery(grocery, $event)">Delete</button>
+    // deleteGrocery: function(groceryItem, e) {
+    //   this.$parent.groceries.splice(this.$parent.groceries.indexOf(groceryItem),1);
+    // }
+  }
+});
+
+let vm = new Vue({
+  el: '#app',
+  data: {
+    groceries: []
+  },
+  methods: {
+    addGrocery: function(newGroceryItem) {
+      this.groceries.push(newGroceryItem);
     },
-    deleteGrocery: function(groceryItem, groceryIndex, e) {
+    deleteGrocery: function(groceryItem) {
       // this.groceries.splice(groceryIndex,1);
       this.groceries.splice(this.groceries.indexOf(groceryItem),1);
     }

@@ -25,7 +25,7 @@
                 v-for="(todo, index) in todos"
                 v-bind:key="todo.id"
                 v-bind:title="todo.title"
-                v-bind:completed="false"
+                v-bind:completed="todo.completed"
                 v-on:remove="todos.splice(index, 1)">
                 </li>
             </ol>

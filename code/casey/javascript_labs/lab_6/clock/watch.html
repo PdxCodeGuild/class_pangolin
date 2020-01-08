@@ -6,12 +6,19 @@
         <title>Javascript Stopwatch</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="watch.css">
     </head>
     <header><h2>Javascript Stopwatch</h2></header>
     <body>
-        <button id="start">Start!</button>
-        <div><h1 id="watch"></h1></div>
+        <div><h1 id="watch">00:00:00</h1></div>
+        <div>
+            <button id="start">Start!</button>
+            <button id="stop">Stop!</button>
+            <button id="reset">Reset</button>
+        </div>
+        <div>
+            <ul id="laps"></ul>
+        </div>
         <script src="watch.js"></script>
     </body>
 </html>

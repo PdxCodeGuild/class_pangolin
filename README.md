@@ -30,6 +30,7 @@ Lab 06 Clock
 Lab 08 Bouncing Ball  
 Lab 09 FavQs  
 Lab 11 Vue Todos  
+Lab 12 Calculator  
 
 #### Optional JavaScript Labs
 
