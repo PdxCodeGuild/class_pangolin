@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="/css/site.css" />
+
+</head>
+
+<body>
+    <div id="app">
+        <div id="grid-container">
+
+            <p id="equation">{{ prettyEquation }}</p>
+            <p id="answer">{{ subtotal }}</p>
+                
+            <number-button @number-input="inputNum($event)" number="0"></number-button>
+            <number-button @number-input="inputNum($event)" number="1"></number-button>
+            <number-button @number-input="inputNum($event)" number="2"></number-button>
+            <number-button @number-input="inputNum($event)" number="3"></number-button>
+            <number-button @number-input="inputNum($event)" number="4"></number-button>
+            <number-button @number-input="inputNum($event)" number="5"></number-button>
+            <number-button @number-input="inputNum($event)" number="6"></number-button>
+            <number-button @number-input="inputNum($event)" number="7"></number-button>
+            <number-button @number-input="inputNum($event)" number="8"></number-button>
+            <number-button @number-input="inputNum($event)" number="9"></number-button>
+            <operation-button @operation-input="operate($event)" operation="exponent" symbol="^"></operation-button>
+            <operation-button @operation-input="operate($event)" operation="multiply" symbol="×"></operation-button>
+            <operation-button @operation-input="operate($event)" operation="divide" symbol="÷"></operation-button>
+            <operation-button @operation-input="operate($event)" operation="add" symbol="+"></operation-button>
+            <operation-button @operation-input="operate($event)" operation="subtract" symbol="-"></operation-button>
+            <decimal-button @decimal="addDecimal" :state="decimalDisabled"></decimal-button>
+            <negate-button @negate="toggleNegate"></negate-button>
+            <percent-button @percent="togglePercent"></percent-button>
+            <equals-button @solve="doMath"></equals-button>
+            <clear-button @clear="clear"></clear-button>
+            <clear-button @clear="clear"></clear-button>
+            <back-button @backspace="backspace"></back-button>
+        </div>
+        <!-- for debugging: -->
+        <div v-show="debug">
+            <h3>Mode: {{mode}}</h3>
+            <h3>Operation: {{currentOperation}}</h3>
+            <h3>Subtotal: {{subtotal}}</h3>
+            <h3>Numbers: {{numbers}}</h3>
+            <h3>Decimal disabled: {{decimalDisabled}}</h3>
+            <h3>Negate active: {{negateActive}}</h3>
+            <h3>Percent active: {{percentActive}}</h3>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src="/js/site.js"></script>
+</body>
