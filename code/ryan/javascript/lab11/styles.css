@@ -1,0 +1,12 @@
+.height {
+    min-height: 100vh;
+}
+
+/* ul {
+    text-align: center;
+    list-style-position: inside;
+} */
+
+li {
+    margin-bottom: 20px;
+}

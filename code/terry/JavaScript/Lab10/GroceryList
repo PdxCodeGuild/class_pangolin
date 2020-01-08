@@ -1,0 +1,9 @@
+<body>
+<div id="app">
+<ul>
+<template v-for="grocery in groceries">
+<li></li>
+<button></button>
+</template>
+</ul>
+</div>

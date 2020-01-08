@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Todo List</title>
+   <link href='https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+  <div id="app">
+    <form>
+      <input type="text" placeholder="New todo item" v-model="newTodoItem.text" />
+      <input type="color" v-model="newTodoItem.color">
+      <button v-on:click.prevent="addTodo">Add</button>
+    </form>
+    <ul>
+      <li v-for="todo in incompletedItems" v-bind:key="todo.id">
+        <p 
+        v-bind:class="{completed: todo.completed}" 
+        v-bind:style="{color: todo.color}"
+        >
+        {{ todo.text }}</p>
+        <input type="checkbox" v-model="todo.completed"/>
+        <input type="color" v-model="todo.color" />
+        <button v-on:click="deleteTodo(todo, index, $event)">Delete</button>
+      </li>
+    </ul>
+    <ul>
+      <li v-for="todo in completedItems">
+        <p 
+        v-bind:class="{completed: todo.completed}" 
+        v-bind:style="{color: todo.color}"
+        >
+        {{ todo.text }}</p>
+        <input type="checkbox" v-model="todo.completed" v-bind:key="todo.id"/>
+        <button v-on:click="deleteTodo(todo, index, $event)">Delete</button>
+      </li>
+    </ul>
+  </div>
+
+  <script src="https://unpkg.com/vue"></script>
+  <script src="js/main.js"></script>
+</html>

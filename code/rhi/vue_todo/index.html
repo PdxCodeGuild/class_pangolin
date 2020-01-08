@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Todo List</title>
+    
+    <link rel="stylesheet" href="stylesheet.css" />
+</head>
+<body>
+    <div id="app">
+        <form>
+            <input type="text" placeholder="Thing I need to do" v-model="newToDoItem.text">
+            <input type="color" v-model="newToDoItem.color">
+            <button v-on:click.prevent="addToDo">Add</button>
+        </form>
+        <ul>
+            <li v-for="(todo, index) in incompletedItems" v-bind:key="todo.id">
+                <p v-bind:class="{completed: todo.completed}"
+                 v-bind:style="{color: todo.color}">
+                 {{ todo.text }}
+                 </p>
+                <input type="checkbox" v-model="todo.completed"/>
+                <!-- <input type="color" v-model="todo.color" /> -->
+                <button v-on:click="deleteToDo(todo, index, $event)">Delete</button>
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(todo, index) in completedItems" v-bind:key="todo.id">
+                <p v-bind:class="{completed: todo.completed}"
+                 v-bind:style="{color: todo.color}">
+                 {{ todo.text }}
+                 </p>
+                <input type="checkbox" v-model="todo.completed"/>
+                <button v-on:click="deleteToDo(todo, index, $event)">Delete</button>
+            </li>
+        </ul>
+    </div>
+    <!-- include Vue from a CDN of your choice, I am using unpkg -->
+    <script src="https://unpkg.com/vue"></script>
+    <!-- include your code here -->
+    <script src="script.js"></script>
+</body>
+</html>

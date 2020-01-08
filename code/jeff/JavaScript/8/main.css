@@ -1,0 +1,30 @@
+body {
+    background: radial-gradient(green 40%, purple);
+    background-repeat: no-repeat;
+    font: normal 12px/18px Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    display: block;
+    width: 600px;
+    margin: 20px auto;
+    padding-bottom: 20px;
+    font: Arial, Helvetica, sans-serif;
+    color: whitesmoke;
+    text-shadow: 3px 2px 3px darkgray;
+    border-bottom: 1px solid #cbcbcb;
+}
+
+#container {
+    width: 600px;
+    margin: 0 auto;
+}
+
+#myCanvas {
+    display: block;
+    border: 3px solid black;
+    border-radius: 3px;
+    margin: auto;
+    background: #fff;
+    border: 1px solid #cbcbcb;
+}

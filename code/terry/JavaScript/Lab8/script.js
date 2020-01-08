@@ -1,22 +1,34 @@
-let submit = document.getElementById('submit');
+let width = 500;
+let height = 500;
+let c = document.getElementById('myCanvas');
+let ctx = c.getContext('2d');
+let start;
 
-let urlArray = ['https://www.google.com', 'https://www.outlook.com', 'https://www.gmail.com'];
+let ball = {
+    radius: 20,
+    px: Math.random() * width,
+    py: Math.random() * height,
+    vx: (2 * Math.random() - 1) * 10,
+    vy: (2 * Math.random() - 1) * 10,
 
-let rand = urlArray[(Math.random() * urlArray.length) | 0];
+    draw: function() {
+        ctx.beginPath();
+        ctx.arc(ball.px, ball.py, ball.radius, 0, 2 * Math.PI, false);
+        ctx.fillStyle = 'green';
+        ctx.fill();
+    }
+};
 
-submit.addEventListener('click', function() {
+function draw() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    ball.draw();
+    ball.x += ball.vx;
+    ball.y += ball.yx;
 
-    time = 5, r = document.getElementById('result'), tmp = time;
+    window.requestAnimationFrame(draw);
+}
+window.requestAnimationFrame(draw);
 
-    setInterval(function() {
-        var c = tmp--,
-            m = (c / 60) >> 0,
-            s = (c - m * 60) + '';
-        if (s == 1) {
-            location.replace(rand);
-        } else {
-            r.textContent = 'Page redirect in ' + (s.length > 1 ? '' : '0') + s
-            tmp != 0 || (tmp = time);
-        }
-    }, 1000);
+c.addEventListener('click', function(e) {
+    start = window.requestAnimationFrame(draw);
 });
