@@ -123,6 +123,7 @@ let vm = new Vue({
                 console.log(this.number + "  is this right?")
                 this.number = '';
                 this.operation = oper
+                this.display+=this.operation
                 console.log("Num Click Console Test = ", this.current +" <-current number -> "+  this.number);
                 // this.number = "";}
             }}
