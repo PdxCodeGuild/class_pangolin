@@ -31,26 +31,35 @@ let vm = new Vue({
     el: '#Calculator',
     data:function() {
     return {
-        number: "",
+        number: 0,
         operator: "",
-        total: "",
+        total: 0,
         operationArray: []}
     },
     methods: {
         numClick: function(num){
             this.number += num
-            console.log(this.number)
         },
         operClick: function(oper){
             this.operator = oper;
-            this.operationArray.push(this.number, this.operator);
-            // this.operationArray.push(this.operator);
-            console.log(oper);
-            this.number = "";
-            console.log(this.operationArray)
-            if (this.oper ==="+"){
-                
+            if (this.operator === "AC"){
+                this.operationArray = [],
+                this.number = 0
+                console.log(this.operationArray)
             }
+            else if (this.operator === "="){
+                this.operationArray.push(this.number)
+                //parse through operationArray and complete operations.
+                this.total = eval(this.operationArray)
+                console.log(this.total)
+                // this.operationArray = this.operationArray.map(x => parseFloat(x))
+            }
+            else {
+                this.operationArray.push(this.number);
+                this.operationArray.push(this.operator);
+                // this.operationArray.push(this.operator);
+                console.log(this.operationArray)
+                this.number = "";}
         }
 
 
