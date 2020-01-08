@@ -35,7 +35,8 @@ let vm = new Vue({
         current: '',
         total: '',
         operator: "",
-        operation: ""}
+        operation: "",
+        display: 0,}
     },
     methods: {
         numClick: function(num){
@@ -44,9 +45,11 @@ let vm = new Vue({
                 //     this.number.slice(-1)
                 //     console.log("testing splice  " + this.number)
                 // }
-                this.current = this.number
+                // this.current = this.number
                 this.number += num 
-                this.current = this.number//concatonates numbers to allow large numbers ie: 37689
+                this.current = this.number
+                this.display = this.current
+                //concatonates numbers to allow large numbers ie: 37689
                 // this.current = this.number //updates the current from this.number to show it on the display
                 // console.log("Num Click Console Test = ", this.number +" <-number total -> "+  this.total)
             },
@@ -58,16 +61,21 @@ let vm = new Vue({
                     this.number = "",
                     this.total = "",
                     this.current = ""
+                    this.display = 0
             }
             
             else if (this.operator === "+/-"){ //works
                 this.current = parseFloat(this.current)
                 this.current *= -1
                 this.total = this.current
+                this.display = this.current
+
             }
             else if (this.operator === "%") {
                 this.current = parseFloat(this.current)
                 this.current /= 100
+                this.display = this.current
+
 
             }
             else if (this.operator === "="){
@@ -77,34 +85,42 @@ let vm = new Vue({
                     this.total = parseFloat(this.current) + parseFloat(this.total)
                     console.log("hello sarah")
                     this.current = this.total
+                    this.display = this.current
                 }
                 else if (this.operation === "-"){
                     console.log("total is " + this.total, "number is " + this. current)
                     this.total = parseFloat(this.total) - parseFloat(this.current)
                     this.current = this.total
+                    this.display = this.current
+
                     
                 }
                 else if (this.operation === "*"){
                     console.log("total is " + this.total, "number is " + this. number)
                     this.total = parseFloat(this.total) * parseFloat(this.current)
                     this.current = this.total
+                    this.display = this.current
+
                     
                 }
                 else if (this.operation === "/"){
                     console.log("total is " + this.total, "number is " + this. number)
                     this.total = parseFloat(this.total) / parseFloat(this.current)
                     this.current = this.total
+                    this.display = this.current
+
                     
                 }
                 else {
-                    this.total = "ERROR"
+                    this.current = "ERROR"
                 }
                 
                 // this.number = "";
             }
             else {
                 this.total = this.current;
-                this.current = this.number //
+                this.current = this.number
+                console.log(this.number + "  is this right?")
                 this.number = '';
                 this.operation = oper
                 console.log("Num Click Console Test = ", this.current +" <-current number -> "+  this.number);
