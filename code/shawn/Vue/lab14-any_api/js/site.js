@@ -4,8 +4,10 @@ let app = new Vue({
         ship: "Hello Vue.js",
         selectedLeagueText: "Hurricane",
         selectedLeagueNum: 0,
-        realm: 'na',
+        realm: 'ru',
         seasonNumber: 7,
+        data: '',
+        url: `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=7&realm=us`,
         clans: []
     },
     methods: {
@@ -29,24 +31,26 @@ let app = new Vue({
             this.displayLeague();
         },
         displayLeague: function () {
-            let url; 
             if (this.selectedLeagueNum == 0) {
                 console.log("returning hurricane")
-                url = `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=${this.seasonNumber}&realm=${this.realm}`;
+                this.url = `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=${this.seasonNumber}&realm=${this.realm}`;
             } else if (this.selectedLeagueNum == 1) {
-                url = `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=${this.seasonNumber}&realm=${this.realm}&league=1&division=1`
+                this.url = `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=${this.seasonNumber}&realm=${this.realm}&league=1&division=1`;
             } else if (this.selectedLeagueNum == 2) {
-                url = `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=${this.seasonNumber}&realm=${this.realm}&league=1&division=1`
+                this.url = `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=${this.seasonNumber}&realm=${this.realm}&league=1&division=1`;
             } else if (this.selectedLeagueNum == 3) {
-                url = `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=${this.seasonNumber}&realm=${this.realm}&league=1&division=1`
+                this.url = `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=${this.seasonNumber}&realm=${this.realm}&league=1&division=1`;
             } else if (this.selectedLeagueNum == 4) {
-                url = `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=${this.seasonNumber}&realm=${this.realm}&league=1&division=1`
+                this.url = `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=${this.seasonNumber}&realm=${this.realm}&league=1&division=1`;
             }
-            axios.get(url)
-            .then(function (response) {
-              console.log(response.data)
-            })
-            
+            axios
+                .get(this.url)
+                .then(response => this.data = response)
         }
+    },
+    mounted(){
+        axios
+            .get(this.url)
+            .then(response => this.data = response)
     },
 });
