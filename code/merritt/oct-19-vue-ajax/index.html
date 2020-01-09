@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ajax</title>
+    <!-- Add your styles here! -->
+    <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+    <div id="app">
+      <input v-model="routeInput" type="text" placeholder="Route"/>
+      <button @click="getBuses">Search</button>
+      <ul>
+        <p v-if="results.length > 0">Line {{results[0].routeNumber}}</p>
+        <li v-for="bus in results" :key="bus.vehicleID">Bus {{bus.vehicleID}} is {{-bus.delay}} seconds late</li>
+      </ul>
+    </div>
+
+    <!-- Include Vue from a CDN of your choice, I chose unpkg -->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/secrets.js"></script>
+    <!-- Include your code here... -->
+    <script src="js/main.js"></script>
+</body>
+</html>
