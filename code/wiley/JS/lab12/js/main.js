@@ -33,121 +33,128 @@ let vm = new Vue({
     return {
         number: '',
         current: '',
+        total: '',
         operator: "",
-        total: 0,
-        operation: ""}
+        operation: "",
+        display: 0,}
     },
     methods: {
         numClick: function(num){
             //check for multiple . not currently in operation
             // if (this.number[this.number.length-1] === "."){
-            //     this.number.slice(-1)
-            //     console.log("testing splice  " + this.number)
-            // }
-            this.number += num
-            this.total = this.number
-            console.log("Num Click Console Test = ", this.number +" <-number total -> "+  this.total)
-        },
-        operClick: function(oper){
-            this.operator = oper;
-            console.log(this.current)
-            this.total = this.current;
-            this.current = this.number;
-            this.number = '';
-            console.log("Num Click Console Test = ", this.current +" <-current total -> "+  this.total);
-            console.log(this.operator)
-           
-
-            if (this.operator === "AC"){ //works
-                this.operation = "",
-                this.number = "",
-                this.total = ""
+                //     this.number.slice(-1)
+                //     console.log("testing splice  " + this.number)
+                // }
+                // this.current = this.number
+                this.number += num 
+                this.current = this.number
+                this.display = this.current
+                //concatonates numbers to allow large numbers ie: 37689
+                // this.current = this.number //updates the current from this.number to show it on the display
+                // console.log("Num Click Console Test = ", this.number +" <-number total -> "+  this.total)
+            },
+            operClick: function(oper){
+                this.operator = oper; //gets the operator payload
+                
+                if (this.operator === "AC"){ //works
+                    this.operation = "",
+                    this.number = "",
+                    this.total = "",
+                    this.current = ""
+                    this.display = 0
             }
             
             else if (this.operator === "+/-"){ //works
-                this.number = parseFloat(this.number)
-                this.number *= -1
-                this.total = this.number
+                this.current = parseFloat(this.current)
+                this.current *= -1
+                this.total = this.current
+                this.display = this.current
+
+            }
+            else if (this.operator === "%") {
+                this.current = parseFloat(this.current)
+                this.current /= 100
+                this.display = this.current
+
+
             }
             else if (this.operator === "="){
-                console.log("this is the operation" + this.operation)
+                // console.log("this is the operation" + this.operation)
                 if (this.operation === "+"){
-                    this.number2 = this.number
+                    console.log("Num Click Console Test = ", this.current +" <-current number -> "+  this.number);
                     this.total = parseFloat(this.current) + parseFloat(this.total)
-                    console.log(isNaN(this.total))
+                    console.log("hello sarah")
                     this.current = this.total
+                    this.display = this.current
                 }
                 else if (this.operation === "-"){
-                    console.log("total is " + this.total, "number is " + this. number)
+                    console.log("total is " + this.total, "number is " + this. current)
                     this.total = parseFloat(this.total) - parseFloat(this.current)
                     this.current = this.total
+                    this.display = this.current
 
+                    
                 }
                 else if (this.operation === "*"){
                     console.log("total is " + this.total, "number is " + this. number)
                     this.total = parseFloat(this.total) * parseFloat(this.current)
                     this.current = this.total
+                    this.display = this.current
 
+                    
                 }
                 else if (this.operation === "/"){
                     console.log("total is " + this.total, "number is " + this. number)
                     this.total = parseFloat(this.total) / parseFloat(this.current)
                     this.current = this.total
+                    this.display = this.current
 
+                    
                 }
                 else {
-                    this.total = "ERROR"
+                    this.current = "ERROR"
                 }
                 
                 // this.number = "";
             }
             else {
+                this.total = this.current;
+                this.current = this.number
+                console.log(this.number + "  is this right?")
+                this.number = '';
                 this.operation = oper
-            }
+                console.log("Num Click Console Test = ", this.current +" <-current number -> "+  this.number);
+                // this.number = "";}
+            }}
+            
+            
         },
-        percentClick: function(num){ //works
-            console.log(this.number)
-            this.number = parseFloat(this.number);
-            this.number /= 100;
-            this.total = this.number;
-            this.number = "";
+        computed: {
+            
         },
-        
-
-
-    },
-    computed: {
-
-    },
-    mounted:function() {
-        console.log("ITS ALIVE!")
-    }
-});
-
-
-
-//trash
-// this.operationArray.push(this.number);
-                // this.operationArray.reduce(function(a,b){
-                //     if (this.operationArray.length >= 3){
-                //         console.log("this is running?")
-                //         return this.operationArray[a[1]](parseFloat(a[0]),(parseFloat(a[2])));
-                //     } else {
-                //         console.log(a)
-                //         return a.push(b)}
-                // })
-                //parse through operationArray and complete operations.
-                // this.total = eval(this.operationArray)
-// addClick: function(num){
-    
-//     this.number = (a,b) => a+b;
-// },
-// subractClick: function(a,b) {
-//     this.number = (a-b)
-// },
-// divideClick:function(a,b) {
-//     this.number = (a/b)
-// },
-// multiplyClick: function(a,b) {
-//     this.number = (a*b)
-// }
+        mounted:function() {
+            console.log("ITS ALIVE!")
+        }
+    });
+    //     number: 0,
+    //     operator: "",
+    //     total: 0,
+    //     operationArray: []}
+    // },
+    // methods: {
+    //     numClick: function(num){
+    //         this.number += num
+    //     },
+    //     operClick: function(oper){
+    //         this.operator = oper;
+    //         if (this.operator === "AC"){
+    //             this.operationArray = [],
+    //             this.number = 0
+    //             console.log(this.operationArray)
+    //         }
+    //         else if (this.operator === "="){
+    //             this.operationArray.push(this.number)
+    //             //parse through operationArray and complete operations.
+    //             this.total = eval(this.operationArray)
+    //             console.log(this.total)
+    //             // this.operationArray = this.operationArray.map(x => parseFloat(x))

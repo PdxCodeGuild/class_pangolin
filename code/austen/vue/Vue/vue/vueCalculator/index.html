@@ -9,6 +9,7 @@
 </head>
 <body>
     <div id="app">
+        <input class="readout" v-model="readout"/>
         <input v-model="current"/><br>
         <numbers class="calc" num="c" @digit="clrClick($event)"></numbers class="calc">
         <numbers class="calc" num="-/+" @digit="oprClick($event)"></numbers>

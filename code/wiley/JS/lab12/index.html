@@ -10,10 +10,10 @@
 </head>
 <body>
     <div id="Calculator">
-        <total v-bind:displaytotal="total" ></total>
+        <total v-bind:displaytotal="display" ></total>
         <oper operator="AC" @operation="operClick($event)"></oper>
         <oper operator="+/-" @operation="operClick($event)"></oper>
-        <oper operator="%" @operation="percentClick($event)"></oper>
+        <oper operator="%" @operation="operClick($event)"></oper>
         <oper operator="+" @operation="operClick($event)"></oper>
         <num number="1" @inputnumber="numClick($event)"></num>
         <num number="2" @inputnumber="numClick($event)"></num>
