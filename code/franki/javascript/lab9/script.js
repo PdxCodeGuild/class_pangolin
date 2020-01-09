@@ -6,7 +6,7 @@ let target = document.getElementById("target");
         var searchTerm = encodeURIComponent(input);
         console.log(searchTerm)
         axios({
-        url: "https://favqs.com/api/quotes/?filter=" + searchTerm,
+        url: "https://favqs.com/api/quotes/",
         
         method: "GET",
         headers: {

@@ -29,6 +29,7 @@
 
         <div class="standings-list">
             <h3>Season: {{seasonNumber}} {{selectedLeagueText}} </h3>
+            {{data}}
             <ol>
                 <li v-for="clan in clans">clan.text</li>
             </ol>
@@ -38,6 +39,7 @@
     </div>
 
     <!-- Include Vue from a CDN of your choice, I chose unpkg -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue"></script>
     <!-- Include your code here... -->
     <script src="/js/site.js"></script>
