@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Axios Example</title>
+
+    <!-- Add your styles here! -->
+    <link rel="stylesheet" href="/css/site.css" />
+
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" placerholder="Route" v-model="routeInput"/>
+        <button @click="getBuses">Search</button>
+        <ul>
+            <p v-if="results.length > 0">Line {{results.routeNumber}}</p>
+            <li v-for="bus in results" :key="bus.vehicleID">Bus {{bus.vehicleID}} is {{-bus.delay}} seconds late</li>
+        </ul>
+    </div>
+
+    <!-- Include Vue from a CDN of your choice, I chose unpkg -->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/secrets.js"></script>
+    <script src="/js/site.js"></script>
+</body>

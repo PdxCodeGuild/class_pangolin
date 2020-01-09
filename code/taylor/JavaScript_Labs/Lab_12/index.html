@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Calculator</title>
+
+  <link href="draggable.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
+
+</head>
+
+<body style="background-color: black;">
+
+  <div  id="dragDiv">
+    <p id="dragDivHeader"></p>
+      <div id="app">
+        <div class="container">
+          <div class="calculator">
+
+            <!-- Display Block-->
+            <dis v-bind:displaylogger="evalList + current " ></dis>
+            <ans v-bind:displayanswer="answer" ></ans>
+            
+            <!-- Op Block-->
+            <op operator="C" @op="clear($event)"></op>
+            <op operator="/" @op="divide($event)"></op>
+            <op operator="%" @op="percent($event)"></op>
+            <op operator="<" @op="back($event)"></op>
+
+            <!-- Num Block-->
+            <num number="7" @inp="append($event)"></num>
+            <num number="8" @inp="append($event)"></num>
+            <num number="9" @inp="append($event)"></num>
+            
+            <!-- Op Block-->
+            <op operator="*" @op="multiply($event)"></op>
+            
+            <!-- Num Block-->
+            <num number="4" @inp="append($event)"></num>
+            <num number="5" @inp="append($event)"></num>
+            <num number="6" @inp="append($event)"></num>
+            
+            <!-- Op Block-->
+            <op operator="-" @op="subtraction($event)"></op>
+ 
+            <!-- Num Block-->
+            <num number="1" @inp="append($event)"></num>
+            <num number="2" @inp="append($event)"></num>
+            <num number="3" @inp="append($event)"></num>
+            
+            <!-- Op Block-->
+            <op operator="+" @op="addition($event)"></op>
+            <op operator="+/-" @op="sign($event)"></op>
+    
+            
+            <!-- Num Block-->
+            <num number="0" @inp="append($event)"></num>
+            <num number="." @inp="append($event)"></num>
+
+            <!-- Op Block-->
+            <op operator="=" @op="equal($event)"></op>
+
+         </div><!-- Calculator Div End-->
+        </div><!-- Container Div End-->
+      </div><!-- App Div End-->
+  </div><!-- Draggable Div End-->
+
+  <!-- Vue.js -->
+  <script src="https://unpkg.com/vue"></script>
+  
+  <!-- JavaScript -->
+  <script src="draggable.js"></script>
+  <script src="javaScript.js"></script>
+</body>
+</html>
