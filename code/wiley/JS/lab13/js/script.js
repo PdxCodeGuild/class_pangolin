@@ -1,15 +1,16 @@
 Vue.component("byauthor", {
   data: function() {
-    return { author: "", quotesArray: [] };
+    return { author: "", quotesArray: [],headerAuthor: "" };
   },
   template: `<div>
         <form>
         <input type="text" v-model='author' placeholder="Search by author"></input>
-        <button @click.prevent="getauthor">submit</button>
+        <button @click.prevent="getauthor" id="submit">submit</button>
         </form>
         <div v-show='quotesArray.length === 0'> No quotes found yet </div>
         <ul v-if='quotesArray.length >0'>
-        <li v-for="quote in quotesArray">
+        <h3> Here are some quotes by: {{this.headerAuthor}} </h3>
+        <li v-for="quote in quotesArray" id="quotes">
         {{ quote.body }}
         </li>
         </ul>
@@ -29,13 +30,15 @@ Vue.component("byauthor", {
           type: "author"
         }
       })
-      .then(res => {this.quotesArray = res.data.quotes;
-    console.log(this.quotesArray)}
-        );
+        .then(res => {
+          this.quotesArray = res.data.quotes;
+          this.headerAuthor = this.author;
+          console.log(this.quotesArray);
+        })
+        .catch(error => console.log(error));
     }
   }
 });
-
 
 let vm = new Vue({
   el: "#app",
