@@ -29,3 +29,13 @@ new Vue({ el: '#components-demo' });
 
 //the element <slot> is used to add a value into a Vue element.  
 // if you use a custom Vue element, you can then add <sloy></slot> for where you want it to be. 
+
+
+//HOW TO USE VUE WITH AXIOS
+/*
+Make sure to loadboth axios and vue into your HTML, BEFORE you load your script
+Build a Vue, and in the methods make a function that gets called on a command (button click listener).  This function will make a axios call. [get(params,url,method), then(the promise)].  With the data you parse and gather from the API, prduce information to the user on the HTML. 
+wit VUE, the axios promise function is easy.  .then(res => this.results = res.data.apistuff)
+IT IS IMPORTANT TO USE AN ARROW FUNCTION IN THE VUE/AXIOS COMBO.  The arrow function doesn't overwrite your this.vue stuff because of the scope of an arrow function compared to a full function.
+
+*/

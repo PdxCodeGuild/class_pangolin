@@ -9,7 +9,7 @@ Vue.component('random-quote', {
     template: `
         <div id="headline-quote">
             <h1 class="quote-text">{{quoteText}}</h1>
-            <h3 class="author-text">{{quoteAuthor}}</h3>
+            <h3 class="author-text"><a :href="wikiLink">{{quoteAuthor}}</a></h3>
             <img :src="authorPic">
             <button @click="getQuote">New quote</button>
         </div>
@@ -35,16 +35,22 @@ Vue.component('random-quote', {
     },
     mounted: function () {
         this.getQuote();
+    }, 
+    computed: {
+        wikiLink: function(){
+            return 'https://en.wikipedia.org/wiki/' + this.quoteAuthor.replace(" ", "_")
+        }
     }
 });
 
 Vue.component('quote-list', {
-    props: ['quotes'],
+    props: ['quotes', 'pagenum'],
     template: `
         <ul>
+            <h3 v-if="quotes.length > 0">Page: {{pagenum}}</h3>
             <li v-for="quote in quotes">
-                <h6>{{quote.body}}</h6>
-                <h5>{{quote.author}}</h5>
+                <h4 class="quote-text">{{quote.body}}</h4>
+                <h5 class="author-text">{{quote.author}}</h5>
             </li>
         </ul>
     `,
@@ -109,7 +115,7 @@ let vm = new Vue({
     },
     computed: {
         nextQuote: function(){
-        
+            return
         }
     }
 });
