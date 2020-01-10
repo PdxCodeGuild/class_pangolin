@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Random Quote</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="app">
+    <input id="userInput" type="text" v-model="userInput" placeholder="keyword search">
+    <button id='button' v-on:click="getQuotes">&nbsp;&nbsp;Random Quote&nbsp;&nbsp;</button>
+    <ul>
+    <p id='result'></p>
+    <li v-for="quote in result">Quote: {{ quote.body }}<br><em>--{{ quote.author }}</em></li>
+    </ul>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

@@ -45,3 +45,25 @@ var app5 = new Vue ({
         ]
     }
 })
+
+
+
+let vm = new Vue({
+    el: "#app",
+    data: {
+        routeInput: '',
+        results: []
+    },
+    methods: {
+        getBusses:function(){
+            axios({
+                get:"get",
+                url:"the url goes here",
+                params: {
+                    appID: "the app id",
+                    routes: this.routeInput
+                }
+            }),then(res => this.results = the parsed data that looks like data.something.something);
+        }
+    }
+});
