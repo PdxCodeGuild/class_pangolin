@@ -43,14 +43,14 @@ let app = new Vue({
             } else if (this.selectedLeagueNum == 4) {
                 this.url = `https://clans.worldofwarships.com/clans/wows/ladder/api/structure/?season=${this.seasonNumber}&realm=${this.realm}&league=1&division=1`;
             }
-            axios
-                .get(this.url)
-                .then(response => this.data = response)
+            // axios
+            //     .get(this.url)
+            //     .then(response => this.data = response)
         }
     },
     mounted(){
-        axios
-            .get(this.url)
-            .then(response => this.data = response)
+        // axios
+        //     .get(this.url)
+        //     .then(response => this.data = response)
     },
 });
