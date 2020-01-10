@@ -9,7 +9,7 @@ Vue.component('random-quote', {
     template: `
         <div id="headline-quote">
             <h1 class="quote-text">{{quoteText}}</h1>
-            <h3 class="author-text"><a :href="wikiLink">{{quoteAuthor}}<a></h3>
+            <h3 class="author-text"><a :href="wikiLink">{{quoteAuthor}}</a></h3>
             <img :src="authorPic">
             <button @click="getQuote">New quote</button>
         </div>
