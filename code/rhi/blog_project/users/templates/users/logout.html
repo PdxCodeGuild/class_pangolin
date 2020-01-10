@@ -1,0 +1,9 @@
+{% extends "gossip/base.html" %}
+
+
+{% block content %}
+    <h2>You have been logged out!<h6> We promise not to Gossip about you while your gone ;)</h6></h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">Already a Gossip Girl?<a href="{% url 'login' %}">Sign In</a></small>
+    </div>
+{% endblock content %}

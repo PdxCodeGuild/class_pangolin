@@ -115,7 +115,7 @@ let vm = new Vue({
             }
             if (event.keyCode=== 13) {
                 vm.eqlClick(event.key)
-                // return(this.current)
+                return(this.current)
             }
             if (event.key===(".")) {
                 vm.dotClick(event.key)
