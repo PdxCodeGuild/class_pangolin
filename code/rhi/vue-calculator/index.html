@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Friendly Helpful Calculator</title>
+    
+    <link rel="stylesheet" href="stylesheet.css" />
+</head>
+<body>
+    <div id="calculator">
+        <div class="calculator-logs">
+            <span v-for="log in logs">{{ log }}</span>
+        </div>
+        <input type="string" 
+            class="calculator-input" 
+            v-model="value" 
+            v-on:keyup.enter="getResult()" 
+        />
+
+        <div class="calculator-row">
+            <clear v-on:c="clear($event)"></clear>
+            <delete v-on:del="del($event)"></delete>
+
+            <symbol-btn symbol='%' v-on:add="addExpresion($event)"></symbol-btn>
+            <symbol-btn symbol='/' v-on:add="addExpresion($event)"></symbol-btn>
+ 
+        </div>
+        <div class="calculator-row">
+            <number-btn num='7' v-on:add="addExpresion($event)"></number-btn>
+            <number-btn num='8' v-on:add="addExpresion($event)"></number-btn>
+            <number-btn num='9' v-on:add="addExpresion($event)"></number-btn>
+            
+            <symbol-btn symbol='*' v-on:add="addExpresion($event)"></symbol-btn>
+        </div>
+        <div class="calculator-row">
+            <number-btn num='4' v-on:add="addExpresion($event)"></number-btn>
+            <number-btn num='5' v-on:add="addExpresion($event)"></number-btn>
+            <number-btn num='6' v-on:add="addExpresion($event)"></number-btn>
+            <symbol-btn symbol='-' v-on:add="addExpresion($event)"></symbol-btn>
+        </div>
+        <div class="calculator-row">
+            <number-btn num='1' v-on:add="addExpresion($event)"></number-btn>
+            <number-btn num='2' v-on:add="addExpresion($event)"></number-btn>
+            <number-btn num='3' v-on:add="addExpresion($event)"></number-btn>
+            <symbol-btn symbol='+' v-on:add="addExpresion($event)"></symbol-btn>
+        </div>
+        <div class="calculator-row">
+            <zero-btn num='0' v-on:add="addExpresion($event)"></zero-btn>
+            <symbol-btn symbol='.' v-on:add="addExpresion($event)"></symbol-btn>
+            <equals v-on:equals="getResult($event)"></delete>
+            <!-- <div class="calculator-col">
+                <button class="calculator-btn accent action"
+                v-on:click="getResult()">=</button>
+            </div> -->
+        </div>
+    </div>
+
+    <!-- include Vue from a CDN of your choice, I am using unpkg -->
+    <script src="https://unpkg.com/vue"></script>
+    <!-- include your code here -->
+    <script src="script.js"></script>
+</body>
+</html>

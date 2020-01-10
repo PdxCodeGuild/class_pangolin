@@ -29,8 +29,9 @@ nextButton.addEventListener('click', function () {
         })
 });
 
-// api key kept in local file secrets.txt, remove before pushing to remote
-let api_key = '';
+// api key kept in local file secrets.js
+let api_key = apikey
+console.log(api_key)
 // query API
 let config = {
     headers: {
@@ -136,6 +137,7 @@ pageId.addEventListener('input', function () {
     } else {
         axios.get(`quotes?page=${pageId.value}&filter=${encodeURIComponent(keywords.value)}`, config)
             .then(function (response) {
+                console.log(response.data)
                 // loop throuh each quote
                 for (let quote of response.data.quotes) {
                     let newQuoteDiv = document.createElement("div");
@@ -184,6 +186,7 @@ keywords.addEventListener('keydown', function (e) {
         } else {
             axios.get(`quotes?page=${pageId.value}&filter=${encodeURIComponent(keywords.value)}`, config)
                 .then(function (response) {
+                    console.log(response);
                     // loop throuh each quote
                     for (let quote of response.data.quotes) {
                         let newQuoteDiv = document.createElement("div");

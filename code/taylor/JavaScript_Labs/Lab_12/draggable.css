@@ -1,0 +1,20 @@
+#dragDiv {
+  position: absolute;
+  z-index: 9;
+  background-color: #00000000;
+  text-align: center;
+  border: 1px solid #00000000;
+
+}
+
+#dragDivHeader {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  max-width: 5px;
+  background-color: rgba(63, 63, 63, 0.705);
+  align-self: center;
+  border-radius: 2px;
+  box-shadow: 3px 3px 48px  rgba(247, 241, 241, 0.5);
+  
+}

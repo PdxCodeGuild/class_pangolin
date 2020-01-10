@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="app">
+        <form>
+            <input type="text" placeholder="new grocery item" v-model="newGroceryItem.text">
+            <input type="color" v-model="newGroceryItem.color">
+            <button v-on:click.prevent="addGrocery">Add</button>
+        </form>
+        <ul>
+
+            <li v-for="grocery in incompletedItems" v-bind:key="grocery.id">
+
+                <p v-bind:class="{completed: grocery.completed}" v-bind:style="{color: grocery.color}">
+                    {{grocery.text}}</p>
+                <input type="checkbox" v-model="grocery.completed">
+                <input type="color" v-model="grocery.color">
+                <button v-on:click="deleteGrocery(grocery, $event)">Delete</button>
+            </li>
+            <li v-for="grocery in completedItems" v-bind:key="grocery.id">
+                <p v-bind:class="{completed: grocery.completed}" v-bind:style="{color: grocery.color}">
+                    {{grocery.text}}</p>
+                <input type="checkbox" v-model="grocery.completed">
+                <input type="color" v-model="grocery.color">
+                <button v-on:click="deleteGrocery(grocery, $event)">Delete</button>
+            </li>
+
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="GroceryList.js"></script>
+</body>
+
+</html>

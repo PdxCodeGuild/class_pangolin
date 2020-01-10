@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo List</title>
+
+    <!-- Add your styles here! -->
+    <link rel="stylesheet" href="/css/site.css" />
+
+</head>
+
+<body>
+    <div id="app">
+        <h1>Todo List:</h1>
+        <form>
+            <input type="text" placeholder="New item" v-model="newItem.text" />
+            <button v-on:click.prevent="addItem">Add</button>
+            <button v-on:click.prevent="clearItems">Clear All</button>
+        </form>
+        <div id="active-items">
+            <h3>Active items:</h3>
+            <ul>
+                <li v-for="item in incompleteItems" v-bind:key="item.id">
+                    <div class="buttons">
+                        <input type="checkbox" v-model="item.completed">
+                        <button v-on:click="deleteItem(item)">Delete</button>
+                    </div>
+                    <p>{{ item.text }}</p>
+                </li>
+            </ul>
+        </div>
+        <div id="completed-items">
+            <h3>Completed items:</h3>
+            <ul>
+                <li v-for="item in completedItems" v-bind:key="item.id">
+                    <div class="buttons">
+                        <input type="checkbox" v-model="item.completed">
+                        <button v-on:click="deleteItem(item)">Delete</button>
+                    </div>
+                    <p v-bind:class="{completed: item.completed}">{{ item.text }}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Include Vue from a CDN of your choice, I chose unpkg -->
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Include your code here... -->
+    <script src="/js/site.js"></script>
+</body>
