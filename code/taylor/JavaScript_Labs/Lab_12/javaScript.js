@@ -8,7 +8,6 @@ Vue.component('op', {
     template: `<div class="button operator" @click="$emit('op',operator)">{{ operator }}</div>` 
 });
 
-
 Vue.component('dis', {
     props: ['displaylogger'],
     template: `<div class="display">{{ displaylogger }}</div>`
