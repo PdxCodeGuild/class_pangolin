@@ -1,18 +1,52 @@
 html {
     box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-image: linear-gradient(130deg, rgba(0, 0, 139, 0.096), darkgray);
+    background-size: cover;
+
 }
 *, *:before, *:after {
     box-sizing: inherit;
 }
-h3 {
-    color: red;
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 6px;
 }
 #headline-quote {
+    text-align: right;
+    margin: 12px 24px;
+    min-height: 20vh;
 
 }
 .quote-text {
-
+    color: darkgreen;
 }
 .author-text {
+    color: blue;
+}
+a {
+    color: blue;
+    text-decoration: none;
+}
+a:hover {
+    color: blue;
+    text-decoration: none;
+}
+a:visited {
+    color: blue;
+    text-decoration: none;
+}
+
+li {
+    margin: 12px;
+    background-color: rgb(224, 229, 231);
+    border-radius: 3px;
+    list-style-type: none;
+}
+ul {
+    padding-left: 0;
+}
+
+#new-quote-button {
 
 }

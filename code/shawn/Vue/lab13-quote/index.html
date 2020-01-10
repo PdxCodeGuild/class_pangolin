@@ -15,11 +15,11 @@
     <div id="app">
         <random-quote></random-quote>
         <input type="text" v-model="searchTerms">
-        <button @click="newQuotes">Find quotes</button>
+        <button @click="newQuotes" id="new-quote-button">Find quotes</button>
         <button @click="prevPage" v-if="pageNumber > 1">prev</button>
-        <button @click="nextPage" v-if="pages.length > 0">next</button>
-        <!-- check quotelist[0].body -->
-        <quote-list :quotes="quoteList"></quote-list>
+        <button @click="nextPage" v-if="pages.length > 0 && quoteList[0].body != 'No quotes found'">next</button>
+        <hr>
+        <quote-list :quotes="quoteList" :pagenum="pageNumber"></quote-list>
     </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
