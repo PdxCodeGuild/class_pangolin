@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>Lab 14 - Random User Generator</title>
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
 <body>
     <div id="app">
-    <button id='button' v-on:click="getRandomPerson">Generate</button>
-    <div id='div_tag' v-if="result.length > 0">
-        <p id='result'>{{ result[0].name.first }} {{ result[0].name.last }}</p>
-        <p id='pic'><img :src="result[0].picture.large"></p>
-    </div>
+        <p>Generate Random User by Gender</p>
+        <p>
+            <input type="radio" name="gender" value="male" id="gender" v-model="search"> Male
+            <input type="radio" name="gender" value="female" id="gender" v-model="search"> Female
+        </p>
+        <p>
+            <button id="searchbutton" v-on:click="getPersonByName">Generate</button>
+        </p>
+        <br>
+        <p>Downloads 5000 users</p>
+        <p>**WARNING: This takes 15 to 18 seconds and is 1.4 mb in size**</p>
+        <p>
+            <button id="storebutton" v-on:click="getStore">Store</button>
+        </p>
+        <br>
+        <p>Search the Download for User by First Name</p>
+        <p>
+            <input id="userInput" type="text" v-model="userInput" placeholder="search by first name">
+            <button id="storebutton" v-on:click="getSearch">Search</button>
+        </p>
+        <br>
+        <p>Generate a Random User</p>
+        <button id='button' v-on:click="getRandomPerson">Generate</button>
+        <div id='div_tag' v-if="result.length > 0">
+            <p id='result'>{{ result[0].name.first }} {{ result[0].name.last }}</p>
+            <p id='pic'><img :src="result[0].picture.large"></p>
+        </div>
+        <div>
+        <ol id="filtered" v-if="filtered.length > 0">
+        <li v-for="person in filtered">{{ person.name.first }} {{ person.name.last }}<br><img :src="person.picture.large"></li>
+        </ol>
+        </div>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
-    
 </body>
 </html>
