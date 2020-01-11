@@ -102,7 +102,7 @@ vue.component('clear', {
 
 // num buttons component
 Vue.component('num-button', {
-    props: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    props: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'],
     template: `
         <form
             <button></button>
