@@ -1,0 +1,24 @@
+body {
+    background-color: rgb(54, 54, 54);
+    color: whitesmoke;
+}
+form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+}
+#top {
+    width: 70%;
+    text-align: center;
+    font-size: x-large;
+    justify-content: center;
+    margin: auto;
+}
+#submit {
+    background-color: rgb(80, 255, 159);
+    border: rgb(255, 255, 255) 2px solid;
+}
+li {
+    margin: 8px;
+}
