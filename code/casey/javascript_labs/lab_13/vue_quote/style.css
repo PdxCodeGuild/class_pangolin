@@ -37,6 +37,8 @@ body {
     /* This is what makes the background image rescale based
         on the container's size */
     background-size: cover;
+    min-height: 100vh;
+    margin: 0;
 }
 
 button {
@@ -49,32 +51,37 @@ button {
     border-bottom-style: groove;
     border-bottom-width: 2px;
     padding-bottom: 0px;
+    margin-right: 25px;
+}
+
+input {
+    margin-right: 25px;
 }
 
 header {
     font-size: 30pt;
     text-align: right;
+    margin-right: 25px;
+    margin-bottom: 0px;
+    padding-top: 5px;
+}
+
+#head {
+    margin-bottom: 30px;
 }
 
 form {
     text-align: right;
     color: darksalmon;
     font-size: 17pt;
+    margin-right: 25;
 }
 
-.quote-text {
-    font-family: Arial, Helvetica, sans-serif;
-    color: darksalmon;
-    font-size: 19pt;
-    text-align: right;
-    white-space: normal;
-    padding-left: 35%;
-}
-
-a:link { 
+/* a:link { 
     text-decoration: none;
     color: magenta; 
-} 
+    text-align: right; */
+/* }  */
 a:visited { 
     text-decoration: none; 
 }
@@ -85,7 +92,52 @@ a:active {
     text-decoration: underline; 
 }
 
+a {
+    color: magenta;
+    text-align: right;
+    text-decoration: none;
+}
+
 .btn:focus,.btn:active {
     outline: none !important;
     box-shadow: none;
  }
+
+h2 {
+    margin: 0;
+}
+
+h3 {
+    text-align: right;
+    padding-right: 25px;
+}
+
+#quote-display {
+    font-family: Arial, Helvetica, sans-serif;
+    color: darksalmon;
+    text-align: right;
+    white-space: normal;
+    padding-left: 35%;
+    text-align: right;
+    margin-right: 25px;
+}
+
+#or {
+    font-family: Arial, Helvetica, sans-serif;
+    color: darksalmon;
+    text-align: right;
+    white-space: normal;
+    padding-left: 35%;
+    text-align: right;
+    margin-right: 25px;
+}
+
+#search-button {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    margin-top: 20px
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Random Quote Generator</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <header id="head"><h1>Random Quote Generator</h1></header>
+    <body>
+        <div id="app">
+            <section v-if="errored">
+                <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
+            </section>
+            
+            <section v-else>
+                <div v-if="loading">Loading...</div>
+
+                <div v-else-if="body && author">
+                    <div v-bind:key="body" id="quote-display">
+                        <h2>
+                            "{{ body }}" 
+                        </h2>
+                    </div>
+                    <div v-bind:key="author"> 
+                        <h3><i><a :href="url">- {{ author }}</a></i></h3>     
+                    </div>
+                </div>
+                
+                <!-- <div v-else>
+                    <div v-for="quote in randomResults.quotes" id="quote-display">
+                            <h2>
+                                "{{ quote }}" 
+                            </h2>
+                            <h3>
+                            <i><a href="quote.url">- {{ quote }}</a></i>
+                            </h3>
+                    </div> -->
+                <!-- </div> -->
+            </section>
+            <form>
+                <input type="text" id="search" placeholder="Search Quotes by Author, Tag..." size="28" class="no-outline" autocomplete="off" v-model="searchString">
+                <div>
+                    <button id="search-button" class="btn" ><h2>Search!</h2></button>
+                </div><br>
+                <div id="or">Or</div>
+            </form>
+            <form>
+                <button v-on:click.prevent="getRandom()" id="quote-button" class="btn"><h1>Get Random Quote!
+                </h1></button>
+            </form>
+        </div>
+        <script src="https://unpkg.com/vue"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="vue_script.js"></script>
+    </body>
+</html>
