@@ -1,0 +1,62 @@
+#grid-container {
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "eqn eqn eqn eqn"
+    "res res res res"
+    "nu1 nu2 nu3 add"
+    "nu4 nu5 nu6 minus"
+    "nu7 nu8 nu9 multiply"
+    "dec nu0 neg divide"
+    "bak clr percent exponent"
+    "eql eql eql eql";
+    justify-content: center;
+    align-content: center;
+    grid-gap: 6px;
+    height: 520px;
+    width: 520px;
+    border: 3px darkblue solid;
+    margin: 0px auto;
+}
+
+#equation {grid-area: eqn;}
+#answer {grid-area: res;}
+#button-1 {grid-area: nu1;}
+#button-2 {grid-area: nu2;}
+#button-3 {grid-area: nu3;}
+#button-4 {grid-area: nu4;}
+#button-5 {grid-area: nu5;}
+#button-6 {grid-area: nu6;}
+#button-7 {grid-area: nu7;}
+#button-8 {grid-area: nu8;}
+#button-9 {grid-area: nu9;}
+#button-0 {grid-area: nu0;}
+#button-decimal {grid-area: dec;}
+#button-add {grid-area: add;}
+#button-subtract {grid-area: minus;}
+#button-multiply {grid-area: multiply;}
+#button-divide {grid-area: divide;}
+#button-equal {grid-area: eql;}
+#button-negate {grid-area: neg;}
+#button-exponent {grid-area: exponent;}
+#button-clear {grid-area: clr;}
+#button-backspace {grid-area: bak;}
+#button-percent {grid-area: percent;}
+
+p {
+    margin: 0;
+    text-align: right;
+    min-height: 60px;
+    font-weight: bold;
+    font-size: larger;
+
+}
+.op-button {
+    background-color: lightblue;
+    min-height: 50px;
+}
+h3 {
+    margin: 0px;
+    font-size: small;
+}

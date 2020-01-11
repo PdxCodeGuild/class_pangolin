@@ -2,9 +2,10 @@
 
 let responseData = {};
 
-function callForQuote (){
+//  Function API call for a single random quote
+function callForRandomQuote (){
   axios({
-  method: 'get',
+  method: 'GET',
   url: 'https://favqs.com/api/qotd',
   headers: {
     Authorization: 'Token token="44462dcda4bba9533e2d37b1b089f7b5"'
@@ -17,28 +18,77 @@ function callForQuote (){
   .catch(function (error) {
     // handle error
     console.log(error);
-    
-  })};
+})};
 
-// Preloads responseData with a data object for initial - random quote  
-callForQuote()
+// Runs single random quote API call to preoad a random qote
+callForRandomQuote()
 
-// #####################################################################
-// NEEDS EVENT LISTINER ON CLICK
-// FORM AND BUTTON INFO
+// "RANDOM" button for random quote page load
+let randomSubmit = document.getElementById('randomSubmit');
 
-// <form class="form-inline d-flex">
-// <input type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputSearch" placeholder="Search term here...">
-// <button type="submit" class="btn btn-primary mx-auto">Qtrieve</button>
-// </form>
+// "RANDOM" button onlclik listner
+randomSubmit.onclick = function() {
+  callForRandomQuote() // Reloads randomData with a new data / quote object
+  postRandomQuote(responseData) // Call to post a random qoute
+   
+};
 
-// function testPrint(){
-//   console.log("I've been pressed")
-// }
+// Function to post a random quote
+function postRandomQuote(responseData) {
 
+  // Retreives allQoutes element as target for appends
+  let quoteAuthor = document.getElementById('quoteAuthor')
+  let quoteRandom = document.getElementById('quoteRandom')
+   
+    // Adds content to the html build
+    quoteAuthor.innerText = responseData.quote.author;
+    quoteRandom.innerText = responseData.quote.body;
+    // Replaces the respective DOM text
+    quoteAuthor.replaceWith(quoteAuthor);
+    quoteRandom.replaceWith(quoteRandom);
+  }
+
+// User input field for quote search by key term
+let userQuery = document.getElementById('inputSearch')
+// QTRIEVE button next to searchinput field
 let searchSubmit = document.getElementById('searchSubmit');
 
+// QTRIEVE button onclick listener
 searchSubmit.onclick = function() {
+  searchForAQuote(userQuery.value)
+};
+
+//  Function API call for a single random quote
+function searchForAQuote (userQuery){
+  axios({
+  method: 'GET',
+  url: 'https://favqs.com/api/quotes',
+  headers: {
+    Authorization: 'Token token="44462dcda4bba9533e2d37b1b089f7b5"'
+  },
+  params: { // Parameters for search 
+    filter: userQuery, // User input field 
+    type: 'tags' // tags represent things like funny, sad, etc.
+  }
+})
+  .then(function (response) {
+          
+         let searchArray = Array.from(response.data.quotes);
+
+         searchArray.forEach(element => {
+          buildSearchedQuoteCards(element.author, element.body)
+          console.log(element.author, element.body)
+        });
+         
+
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+})};
+
+// Funciton to build author / quote cards from search
+function buildSearchedQuoteCards(author, quote) {
 
 // Retreives allQoutes element as target for appends
   let allQuotes = document.getElementById('allQuotes')
@@ -63,35 +113,6 @@ searchSubmit.onclick = function() {
   div_3.appendChild(div_4)
 
 // Adds content to the html build
-  h4.innerHTML = "Random";
-  div_4.innerHTML = "TEST TESsd asdf sadfsdafsadfsadf sadfsdaf sadfsda fasd fsadf sad fsadfsadfT TEST";
-  h4.appendChild(h4);
-  div_4.appendChild(div_4);
-
+  h4.innerHTML = author;
+  div_4.innerHTML = quote;
 };
-
-let randomSubmit = document.getElementById('randomSubmit');
-
-randomSubmit.onclick = function() {
-  callForQuote() // Reloads randomData with a new data / quote object
-  postRandomQuote(responseData) // Call to post a random qoute
-   
-};
-
-// Function to post a random quote
-function postRandomQuote(responseData) {
-
-  // Retreives allQoutes element as target for appends
-  let quoteAuthor = document.getElementById('quoteAuthor')
-  let quoteRandom = document.getElementById('quoteRandom')
-   
-    // Adds content to the html build
-    quoteAuthor.innerText = responseData.quote.author;
-    quoteRandom.innerText = responseData.quote.body;
-    // Replaces the respective DOM text
-    quoteAuthor.replaceWith(quoteAuthor);
-    quoteRandom.replaceWith(quoteRandom);
-  }
-
-
-

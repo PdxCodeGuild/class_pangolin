@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"/>
+    <link rel="stylesheet" href="css/style.css"></link>
+    <title>Calculator</title>
+</head>
+<body>
+    <div id="Calculator">
+        <total v-bind:displaytotal="display" ></total>
+        <oper operator="AC" @operation="operClick($event)"></oper>
+        <oper operator="+/-" @operation="operClick($event)"></oper>
+        <oper operator="%" @operation="operClick($event)"></oper>
+        <oper operator="+" @operation="operClick($event)"></oper>
+        <num number="1" @inputnumber="numClick($event)"></num>
+        <num number="2" @inputnumber="numClick($event)"></num>
+        <num number="3" @inputnumber="numClick($event)"></num>
+        <oper operator="-" @operation="operClick($event)"></oper>
+        <num number="4" @inputnumber="numClick($event)"></num>
+        <num number="5" @inputnumber="numClick($event)"></num>
+        <num number="6" @inputnumber="numClick($event)"></num>
+        <oper operator="/" @operation="operClick($event)"></oper>
+        <num number="7" @inputnumber="numClick($event)"></num>
+        <num number="8" @inputnumber="numClick($event)"></num>
+        <num number="9" @inputnumber="numClick($event)"></num>
+        <oper operator="*" @operation="operClick($event)"></oper>
+        <backspace class="operator" backspace="delete" @backspace="backSpaceClick($event)"></backspace>
+        <num class="zero" number="0" @inputnumber="numClick($event)"></num>
+        <num number="." @inputnumber="numClick($event)"></num>
+        <oper operator="=" @operation="operClick($event)"></oper>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

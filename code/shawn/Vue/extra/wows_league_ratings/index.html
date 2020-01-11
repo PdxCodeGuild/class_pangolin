@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+
+    <!-- Add your styles here! -->
+    <link rel="stylesheet" href="/css/site.css" />
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="league-select">
+            <h3>Select league:</h3>
+            <div class="league-options">
+                <button v-on:click="selectLeague('hurricane')">Hurricane</button>
+                <button v-on:click="selectLeague('typhoon')">Typhoon</button>
+                <button v-on:click="selectLeague('storm')">Storm</button>
+                <button v-on:click="selectLeague('gale')">Gale</button>
+                <button v-on:click="selectLeague('squall')">Squall</button>
+                <label for="season-num">Season:</label>
+                <input type="number" id="season-num" min="1" max="7" v-model="seasonNumber">
+            </div>
+        </div>
+
+        <div class="standings-list">
+            <h3>Season: {{seasonNumber}} {{selectedLeagueText}} </h3>
+            {{data}}
+            <ol>
+                <li v-for="clan in clans">clan.text</li>
+            </ol>
+        </div>
+
+
+    </div>
+
+    <!-- Include Vue from a CDN of your choice, I chose unpkg -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="/js/secrets.js"></script>
+    <script src="/js/site.js"></script>
+</body>
