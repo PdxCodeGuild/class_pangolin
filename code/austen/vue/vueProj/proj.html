@@ -12,12 +12,19 @@
 </header>
 <body>
     <div id="app">
+        <h3>Super bored let me help!</h3>
+        <button @click="getStuff">Random Event finder</button>
         <h3>Enter the type of activity you want to do...</h3>
         <activity @results="info=$event"></activity>
         <ul v-if="info.activity">
             <li>You should {{ info.activity }} </li>
+            <li>Type of activity: {{ info.type }} </li>
             <li v-if="info.price === 0">It is FREE! Go for it.</li>
             <li v-if="info.price > 0">Sadly it Costs money :(</li>
+        </ul>
+        <button @click="getTickets">Get events In Portland</button>
+        <ul>
+            <li v-if="event.length > 0" v-for="item in event" >{{ item.events }}</li>
         </ul>
     </div>
 
