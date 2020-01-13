@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Lab - VueApi</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/css/foundation.min.css">
+      <link href='css/main.css' rel='stylesheet'>
+  </head>
+  <body>
+    <div class="background">
+    <div class="container" id="app">
+      <h2 class="text-center">Happy Days-Good Times Press</h2>
+      <h3 class="text-center">Because news doesn't have to be bad</h3>
+      <section class="callout secondary">
+        <h5 class="text-center">Filter by Category</h5>
+        <form>
+          <div class="row">
+            <div class="large-6 columns">
+              <select v-model="section">
+                <option v-for="section in sections" :value="section">{{ section }}</option>
+              </select>
+            </div>
+            <div class="medium-6 columns">
+                <a @click="getPosts(section)" class="button expanded">Retrieve</a>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <h5 class="text-center uppercase" v-if="!loading">{{ title }}</h5>
+      <div v-if="loading" class="loader">
+        <img src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="loader">
+      </div>
+      <news-list v-if="!loading" :results="results"></news-list>
+    </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script src="js/config.js"></script> -->
+    <script src="js/script.js"></script>
+  </body>
+</html>
