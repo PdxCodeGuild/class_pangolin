@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="favq.css"/>
+    <title>favq</title>
+</head>
+<header>
+    <p>Welcome</p>
+</header>
+<body>
+    <div id="app">
+        <p id="head"><strong>Quote of the day:</strong></p>
+        {{qotd}}
+        <quotes @results="info=$event"></quotes>
+        <ol>
+            <li v-for="item in info">{{item.body}}
+            </li>
+        </ol>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="favq.js"></script>
+</body>
+</html>

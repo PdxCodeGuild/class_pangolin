@@ -4,7 +4,7 @@ So you want to use Django as your backend, but you want more interactivity on yo
 
 ## Import Vue
 
-To use Vue in a Django template, simply make sure the end of your `body` has a `script` tag to load Vue. I recommend writing your Vue app in a `script` tag at the bottom of your template instead of an external JavaScript file. This will make it easy to have your Django app pass data into your Vue app, like the CSRF token or even a context object.
+To use Vue in a Django template, simply make sure the end of your `body` has a `script` tag to load Vue. I recommend writing your Vue app in a `script` tag at the bottom of your template instead of an external JavaScript file. This can make it easy to have your Django app pass data into your Vue app, like the CSRF token or even a context object. Even if you're using Django Rest Framework, it means all your templates are in the same file.
 
 ```django
 {% extends 'base.html' %}
@@ -73,12 +73,12 @@ By default, both Django and Vue templates use `{{ }}` to insert expressions. We 
 
 We now have a working Vue app in a Django template! How to we transfer over the data from our backend? We have two options:
 
-  - Pass data from our Django view to our context and then load our template context into our Vue instance
+  - Pass data from our Django view to our context and then load our template context into our Vue instance (this is clunky and we're not going to do it)
   - If we have an API (this could be manually programmed Django views that return JSON or a full-fledged Django REST Framework app) we can use the `mounted` method on out root Vue component to fetch the data needed to initialize our page. To do this you need to build a REST API, but can then build a more modern and robust application.
   
 Let's look at how to do both!
 
-### Good -- Passing context to Javascript
+### Clunky -- Passing context to Javascript
 
 This requires modifying our Django view a little bit. Our context needs to include JSON data that our JavaScript code can read. Remember, a Django QuerySet is a Python object, JSON is a text string that JavaScript can parse into a data object.
 
@@ -168,12 +168,12 @@ You'll need to send a data object back to your API. Axios makes this easy. Again
     save: {
       let crsf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value;
       axios({
-        url: 'api/grocery_item/save',
+        url: 'api/grocery_item/',
         method: 'post',
         headers: {
           X-CSRFToken: csrf_token
         },
-        data: this.grocery_items
+        data: this.new_grocery_item
       }).then(res => console.log(res))
     },
 ...
@@ -197,4 +197,4 @@ def save(request):
 
 ## Templates vs Vue
 
-Vue and Dango templates fulfill the same role: presentation of data. With this in mind, decide which you are going to use to render your page. For instance, trying to use `{% for %}` and `v-for` in the same template will quickly make things complicated.
+Vue and Django templates fulfill the same role: presentation of data. With this in mind, decide which you are going to use to render your page. For instance, trying to use `{% for %}` and `v-for` in the same template will quickly make things complicated and buggy.

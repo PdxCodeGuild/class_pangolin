@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Calculator with Vue</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <sign class="calculator">
+            <div class="display">{{ current || 0 }}</div>
+            <clear v-on:clear="clear($event)" class="btn"></clear>
+            <sign v-on:sign="sign($clear)" class="btn"></sign>
+            <pct v-on:pct="pct($event)" class="btn"></div>
+            <division v-on:divide="division($event)" class="btn operator"></division>
+            <digit v-on:digit="addToDisplay($event)" digit='7' class="btn"></digit>
+            <digit v-on:digit="addToDisplay($event)" digit='8' class="btn"></digit>
+            <digit v-on:digit="addToDisplay($event)" digit='9' class="btn"></digit>
+            <mult v-on:mult="mult($event)" class="btn operator"></mult>
+            <digit v-on:digit="addToDisplay($event)" digit='4' class="btn"></digit>
+            <digit v-on:digit="addToDisplay($event)" digit='5' class="btn"></digit>
+            <digit v-on:digit="addToDisplay($event)" digit='6' class="btn"></digit>
+            <subtract v-on:sub="subtract($event)" class="btn operator"></subtract>
+            <digit v-on:digit="addToDisplay($event)" digit='1' class="btn"></digit>
+            <digit v-on:digit="addToDisplay($event)" digit='2' class="btn"></digit>
+            <digit v-on:digit="addToDisplay($event)" digit='3' class="btn"></digit>
+            <add v-on:add="add($event)" class="btn operator"></add>
+            <digit v-on:digit="addToDisplay($event)" digit='0' class="btn zero"></digit>
+            <dot v-on:dot="dot($event)" class="btn"></dot>
+            <equal v-on:equal="equal($event)" class="btn operator"></equal>
+
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="main3.js"></script>
+</body>

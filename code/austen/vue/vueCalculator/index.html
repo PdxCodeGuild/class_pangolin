@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="calculator.css"/>
+    <title>Calculator</title>
+</head>
+<body>
+    <div id="app">
+        <input class="readout" v-model="readout"/>
+        <input v-model="current"/><br>
+        <numbers class="calc" num="c" @digit="clrClick($event)"></numbers class="calc">
+        <numbers class="calc" num="-/+" @digit="oprClick($event)"></numbers>
+        <numbers class="calc" num="%" @digit="percentClick($event)"></numbers>
+        <numbers class="calc" num="/" @digit="divideClick($event)"></numbers><br>
+        <numbers class="calc" num=1 @digit="numClick($event)"></numbers>
+        <numbers class="calc" num=2 @digit="numClick($event)"></numbers>
+        <numbers class="calc" num=3 @digit="numClick($event)"></numbers>
+        <numbers class="calc" num="+" @digit="addClick($event)"></numbers><br>
+        <numbers class="calc" num=4 @digit="numClick($event)"></numbers>
+        <numbers class="calc" num=5 @digit="numClick($event)"></numbers>
+        <numbers class="calc" num=6 @digit="numClick($event)"></numbers>
+        <numbers class="calc" num="-" @digit="minusClick($event)"></numbers><br>
+        <numbers class="calc" num=7 @digit="numClick($event)"></numbers>
+        <numbers class="calc" num=8 @digit="numClick($event)"></numbers>
+        <numbers class="calc" num=9 @digit="numClick($event)"></numbers>
+        <numbers class="calc" num=x @digit="timesClick($event)"></numbers><br>
+        <numbers class="calc" num=0 @digit="numClick($event)"></numbers>
+        <numbers class="calc" num= "." @digit="dotClick($event)"></numbers>
+        <numbers class="equal" num= "=" @digit="eqlClick($event)"></numbers>
+        <numbers class="equal" num= "Backspace" @digit="backspaceClick($event)"></numbers>
+       
+        
+       
+        
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="calculator.js"></script>
+</body>
+</html>

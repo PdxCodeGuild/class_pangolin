@@ -1,0 +1,143 @@
+input {
+    font-size: 15pt;
+    height: 44px;
+    background-color: transparent;
+    color: darksalmon;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    border-bottom-color: darksalmon;
+    text-align: left;
+}
+
+.no-outline:focus {
+    outline: none;
+}
+
+::placeholder {
+    color: darksalmon;
+}
+
+body {
+    background-color: bisque;
+    font-family: Arial, Helvetica, sans-serif;
+    color: darksalmon;
+    background-image: url(Greta-Thunberg.jpg);
+    /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+    
+    /* Background image doesn't tile */
+    background-repeat: no-repeat;
+    
+    /* Background image is fixed in the viewport so that it doesn't move when 
+        the content's height is greater than the image's height */
+    background-attachment: fixed;
+    
+    /* This is what makes the background image rescale based
+        on the container's size */
+    background-size: cover;
+    min-height: 100vh;
+    margin: 0;
+}
+
+button {
+    background-color: transparent;
+    color: darksalmon;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-color: darksalmon;
+    border-bottom-style: groove;
+    border-bottom-width: 2px;
+    padding-bottom: 0px;
+    margin-right: 25px;
+}
+
+input {
+    margin-right: 25px;
+}
+
+header {
+    font-size: 30pt;
+    text-align: right;
+    margin-right: 25px;
+    margin-bottom: 0px;
+    padding-top: 5px;
+}
+
+#head {
+    margin-bottom: 30px;
+}
+
+form {
+    text-align: right;
+    color: darksalmon;
+    font-size: 17pt;
+    margin-right: 25;
+}
+
+/* a:link { 
+    text-decoration: none;
+    color: magenta; 
+    text-align: right; */
+/* }  */
+a:visited { 
+    text-decoration: none; 
+}
+a:hover { 
+    text-decoration: underline; 
+}
+a:active { 
+    text-decoration: underline; 
+}
+
+a {
+    color: magenta;
+    text-align: right;
+    text-decoration: none;
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }
+
+h2 {
+    margin: 0;
+}
+
+h3 {
+    text-align: right;
+    padding-right: 25px;
+}
+
+#quote-display {
+    font-family: Arial, Helvetica, sans-serif;
+    color: darksalmon;
+    text-align: right;
+    white-space: normal;
+    padding-left: 35%;
+    text-align: right;
+    margin-right: 25px;
+}
+
+#or {
+    font-family: Arial, Helvetica, sans-serif;
+    color: darksalmon;
+    text-align: right;
+    white-space: normal;
+    padding-left: 35%;
+    text-align: right;
+    margin-right: 25px;
+}
+
+#search-button {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    margin-top: 20px
+}

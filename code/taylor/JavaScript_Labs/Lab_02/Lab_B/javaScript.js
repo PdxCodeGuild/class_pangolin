@@ -7,7 +7,7 @@ let output_div = document.querySelector('#output_div');
 
 submit_btn.onclick = function() {
  
-    userArray.push(parseInt(name_input.value));
+    userArray.push(parseInt(number_inp.value));
     total = userArray.reduce((a, b) => a + b, 0);
     output_div.innerText = total / userArray.length;
 }

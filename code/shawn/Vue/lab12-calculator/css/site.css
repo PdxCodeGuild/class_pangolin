@@ -1,18 +1,25 @@
 #grid-container {
     display: grid;
-    grid-template-columns: 50px 50px 50px 50px 50px;
+    grid-template-columns: 100px 100px 100px 100px;
     grid-template-rows: auto;
     grid-template-areas: 
-    "eqn eqn eqn eqn eqn"
-    "res res res res res"
-    "nu1 nu2 nu3 add exponent"
-    "nu4 nu5 nu6 minus factorial"
-    "nu7 nu8 nu9 multiply sqrt"
-    "dec nu0 neg divide modulus"
-    "clr clr sin cos tan"
-    "bak bak eql eql eql";
-    height: 250px;
+    "eqn eqn eqn eqn"
+    "res res res res"
+    "nu1 nu2 nu3 add"
+    "nu4 nu5 nu6 minus"
+    "nu7 nu8 nu9 multiply"
+    "dec nu0 neg divide"
+    "bak clr percent exponent"
+    "eql eql eql eql";
+    justify-content: center;
+    align-content: center;
+    grid-gap: 6px;
+    height: 520px;
+    width: 520px;
+    border: 3px darkblue solid;
+    margin: 0px auto;
 }
+
 #equation {grid-area: eqn;}
 #answer {grid-area: res;}
 #button-1 {grid-area: nu1;}
@@ -31,16 +38,25 @@
 #button-multiply {grid-area: multiply;}
 #button-divide {grid-area: divide;}
 #button-equal {grid-area: eql;}
-#button-factorial {grid-area: factorial;}
 #button-negate {grid-area: neg;}
 #button-exponent {grid-area: exponent;}
-#button-sqrt {grid-area: sqrt;}
-#button-modulus {grid-area: modulus;}
-#button-sin {grid-area: sin;}
-#button-cos {grid-area: cos;}
-#button-tan {grid-area: tan;}
 #button-clear {grid-area: clr;}
 #button-backspace {grid-area: bak;}
+#button-percent {grid-area: percent;}
+
 p {
     margin: 0;
+    text-align: right;
+    min-height: 60px;
+    font-weight: bold;
+    font-size: larger;
+
+}
+.op-button {
+    background-color: lightblue;
+    min-height: 50px;
+}
+h3 {
+    margin: 0px;
+    font-size: small;
 }
