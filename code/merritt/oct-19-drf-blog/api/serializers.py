@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email')
 
 class PostSerializer(serializers.ModelSerializer):
-    author = UserSerializer(read_only=True)
+    author_detail = UserSerializer(read_only=True, source="author")
     class Meta:
         model = Post
-        fields = ('id', 'author', 'title', 'body', 'created')
+        fields = ('id', 'author', 'author_detail', 'title', 'body', 'created')
