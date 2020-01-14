@@ -8,10 +8,11 @@
 </head>
 <body>
     <div id="app">
-        <playersearch></playersearch>
-        <div>
-            <ul v-for="stat in playerAverages[0]">
-                <li>{{ stat }}</li>
+        <h1>Current NBA Season Averages</h1>
+        <playersearch @give-player="logPlayer"></playersearch>
+        <div v-if="playerAverages.length > 0">
+            <ul v-for="(stat, key) in playerAverages[0]">
+                <li>{{ key + " : " + stat }}</li>
             </ul>
         </div>
 

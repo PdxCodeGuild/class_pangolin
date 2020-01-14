@@ -8,7 +8,7 @@
 
 
 Vue.component('playersearch', {
-  props: ['thing'],
+  props: [],
   data: function() {
     return {
       playername: "", 
@@ -21,7 +21,7 @@ Vue.component('playersearch', {
   <div>
   <form>
   <input type="text" v-model="playername" placeholder="Search for a player"></input>
-  <button id="namesubmit" @click.prevent="$emit('getPlayer')">Search Player</button>
+  <button id="namesubmit" @click.prevent="getPlayer">Search Player</button>
   </form>
   </div>
   `,
@@ -29,16 +29,17 @@ Vue.component('playersearch', {
     getPlayer: function() {
     axios.get(`https://www.balldontlie.io/api/v1/players?search=${this.playername}`) //getting data object for searched player
   .then(res => {
+    console.log(res);
     let playerID = res.data.data[0].id; //assigning his ID to playerID
-    // console.log(playerID);
     return axios //return another axios get call.  
       .get(
         `https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=${playerID}`
       )
-      .then(res => {
-        this.playerAverages.push(res.data.data[0]);
-        console.log(res);
+      .then(response => {
+        // console.log(response);
+        this.playerAverages.push(response.data.data[0]);
         console.log(this.playerAverages[0]);
+        this.$emit('give-player', response.data.data)
       })
   });
   }
@@ -53,6 +54,8 @@ let vm = new Vue({
     playerID: "",
     playerAverages: [],
   },
-  methods: {},
+  methods: { logPlayer(x){
+    console.log(x); this.playerAverages = x;
+  }},
   mounted() {}
 })
