@@ -1,0 +1,33 @@
+.calculator {
+  width: 400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(50px, auto);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 32px;
+  text-align: center;
+}
+
+.display {
+  grid-column: 1 / 5;
+  background-color: #8f38a4;
+}
+
+.zero {
+  grid-column: 1 / 3;
+}
+
+.button {
+  background-color: #eee;
+  border: 1px solid #333;
+}
+
+.operator {
+  background-color: #03a9f4;
+  color: white;
+}
+
+body {
+  user-select: none;
+}

@@ -1,15 +1,45 @@
+Vue.component('digit', ({
+  props: ['number'],
+  template: `<div @click.prevent="$emit('digit', number)">{{ number }}</div>`
+}));
+
+Vue.component('equals', ({
+  template: `<div @click.prevent="$emit('equals')">=</div>`
+}));
+
+Vue.component('operation', ({
+  props: ['operator'],
+  template: `<div class="button" @click.prevent="$emit('operation', operator)">{{ operator }}</div>`
+}));
+
+Vue.component('percent', ({
+  template: `<div class="button" @click="$emit('percent')">%</div>`
+}));
+
+Vue.component('sign', ({
+  template: `<div class="button" @click="$emit('invert-sign')">+/-</div>`
+}));
+
+Vue.component('clear', ({
+  template: `<div class="button" @click="$emit('clear')">C</div>`
+}));
+
+Vue.component('display', ({
+  props: ['displayValue'], 
+  template: `<div class="display">{{ displayValue }}</div>`
+}));
+
 let vm = new Vue({
   el: '#app',
   data: {
-      current: '123',
+      current: '',
       previous: '',
       operator: '',
     },
 
   methods: {
-    append(number) {
-      this.current = `${this.current}${number}`;
-      console.log(number)
+    appendToDisplay: function(number) {
+      this.current = this.current + number
     },
 
     clear() {
@@ -27,7 +57,7 @@ let vm = new Vue({
     },
       
     add() {
-      this.current = this.current + this.previous
+      this.current = parseFloat(this.previous) + parseFloat(this.current)
     },
 
     subtract() {
@@ -66,43 +96,4 @@ let vm = new Vue({
   }
 });
 
-Vue.component('digit', ({
-  prop: ['digit'],
-  template: `<div class="button" @click="$emit(append('digit'))"></div>`
-})),
 
-Vue.component('equals', ({
-  template: '<div class="button" v-on:click="equals()"></div>'
-})),
-
-Vue.component('multiply', ({
-  template: '<div class="button" v-on:click="assignOperator('*')"></div>'
-})),
-
-Vue.component('add', ({
-  template: `<div class="button" v-on:click.prevent="$emit('assignOperator('+')')"></div>`
-})),
-
-Vue.component('subtract', ({
-  template: `<div class="button" v-on:click.prevent="$emit('assignOperator('-')')"></div>`
-})),
-
-Vue.component('divide', ({
-  template: `<div class="button" v-on:click.prevent="$emit('assignOperator('/')')"></div>`
-})),
-
-Vue.component('percent', ({
-  template: `<div class="button" v-on:click.prevent="$emit('assignOperator('%')')"></div>`
-})),
-
-Vue.component('sign', ({
-  template: `<div class="button" v-on:click.prevent="$emit('assignOperator('+/-')')"></div>`
-})),
-
-Vue.component('clear', ({
-  template: `<div class="button" v-on:click.prevent="$emit('clear')"></div>`
-})),
-
-Vue.component('display', ({
-  template: `<div class="display"></div>`
-}))
