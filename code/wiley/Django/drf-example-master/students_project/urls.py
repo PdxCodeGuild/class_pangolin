@@ -24,9 +24,10 @@ router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('user/', include('django.contrib.auth.urls')),
+    path('user/', include('django.contrib.auth.urls')),
     path('user/', include('users.urls')),
-    path('', include(router.urls)),
-    path('', include('students.urls')), #does this need to be router.urls
+    path('api/', include(router.urls)),
+    path('', include('students.urls')), 
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    # path('home/', )
 ]
