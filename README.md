@@ -118,6 +118,12 @@ In all three presentations, you should first explain the development process and
 - what is the future of the project? what features (if any) will you work on next?
 
 ## Odds and Ends
+Django Rest Framework Tutorial - Todo API  
+https://wsvincent.com/django-rest-framework-todo-api-tutorial/  
+
+Official Django REST Framework Tutorial - A Beginners Guide  
+https://wsvincent.com/official-django-rest-framework-tutorial-beginners-guide/  
+
 An Illustrated (and Musical) Guide to Map, Reduce, and Filter Array Methods  
 https://css-tricks.com/an-illustrated-and-musical-guide-to-map-reduce-and-filter-array-methods/
 

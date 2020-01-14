@@ -10,27 +10,26 @@
     <body>
       <div id="app">
         <div class="calculator">
-          <display class="display">{{ current }}</display>
-          <clear class="button operator">C</clear>
-          <sign class="button operator">+/-</sign>
-          <percent class="button operator">%</percent>
-          <divide class="button operator">÷</divide>
-          <digit class="button" @something="append('$event')" digit='7'>7</digit>
-          <digit class="button" digit='8'>8</digit>
-          <digit class="button" digit='9'>9</digit>
-          <multiply class="button operator">x</multiply>
-          <digit class="button" digit='4'>4</digit>
-          <digit class="button" digit='5'>5</digit>
-          <digit class="button" digit='6'>6</digit>
-          <subtract class="button operator">-</subtract>
-          <digit class="button" digit='1'>1</digit>
-          <digit class="button" digit='2'>2</digit>
-          <digit class="button" digit='3'>3</digit>
-          <add class="button operator">+</add> 
-          <digit class="button zero" digit='0'>0</digit>
-          <div class="button
-          " v-on:click="decimal">.</div>
-          <div class="button operator" v-on:click="equal">=</div>
+          <display class="display($event)" :display-value="current"></display>
+          <clear class="button operator" @clear="clear($event)"></clear>
+          <sign class="button operator" @invert-sign="sign($event)"></sign>
+          <percent class="button operator" @percent="percent($event)"></percent>
+          <operation class="button operator" operator="/" @operation="assignOperator($event)"></operation>
+          <digit v-on:digit="appendToDisplay($event)" number='7' class="button"></digit>
+          <digit class="button" number='8' @digit="appendToDisplay($event)"></digit>
+          <digit class="button" number='9' @digit="appendToDisplay($event)"></digit>
+          <operation class="button operator" operator="x" @operation="assignOperator($event)"></operation>
+          <digit class="button" number='4' @digit="appendToDisplay($event)"></digit>
+          <digit class="button" number='5' @digit="appendToDisplay($event)"></digit>
+          <digit class="button" number='6' @digit="appendToDisplay($event)"></digit>
+          <operation class="button operator" operator="-" @operation="assignOperator($event)"></operation>
+          <digit class="button" number='1' @digit="appendToDisplay($event)"></digit>
+          <digit class="button" number='2' @digit="appendToDisplay($event)"></digit>
+          <digit class="button" number='3' @digit="appendToDisplay($event)"></digit>
+          <operation class="button operator" operator="+" @operation="assignOperator($event)"></operation> 
+          <digit class="button zero" number='0' @digit="appendToDisplay($event)"></digit>
+          <digit class="button operator" number='.' @digit="appendToDisplay($event)"></digit>
+          <equals class="button operator" @equals="equals($event)"></equals>
         </div>
       </div>
       <script src="app.js"></script>

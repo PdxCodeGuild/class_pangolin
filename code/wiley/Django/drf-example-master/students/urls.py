@@ -4,9 +4,9 @@ from rest_framework import routers
 
 from . import views
 
-router = routers.DefaultRouter()#test
-router.register(r'users', views.StudentViewSet)#test
-router.register(r'groups', views.GroupViewSet)#test
+# router = routers.DefaultRouter()#test
+# router.register(r'users', views.StudentViewSet)#test
+# router.register(r'groups', views.GroupViewSet)#test
 
 app_name = 'students'
 urlpatterns = [

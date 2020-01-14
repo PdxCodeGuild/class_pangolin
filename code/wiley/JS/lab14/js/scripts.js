@@ -8,6 +8,7 @@
 
 
 Vue.component('playersearch', {
+  props: ['thing'],
   data: function() {
     return {
       playername: "", 
@@ -20,7 +21,7 @@ Vue.component('playersearch', {
   <div>
   <form>
   <input type="text" v-model="playername" placeholder="Search for a player"></input>
-  <button id="namesubmit" @click.prevent="$emit('getPlayer')">Search</button>
+  <button id="namesubmit" @click.prevent="$emit('getPlayer')">Search Player</button>
   </form>
   </div>
   `,

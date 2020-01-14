@@ -5,7 +5,7 @@
     <h1>Welcome, visitor!</h1>
     <p>You are not logged in. <a href="{% url 'login' %}">Login</a> <a href="{% url 'users:signup' %}">Sign Up</a></p>
 {% endif %}
-
+{% csrf_token %}
 <div id="app">
     <div class="student-list-container">
         <div class="student-entry" v-for="student in studentList" :key="student.id">
@@ -32,7 +32,7 @@
 <script>
 let vm = new Vue({
     el: "#app",
-    delimiter: ['[[',']]'],
+    delimiters: ['[[',']]'],
     data: {
         studentList: null,
         csrf_token: null,
@@ -47,27 +47,55 @@ let vm = new Vue({
     },
     methods: {
         getStudentList(){
-            axios.get({
+            axios({
                 method: "GET",
                 url: "/api/v1/students/"
             }).then(response => {
-                console.log(this.studentList = response.data)
-                console.log("axios get response")
+                console.log(`studentlist: ${this.studentList = response.data}`)
             })
         },      
         createStudent(){
-            axios.get({
+            axios({
                 method: "POST",
                 url: "/api/v1/students/",
                 data: this.newStudent,
                 headers: {
                     'X-CSRFToken': this.csrf_token
                 }
-            }).then(response => this.getStudentList())
+            }).then(response => {
+                this.getStudentList()
+                newStudent = {
+                    first_name: null,
+                    last_name: null,
+                    cohort: null,
+                    favorite_topic: null,
+                    favorite_teacher: null,
+                    capstone: null
+                }
+                })
+        },
+        getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
         },
     }, 
     mounted(){
-        this.csrf_token = document.querySelector("input[csrfmiddlewaretoken]")
+        
+        this.csrf_token = this.getCookie('csrftoken');
+        console.log(`crsf: ${this.crsf_token}`)
+        {% comment %} this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]") {% endcomment %}
+        {% comment %} console.log(`csrf: ${this.csrf_token.body}`) {% endcomment %}
         this.getStudentList()
     }
 })
