@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nav Game</title>
+
+    <!-- Style -->
+    <link rel="icon" href="" /> <!-- Favicon -->
+    <link rel="stylesheet" href="css/site.css" /> <!-- Custom CSS -->
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- Google Snap to Road Example -->
+        <div id="map"></div>
+        <div id="bar">
+            <p class="auto"><input type="text" id="autoc" /></p>
+            <button @click="clear">Clear Map</button>
+        </div>
+        <button @click="initialize">load map</button>
+    </div>
+
+
+
+    <!-- JavaScript sources:  -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+    <script src="https://unpkg.com/vue"></script> 
+
+    <!-- Custom JavaScript -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=xxxxxxxxxxxxx&libraries=drawing,places"></script>
+    <script src="js/secrets.js"></script> <!-- API keys -->
+    <script src="js/site.js"></script> <!-- My JavaScript -->
+</body>
+
+</html>

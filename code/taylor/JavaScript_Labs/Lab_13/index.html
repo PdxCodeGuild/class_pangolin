@@ -24,7 +24,7 @@
 </head>
 
 <body id="page-top">
-
+  <div id="app">
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
@@ -64,57 +64,31 @@
   <section id="projects" class="projects-section bg-light">
     <div class="container">
 
-      <!-- Featured Project Row -->
+      <!-- Featured project row -->
       <div class="row align-items-center no-gutters mb-4 mb-lg-5">
         <div class="col-xl-8 col-lg-7">
           <img class="img-fluid mb-3 mb-lg-0" src="img/bg-masthead.jpg" alt="">
-
           <div style="padding-top: 6px;">
-            <button type="" class=" btn btn btn-primary" id="randomSubmit" style="padding: .5rem .5rem .5rem;" onclick="">Random</button>
+   
+            <!-- Random quote submit button-->  
+            <btn_s1 @r1submit="randomQuote($event)"></btn_s1> 
+
           </div>
         </div>
         <div class="col-xl-4 col-lg-5">
           <div id="randomQuotes" class="featured-text text-center text-lg-left">
 
-            <!-- Random Quotes Here-->  
-            <h4 id="quoteAuthor">Little Lizards</h4>
-            <p id="quoteRandom" class="text-black-50 mb-0">Are adorable! They have nothing to do with the qoutes you will find on this site.</p>
+          <!-- Random quote here-->  
+           <rcard></rcard>
+
           </div>
         </div>
        </div>
     </div>
   </section>
 
-  <!-- Signup Section -->
-  <section id="signup" class="signup-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-10 col-lg-8 mx-auto text-center">
-          <h2 class="text-white mb-5">Enter a search term and find your next Quote!</h2>
-          <form class="form-inline d-flex">
-            <input type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputSearch" maxlength="30"  placeholder="Search term here...">
-            <button type="button" class="btn btn-primary mx-auto" id="searchSubmit" onclick="">Qtrieve</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Quotes Section -->
-  <section class="contact-section bg-black">
-    <div class="container">
-      <div id="allQuotes"class="row">
-
-        <!-- Quotes Go Here-->
-
-      </div>
-      <div class="social d-flex justify-content-center">
-        <a href="#" class="mx-2">
-          <i class="fab fa-github"></i>
-        </a>
-      </div>
-    </div>
-  </section>
+    <!-- Searched quotes here -->
+    <scard></scard> 
 
   <!-- Footer -->
   <footer class="bg-black small text-center text-white-50">
@@ -122,12 +96,16 @@
       Copyright &copy; Your Website 2019
     </div>
   </footer>
+  </div>
 
-  <!-- Axios CDN for API Requests -->
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- Vue.js -->
+  <script src="https://unpkg.com/vue"></script>
 
   <!-- JavaScript First Party -->
   <script src="javaScript.js"></script>
+ 
+  <!-- Axios CDN for API Requests -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

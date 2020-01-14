@@ -25,6 +25,11 @@ Vue.component('total',{
     <div class="display">{{displaytotal}}</div>
     `
 })
+Vue.component('backspace',{
+    props:['backspace'],
+    template:
+    `<div class="btn" @click="$emit('backspace', backspace)" > {{ backspace }} </div>`
+})
 
 
 let vm = new Vue({
@@ -39,19 +44,21 @@ let vm = new Vue({
         display: 0,}
     },
     methods: {
+        backSpaceClick: function(num){
+            this.number = this.number.substring(0, this.number.length -1)
+            this.display = this.number
+            this.current = this.number
+        },
         numClick: function(num){
-            //check for multiple . not currently in operation
-            // if (this.number[this.number.length-1] === "."){
-                //     this.number.slice(-1)
-                //     console.log("testing splice  " + this.number)
-                // }
-                // this.current = this.number
+            // if (num === '.'){
+            //     if (this.number.indexOf('.')===-1){
+            //     this.number 
+            //     console.log("testing this shit")
+            // }}
                 this.number += num 
                 this.current = this.number
                 this.display = this.current
-                //concatonates numbers to allow large numbers ie: 37689
-                // this.current = this.number //updates the current from this.number to show it on the display
-                // console.log("Num Click Console Test = ", this.number +" <-number total -> "+  this.total)
+            
             },
             operClick: function(oper){
                 this.operator = oper; //gets the operator payload
@@ -123,6 +130,7 @@ let vm = new Vue({
                 console.log(this.number + "  is this right?")
                 this.number = '';
                 this.operation = oper
+                this.display+=this.operation
                 console.log("Num Click Console Test = ", this.current +" <-current number -> "+  this.number);
                 // this.number = "";}
             }}
@@ -136,25 +144,3 @@ let vm = new Vue({
             console.log("ITS ALIVE!")
         }
     });
-    //     number: 0,
-    //     operator: "",
-    //     total: 0,
-    //     operationArray: []}
-    // },
-    // methods: {
-    //     numClick: function(num){
-    //         this.number += num
-    //     },
-    //     operClick: function(oper){
-    //         this.operator = oper;
-    //         if (this.operator === "AC"){
-    //             this.operationArray = [],
-    //             this.number = 0
-    //             console.log(this.operationArray)
-    //         }
-    //         else if (this.operator === "="){
-    //             this.operationArray.push(this.number)
-    //             //parse through operationArray and complete operations.
-    //             this.total = eval(this.operationArray)
-    //             console.log(this.total)
-    //             // this.operationArray = this.operationArray.map(x => parseFloat(x))

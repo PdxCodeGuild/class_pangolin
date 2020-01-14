@@ -1,0 +1,44 @@
+html {
+    background: url(static/newsprint.png) no-repeat left fixed;
+    background-size: 25%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: black;
+    /* -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover; */
+}
+
+h3 {
+    font-style: italic;
+}
+
+.container {
+    padding: 20px 0
+}
+
+.column:last-child:not(:first-child),
+.column:last-child:not(:first-child) {
+    float: left;
+}
+
+.main_heading {
+    margin: 10px 0 30px;
+}
+
+.callout {
+    margin-bottom: 40px;
+}
+
+select {
+    text-transform: capitalize;
+}
+
+.loader {
+    text-align: center;
+    padding: 40px;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}

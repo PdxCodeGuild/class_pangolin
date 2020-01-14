@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ToDo with a Vue</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div id="app">
+        <add-item v-on:add="addExercise($event)">Slot Dragon</add-item>
+        <ul>
+            <exercise-item 
+            v-for="(exercise, index) in incompletedItems" 
+            v-bind:key="exercise.id" 
+            v-bind:exercise="exercise"
+            v-on:delete-exercise="deleteExercise($event)"
+            ></exercise-item>
+        </ul>
+        <ul>
+            <exercise-item 
+            v-for="(exercise, index) in completedItems" 
+            v-bind:key="exercise.id" 
+            v-bind:exercise="exercise"
+            v-on:delete-exercise="deleteExercise($event)"
+            ></exercise-item>
+        </ul>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+    <script src='main2.js'></script>
+</body>
+
+</html>
