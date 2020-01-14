@@ -14,7 +14,7 @@ Build a Vue frontend for our students! I already provided you with a `home.html`
 
 Your frontend should display a list of students upon loading. It should also offer the ability to create new students in the database.
 
-## Part 3 (Optional)
+## Part 3 (Optional, but good capstone practice)
 
 Add student update and delete functionality to your Vue application.
 

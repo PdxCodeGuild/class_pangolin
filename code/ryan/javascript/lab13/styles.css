@@ -1,0 +1,38 @@
+html {
+    scroll-behavior: smooth;
+}
+
+#carousel-height {
+    min-height: 250px;
+}
+
+.background-img {
+    background: linear-gradient(
+        rgba(0,0,0,.2),
+        rgba(0,0,0,.2)
+    ),
+    url(boats.jpg)center/cover no-repeat fixed;
+}
+
+.color {
+    background: rgba(255, 255, 255, .5);
+}
+
+.title-underline {
+    width: 250px;
+    height: 3px;
+    margin: 0 auto;
+  }
+
+  #app {
+      overflow: auto;
+  }
+
+  input {
+      opacity: .7;
+  }
+
+  
+  
+
+  
