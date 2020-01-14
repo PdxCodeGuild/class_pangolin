@@ -18,7 +18,11 @@ New Years Day -- January 1st, 2019
     
 - Al Burns, TA
     - al.burns.email@gmail.com
-    
+
+## Capstone Dates:
+
+Capstone proposal due: first thing Thursday, Jan 16th  
+Presentation Day: Wednesday, Feb 5th
 
 ## JavaScript Labs Assigned:
 
@@ -31,6 +35,9 @@ Lab 08 Bouncing Ball
 Lab 09 FavQs  
 Lab 11 Vue Todos  
 Lab 12 Calculator  
+Lab 13 Vue FavQs  
+Lab 14 Any API in Vue -- mini-presentations first thing Wed 1/15  
+(Django Lab 06 DRF/Vue)  
 
 #### Optional JavaScript Labs
 
@@ -44,6 +51,7 @@ Lab 10 Any API
 Lab 01 Grocery List  
 Lab 02 URL Shortener  
 Lab 03 Chirp  
+Lab 06 DRF/Vue  
 
 #### Optional Django Labs
 
