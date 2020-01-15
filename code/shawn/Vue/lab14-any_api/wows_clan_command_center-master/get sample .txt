@@ -1,0 +1,23 @@
+/profiles/openid/return/?
+openid.assoc_handle={HMAC-SHA1}{5df9ec76}{DLo6Mw==}
+&openid.claimed_id=https://na.wargaming.net/id/1017907676-manbear67/
+&openid.identity=https://na.wargaming.net/id/1017907676-manbear67/
+&openid.mode=id_res
+&openid.ns=http://specs.openid.net/auth/2.0
+&openid.ns.pape=http://specs.openid.net/extensions/pape/1.0
+&openid.op_endpoint=https://na.wargaming.net/id/openid/
+&openid.pape.auth_level.nist=0
+&openid.pape.auth_level.ns.nist=http://csrc.nist.gov/publications/nistpubs/800-63/SP800-63V1_0_2.pdf
+&openid.pape.auth_policies=http://schemas.openid.net/pape/policies/2007/06/none
+&openid.response_nonce=2019-12-18T09:08:06ZyfhizJ
+&openid.return_to=http://localhost:8000/profiles/openid/return/
+&openid.sig=QFwEy0pd86PcMWr3FDrVH1RAbNI=
+&openid.signed=assoc_handle,claimed_id,identity,mode,ns,ns.pape,op_endpoint,pape.auth_level.nist,pape.auth_level.ns.nist,pape.auth_policies,response_nonce,return_to,signed
+ HTTP/1.1" 302 0
+[18/Dec/2019 01:08:07] "GET /profiles/openid/login_success/manbear67/ HTTP/1.1
+
+
+
+no access token here?  look for cookies instead?
+
+from API reference:

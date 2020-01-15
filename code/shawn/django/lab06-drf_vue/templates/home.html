@@ -1,0 +1,102 @@
+{% if user.is_authenticated %}
+    <h1>Welcome {{ user.username }}!</h1>
+    <p><a href="{% url 'logout' %}">Logout</a><p>
+{% else %}
+    <h1>Welcome, visitor!</h1>
+    <p>You are not logged in. <a href="{% url 'login' %}">Login</a> <a href="{% url 'users:signup' %}">Sign Up</a></p>
+{% endif %}
+{% csrf_token %}
+<div id="app">
+    <div class="student-list-container">
+        <div class="student-entry" v-for="student in studentList" :key="student.id">
+            <h3>[[ student.first_name ]] [[ student.last_name ]]</h3>
+            <p>Cohort: [[ student.cohort ]]</p>
+            <p>Favorite Topic: [[ student.favorite_topic ]]</p>
+            <p>Favorite Teacher: [[ student.favorite_teacher ]]</p>
+            <p><a :href="student.capstone">capstone...</a></p>
+        </div>
+    </div>
+    <div class="student-input-container">
+        <input type="text" placeholder="First name..." v-model="newStudent.first_name">
+        <input type="text" placeholder="Last name..." v-model="newStudent.last_name">
+        <input type="text" placeholder="Cohort..." v-model="newStudent.cohort">
+        <input type="text" placeholder="Favorite topic..." v-model="newStudent.favorite_topic">
+        <input type="text" placeholder="Favorite teacher..." v-model="newStudent.favorite_teacher">
+        <input type="text" placeholder="Capstone URL..." v-model="newStudent.capstone">
+        <button @click="createStudent">Create</button>
+    </div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>           <!-- Axios -->
+<script src="https://unpkg.com/vue"></script>                               <!-- Vue -->
+<script>
+let vm = new Vue({
+    el: "#app",
+    delimiters: ['[[',']]'],
+    data: {
+        studentList: null,
+        csrf_token: null,
+        newStudent: {
+            first_name: null,
+            last_name: null,
+            cohort: null,
+            favorite_topic: null,
+            favorite_teacher: null,
+            capstone: null
+        }
+    },
+    methods: {
+        getStudentList(){
+            axios({
+                method: "GET",
+                url: "/api/v1/students/"
+            }).then(response => {
+                console.log(`studentlist: ${this.studentList = response.data}`)
+            })
+        },      
+        createStudent(){
+            axios({
+                method: "POST",
+                url: "/api/v1/students/",
+                data: this.newStudent,
+                headers: {
+                    'X-CSRFToken': this.csrf_token
+                }
+            }).then(response => {
+                this.getStudentList()
+                newStudent = {
+                    first_name: null,
+                    last_name: null,
+                    cohort: null,
+                    favorite_topic: null,
+                    favorite_teacher: null,
+                    capstone: null
+                }
+                })
+        },
+        getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        },
+    }, 
+    mounted(){
+        
+        this.csrf_token = this.getCookie('csrftoken');
+        console.log(`crsf: ${this.crsf_token}`)
+        {% comment %} this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]") {% endcomment %}
+        {% comment %} console.log(`csrf: ${this.csrf_token.body}`) {% endcomment %}
+        this.getStudentList()
+    }
+})
+</script>
