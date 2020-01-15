@@ -20,9 +20,9 @@ let vm = new Vue({
         }})
         .then( (response) => {
         console.log(response.data)
-        this.question = response.data[0].question;
-        this.answer = response.data[0].answer;
-        this.category = response.data[0].category.title;
+        this.question = response.data[0].question.toUpperCase();
+        this.answer = response.data[0].answer.toUpperCase();
+        this.category = response.data[0].category.title.toUpperCase();
         console.log(response.data)
         })
         .catch(function (error) {
