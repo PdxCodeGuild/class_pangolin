@@ -1,0 +1,97 @@
+{% if user.is_authenticated %}
+<h1>Welcome {{ user.username }}!</h1>
+<p><a href="{% url 'logout' %}">Logout</a><p>
+{% else %}
+<h1>Welcome, visitor!</h1>
+<p>You are not logged in. <a href="{% url 'login' %}">Login</a> <a href="{% url 'users:signup' %}">Sign Up</a></p>
+{% endif %}
+
+{% csrf_token %}
+<div id="app">
+    <div>
+        <article v-for="student in students" :key="student.id">
+            <h2>Student:</h2>
+            <h3>First Name: [[ student.first_name ]]</h3>
+            <h4>Last Name: [[ student.last_name ]]</h4>
+            <h5>Favorite Teacher: [[ student.favorite_teacher ]]</h5>
+        </article>
+    </div>
+    <div>
+        <select v-model="newStudent.author">
+            <option v-for="user in users" :value="user.id">[[ user.username ]]</option>
+        </select><br>
+        <input type="text" v-model="newStudent.first_name" placeholder="first name"><br>
+        <textarea v-model="newStudent.last_name" placeholder="last name"></textarea><br>
+        <textarea v-model="newStudent.cohort" placeholder="cohort"></textarea><br>
+        <textarea v-model="newStudent.favorite_topic" placeholder="favorite topic"></textarea><br>
+        <textarea v-model="newStudent.favorite_teacher" placeholder="favorite teacher"></textarea><br>
+        <textarea v-model="newStudent.capstone" placeholder="capstone"></textarea><br>
+        <button @click="postStudent">Submit</button>
+    </div>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        delimiters: ['[[',']]'],
+        data: {
+            csrf_token: "",
+            students: [],
+            newStudent: {
+                "first_name": "",
+                "last_name": "",
+                "cohort": "",
+                "favorite_topic": "",
+                "favorite_teacher": "",
+                "capstone": "",
+            },
+            users: [],
+        },
+        methods: {
+            getStudents() {
+                axios({
+                    method: "get",
+                    url:"/api/students/"
+                }).then(response => this.students = response.data);
+            },
+            getUserList: function() {
+                axios({
+                    method: "get",
+                    url: "/api/users/"
+                }).then(response => this.users = response.data)
+            },
+            postStudent() {
+                axios({
+                    method: "post",
+                    url: "/api/student/",
+                    data: this.newStudent,
+                    headers: {
+                        "X-CRSFToken": this.csrf_token
+                    }
+                }).then(response=>{
+                    this.newStudent = {
+                        "first_name": "",
+                        "last_name": "",
+                        "cohort": "",
+                        "favorite_topic": "",
+                        "favorite_teacher": "",
+                        "capstone": "",
+                    }
+                    this.getStudents()
+                }).catch(error => {
+                    let message = error.response.statusText;
+                    for(let key in error.response.data) {
+                        message += `\n${key}: ${error.response.data[key]}`;
+                    };
+                    alert(message)
+                });
+            }
+        },
+        mounted: function () {
+            this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value;
+            this.getStudents();
+            this.getUserList();
+        }
+    });
+</script>
