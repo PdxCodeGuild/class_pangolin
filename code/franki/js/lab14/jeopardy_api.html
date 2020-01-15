@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jeopardy!</title>
+    <!-- Add your styles here! -->
+    <link rel="stylesheet" href="jeopardy_api.css">
+    <link href="https://fonts.googleapis.com/css?family=Fjord+One&display=swap" rel="stylesheet"> 
+</head>
+<body>
+  <header>
+    <img src="jeopardy_logo.jpg">
+  </header>
+    <div id="app">
+      <!--<input v-model="searchTerm" type="text" placeholder="Search"/>-->
+      <div class="main">
+        <div class="item">
+          <p>Category:</p> 
+          <p>{{ category }}</p>
+        </div>
+        <div class="item">
+          <p>Question:</p>
+          <p>{{ question }}</p>
+        </div>
+      </div>
+      <div class="footer">
+      <button @click="showAnswer">Show Answer</button><button @click="getRandomQuestion">Random</button>
+      <p v-show="clicked">{{ answer }}</p>
+      </div>
+    </div>
+
+    <!-- Include Vue from a CDN of your choice, I chose unpkg -->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="jeopardy_api.js"></script>
+</body>
+</html>
