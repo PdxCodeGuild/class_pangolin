@@ -1,0 +1,113 @@
+/* Include the padding and border in an element's total width and height */
+* {
+    box-sizing: border-box;
+  }
+  
+background-color {
+    background: rgba(255, 255, 255, .5);
+}
+
+  /* Style the list items */
+  ul {
+    cursor: pointer;
+    padding: 12px 8px 12px 40px;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+  
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Darker background-color on hover */
+  ul:hover {
+    background: #ddd;
+  }
+  
+  /* Style the clear button */
+  .clear {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+    user-select: none;
+  }
+  
+  .close:hover {
+    background-color: #0f4c81;
+    color: white;
+  }
+  
+  /* Style the header */
+  .header {
+    background-color: #0f4c81;
+    padding: 30px 40px;
+    color: white;
+    text-align: center;
+  }
+  
+  /* Clear floats after the header */
+  .header:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the input */
+  input {
+    margin: 0;
+    border: 10px;
+    border-radius: 10px;
+    width: 25%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+    border-color: red;
+    border-width:1px;
+    border-style:inset;
+  }
+  
+  /* Style the "Add" button */
+  .btn {
+    padding: 10px;
+    width: 33%;
+    background: #d9d9d9;
+    color: #555;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 10px;
+    border-style:inset;
+    user-select: none;
+  }
+  
+  .btn:hover {
+    background-color: #bbb;
+  }
+
+  .btn-search{
+    padding: 10px;
+    width: 25%;
+    background: #d9d9d9;
+    color: #555;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 10px;
+    border-style:inset;
+    user-select: none;
+  }
+
+  .image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }

@@ -31,7 +31,7 @@ new2 = int(new1.pop())
 print (new2)
 
 if (last_num == new2):
-    print ('valid')
+    print ('Your card is valid')
 else:
-    print ('invalid')
+    print ('Your card is invalid')
 

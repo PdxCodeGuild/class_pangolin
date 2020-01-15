@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block html_content %}
+
+
+{% if user.is_authenticated %}
+<p style="text-align: center; margin: 12px;"><a href="{% url 'data:update_user_clan' 'NA' %}">Update clan info</a></p>
+<div id="app">
+    <div id="clan-roster">
+        <h3> [{{ request.user.player.player_clan.clan_tag }}] {{ request.user.player.player_clan.clan_name }} <small>roster:</small> </h3><hr>
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Clan Rank</th>
+                    <th scope="col">ID Number</th>
+                    <th scope="col">Date Joined</th>
+                </tr>
+            </thead>
+                <tr v-for="player in clanRoster" v-bind:key="player.id">
+                    <td><strong>[[ player.player_nickname ]] </strong></td>
+                    <td>[[ player.player_clan_role ]]</td>
+                    <td>[[ player.player_wgid ]]</td>
+                    <td>[[ player.player_joined_at | moment ]] </td>
+                </tr>
+        </table> 
+    </div>
+</div>
+
+{% else %}
+<h2 style="text-align:center; margin: 60px 40vw;">Please login</h2>
+{% endif %}
+
+{% endblock html_content %}
+
+{% block js_content %}
+
+// Vue app templates
+let vm = new Vue({
+    el: "#app",
+    delimiters: ['[[',']]'],
+    data: {
+        playerList: [],
+        clanRoster: [],
+    },
+    methods: {
+        getPlayerList(){
+            axios({
+                method: 'get',
+                url: '/api/v1/players/',
+
+            }).then(response => this.playerList = response)
+        },
+        getClanRoster(){
+            axios({
+                method: 'get',
+                url: '/api/v1/user_clan_roster/',
+            }).then(response => this.clanRoster = response)
+        },
+    },
+    filters: {
+        moment: function(date){
+            console.log(`converting date ${date}`)
+            return moment(date*1000).format('MMM Do YYYY')
+        }
+    }, 
+    mounted(){
+       this.getPlayerList();
+       this.getClanRoster();
+    }
+});
+
+
+{% endblock js_content %}

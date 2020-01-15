@@ -1,14 +1,13 @@
-"use strict";
-
 const NYTBaseUrl = "https://api.nytimes.com/svc/topstories/v2/";
 const ApiKey = "11MjPRexeQJ64gLOIbTSjJCGqgeJtTio";
 // const ApiKey = config.KEY;
-const SECTIONS = "home, arts, books, food, movies, science, theater, travel, upshot"; // From NYTimes
+const SECTIONS = "home, arts, books, food, movies, science, theater, travel, upshot";
 
 function buildUrl(url) {
     return NYTBaseUrl + url + ".json?api-key=" + ApiKey;
 }
 
+// Pass info to browser
 Vue.component('news-list', {
     props: ['results'],
     template: `
@@ -32,7 +31,9 @@ Vue.component('news-list', {
         processedPosts() {
             let posts = this.results;
 
-            // Add image_url attribute
+            // Loop through API results, search multimedia array of each result; find 
+            // correct media type and format. Add image_url attribute
+            // If n/a, use default placeholder image.
             posts.map(post => {
                 let imgObj = post.multimedia.find(media => media.format === "superJumbo");
                 post.image_url = imgObj ? imgObj.url : "http://placehold.it/300x200?text=N/A";
@@ -54,7 +55,7 @@ const vm = new Vue({
     data: {
         results: [],
         sections: SECTIONS.split(', '), // create an array of the sections
-        section: 'science', // set default section to 'home'
+        section: 'science', // set default section to 'science'
         // loading: true,
         // title: ''
     },

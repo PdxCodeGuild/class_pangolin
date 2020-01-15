@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Calculator</title>
+        <link href="style.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
+        <script src="https://unpkg.com/vue"></script>
+    </head>
+    <body>
+      <div id="app">
+        <div class="calculator">
+          <display class="display($event)" :display-value="current"></display>
+          <clear class="button operator" @clear="clear($event)"></clear>
+          <sign class="button operator" @invert-sign="sign($event)"></sign>
+          <percent class="button operator" @percent="percent($event)"></percent>
+          <operation class="button operator" operator="/" @operation="assignOperator($event)"></operation>
+          <digit v-on:digit="appendToDisplay($event)" number='7' class="button"></digit>
+          <digit class="button" number='8' @digit="appendToDisplay($event)"></digit>
+          <digit class="button" number='9' @digit="appendToDisplay($event)"></digit>
+          <operation class="button operator" operator="x" @operation="assignOperator($event)"></operation>
+          <digit class="button" number='4' @digit="appendToDisplay($event)"></digit>
+          <digit class="button" number='5' @digit="appendToDisplay($event)"></digit>
+          <digit class="button" number='6' @digit="appendToDisplay($event)"></digit>
+          <operation class="button operator" operator="-" @operation="assignOperator($event)"></operation>
+          <digit class="button" number='1' @digit="appendToDisplay($event)"></digit>
+          <digit class="button" number='2' @digit="appendToDisplay($event)"></digit>
+          <digit class="button" number='3' @digit="appendToDisplay($event)"></digit>
+          <operation class="button operator" operator="+" @operation="assignOperator($event)"></operation> 
+          <digit class="button zero" number='0' @digit="appendToDisplay($event)"></digit>
+          <digit class="button operator" number='.' @digit="appendToDisplay($event)"></digit>
+          <equals class="button operator" @equals="equals($event)"></equals>
+        </div>
+      </div>
+      <script src="app.js"></script>
+    </body>
+</html>
