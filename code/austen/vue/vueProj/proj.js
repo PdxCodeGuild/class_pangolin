@@ -50,17 +50,6 @@ let vm = new Vue ({
         }
     },
     methods:{
-        getStuff: function() {
-            axios({
-                method: "get",
-                url: "https://www.boredapi.com/api/activity/",
-            })
-            .then(response => {(this.info = response.data);
-            parseFloat(this.info.price),
-            console.log(this.info);
-            console.log(this.info.price);
-        })
-        },
         getTickets: function () {
             axios({
                 method: "get",
