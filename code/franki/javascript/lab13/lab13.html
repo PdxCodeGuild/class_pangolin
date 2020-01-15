@@ -50,10 +50,10 @@
       },
       methods: {
         lookupQuotes: function() {
-          axios ({
-            url: "https://favqs.com/api/quotes/",
-        
-            method: "GET",
+          axios.get('https://favqs.com/api/quotes/' + searchTerm)
+            .then(function(response) {
+              this.
+            })
             headers: {
             Authorization: 'Token token="bd63119890a30d433148e0c9297b6c54"'
         },
