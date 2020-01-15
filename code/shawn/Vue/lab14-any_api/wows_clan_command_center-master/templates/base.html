@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WoWs CCC</title>
+
+    {% comment %} Style {% endcomment %}
+    <link rel="icon" href="{% static 'img\favicon.ico' %}"/>                {% comment %} Favicon       {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}" />   {% comment %} Bootstrap CSS    {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css\site.css' %}" />            {% comment %} Custom CSS    {% endcomment %}
+
+</head>
+
+<body>
+
+    {% comment %} Nav Bar {% endcomment %}
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="{% url 'clan_battles:dashboard' %}">WoWs Clan Command Center</a>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="navbar-nav mr-auto">
+
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'clan_battles:dashboard' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'clan:dashboard' %}">Clan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'data:settings' %}">Settings</a>
+                </li>
+                {% endif %}
+
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'wowsopenid:logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><strong>[{{ request.user.player.player_clan.clan_tag }}]</strong> {{request.user.username}}</a>
+                    </li>
+
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'wowsopenid:login' %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    {% comment %} Put content from other templates here {% endcomment %}
+    {% block html_content %}
+
+
+
+
+    {% endblock html_content %}
+
+    {% comment %} JS sources:  {% endcomment %}
+    <script src="{% static 'js\jquery-3.4.1.min.js' %}"></script>               {% comment %} jQuery            {% endcomment %}
+    <script src="{% static 'js\bootstrap.bundle.min.js' %}"></script>           {% comment %} Bootstrap/Popper  {% endcomment %}
+    <script src="{% static 'js\axios.min.js' %}"></script>                      {% comment %} Axios             {% endcomment %}
+    <script src="{% static 'js\vue.js' %}"></script>                            {% comment %} Vue               {% endcomment %}
+    <script src="{% static 'js\moment.js' %}"></script>                            {% comment %} Vue               {% endcomment %}
+    <script src="{% static 'js\site.js' %}"></script>                           {% comment %} External JSpt     {% endcomment %}
+    
+    {% comment %} In-template Vue apps {% endcomment %}
+    
+        {% block js_content %}
+        {% endblock js_content %}
+                              
+    
+</body>
+
+</html>
