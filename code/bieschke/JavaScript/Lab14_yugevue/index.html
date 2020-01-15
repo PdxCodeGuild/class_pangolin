@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Yuge with a Vue</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styling.css">
+
+<div class="header">
+    <h1>Let's get YUGE!</h1>
+</div>
+</head>
+
+<body>
+    
+    <div id="app">
+        <rand-ex v-on:rand-ex="randEx($event)" class="btn"></rand-ex>
+        <arms-button v-on:arms-button="armsButton($event)" class="btn"></arms-button>
+        <clear v-on:clear="clear($event)" class="btn"></clear>
+        
+        <input type="text" id="input" placeholder="Exercise of Choice"></input>
+        <search-button v-on:search-button="searchButton($event)" class="btn-search"></search-button>
+        <input type="text" id="input2" placeholder="Muscle of choice"></input>
+        <search-button2 v-on:search-button2="searchButton2($event)" class="btn-search"></search-button2>
+        
+        <div class="results" v-show="workout.name">
+            <ul>
+                {{ workout.name }} -- {{ workout.description }}
+            </ul>
+        </div>
+        <div class="looper" v-for="workout in database">
+            <br>
+            {{ workout.name }} -- {{ workout.description }}
+        </div>
+
+
+
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+    <img src="Hella Weights.jpg" alt="YUGE" class="image"/>
+
+</body>
+
+</html>
