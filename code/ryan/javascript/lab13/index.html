@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>FavQs</title>
+  </head>
+  <body class="bg-dark">
+    <!-- container -->
+    <div id="app" class="container vh-100 background-img">
+      <!-- row -->
+        <div class="row text-center">
+          <!-- col header -->
+          <div class="col-sm-12 text-light">
+            <div class="title-underline bg-primary mt-5"></div>
+            <h1 class="display-1 mt-4 mb-5">Quote Search</h1>
+            <div class="title-underline bg-primary my-5"></div>
+          </div> 
+              <!-- carousel -->
+          <section id="carousel-height" class="col-sm-12 color mb-5">  
+              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active pt-5">
+                    <h4>"Search for some quotes, or don't."</h4>
+                    <h5 class="text mt-5"><em>Ryan Collins</em></h5>
+                  </div>
+                  <div class="carousel-item pt-5" v-for="quote in quotes">
+                    <h4>"{{ quote.body }}"</h4>
+                    <h5 class="text mt-5"><em>{{ quote.author }}</em></h5>
+                  </div>
+                </div>
+                </div>
+              </div>
+          </section>
+          <!-- end carousel -->
+          <!-- inputs/search button -->
+        <div class="row">
+          <div class="col-md-6 input-group text-muted input-group-lg my-3">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <!-- first radio -->
+                <input type="radio" aria-label="Radio button for following text input" id="radio1" name="search" checked @click="checkWord">
+              </div>
+            </div>
+            <!-- text input 1-->
+            <input type="text" v-model="searchWord" class="form-control" aria-label="Text input with radio button" @click="checkWord" placeholder="Search by keyword.  Happy, sad, etc..." id="text1">
+          </div>
+          <div class="col-md-6 input-group text-muted my-3 input-group-lg">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <!-- second radio -->
+                <input type="radio" aria-label="Radio button for following text input" name="search" id="radio2" @click="checkAuthor">
+              </div>
+            </div>
+            <!-- text input 2-->
+            <input type="text" @click="checkAuthor" class="form-control" aria-label="Text input with radio button" placeholder="Search by author name" id="text2" v-model="searchAuthor">
+          </div>
+          <!-- button -->
+          <div class="col-8 mx-auto my-5">
+            <a href="#">
+              <button @click="checkClick" class="btn btn-outline-light btn-block btn-lg">Search!</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="script.js"></script>
+    <!-- axios -->
+    <!-- vue -->
+    
+    
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
