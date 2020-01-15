@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blog</title>
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="article-container">
+            <article v-for="post in posts" :key="post.id">
+                <h2>[[ post.title ]]</h2>
+                <h3>[[ post.author_name.username ]]</h3>
+                <p>[[ post.body ]]</p>
+                <hr>
+            </article>
+        </div>
+        <div>
+            <select v-model="newPost.author">
+                <option v-for="user in userList" :value="user.id">[[user.username]]</option>
+            </select><br>
+            <input type="text" v-model="newPost.title" placeholder="title..."><br>
+            <textarea v-model="newPost.body" placeholder="body..."></textarea>
+            <button @click="postPost">Post</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        // Vue app
+        let vm = new Vue({
+            el: "#app",
+            delimiters: ['[[', ']]'],
+            data: {
+                csrf_token: null,
+                posts: null,
+                newPost: {
+                    author: null,
+                    title: null,
+                    body: null
+                },
+                userList: [],
+                selectedUser: null,
+            },
+            methods: {
+                getPosts: function () {
+                    axios({
+                        method: 'GET',
+                        url: '/api/v1/',
+                    }).then(response => this.posts = response.data)
+                },
+                getUserList: function(){
+                    axios({
+                        method: 'GET',
+                        url: '/api/v1/users/',
+                    }).then(response => this.userList = response.data)
+                    this.newPost['author'] = this.userList[0];
+                },
+                postPost: function () {
+                    axios({
+                        method: 'POST',
+                        url: '/api/v1/',
+                        data: this.newPost,
+                        headers: {
+                            'X-CSRFToken': this.csrf_token
+                        }
+                    }).then(response => {
+                        this.getPosts();
+                        this.newPost = {
+                            author: null,
+                            title: null,
+                            body: null
+                        }
+                    }).catch(error => {
+                        let message = error.response.statusText;
+                        for (let key in error.response.data){
+                            message += `\n ${key}: ${error.response.data[key]}`
+                        }
+                        alert(message)
+                    })
+                }
+            },
+            computed: {
+
+            },
+            mounted() {
+                this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]")
+                this.getPosts()
+                this.getUserList()
+            }
+        });
+    </script>
+</body>

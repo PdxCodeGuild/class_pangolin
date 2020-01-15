@@ -1,0 +1,97 @@
+{% if user.is_authenticated %}
+<h1>Welcome {{ user.username }}!</h1>
+<p><a href="{% url 'logout' %}">Logout</a></p>
+<p>
+  {% csrf_token %}
+</p>
+
+<div id="app">
+
+    <div id="studentListContainer">
+        <h2> Current Student :</h2>
+        <ul v-for="student in students" id="studentsUL">
+            <li> [[student.first_name]] [[student.last_name]]</li>
+        </ul> 
+    </div>
+    <p>Enroll a new student!</p>
+    <form>
+        <input type="text" v-model="newStudent.first_name" placeholder="first name">
+        <input type="text" v-model="newStudent.last_name" placeholder="last name">
+        <input type="text" v-model="newStudent.cohort" placeholder="cohort">
+        <input type="text" v-model="newStudent.favorite_teacher" placeholder="favorite teacher">
+        <input type="text" v-model="newStudent.favorite_topic" placeholder="favorite topic">
+        <input type="text" v-model="newStudent.capstone" placeholder="capstone url">
+        <button @click.prevent="createStudent">Submit</button>
+    </form>
+
+
+
+</div>
+{% else %}
+<h1>Welcome, visitor!</h1>
+<p>
+  You are not logged in. <a href="{% url 'login' %}">Login</a>
+  <a href="{% url 'users:signup' %}">Sign Up</a>
+</p>
+{% endif %}
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script>
+  let app = new Vue({
+      el : "#app",
+      delimiters: ['[[',']]'],
+      data: {
+          csrf_token: "",
+          students: [],
+          newStudent: {
+              first_name: "",
+              last_name: "",
+              cohort: "",
+              favorite_topic: "",
+              favorite_teacher: "",
+              capstone: "",
+          },
+      },
+      methods: {
+          getStudents() {
+              axios({
+                  method: "get",
+                  url: "/api/students/",
+              }).then(res => {this.students = res.data.results; console.log(this.students)}) //check response format, might be buggy
+          },
+          createStudent() {
+              axios({
+                  method: "post",
+                  url: "/api/students/",
+                  data: this.newStudent, //need to make an input field with the v-model="enrollStudent"?
+                  headers: {
+                      "X-CSRFToken": this.csrf_token
+                  }
+              }).then(res => {
+                  this.newStudent = {
+                      "first_name": "",
+                      "last_name": "",
+                      "cohort": "",
+                      "favorite_topic": "",
+                      "favorite_teacher": "",
+                      "capstone": "",
+                  }
+                  this.getStudents()
+              }).catch(error => {
+                  let message = error.response.statusText;
+                  for (let key in error.response.data){
+                      message += `\n${key}: ${error.response.data[key]}`;
+                  };
+                  alert(message);
+              });
+          }
+      },
+      mounted: function() {
+          this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value; //this querySelector gets a hidden input from the csrf token middleware to authorize permissions/users/etc
+          this.getStudents();
+          
+      }
+
+  });
+</script>

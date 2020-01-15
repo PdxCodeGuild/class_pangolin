@@ -24,7 +24,6 @@ Vue.component('quotes', {
                     type: 'tag',
                     // quotes: this.questionInput
                 }
-    
             })
             .then(response => {(this.info = response.data.quotes);
             console.log(this.info);
