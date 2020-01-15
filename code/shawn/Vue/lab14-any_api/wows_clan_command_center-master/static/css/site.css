@@ -1,0 +1,25 @@
+#clan-roster{
+    width: 960px;
+    margin: 24px;
+}
+#user-ship-filter {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+.user-ship-filter-div{
+    margin: 12px;
+}
+h6 {
+    color: red;
+}
+#app{
+    max-width: 80vw;
+    margin: 6px auto;
+}
+.credential-dialog{
+    border: 3px solid red;
+    margin: 60px 30vw;
+    padding: 60px;
+    text-align: center;
+}

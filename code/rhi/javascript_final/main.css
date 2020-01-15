@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    /* fixes the chosen image to the center of the page with the the background color spilling out the sides */
+    background-color: darkslategray;
+    background-image: url(avengers-dungeons-and-dragons-fan-art-02.jpg);
+    /* Full height */
+    max-height: 100%;
+    max-width: 100%;
+
+    /* Center and scale the image nicely */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* sseperates the 3 divs and displays the info I want on the right and left of the page to achieve the look that I want */
+#data {
+    display: flex;
+    justify-content: space-between;
+    color: rgb(235, 232, 232);
+}
+
+/* aligns the text to the left of the container */
+.container-left {
+    text-align: left;
+    width: 300px;
+    height: 35px;
+    display: inline-block;
+}
+
+/* adds padding to the right of the right box so that it displays close to the edge of the picture */
+#container3 {
+    padding-right: 110px;
+    align-self: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+/* this the layout for the box on the left  */
+.container-right1 {
+    padding-right: 50px;
+    text-align: left;
+    width: 300px;
+    height: 35px;
+    display: inline-block;
+}
+
+/* this the layout for the box on the right  */
+.container-right {
+    text-align: left;
+    width: 300px;
+    height: 35px;
+    display: inline-block;
+}
+
+/* this changes the color of the bold text for the spell name in the right hand list */
+.container-right b {
+    color: white;
+}

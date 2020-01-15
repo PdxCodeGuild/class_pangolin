@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>D&amp;D Spells</title>
+    
+    <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+    <div id="data">   
+        <div id="container1">
+            <h2>Spells Data for D&amp;D version 5</h2>
+            <select v-model="selectedOption" @change="getSpells">
+                <option v-for="option in options">{{ option }}</option>
+            </select>
+            <div v-if="selectedOption && ! items.length">
+                <i>Loading</i></div>
+            <select v-if="items.length" v-model="selected" @change="itemSelected">
+                <option v-for="item in items" :value="item.index">{{ item.label }}</option>
+            </select>
+            <div id="result">
+                <ul>
+                    <information 
+                        v-if="Object.keys(result).length"
+                        v-bind:info="result"
+                        @move-to-list="moveToList($event)"
+                    ></information> 
+                </ul>
+            </div>
+        </div> 
+      
+        <div id="container2">
+            <h2></h2>
+        </div>
+
+        <div id="container3">
+            <div class="container-right1">
+                <h2>Favorite Info</h2>
+                <ul>
+                    <favorites
+                        v-if="favorites.length"
+                        v-bind:info-list="favorites"
+                    ></favorites>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- include Vue from a CDN of your choice, I am using unpkg -->
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- include your code here -->
+    <script src="script.js"></script>
+</body>
+</html>

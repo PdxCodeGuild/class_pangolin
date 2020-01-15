@@ -30,8 +30,6 @@
             <input id="userInput" type="text" v-model="userInput" placeholder="search by first name">
             <button id="storebutton" v-on:click="getSearch">Search</button>
         </p>
-        <!--<p>Generate a Random User</p>
-        <button id='button' v-on:click="getRandomPerson">Generate</button>-->
         <div id='div_tag' v-if="result.length > 0">
             <p id='result'>{{ result[0].name.first }} {{ result[0].name.last }}</p>
             <p id='pic'><img :src="result[0].picture.large"></p>
