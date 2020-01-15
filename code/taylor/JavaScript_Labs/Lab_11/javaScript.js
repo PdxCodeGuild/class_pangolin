@@ -27,6 +27,7 @@ Vue.component('add-item', {
       }
   }
 })
+
 Vue.component('grocery-item', {
   props: ['grocery'],
   template: `
