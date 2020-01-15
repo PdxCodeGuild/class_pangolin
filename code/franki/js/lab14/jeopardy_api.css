@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  background-color: blue;
+  background-color: #2e2e1f;
 }
 
 img {
@@ -17,8 +17,15 @@ img {
   display: flex;
   flex-direction: row;
 }
-#app, header, .item {
-margin: 18px auto;
+
+.item {
+  margin: 4px auto;
+  padding: 6px;
+  width: 360px;
+}
+
+header, .footer, .main {
+margin: 8px auto;
 width: 760px;
   
 padding: 12px;
@@ -32,10 +39,14 @@ background-color: #000099;
 }
 
 
+#app {
+  width: 760px;
+  margin: auto;
+}
 
 p {
   color: white;
   font-family: 'Fjord One', serif;
-  font-size: 30px;
+  font-size: 24px;
   text-shadow: 2px 2px 2px black;
 }
