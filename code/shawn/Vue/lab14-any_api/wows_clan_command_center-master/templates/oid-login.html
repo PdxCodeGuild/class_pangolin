@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block html_content %}
+<div class="credential-dialog">
+    <p>This website uses Wargaming's authentication protocol...please click the button below to login!</p>
+    <div>
+        {% if user.is_authenticated %}
+            <p>You are already logged into CCC with this Wargaming account: <strong>{{ request.user.username }}</strong></p>
+            <p><a href="{% url 'wowsopenid:logout' %}">Logout</a></p>
+        {% else %}
+            <a href="{{ url }}">Click here to login with your wargaming account.</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock html_content %}
+    
