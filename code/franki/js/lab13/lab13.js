@@ -1,28 +1,25 @@
-Vue.component('quote-detail', {
-  props: [],
-  data: function() {
-    return {
-      quote: '',
-      author: '',
-    }
-  },
+Vue.component('qdetail', {
+
   template: `
-  <div class="quote" v-for="result in searchResults">{{ quote }}</div>
-  <div>{{ author }}</div>
+  <div>
+  <ul v-if='quotesArray.length > 0'>
+  <li v-for="quote in quotesArray" id="quotes">
+        {{ quote.body }} {{ quote.author }}</li>
+  </ul>
+  </div>
   `
 });
 
 let vm = new Vue({
   el: '#app',
   data: {
-    searchTerm: '',
-    searchResults: [],
-  },
+      quotesArray: [],
+      searchTerm: '',
+    },
   methods: {
     searchQuotes: function() {
-      var input = document.getElementById("input").value
-      var searchTerm = encodeURIComponent(input);
-      console.log(searchTerm)
+      this.searchTerm = document.getElementById("input").value;
+      console.log(searchTerm);
       axios({
         url: "https://favqs.com/api/quotes/", 
         method: "GET",
@@ -32,6 +29,12 @@ let vm = new Vue({
         params: {
             filter: searchTerm 
         }
+
+        .then(res => {
+          this.quotesArray = res.data.quotes;
+          console.log(this.quotesArray); 
+        })
+        .catch(error => console.log(error)), //logging any api errors
       })
     }
   }
