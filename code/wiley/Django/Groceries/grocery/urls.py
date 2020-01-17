@@ -21,7 +21,7 @@ Including another URLconf
 
 app_name = 'grocery_list'
 urlpatterns = [
-    path('grocery/', include('grocery_list.urls')),
+    path('', include('grocery_list.urls')),
     path('admin/', admin.site.urls),
     
 ]

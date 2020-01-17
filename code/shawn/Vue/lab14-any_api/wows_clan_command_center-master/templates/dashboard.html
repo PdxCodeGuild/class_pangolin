@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block html_content %}
+{% if user.is_authenticated %}
+
+<p style="text-align: center; margin: 12px;"><a href="{% url 'clan_battles:get_battles' 'NA' %}">Load CB results</a></p>
+<div id="app">
+    <div id="user-ship-filter">
+        <div class="user-ship-filter-div">
+            <label for="class-filter">Class:</label>
+            <select v-model="classFilter">
+                <option v-for="shipclass in classList">[[shipclass]]</option>
+            </select>
+        </div>
+        <div class="user-ship-filter-div">
+            <label for="tier-filter">Tier:</label>
+            <input type="number" v-model="tierFilter" min="1" max="10" id="tier-filter">
+            <button @click="toggleTierFilter">[[tierFilterButtonText]]</button>
+        </div>
+    </div>
+    <div id="user-ship-list">
+        <h3>  {{ request.user.player.player_nickname }} <small>ships stats:</small> </h3><hr>
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th scope="col">Ship</th>
+                    <th scope="col">Tier</th>
+                    <th scope="col">Nation</th>
+                    <th scope="col">Class</th>
+                    <th scope="col">Total Battles</th>
+                    <th scope="col">Win Rate</th>
+                    <th scope="col">Avg XP</th>
+                    <th scope="col">Avg Damage</th>
+                    <th scope="col">Main Battery Accuracy</th>
+                    <th scope="col">Torpedo Accuracy</th>
+                    <th scope="col">Avg Potential Damage</th>
+                    <th scope="col">Avg Spotting Damage</th>
+                </tr>
+            </thead>
+                <tr v-for="ship in shipList" v-bind:key="ship.id" v-if="checkTier(ship.shipinstance_ship_name.ship_tier) && checkClass(ship.shipinstance_ship_name.ship_class)">
+                    <td><strong>[[ ship.shipinstance_ship_name.ship_name ]] </strong></td>
+                    <td><strong>[[ ship.shipinstance_ship_name.ship_tier ]] </strong></td>
+                    <td><strong>[[ ship.shipinstance_ship_name.ship_nation ]] </strong></td>
+                    <td><strong>[[ ship.shipinstance_ship_name.ship_class ]] </strong></td>
+                    <td>[[ checkValidValue( ship.shipinstance_battles ) ]]</td>
+                    <td>[[ checkValidValue(  ((ship.shipinstance_wins/ship.shipinstance_battles) * 100).toFixed(2) + '%' )]] </td>
+                    <td>[[ checkValidValue(parseInt(ship.shipinstance_xp/ship.shipinstance_battles) )]] </td>
+                    <td>[[ checkValidValue(parseInt(ship.shipinstance_damage_dealt/ship.shipinstance_battles) )]] </td>
+                    <td>[[ checkValidValue(((ship.shipinstance_main_battery_hits/ship.shipinstance_main_battery_shots) * 100).toFixed(2) + '%' )]] </td>
+                    <td>[[ checkValidValue(((ship.shipinstance_torpedoes_hits/ship.shipinstance_torpedoes_shots) * 100).toFixed(2) + "%" )]] </td>
+                    <td>[[ checkValidValue(parseInt(ship.shipinstance_potential_damage/ship.shipinstance_battles) )]] </td>
+                    <td>[[ checkValidValue(parseInt(ship.shipinstance_spotting_damage/ship.shipinstance_battles) )]] </td>
+
+                </tr>
+        </table> 
+    </div>
+</div>
+{% else %}
+<h2 style="text-align:center; margin: 60px 40vw;">Please login</h2>
+{% endif %}
+
+{% endblock html_content %}
+
+{% block js_content %}
+
+<script>
+// Vue app templates
+let vm = new Vue({
+    el: "#app",
+    delimiters: ['[[',']]'],
+    data: {
+        shipList: [],
+        tierFilter: 10,
+        tierFilterActive: false,
+        tierFilterButtonText: "off",
+        classFilter: '',
+        classList: ['','Battleship','Cruiser','Destroyer','AirCarrier'],
+    },
+    methods: {
+        getShipList(){
+            axios({
+                method: 'get',
+                url: '/api/v1/user_ships/',
+
+            }).then(response => this.shipList = response)
+        },
+        toggleTierFilter(){
+            this.tierFilterActive = !this.tierFilterActive
+            if (this.tierFilterActive){
+                this.tierFilterButtonText = 'on';
+            }else{
+                this.tierFilterButtonText = 'off';
+            }
+        },
+        checkTier: function(tier){
+            return tier == this.tierFilter || !this.tierFilterActive
+        },
+        checkClass: function(shipClass){
+            return  !this.classFilter || shipClass == this.classFilter
+        },
+        checkValidValue(value){
+            if(value == 'NaN' || value == "NaN%") return '-';
+            if(isNaN(value) && (typeof value) != 'string') return '-';
+            return value
+        }
+    },
+    computed: {
+    }, 
+    mounted(){
+       this.getShipList();
+
+    }
+});
+</script>
+{% endblock js_content %}

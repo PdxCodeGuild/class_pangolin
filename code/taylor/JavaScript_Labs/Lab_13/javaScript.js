@@ -45,7 +45,8 @@ Vue.component('scard', {
       quoteArray: []
       }
   },
-
+  
+// Template to display 25 searched card returns
   template: `
   <div> <!-- Template Div -->
 
