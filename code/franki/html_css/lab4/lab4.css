@@ -1,0 +1,29 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.content {
+  max-width: 760px;
+  margin: auto;
+}
+
+header {
+  background-color: coral;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 48px;
+  padding-top: 20px;
+  padding-left: 20px;
+  height: 120px;
+}
+
+.row-layout {
+  border: 2px grey;
+  background-color: white;
+  font-family: 'Concert One', cursive;
+}
+
+body {
+  background-color: #ffff99;
+}

@@ -1,0 +1,59 @@
+
+<div id="app">
+    <article v-for="post in posts" :key="post.id">
+        <h2>[[ post.title ]]</h2>
+        <h3>[[ post.author.username ]]</h3>
+        <h4>[[ post.created ]]</h4>
+        <p>[[ post.body ]]</p>
+    </article>    
+</div>
+<div>
+    <select>
+
+    </select>
+    <input type="text" v-model="newPost.author" placeholder="user">
+    <input type="text" v-model="newPost.title" placeholder="title">
+    <textarea v-model="newPost.body"></textarea v-model="newPost.body" placeholder="body">
+        <button>Post</button>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    let app = new Vue({
+        el: '#app',
+        delimeters: ['[[', ']]'],
+        data: {
+            posts: [],
+            newPost: {
+                csrf_token: '',
+                "author": '',
+                "title": '',
+                "body": ''
+            }
+        },
+        methods: {
+            getPosts() {
+                axios({
+                    method: "get",
+                    url: "/api/v1/"
+                }).then(response => this.posts = response.data);
+            },
+            postPosts() {
+                axios({
+                    method: "post",
+                    url: "/api/v1/",
+                    data: this.newPost,
+                    headers: {
+                        X-csrf_token
+                    }
+                }).then(response => this.posts = response.data);
+            }
+        },
+
+        mounted: function() {
+            let this.csrf_token = document.querySelector
+            this.getPosts();
+        }
+    });
+
+</script>

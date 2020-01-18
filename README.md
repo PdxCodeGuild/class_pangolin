@@ -118,6 +118,14 @@ In all three presentations, you should first explain the development process and
 - what is the future of the project? what features (if any) will you work on next?
 
 ## Odds and Ends
+Custom User Models  
+https://wsvincent.com/django-custom-user-model-tutorial/
+
+Many-to-Many and Through Models Articles and Examples  
+https://docs.djangoproject.com/en/3.0/topics/db/examples/many_to_many/  
+https://docs.djangoproject.com/en/3.0/topics/db/models/#extra-fields-on-many-to-many-relationships  
+https://www.revsys.com/tidbits/tips-using-djangos-manytomanyfield/  
+
 Django Rest Framework Tutorial - Todo API  
 https://wsvincent.com/django-rest-framework-todo-api-tutorial/  
 
