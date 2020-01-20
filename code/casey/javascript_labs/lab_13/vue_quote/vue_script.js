@@ -1,24 +1,29 @@
-// Vue.component('quote-search', {
-//   data: function () {
-//     return {
-//       searchString: "",
-//       body: null,
-//       author: null,
-//       searchResults: []
-//       },
-//       axios
-//         .get('https://favqs.com/api/quotes', {
-//           headers: {
-//             Authorization: 'Token token="fa1461cc9347d1fc3065cd7b3eecbf97"'
-//           }
-//         })
-//         .then(response => {
-//           this.seachResults = response.data.quotes;
-//           // this.body = response.data.quote.body;
-//           // this.author = response.data.quote.author;
-//         })
-//       }
-//     });
+Vue.component('quote-search', {
+  data: function () {
+    return {
+      body: null,
+      author: null,
+      searchResults: []
+    }
+  },
+  methods: {
+    getSearch () {
+      axios
+        .get('https://favqs.com/api/quotes', {
+          headers: {
+            Authorization: 'Token token="fa1461cc9347d1fc3065cd7b3eecbf97"'
+          }
+        })
+        .then(response => {
+          this.searchResults = response.data;
+          console.log(searchResults)
+          this.body = response.data.quote.body;
+          this.author = response.data.quote.author;
+          this.url = response.data.quote.url;
+        })
+    }
+  }
+});
 
 new Vue({
     el: '#app',
@@ -29,7 +34,6 @@ new Vue({
         url: null,
         errored: false,
         loading: false,
-        // randomResults: []
       }
     },
     methods: {

@@ -43,7 +43,7 @@
             <form>
                 <input type="text" id="search" placeholder="Search Quotes by Author, Tag..." size="28" class="no-outline" autocomplete="off" v-model="searchString">
                 <div>
-                    <button id="search-button" class="btn" ><h2>Search!</h2></button>
+                    <button v-on:click.prevent="getSearch()" id="search-button" class="btn" ><h2>Search!</h2></button>
                 </div><br>
                 <div id="or">Or</div>
             </form>
