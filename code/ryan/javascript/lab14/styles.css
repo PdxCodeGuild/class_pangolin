@@ -1,0 +1,32 @@
+.background {
+    background:linear-gradient(
+        rgba(0, 0, 0, .5),
+        rgba(0, 0, 0, .5)
+    ), url('new3.jpg')center/cover no-repeat fixed;
+}
+
+h1, input, button {
+    opacity: .5;
+}
+
+.stripe {
+    width: 50%;
+    height: 3px;
+    margin: 0 auto;
+}
+
+.top-stripe {
+    width: 50%; 
+    height: 3px;
+    margin: 0 auto;
+}
+
+.input-width {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.button-width {
+    width: 30%;
+    margin: 0 auto;
+}

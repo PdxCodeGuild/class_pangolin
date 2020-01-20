@@ -6,6 +6,8 @@ class Player():
         self.name = name
         self.token = token
 
+    def __str__(self):
+        return self.name
 #print(Player)   
 
 class Board(object):
@@ -84,8 +86,8 @@ board = Board()
 #player = Player()
 Welcome()
 
-p1= Player(input('what is your name?'), 'x')
-p2= Player(input('what is your name?'), 'o')
+p1 = Player(input('Player 1 what is your name?'), 'x')
+p2 = Player(input('Player 2 what is your name?'), 'o')
 token1 = ('x')
 token2 = ('o')
 # print(p1.__dict__)
@@ -94,7 +96,7 @@ token2 = ('o')
 while True:
     
     #get X input 
-    x = int(input(f"\n Please choose from 1-9\n {p1}\n "))
+    x = int(input(f"\n Please choose from 1-9\n{p1}\n "))
     board.update(x,token1)
     board.display()
 

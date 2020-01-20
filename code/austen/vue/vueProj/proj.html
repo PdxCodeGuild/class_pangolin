@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker|Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="proj.css">
+    <title>Project</title>
+</head>
+<header>
+    <h1>Are You Bored? Let Me Help!</h1>
+    <h3>"Boredom is a concept that I don't understand"<h3> 
+    <h3>-Christian Louboutin</h3>
+</header>
+<body>
+    <div id="app">
+        <h3>Super bored? Let me help!</h3>
+        <button @click="getStuff">Random Event Finder</button>
+        <h3>Enter the type of activity you want to do...</h3>
+        <activity @results="info=$event"></activity>
+        <ul v-if="info.activity">
+            <li>You should {{ info.activity }} </li>
+            <li>Type of activity: {{ info.type }} </li>
+            <li v-if="info.price === 0">It is FREE! Go for it.</li>
+            <li v-if="info.price > 0">Sadly it Costs money :(</li>
+        </ul>
+        <button @click="getTickets">Get Events In Portland</button>
+        <div>
+            <ul>
+                <li v-for="item in event">{{ item.name }}<br>Date: {{item.dates.start.localDate}}</li>
+            </ul>
+            <button id="clear" @click="clearEvents">Clear Events</button>
+        </div>
+    </div>
+    <div id="widgit" w-type="event-discovery" w-tmapikey="ILjk0YWDkMs9CyCjpRCsSMqCs5P2vjGd" w-googleapikey="AIzaSyCDF-LFD-2-XeWAWtUUwziovomx0A4cnhI" w-keyword="" w-theme="simple" w-colorscheme="custom" w-width="300" w-height="600" w-size="25" w-border="0" w-borderradius="4" w-radius="50" w-period="week" w-layout="vertical" w-attractionid="" w-promoterid="" w-venueid="" w-affiliateid="" w-segmentid="" w-proportion="xxl" w-titlelink="off" w-sorting="groupByName" w-id="id_7rp2lr" w-source="ticketmaster" w-branding="Ticketmaster" w-latlong="45.5051064,-122.6750261" w-titlecolor="#ffffff" w-titlehovercolor="#ffffff"></div>
+    <script src="https://ticketmaster-api-staging.github.io/products-and-docs/widgets/event-discovery/1.0.0/lib/main-widget.js"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="proj.js"></script>
+</body>
+<footer>
+    <p>Austen Cote<p>
+</footer>
+</html>

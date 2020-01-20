@@ -1,0 +1,73 @@
+html{
+    background-color: rgb(235, 215, 198);
+    font-family: 'Gloria Hallelujah', cursive;
+}
+header{
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Permanent Marker', cursive;
+}
+#app{
+    
+    margin-top: 80px;
+    border: 3px solid black;
+    background-color: rgb(204, 252, 204);
+    padding:3px;
+    text-align: center;
+    border-radius: 6px;
+    padding:10px;
+    font-size: 16px;
+    margin-left: 400px;
+}
+.find{
+    width:80px;
+    height:30px;
+    margin:2px;
+    background-color: darkslategray;
+    color: white;
+    font-size: medium;
+    border-radius: 10px;
+}
+#activitySel{
+    background-color: rgb(219, 215, 215);
+    color: black;
+    font-size: large;
+}
+.form{
+    margin:5px;
+}
+li{
+    text-align: left;
+}
+#widgit{
+    /* /* display: block; */
+    position: absolute;
+    top:220px;
+    margin-left:50px
+}
+h3{
+    font-size: 26px;
+}
+button{
+    width:200px;
+    height:30px;
+    margin:2px;
+    background-color: darkslategray;
+    color: white;
+    font-size: medium;
+    border-radius: 10px;
+}
+#clear{
+    width:125px;
+    height:30px;
+    margin:2px;
+    background-color: darkslategray;
+    color: white;
+    font-size: medium;
+    border-radius: 10px;
+}
+footer{
+    font-family: 'Sacramento', cursive;
+    text-align: right;
+    margin-bottom:2px
+}
