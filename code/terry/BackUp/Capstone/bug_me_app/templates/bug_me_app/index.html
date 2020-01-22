@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Bug Me</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            padding: 12px;
+            color: #0F4C81;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: beige;
+        }
+        
+        select {
+            margin: 4px;
+        }
+        
+        input {
+            padding: 4px;
+            margin: 4px;
+            font-size: large;
+        }
+
+        textarea {
+            font-size: large;
+            padding: 2px;
+            margin: 4px;
+        }
+        
+        button {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: medium;
+            border-radius: 6px;
+            margin: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    {% csrf_token %}
+    <div id="app">
+        {% if user.is_authenticated %}
+        <h1>Welcome {{ user.username }}!</h1>
+        <a href="{% url 'bug_me_app:logout' %}">Logout</a>
+        <br>
+        <input type="text" v-model="search" placeholder="Search"><button id="button" v-on:click="searchTicket">Search</button><br>
+        <input type="text" v-model="newTicket.title" placeholder="Title"><br>
+        <textarea v-model="newTicket.body" rows="6" cols="40"></textarea><br>
+        <input type="checkbox" v-model="newTicket.closed">
+        <label>Close</label>
+        <button id="button" v-on:click="createTicket">Create</button>
+        <button id="button" v-on:click="createTicket">Update</button>
+         <ul>
+            <li v-for="item in store.results">
+            [[item.body]] - [[index]]
+            </li>
+         </ul>
+        {% else %}
+        <p>You are not logged in.</p>
+        <p><a href="{% url 'bug_me_app:login' %}">Login</a></p>
+        {% endif %}
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        
+        let vm = new Vue({
+            el: '#app',
+            delimiters: ['[[', ']]'],
+            data: {
+                csrf_token: "",
+                "search": "",
+                result: [],
+                store: [],
+                filtered: [],
+                newTicket: {
+                    "title": "",
+                    "body": "",
+                    "closed": false,
+                },
+            },
+            methods: {
+                searchTicket: function() {
+                    axios({
+                        method: 'get',
+                        url: '/ticket/',
+                        dataType: 'json',
+                    }).then(response => this.store = response.data);
+                },
+                searchFilter: function(item) {
+                    return item.body.includes(this.search);
+                },
+                getSearch: function() {
+                    this.filtered = this.store;
+                    this.filtered = this.filtered.filter(this.searchFilter);
+                },
+                createTicket: function() {
+                    axios({
+                        method: 'post',
+                        url: '/ticket/',
+                        data: this.newTicket,
+                        dataType: 'json',
+                        headers: {
+                            "X-CSRFToken": this.csrf_token
+                        },
+                    }).then(response => {
+                        this.newTicket = {
+                            "search": "",
+                            "title": "",
+                            "body": "",
+                            "closed": "",
+                        }
+                    });
+                },
+            },
+            mounted: function() {
+                this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value;
+            },
+        });
+    </script>
+</body>
+</html>
