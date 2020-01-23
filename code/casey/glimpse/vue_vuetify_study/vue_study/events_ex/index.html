@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>VueJS Tutorials</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="vue-app">
+            <h1>Events</h1>
+            <!-- listens for click & runs associated function -->
+            <button @click="add(1)">Add a year</button>
+            <button @click="subtract(1)">Subtract a year</button>
+            <!-- listens for double-click & runs associated function -->
+            <button v-on:dblclick="add(10)">Add 10 years</button>
+            <button v-on:dblclick="subtract(10)">Subtract 10 years</button>
+            <!-- brings in data using {{}} -->
+            <p>Did you know I'm {{ age }} years old?</p>
+            <!-- listens mouse movement (within canvas) & runs associated function -->
+            <div id="canvas" v-on:mousemove="updateXY">{{x}}, {{y}}</div>
+        </div>
+        
+        <script src="app.js"></script>
+    </body>
+</html>
