@@ -44,18 +44,29 @@
         <h1>Welcome {{ user.username }}!</h1>
         <a href="{% url 'bug_me_app:logout' %}">Logout</a>
         <br>
-        <input type="text" v-model="search" placeholder="Search"><button id="button" v-on:click="searchTicket">Search</button><br>
-        <input type="text" v-model="newTicket.title" placeholder="Title"><br>
+        <input type="text" v-model="search" placeholder="Search" size="20"><button id="button" v-on:click="getSearch">Search</button>
+        <button id="button" v-on:click="searchTicket">All Tickets</button>
+        <br>
+        <input type="text" v-model="newTicket.title" placeholder="Title" size="40"><br>
         <textarea v-model="newTicket.body" rows="6" cols="40"></textarea><br>
         <input type="checkbox" v-model="newTicket.closed">
         <label>Close</label>
         <button id="button" v-on:click="createTicket">Create</button>
         <button id="button" v-on:click="createTicket">Update</button>
-         <ul>
-            <li v-for="item in store.results">
-            [[item.body]] - [[index]]
+        <ul>
+            <li v-for="item in store">
+            [[item.id]] - [[item.title]]: [[item.body]]
             </li>
-         </ul>
+        </ul>
+        <div id="search" v-if="search.length != '' ">
+         <p>[[ filtered.length ]] Results for: [[ search ]]</p>
+        <div id="filtered" v-if="filtered.length >= 1">
+        <ul>
+            <li v-for="ticket in filtered">[[ ticket.id ]] - [[ ticket.title ]]: [[ ticket.body ]]
+            </li>
+        </ul>
+        </div>
+        </div>
         {% else %}
         <p>You are not logged in.</p>
         <p><a href="{% url 'bug_me_app:login' %}">Login</a></p>
@@ -70,7 +81,7 @@
             delimiters: ['[[', ']]'],
             data: {
                 csrf_token: "",
-                "search": "",
+                search: '',
                 result: [],
                 store: [],
                 filtered: [],
@@ -86,7 +97,7 @@
                         method: 'get',
                         url: '/ticket/',
                         dataType: 'json',
-                    }).then(response => this.store = response.data);
+                    }).then(response => this.store = response.data.results);
                 },
                 searchFilter: function(item) {
                     return item.body.includes(this.search);
