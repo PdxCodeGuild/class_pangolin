@@ -22,6 +22,20 @@
             font-size: large;
         }
 
+        input[type="file"] {
+            position: absolute;
+            top: -500px;
+        }
+
+        a {
+            padding: 4px;
+            margin: 4px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
         textarea {
             font-size: large;
             padding: 2px;
@@ -34,6 +48,57 @@
             border-radius: 6px;
             margin: 2px;
         }
+
+        .note {
+            width: 500px;
+            margin: 50px auto;
+            font-size: 1.1em;
+            color: #333;
+            text-align: justify;
+        }
+
+        #drop-area {
+            border: 2px dashed #ccc;
+            border-radius: 20px;
+            width: 400px;
+            padding: 20px;
+        }
+
+        #drop-area.highlight {
+            border-color: purple;
+        }
+        
+        .my-form {
+            margin-bottom: 10px;
+        }
+
+        #gallery {
+            margin-top: 10px;
+        }
+
+        #gallery img {
+            width: 150px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 6px;
+            background: #ccc;
+            cursor: pointer;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .button:hover {
+            background: #ddd;
+        }
+        
+        #fileElem {
+            display: none;
+        }
     </style>
 </head>
 
@@ -44,17 +109,35 @@
         <h1>Welcome {{ user.username }}!</h1>
         <a href="{% url 'bug_me_app:logout' %}">Logout</a>
         <br>
-        <input type="text" v-model="search" placeholder="Search" size="20"><button id="button" v-on:click="getSearch">Search</button>
-        <button id="button" v-on:click="searchTicket">All Tickets</button>
+        <input type="text" v-on:click="getSearch" v-model="search" placeholder="Search" size="20"><button id="button" v-on:click="getSearch">Search</button>
+        <button id="button" v-on:click="getAllTickets">All Tickets</button>
         <br>
-        <input type="text" v-model="newTicket.title" placeholder="Title" size="40"><br>
-        <textarea v-model="newTicket.body" rows="6" cols="40"></textarea><br>
+        <input id="titleText" type="text" v-model="newTicket.title" placeholder="Title" size="40"><br>
+        <textarea id="bodyText" v-model="newTicket.body" rows="6" cols="40"></textarea><br>
         <input type="checkbox" v-model="newTicket.closed">
         <label>Close</label>
         <button id="button" v-on:click="createTicket">Create</button>
-        <button id="button" v-on:click="createTicket">Update</button>
+        <button id="button" v-on:click="updateTicket">Update</button>
+        <div class="container">
+            <div class="large-12 medium-12 small-12 cell">
+                <label>+ Select File
+                <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                </label>
+                <button v-on:click="submitFile()">Submit</button>
+            </div>
+        </div>
+        {% comment %} <div id="drop-area">
+            <form class="my-form">
+            <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
+                <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+                <label class="button" for="fileElem">Select Files</label>
+            </form>
+            <progress id="progress-bar" max=100 value=0></progress>
+            <div id="gallery" /></div>
+        </div> {% endcomment %}
         <ul>
-            <li v-for="item in store">
+            <li v-for="item in store2">
+            <button id="editTicket" v-on:click="textInsert(item)">Edit</button>
             [[item.id]] - [[item.title]]: [[item.body]]
             </li>
         </ul>
@@ -62,7 +145,7 @@
          <p>[[ filtered.length ]] Results for: [[ search ]]</p>
         <div id="filtered" v-if="filtered.length >= 1">
         <ul>
-            <li v-for="ticket in filtered">[[ ticket.id ]] - [[ ticket.title ]]: [[ ticket.body ]]
+            <li v-for="item in filtered"><button v-on:click="textInsert(item)">Edit</button> [[ item.id ]] - [[ item.title ]]: [[ item.body ]]
             </li>
         </ul>
         </div>
@@ -74,37 +157,53 @@
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    {% comment %} <script type="module">import {CldContext, CldImage, CldTransformation, CldPoster} from 'cloudinary-vue'</script> {% endcomment %}
     <script>
         
-        let vm = new Vue({
+        new Vue({
             el: '#app',
             delimiters: ['[[', ']]'],
             data: {
                 csrf_token: "",
                 search: '',
-                result: [],
                 store: [],
+                store2: [],
                 filtered: [],
+                imgStore: [],
                 newTicket: {
+                    "id": "",
+                    "author": this.username,
                     "title": "",
                     "body": "",
                     "closed": false,
                 },
             },
             methods: {
-                searchTicket: function() {
+                getAllTickets: function() {
                     axios({
                         method: 'get',
                         url: '/ticket/',
                         dataType: 'json',
-                    }).then(response => this.store = response.data.results);
+                    }).then(response => this.store2 = response.data.results);
                 },
                 searchFilter: function(item) {
                     return item.body.includes(this.search);
                 },
                 getSearch: function() {
+                    axios({
+                        method: 'get',
+                        url: '/ticket/',
+                        dataType: 'json',
+                    }).then(response => this.store = response.data.results);
                     this.filtered = this.store;
                     this.filtered = this.filtered.filter(this.searchFilter);
+                },
+                textInsert: function(item) {
+                    this.newTicket.closed = item.closed;
+                    this.newTicket.author = item.author;
+                    this.newTicket.title = item.title;
+                    this.newTicket.body = item.body;
+                    this.newTicket.id = item.id;
                 },
                 createTicket: function() {
                     axios({
@@ -117,10 +216,53 @@
                         },
                     }).then(response => {
                         this.newTicket = {
-                            "search": "",
+                            "author": this.username,
                             "title": "",
                             "body": "",
                             "closed": "",
+                        }
+                    });
+                },
+                handleFileUpload(){
+                    let file = this.$refs.file.files[0];
+                    this.file = file;
+                },
+                submitFile() {
+                    let formData = new FormData();
+                    formData.append('file', this.file);
+                    axios.post('/single-file',
+                        formData,
+                        {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                        }
+                    ).then(function() {
+                        console.log('success');
+                    })
+                    .catch(function() {
+                        console.log('fail');
+                    });
+                },
+                //This function overwrites the ticket selected with the edit button.
+                //Since the ticket info is loaded into the input/textarea, the info
+                //is also in the newTicket array.
+                updateTicket: function(item) {
+                    axios({
+                        method: 'put',
+                        url: `/ticket/${this.newTicket.id}/`,
+                        data: this.newTicket,
+                        dataType: 'json',
+                        headers: {
+                            "X-CSRFToken": this.csrf_token
+                        },
+                    }).then(response => {
+                        this.newTicket = {
+                            "id": this.newTicket.id,
+                            "author": this.newTicket.author,
+                            "title": this.newTicket.title,
+                            "body": this.newTicket.body,
+                            "closed": this.newTicket.closed,
                         }
                     });
                 },
@@ -129,6 +271,7 @@
                 this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value;
             },
         });
+       
     </script>
 </body>
 </html>
