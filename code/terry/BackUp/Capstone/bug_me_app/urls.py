@@ -1,3 +1,4 @@
+from django.conf.urls import url, include
 from django.urls import path
 from bug_me_app import views
 from .views import *
@@ -14,5 +15,5 @@ urlpatterns = [
     path('logout', views.logout_request, name='logout'),
     path('login', views.login_request, name='login'),
     path('', views.index, name='index'),
-    path('', FileUploadView.as_view()),
+    url(r'^upload/$', FileUploadView.as_view(), name='file-upload'),
 ]

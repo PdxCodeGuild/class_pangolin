@@ -131,24 +131,26 @@
 //     xhr.send(formData)
 // }
 
-let url = 'process.php'
-let form = document.querySelector('form')
-form.addEventListener('submit', e => {
-    e.preventDefault()
-
-    let files = document.querySelector('[type=file]').files
-    let formData = new FormData()
-
-    for (let i = 0; i < files.length; i++) {
-        let file = files[i]
-
-        formData.append('files[]', file)
-    }
-
-    fetch(url, {
-        method: 'POST',
-        body: formData,
-    }).then(response => {
-        console.log(response)
-    })
-})
+createTicket() {
+    let formData = new FormData();
+    formData.append('id', this.newTicket.id);
+    formData.append('author', this.newTicket.author);
+    formData.append('title', this.newTicket.title);
+    formData.append('body', this.newTicket.body);
+    formData.append('file', this.newTicket.file);
+    formData.append('closed', this.newTicket.closed);
+    axios.put('/upload/',
+            formData, {
+                headers: {
+                    "Content-Disposition": 'file; filename="' + this.newTicket.file + '"',
+                    'Content-Type': 'multipart/form-data',
+                    'X-CSRFToken': this.csrf_token,
+                }
+            }
+        ).then(function() {
+            console.log('success');
+        })
+        .catch(function() {
+            console.log('fail');
+        });
+},

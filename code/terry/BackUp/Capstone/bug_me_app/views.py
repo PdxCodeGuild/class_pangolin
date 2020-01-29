@@ -4,28 +4,16 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.shortcuts import render, redirect
 from rest_framework import generics, permissions, filters
 from rest_framework.decorators import api_view
+from rest_framework.exceptions import ParseError
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from rest_framework.parsers import FileUploadParser
+from rest_framework.parsers import FileUploadParser, MultiPartParser, FormParser
 from rest_framework.views import APIView
 from rest_framework import status
 
 from .models import Ticket
 from .serializers import TicketSerializer, UserSerializer, FileSerializer
 
-
-# @api_view(['GET'])
-# def api_root(request, format=None):
-#     return Response({
-#         'ticket': reverse('ticket-list', request=request, format=format),
-#         'users': reverse('user-list', request=request, format=format),
-#     })
-# @api_view(['GET'])
-# def index(request, format=None):
-#     return Response({
-#         'ticket': reverse('ticket-list', request=request, format=format),
-#         'users': reverse('user-list', request=request, format=format)
-#     })
 def index(request):
     return render(request, 'bug_me_app/index.html', {})
 
@@ -76,15 +64,23 @@ class UserDetail(generics.RetrieveAPIView):
     serializer_class = UserSerializer
 
 class FileUploadView(APIView):
-    parser_classes = (FileUploadParser,)
+    parser_classes = (FileUploadParser, MultiPartParser, FormParser)
 
-    def post(self, request, *args, **kwargs):
-        file_serializer = FileSerializer(data=request.data)
+    def put(self, request, format=None):
+        if 'file' not in request.data:
+            raise ParseError('Empty Content')
 
-        if file_serializer.is_valid():
-            file_serializer.save()
-            return Response(file_serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(file_serializer.error, status=status.HTTP_400_BAD_REQUEST)
+        f = request.data['file']
+
+        Ticket.file.save(f.name, f, save=True)
+        return Response(status=status.HTTP_201_CREATED)
+
+        # file_serializer = FileSerializer(data=request.data)
+
+        # if file_serializer.is_valid():
+        #     file_serializer.save()
+        #     return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+        # else:
+        #     return Response(file_serializer.error, status=status.HTTP_400_BAD_REQUEST)
 
             

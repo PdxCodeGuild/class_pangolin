@@ -8,6 +8,7 @@ class Ticket(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     closed = models.BooleanField(default=False)
     author = models.ForeignKey('auth.User', related_name='bug_me_app', on_delete=models.CASCADE)
+    file = models.FileField(blank=True, null=True)
 
     class Meta:
         ordering = ['created']
@@ -16,7 +17,7 @@ class Ticket(models.Model):
         return self.title
 
 class File(models.Model):
-    file = models.FileField(blank=False, null=False)
+    file = models.FileField(blank=True, null=True)
 
     def __str__(self):
         return self.file.name

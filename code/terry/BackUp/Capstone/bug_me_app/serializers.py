@@ -7,7 +7,8 @@ class TicketSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ticket
-        fields = ('id', 'title', 'body', 'created', 'closed')
+        fields = ('id', 'title', 'body', 'created', 'closed', 'file')
+        optional_fields = ['file',]
 
 class UserSerializer(serializers.ModelSerializer):
     bug_me_app = serializers.PrimaryKeyRelatedField(many=True, queryset=Ticket.objects.all())
@@ -20,4 +21,5 @@ class FileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = File
-        fields = '__all__'
+        fields = ('id', 'title', 'body', 'created', 'closed', 'file')
+        optional_fields = ['file',]
