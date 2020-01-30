@@ -109,29 +109,29 @@
         }
 
         * {
-        box-sizing: border-box;
+            box-sizing: border-box;
         }
 
         /* Create two unequal columns that floats next to each other */
         .column {
-        float: left;
-        padding: 10px;
-        height: 300px; /* Should be removed. Only for demonstration */
+            float: left;
+            padding: 10px;
+            height: 300px; /* Should be removed. Only for demonstration */
         }
 
         .left {
-        width: 25%;
+            width: 25%;
         }
 
         .right {
-        width: 75%;
+            width: 75%;
         }
 
         /* Clear floats after the columns */
         .row:after {
-        content: "";
-        display: table;
-        clear: both;
+            content: "";
+            display: table;
+            clear: both;
         }
     </style>
 </head>
@@ -140,70 +140,73 @@
     {% csrf_token %}
     <div id="app" class="row">
         <div class="column left">
-        {% if user.is_authenticated %}
-        <h1>Welcome {{ user.username }}!</h1>
-        <a href="{% url 'bug_me_app:logout' %}">Logout</a>
-        <br>
-        <input type="text" v-on:click="getSearch" v-model="search" placeholder="Search" size="20"><button id="button" v-on:click="getSearch">Search</button>
-        <button id="button" v-on:click="getAllTickets">All Tickets</button>
-        <br>
-        <div v-if="newTicket.closed == true">
-        <input disabled id="titleText" type="text" v-model="newTicket.title" placeholder="Title" size="40"><br>
-        <textarea disabled id="bodyText" v-model="newTicket.body" rows="6" cols="40"></textarea><br>
-        </div>
-        <div v-else>
-        <input id="titleText" type="text" v-model="newTicket.title" placeholder="Title" size="40"><br>
-        <textarea id="bodyText" v-model="newTicket.body" rows="6" cols="40" placeholder="Details..."></textarea><br>
-        </div>
-        <input type="checkbox" v-model="newTicket.closed">
-        <label>Close</label>
-        <p v-if="newTicket.id == '' ">
-        <button id="button" v-on:click="createTicket">Create</button>
-        </p>
-        <p v-if="newTicket.id != '' ">
-        <button id="button" v-on:click="updateTicket">Update</button>
-        </p>
-        <div class="container">
-            <div class="large-12 medium-12 small-12 cell">
-                <label>+ Select File
-                <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
-                </label>
-                <button v-on:click="submitFile()">Attach</button>
-                
+            {% if user.is_authenticated %}
+            <h1>Welcome {{ user.username }}!</h1>
+            <a href="{% url 'bug_me_app:logout' %}">Logout</a>
+            <br>
+            <input type="text" v-on:click="getSearch" v-model="search" placeholder="Search" size="20">
+            <button id="button" v-on:click="getSearch">Search</button>
+            <button id="button" v-on:click="getAllTickets">All Tickets</button>
+            <br>
+            <div v-if="newTicket.closed == true">
+                <input disabled id="titleText" type="text" v-model="newTicket.title" placeholder="Title" size="40"><br>
+                <textarea disabled id="bodyText" v-model="newTicket.body" rows="6" cols="40"></textarea><br>
+            </div>
+            <div v-else>
+                <input id="titleText" type="text" v-model="newTicket.title" placeholder="Title" size="40"><br>
+                <textarea id="bodyText" v-model="newTicket.body" rows="6" cols="40" placeholder="Details..."></textarea><br>
+            </div>
+            <input type="checkbox" v-model="newTicket.closed">
+            <label>Close</label>
+            <p v-if="newTicket.id == '' ">
+                <button id="button" v-on:click="createTicket">Create</button>
+            </p>
+            <p v-if="newTicket.id != '' ">
+                <button id="button" v-on:click="updateTicket">Update</button>
+            </p>
+            <div class="container">
+                <div class="large-12 medium-12 small-12 cell">
+                    <label>+ Select File
+                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                    </label>
+                    <button v-on:click="submitFile()">Attach</button>
+                </div>
             </div>
         </div>
-        </div>
         <div class="column right">
-        <div v-if="store2.length > 0">
-        <h1>Ticket:</h1>
+            <div v-if="store2.length > 0">
+            <h1>Ticket:</h1>
         </div>
         <ul>
             <li v-for="item in store2">
-            <button id="editTicket" v-on:click="textInsert(item)">Edit</button>
-            Ticket #: [[item.id]]&nbsp;&nbsp;&nbsp;&nbsp;Title: [[item.title]]&nbsp;&nbsp;&nbsp;&nbsp;Closed: [[item.closed]]
-            <blockquote>[[item.body]]</blockquote>
-            <div v-if="item.file != null ">
-            <p>File: [[item.file]]</p>
-            </div>
+                <button id="editTicket" v-on:click="textInsert(item)">Edit</button>
+                Ticket #: [[item.id]]&nbsp;&nbsp;&nbsp;&nbsp;Title: [[item.title]]&nbsp;&nbsp;&nbsp;&nbsp;Closed: [[item.closed]]
+                <blockquote>[[item.body]]</blockquote>
+                <div v-if="item.file != null ">
+                    <p>File: [[item.file]]</p>
+                </div>
             </li>
         </ul>
         <div id="search" v-if="search.length != '' ">
-        <h1>Ticket:</h1>
-         <p>[[ filtered.length ]] Results for: [[ search ]]</p>
-        <div id="filtered" v-if="filtered.length >= 1">
-        <ul>
-            <li v-for="item in filtered"><button v-on:click="textInsert(item)">Edit</button>Ticket #: [[item.id]]&nbsp;&nbsp;&nbsp;&nbsp;Title: [[item.title]]&nbsp;&nbsp;&nbsp;&nbsp;Closed: [[item.closed]]
-            <blockquote>[[item.body]]</blockquote>
-            <div v-if="item.file != null ">
-            <p>File: [[item.file]]</p>
+            <h1>Ticket:</h1>
+            <p>[[ filtered.length ]] Results for: [[ search ]]</p>
+            <div id="filtered" v-if="filtered.length >= 1">
+                <ul>
+                    <li v-for="item in filtered"><button v-on:click="textInsert(item)">Edit</button>
+                    Ticket #: [[item.id]]&nbsp;&nbsp;&nbsp;&nbsp;Title: [[item.title]]&nbsp;&nbsp;&nbsp;&nbsp;Closed: [[item.closed]]
+                    <blockquote>[[item.body]]</blockquote>
+                    <div v-if="item.file != null ">
+                        <p>File: [[item.file]]</p>
+                    </div>
+                    </li>
+                </ul>
             </div>
-            </li>
-        </ul>
-        </div>
         </div>
         {% else %}
         <p>You are not logged in.</p>
-        <p><a href="{% url 'bug_me_app:login' %}">Login</a></p>
+        <p>
+            <a href="{% url 'bug_me_app:login' %}">Login</a>
+        </p>
         {% endif %}
     </div>
     <script src="https://unpkg.com/vue"></script>
