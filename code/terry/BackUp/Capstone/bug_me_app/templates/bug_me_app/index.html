@@ -49,6 +49,14 @@
             margin: 2px;
         }
 
+        blockquote { 
+            display: block;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 40px;
+            margin-right: 460px;
+        }
+
         .note {
             width: 500px;
             margin: 50px auto;
@@ -99,12 +107,39 @@
         #fileElem {
             display: none;
         }
+
+        * {
+        box-sizing: border-box;
+        }
+
+        /* Create two unequal columns that floats next to each other */
+        .column {
+        float: left;
+        padding: 10px;
+        height: 300px; /* Should be removed. Only for demonstration */
+        }
+
+        .left {
+        width: 25%;
+        }
+
+        .right {
+        width: 75%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
     </style>
 </head>
 
 <body>
     {% csrf_token %}
-    <div id="app">
+    <div id="app" class="row">
+        <div class="column left">
         {% if user.is_authenticated %}
         <h1>Welcome {{ user.username }}!</h1>
         <a href="{% url 'bug_me_app:logout' %}">Logout</a>
@@ -137,21 +172,31 @@
                 
             </div>
         </div>
+        </div>
+        <div class="column right">
+        <div v-if="store2.length > 0">
+        <h1>Ticket:</h1>
+        </div>
         <ul>
             <li v-for="item in store2">
             <button id="editTicket" v-on:click="textInsert(item)">Edit</button>
             Ticket #: [[item.id]]&nbsp;&nbsp;&nbsp;&nbsp;Title: [[item.title]]&nbsp;&nbsp;&nbsp;&nbsp;Closed: [[item.closed]]
-            <p>[[item.body]]</p>
+            <blockquote>[[item.body]]</blockquote>
             <div v-if="item.file != null ">
             <p>File: [[item.file]]</p>
             </div>
             </li>
         </ul>
         <div id="search" v-if="search.length != '' ">
+        <h1>Ticket:</h1>
          <p>[[ filtered.length ]] Results for: [[ search ]]</p>
         <div id="filtered" v-if="filtered.length >= 1">
         <ul>
-            <li v-for="item in filtered"><button v-on:click="textInsert(item)">Edit</button> [[ item.id ]] - [[ item.title ]]: [[ item.body ]]
+            <li v-for="item in filtered"><button v-on:click="textInsert(item)">Edit</button>Ticket #: [[item.id]]&nbsp;&nbsp;&nbsp;&nbsp;Title: [[item.title]]&nbsp;&nbsp;&nbsp;&nbsp;Closed: [[item.closed]]
+            <blockquote>[[item.body]]</blockquote>
+            <div v-if="item.file != null ">
+            <p>File: [[item.file]]</p>
+            </div>
             </li>
         </ul>
         </div>
