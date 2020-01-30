@@ -112,18 +112,28 @@
         <input type="text" v-on:click="getSearch" v-model="search" placeholder="Search" size="20"><button id="button" v-on:click="getSearch">Search</button>
         <button id="button" v-on:click="getAllTickets">All Tickets</button>
         <br>
+        <div v-if="newTicket.closed == true">
+        <input disabled id="titleText" type="text" v-model="newTicket.title" placeholder="Title" size="40"><br>
+        <textarea disabled id="bodyText" v-model="newTicket.body" rows="6" cols="40"></textarea><br>
+        </div>
+        <div v-else>
         <input id="titleText" type="text" v-model="newTicket.title" placeholder="Title" size="40"><br>
-        <textarea id="bodyText" v-model="newTicket.body" rows="6" cols="40"></textarea><br>
-        <input type="checkbox" v-model="newTicket.closed" onchange="js_disable()">
+        <textarea id="bodyText" v-model="newTicket.body" rows="6" cols="40" placeholder="Details..."></textarea><br>
+        </div>
+        <input type="checkbox" v-model="newTicket.closed">
         <label>Close</label>
+        <p v-if="newTicket.id == '' ">
         <button id="button" v-on:click="createTicket">Create</button>
+        </p>
+        <p v-if="newTicket.id != '' ">
         <button id="button" v-on:click="updateTicket">Update</button>
+        </p>
         <div class="container">
             <div class="large-12 medium-12 small-12 cell">
                 <label>+ Select File
                 <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
                 </label>
-                <button v-on:click="submitFile()">Submit</button>
+                <button v-on:click="submitFile()">Attach</button>
                 
             </div>
         </div>
@@ -154,7 +164,9 @@
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        
+        /*Vue app
+        data stores the variables needed for the app
+        newTicket stores the current ticket being displayed*/
         new Vue({
             el: '#app',
             delimiters: ['[[', ']]'],
@@ -195,6 +207,7 @@
                     this.filtered = this.store;
                     this.filtered = this.filtered.filter(this.searchFilter);
                 },
+                //Updates the fields as newTicket changes
                 textInsert: function(item) {
                     this.newTicket.file = item.file;
                     this.newTicket.closed = item.closed;
@@ -203,28 +216,6 @@
                     this.newTicket.body = item.body;
                     this.newTicket.id = item.id;
                 },
-                /*createTicket: function() {
-                    axios({
-                        method: 'post',
-                        url: '/ticket/',
-                        data: this.newTicket,
-                        dataType: 'json',
-                        headers: {
-                            "X-CSRFToken": this.csrf_token,
-                        },
-                    }).then(response => {
-                        this.newTicket = {
-                            "id": this.newTicket.id,
-                            "author": this.newTicket.author,
-                            "title": this.newTicket.title,
-                            "body": this.newTicket.body,
-                            "file": this.newTicket.file,
-                            "closed": this.newTicket.closed,
-                            "title": '',
-                            "body": '',
-                        }
-                    });
-                },*/
                 createTicket() {
                     let formData = new FormData();
                     formData.append('id', this.newTicket.id);
@@ -273,7 +264,6 @@
                 handleFileUpload(){
                     this.newTicket.file = document.getElementById('file').files[0].name;
                     console.log(this.newTicket.file);
-                    //this.newTicket.file = this.$refs.file.files[0];
                 },
                 //This function overwrites the ticket selected with the edit button.
                 //Since the ticket info is loaded into the input/textarea, the info
@@ -297,7 +287,6 @@
                             "closed": this.newTicket.closed,
                             "title": '',
                             "body": '',
-                            
                         }
                     });
                 },
@@ -306,12 +295,6 @@
                 this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value;
             },
         });
-        function js_disable() {
-            document.getElementById('bodyText').disabled = 
-            !document.getElementById('bodyText').disabled;
-            document.getElementById('titleText').disabled =
-            !document.getElementById('titleText').disabled;
-        }
     </script>
 </body>
 </html>
