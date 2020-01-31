@@ -1,0 +1,53 @@
+{% extends 'events/base.html'%}
+{% csrf_token %}
+{% block content %}
+  <!-- <concert-info></concert-info> -->
+  <div class="row justify-content-center mt-3">
+    <div class="col">
+      {% if messages %}
+        {% for message in messages %} 
+        <div class="alert alert-{{ message.tags }}">
+          {{ message }}
+        </div>
+        {% endfor %}
+      {% endif %}   
+      {% if user.is_authenticated %}
+        <h4>
+          Welcome, <a href="{% url 'profile' %}">{{ user.username }}</a>
+        </h4>
+      {% endif %}
+    </div>
+    <div class="col-4 text-center">
+    <!-- search input -->
+     <input type="text" v-model="city" class="form-control" placeholder="Enter City to Search">
+    </div>
+    <div class="col-4"> 
+      <!-- search button -->
+      <button @click="citySearch" class="btn btn-outline-secondary">Search!</button>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <concert-info
+      v-for='event in events'
+      :key='event.id'
+      :event='event'
+    >
+    </concert-info>
+</div>
+  <!-- <div class="row my-5">
+    <div class="col-4 text-center" v-for='event in events'>
+      <h4 id="name"> [[event.name]] </h4>
+      <p class="mb-0"> [[event._embedded.venues[0].name]] </p>
+      <p class="mb-0"> [[event._embedded.venues[0].address.line1]] </p>
+      <p class="mb-0" >
+        [[event._embedded.venues[0].city.name]] ,  [[event._embedded.venues[0].state.stateCode]]
+      </p>
+      <p class="mb-0"> [[event.dates.start.localDate]] </p>
+      <p> [[event.dates.start.localTime]] </p>
+      <button @click='save'>save</button>
+    </div>
+  </div> -->
+{% endblock content %}
+
+
