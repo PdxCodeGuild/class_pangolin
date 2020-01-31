@@ -116,15 +116,14 @@
         .column {
             float: left;
             padding: 10px;
-            height: 300px; /* Should be removed. Only for demonstration */
         }
 
         .left {
-            width: 25%;
+            width: 35%;
         }
 
         .right {
-            width: 75%;
+            width: 65%;
         }
 
         /* Clear floats after the columns */
@@ -158,32 +157,42 @@
             </div>
             <input type="checkbox" v-model="newTicket.closed">
             <label>Close</label>
+            <br><br>
+            <div class="container">
+                <div class="large-12 medium-12 small-12 cell" v-if="newTicket.file == null ">
+                    <label id="selectFile">+ Select File
+                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                    </label>
+                    <!--<button v-on:click="submitFile()">Attach</button>-->
+                </div>
+                <div class="large-12 medium-12 small-12 cell" v-if="newTicket.file != null ">
+                    <label id="selectFile">[[newTicket.file]]
+                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                    </label>
+                    <!--<button v-on:click="submitFile()">Attach</button>-->
+                </div>
+            </div>
             <p v-if="newTicket.id == '' ">
                 <button id="button" v-on:click="createTicket">Create</button>
             </p>
             <p v-if="newTicket.id != '' ">
                 <button id="button" v-on:click="updateTicket">Update</button>
             </p>
-            <div class="container">
-                <div class="large-12 medium-12 small-12 cell">
-                    <label>+ Select File
-                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
-                    </label>
-                    <button v-on:click="submitFile()">Attach</button>
-                </div>
-            </div>
         </div>
         <div class="column right">
             <div v-if="store2.length > 0">
-            <h1>Ticket:</h1>
-        </div>
+                <h1>Ticket:</h1>
+            </div>
         <ul>
             <li v-for="item in store2">
                 <button id="editTicket" v-on:click="textInsert(item)">Edit</button>
                 Ticket #: [[item.id]]&nbsp;&nbsp;&nbsp;&nbsp;Title: [[item.title]]&nbsp;&nbsp;&nbsp;&nbsp;Closed: [[item.closed]]
                 <blockquote>[[item.body]]</blockquote>
+                <blockquote>
                 <div v-if="item.file != null ">
+                    
                     <p>File: [[item.file]]</p>
+                    </blockquote>
                 </div>
             </li>
         </ul>
@@ -209,12 +218,10 @@
         </p>
         {% endif %}
     </div>
+    </div>
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        /*Vue app
-        data stores the variables needed for the app
-        newTicket stores the current ticket being displayed*/
+    <script type="application/javascript">
         new Vue({
             el: '#app',
             delimiters: ['[[', ']]'],
@@ -232,7 +239,7 @@
                     "title": "",
                     "body": "",
                     "closed": false,
-                    "file": "",
+                    "file": null,
                 },
             },
             methods: {
@@ -255,7 +262,6 @@
                     this.filtered = this.store;
                     this.filtered = this.filtered.filter(this.searchFilter);
                 },
-                //Updates the fields as newTicket changes
                 textInsert: function(item) {
                     this.newTicket.file = item.file;
                     this.newTicket.closed = item.closed;
@@ -311,11 +317,7 @@
                 },
                 handleFileUpload(){
                     this.newTicket.file = document.getElementById('file').files[0].name;
-                    console.log(this.newTicket.file);
                 },
-                //This function overwrites the ticket selected with the edit button.
-                //Since the ticket info is loaded into the input/textarea, the info
-                //is also in the newTicket array.
                 updateTicket: function(item) {
                     axios({
                         method: 'put',
@@ -335,6 +337,7 @@
                             "closed": this.newTicket.closed,
                             "title": '',
                             "body": '',
+                            "file": null,
                         }
                     });
                 },

@@ -73,14 +73,14 @@ class FileUploadView(APIView):
         f = request.data['file']
 
         Ticket.file.save(f.name, f, save=True)
-        return Response(status=status.HTTP_201_CREATED)
+        #return Response(status=status.HTTP_201_CREATED)
 
-        # file_serializer = FileSerializer(data=request.data)
+        file_serializer = FileSerializer(data=request.data, files=request.files)
 
-        # if file_serializer.is_valid():
-        #     file_serializer.save()
-        #     return Response(file_serializer.data, status=status.HTTP_201_CREATED)
-        # else:
-        #     return Response(file_serializer.error, status=status.HTTP_400_BAD_REQUEST)
+        if file_serializer.is_valid():
+            file_serializer.save()
+            return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(file_serializer.error, status=status.HTTP_400_BAD_REQUEST)
 
             
