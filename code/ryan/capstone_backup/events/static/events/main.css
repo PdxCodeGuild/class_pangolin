@@ -1,9 +1,27 @@
-
-#background {
-    background: red;
-    /* linear-gradient(
-        rgba(0,0,0,.2),
-        rgba(0,0,0,.2)
-    ),
-    url(crowd.jpg)center/cover no-repeat fixed; */
+html,body {
+    height: 100%;
 }
+
+body {
+    background: linear-gradient(
+        rgba(0, 0, 0, .7),
+        rgba(0, 0, 0, .7)
+    ),
+    url('guitar.jpg')center/cover no-repeat fixed;
+}
+
+.title-underline {
+    width: 75%;
+    height: 3px;
+    margin: 0 auto;
+    opacity: .5;
+  }
+
+.card-body {
+    opacity: .7;
+}
+
+.main-head {
+    opacity: .6;
+}
+  

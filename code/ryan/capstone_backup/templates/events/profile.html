@@ -1,19 +1,5 @@
 {% extends 'events/base.html'%}
 {% block content %}
-    {% for event in user.favorite.all %}
-    <div class="row my-5">
-        <div class="col-4 text-center">
-            <h4>  {{event.band}}  </h4>
-            <p class="mb-0"> {{ event.venue }} </p>
-            <p class="mb-0">{{ event.street_address }}</p>
-            <p class="mb-0" >
-            {{ event.city }} ,  {{ event.state }}
-            </p>
-            <p class="mb-0"> {{ event.date }} </p>
-            <p> {{ event.time }} </p>
-            <button>remove</button>
-        </div>
-    </div>
-    {% endfor %}
+    <h1>Profile</h1>
 {% endblock content %}
         

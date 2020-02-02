@@ -1,19 +1,20 @@
 {% extends 'events/base.html'%}
 {% load crispy_forms_tags %}
 {% block content %}
-  <div class="w-25">
+  <div class="w-25 mx-auto main-head">
     <form action="" method="POST">
       {% csrf_token %}
-      <fieldset class="form-group">
-        <legend class="border-bottom mb-4">Signup Today!</legend>
+      <fieldset class="form-group text-light">
+        <legend class="border-bottom mb-4 text-light">Signup Today!</legend>
         {{ form|crispy }}
       </fieldset>
       <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Signup!</button>
+        <button class="btn btn-outline-light" type="submit">Signup!</button>
       </div>
     </form>
     <div class="border-top my-3">
-      <small class="text-muted">Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a></small>
+      <small class="text-dark">Already have an account?</small>
+      <a href="{% url 'login' %}" class="text-light nav-link">Login</a>
     </div>
   </div>   
 {% endblock content %}

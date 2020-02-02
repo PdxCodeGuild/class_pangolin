@@ -1,18 +1,38 @@
 {% extends 'events/base.html'%}
 {% csrf_token %}
 {% block content %}
-  {% for event in events %}
-    <div class="col-4 text-center">
-      <a href="#"><h4 class="mt-3"> {{ event.band }} </h4></a>
-      <p class="mb-0"> {{ event.venue }} </p>
-      <p class="mb-0"> {{ event.address }} </p>
-      <p class="mb-0">
-      {{ event.city }} , {{ event.state }}
-      </p>
-      <p class="mb-0"> {{ event.date }} </p>
-      <p> {{ event.time }} </p>
-    </div> 
-  {% endfor %}
+<div class="row justify-content-center mt-3">
+  <div class="col">
+    {% if messages %}
+      {% for message in messages %} 
+      <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+      </div>
+      {% endfor %}
+    {% endif %}   
+    {% if user.is_authenticated %}
+      <h4>
+        <a class="text-light nav-link" href="{% url 'profile' %}">Welcome, {{ user.username }}</a>
+      </h4>
+    {% endif %}
+  </div>
+  <div class="col-4 text-center">
+  <!-- search input -->
+   <input type="text" v-model="city" class="form-control main-head" placeholder="Enter City to Search">
+  </div>
+  <div class="col-4"> 
+    <!-- search button -->
+    <button @click="citySearch" class="btn btn-outline-light main-head">Search!</button>
+  </div>
+</div>
+
+<div class="row my-5">
+  <local-event
+  v-for='event in localEvents'
+  :key='event.id'
+  :event='event'
+  ></local-event>
+</div>
 {% endblock content %}
 
 

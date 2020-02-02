@@ -1,7 +1,7 @@
 {% extends 'events/base.html'%}
 {% load crispy_forms_tags %}
 {% block content %}
-  <div class="w-25">
+  <div class="w-50 mx-auto text-light main-head">
     <form action="" method="POST">
       {% csrf_token %}
       <fieldset class="form-group">
@@ -9,7 +9,7 @@
         {{ form|crispy }}
       </fieldset>
       <div class="form-group">
-        <button class="btn btn-outline-info" type="submit">Signup!</button>
+        <button class="btn btn-outline-light mb-5" type="submit">Add Event!</button>
       </div>
     </form>
   </div>   
