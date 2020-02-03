@@ -3,18 +3,6 @@
 {% block content %}
 <div class="row justify-content-center mt-3">
   <div class="col">
-    {% if messages %}
-      {% for message in messages %} 
-      <div class="alert alert-{{ message.tags }}">
-        {{ message }}
-      </div>
-      {% endfor %}
-    {% endif %}   
-    {% if user.is_authenticated %}
-      <h4>
-        <a class="text-light nav-link" href="{% url 'profile' %}">Welcome, {{ user.username }}</a>
-      </h4>
-    {% endif %}
   </div>
   <div class="col-4 text-center">
   <!-- search input -->

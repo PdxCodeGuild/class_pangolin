@@ -17,5 +17,6 @@ class EventSerializer(serializers.ModelSerializer):
         'date_created',
         'author',
         'image',
-        'url'
+        'url', 
+        'id'
         )

@@ -24,4 +24,12 @@ body {
 .main-head {
     opacity: .6;
 }
+ 
+img {
+    display: block;
+    object-fit: cover;
+    height: 300px!important;
+}
+
+
   
