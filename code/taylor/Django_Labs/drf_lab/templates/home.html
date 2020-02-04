@@ -1,0 +1,82 @@
+{% if user.is_authenticated %}
+<h1>Welcome {{ user.username }}!</h1>
+<p><a href="{% url 'logout' %}">Logout</a><p>
+{% else %}
+<h1>Welcome, visitor!</h1>
+<p>You are not logged in. <a href="{% url 'login' %}">Login</a> <a href="{% url 'users:signup' %}">Sign Up</a></p>
+{% endif %}
+<div id='app'>
+    <div v-for='student in studentList'>
+        <h2>[[ student.first_name]] [[ student.last_name ]]</h2>
+        <ul>
+        <li>Cohort:  [[ student.cohort ]]</li>
+        <li>Favorite Topic: [[ student.favorite_topic ]]</li>
+        <li>Favorite Teacher: [[ student.favorite_teacher]]</li>
+        <li>Capstone: [[ student.capstone ]]</li>
+    </ul>   
+    </div>
+    <div>
+      <h2>Create a Student:</h2>
+      <form @submit.prevent='createsStudent'>
+        <p><input type='text' placeholder='First Name' v-model='student.first_name'></p>
+        <p><input type='text' placeholder='Last Name' v-model='student.last_name'></p>
+        <p><input type='text' placeholder='Cohort' v-model='student.cohort'></p>
+        <p><input type='text' placeholder='Favorite Topic' v-model='student.favorite_topic'></p>
+        <p><input type='text' placeholder='Favorite Teacher' v-model='student.favorite_teacher'></p>
+        <p><input type='text' placeholder='Capstone URL' v-model='student.capstone'></p>
+        <button type='submit'>Submit</button>
+      </form>
+    </div>
+</div>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        data: {
+          studentList: [],
+          student: {
+            first_name: '',
+            last_name:'',
+            cohort: '',
+            favorite_topic: '',
+            favorite_teacher: '',
+            capstone: '',
+          }
+        },
+        methods: {
+      list: function () {
+        axios({
+          method: 'get',
+          url: 'http://127.0.0.1:8000/api/students/',
+        }).then(response => {this.studentList = response.data});
+      },
+      createsStudent() {
+        axios.defaults.xsrfCookieName = 'csrftoken'
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+        axios.post('http://127.0.0.1:8000/api/students/', {
+            first_name: this.student.first_name,
+            last_name: this.student.last_name,
+            cohort: this.student.cohort,
+            favorite_topic: this.student.favorite_topic,
+            favorite_teacher: this.student.favorite_teacher,
+            capstone: this.student.capstone,
+          })
+          .then(response => {
+                let data = response.data;
+                this.studentList.push(data);
+                this.student.first_name = '';
+                this.student.last_name = '';
+                this.student.cohort = '';
+                this.student.favorite_topic = '';
+                this.student.favorite_teacher = '';
+                this.student.capstone = '';
+          });
+      },
+    },
+    mounted: function () {
+      this.list();
+    }
+  });
+</script>
