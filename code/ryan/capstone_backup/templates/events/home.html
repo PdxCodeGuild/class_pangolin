@@ -15,15 +15,19 @@
     </div>
     <div class="col-4 text-center">
     <!-- search input -->
-     <input type="text" v-model="city" class="form-control main-head" placeholder="Enter City to Search">
+     <input type="text" v-model="city" id="autocomplete" class="form-control main-head" placeholder="Enter City to Search">
     </div>
     <div class="col-4"> 
       <!-- search button -->
       <button @click="citySearch" class="btn btn-outline-light main-head">Search!</button>
     </div>
+    <div class="col-12">
+      <h1 class="mt-5 text-center">Upcoming Events</h1>
+      <div class="title-underline bg-primary"></div>
+    </div>
   </div>
 
-  <div class="row my-5">
+  <div class="row mb-5">
     <concert-info
       v-for='event in events'
       :key='event.id'

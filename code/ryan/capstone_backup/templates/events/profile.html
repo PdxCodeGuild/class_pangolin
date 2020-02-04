@@ -19,7 +19,7 @@
         <p> {{event.price}} </p>
         <div class="d-flex flex-row justify-content-end">
         <a href="{% url 'update' event.id %}" class="nav-link text-primary"><p>Edit</p></a>
-        <a href="{% url 'delete' event.id %}" class="nav-link text-primary"><p>Delete</p></a>
+        <a href="{% url 'delete' event.id %}" class="nav-link text-danger"><p>Delete</p></a>
         </div>
       </div>
       <div class="title-underline bg-primary mb-1"></div>

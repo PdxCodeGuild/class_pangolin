@@ -19,6 +19,9 @@ class Event(models.Model):
     image = models.ImageField(default='default.jpg', upload_to='locals_pics', blank=True)
     url =models.URLField(blank=True)
 
+    class Meta:
+       ordering = ['-date_created']
+
     def __str__(self):
         return self.band
 

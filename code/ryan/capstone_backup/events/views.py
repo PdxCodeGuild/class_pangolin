@@ -37,6 +37,7 @@ class EventCreateView(LoginRequiredMixin, CreateView):
 
 class EventUpdateView(LoginRequiredMixin, UserPassesTestMixin ,UpdateView):
     model = Event
+    template_name = 'events/event_update.html'
     fields = ['band', 'body', 'venue', 'street_address', 'city', 'state', 'date', 'time', 'price', 'image', 'url']
     success_url = '/profile/'
 
