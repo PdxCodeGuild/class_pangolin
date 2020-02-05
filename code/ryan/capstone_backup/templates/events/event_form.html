@@ -1,0 +1,16 @@
+{% extends 'events/base.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="w-50 mx-auto text-light main-head">
+    <form action="" enctype="multipart/form-data" method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">New Event</legend>
+        {{ form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-light mb-5" type="submit">Add Event!</button>
+      </div>
+    </form>
+  </div>   
+{% endblock content %}

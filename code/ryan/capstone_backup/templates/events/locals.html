@@ -1,0 +1,29 @@
+{% extends 'events/base.html'%}
+{% csrf_token %}
+{% block content %}
+<div class="row justify-content-center mt-3">
+  <div class="col">
+  </div>
+  <div class="col-4 text-center">
+  <!-- search input -->
+   <input type="text" v-model="city" id="autocomplete" class="form-control main-head" placeholder="Enter City to Search">
+  </div>
+  <div class="col-4"> 
+    <!-- search button -->
+    <button @click="citySearch" class="btn btn-outline-light main-head">Search!</button>
+  </div>
+  <div class="col-12">
+    <h1 class="mt-5 text-center">Local Events</h1>
+    <div class="title-underline bg-primary"></div>
+  </div>
+</div>
+<div class="row mb-5">
+  <local-event
+  v-for='event in filterLocals'
+  :key='event.id'
+  :event='event'
+  ></local-event>
+</div>
+{% endblock content %}
+
+
