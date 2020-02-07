@@ -22,6 +22,20 @@
             font-size: large;
         }
 
+        input[type="file"] {
+            position: absolute;
+            top: -500px;
+        }
+
+        a {
+            padding: 4px;
+            margin: 4px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
         textarea {
             font-size: large;
             padding: 2px;
@@ -34,71 +48,280 @@
             border-radius: 6px;
             margin: 2px;
         }
+
+        blockquote { 
+            display: block;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            margin-left: 40px;
+            margin-right: 460px;
+        }
+
+        .note {
+            width: 500px;
+            margin: 50px auto;
+            font-size: 1.1em;
+            color: #333;
+            text-align: justify;
+        }
+
+        #drop-area {
+            border: 2px dashed #ccc;
+            border-radius: 20px;
+            width: 400px;
+            padding: 20px;
+        }
+
+        #drop-area.highlight {
+            border-color: purple;
+        }
+        
+        .my-form {
+            margin-bottom: 10px;
+        }
+
+        #gallery {
+            margin-top: 10px;
+        }
+
+        #gallery img {
+            width: 150px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 6px;
+            background: #ccc;
+            cursor: pointer;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .button:hover {
+            background: #ddd;
+        }
+        
+        #fileElem {
+            display: none;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Create two unequal columns that floats next to each other */
+        .column {
+            float: left;
+            padding: 10px;
+        }
+
+        .left {
+            width: 35%;
+        }
+
+        .right {
+            width: 65%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
     </style>
 </head>
 
 <body>
     {% csrf_token %}
-    <div id="app">
-        {% if user.is_authenticated %}
-        <h1>Welcome {{ user.username }}!</h1>
-        <a href="{% url 'bug_me_app:logout' %}">Logout</a>
-        <br>
-        <input type="text" v-model="search" placeholder="Search"><button id="button" v-on:click="searchTicket">Search</button><br>
-        <input type="text" v-model="newTicket.title" placeholder="Title"><br>
-        <textarea v-model="newTicket.body" rows="6" cols="40"></textarea><br>
-        <input type="checkbox" v-model="newTicket.closed">
-        <label>Close</label>
-        <button id="button" v-on:click="createTicket">Create</button>
-        <button id="button" v-on:click="createTicket">Update</button>
-         <ul>
-            <li v-for="item in store.results">
-            [[item.body]] - [[index]]
+    <div id="app" class="row">
+        <div class="column left">
+            {% if user.is_authenticated %}
+            <h1>Welcome {{ user.username }}!</h1>
+            <a href="{% url 'bug_me_app:logout' %}">Logout</a>
+            <br>
+            <input type="text" v-on:click="getSearch" v-model="search" placeholder="Search" size="20">
+            <button id="button" v-on:click="getSearch">Search</button>
+            <button id="button" v-on:click="getAllTickets">All Tickets</button>
+            <br>
+            <div v-if="newTicket.closed == true">
+                <input disabled id="titleText" type="text" v-model="newTicket.title" placeholder="Title" size="40"><br>
+                <textarea disabled id="bodyText" v-model="newTicket.body" rows="6" cols="40"></textarea><br>
+            </div>
+            <div v-else>
+                <input id="titleText" type="text" v-model="newTicket.title" placeholder="Title" size="40"><br>
+                <textarea id="bodyText" v-model="newTicket.body" rows="6" cols="40" placeholder="Details..."></textarea><br>
+            </div>
+            <input type="checkbox" v-model="newTicket.closed">
+            <label>Close</label>
+            <br><br>
+            <div class="container">
+                <div class="large-12 medium-12 small-12 cell" v-if="newTicket.file == null ">
+                    <label id="selectFile">+ Select File
+                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                    </label>
+                    <!--<button v-on:click="submitFile()">Attach</button>-->
+                </div>
+                <div class="large-12 medium-12 small-12 cell" v-if="newTicket.file != null ">
+                    <label id="selectFile">[[newTicket.file]]
+                    <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+                    </label>
+                    <!--<button v-on:click="submitFile()">Attach</button>-->
+                </div>
+            </div>
+            <p v-if="newTicket.id == '' ">
+                <button id="button" v-on:click="createTicket">Create</button>
+            </p>
+            <p v-if="newTicket.id != '' ">
+                <button id="button" v-on:click="updateTicket">Update</button>
+            </p>
+        </div>
+        <div class="column right">
+            <div v-if="store2.length > 0">
+                <h1>Ticket:</h1>
+            </div>
+        <ul>
+            <li v-for="item in store2">
+                <button id="editTicket" v-on:click="textInsert(item)">Edit</button>
+                Ticket #: [[item.id]]&nbsp;&nbsp;&nbsp;&nbsp;Title: [[item.title]]&nbsp;&nbsp;&nbsp;&nbsp;Closed: [[item.closed]]
+                <blockquote>[[item.body]]</blockquote>
+                <blockquote>
+                <div v-if="item.file != null ">
+                    
+                    <p>File: [[item.file]]</p>
+                    </blockquote>
+                </div>
             </li>
-         </ul>
+        </ul>
+        <div id="search" v-if="search.length != '' ">
+            <h1>Ticket:</h1>
+            <p>[[ filtered.length ]] Results for: [[ search ]]</p>
+            <div id="filtered" v-if="filtered.length >= 1">
+                <ul>
+                    <li v-for="item in filtered"><button v-on:click="textInsert(item)">Edit</button>
+                    Ticket #: [[item.id]]&nbsp;&nbsp;&nbsp;&nbsp;Title: [[item.title]]&nbsp;&nbsp;&nbsp;&nbsp;Closed: [[item.closed]]
+                    <blockquote>[[item.body]]</blockquote>
+                    <div v-if="item.file != null ">
+                        <p>File: [[item.file]]</p>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
         {% else %}
         <p>You are not logged in.</p>
-        <p><a href="{% url 'bug_me_app:login' %}">Login</a></p>
+        <p>
+            <a href="{% url 'bug_me_app:login' %}">Login</a>
+        </p>
         {% endif %}
+    </div>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        
-        let vm = new Vue({
+    <script type="application/javascript">
+        new Vue({
             el: '#app',
             delimiters: ['[[', ']]'],
             data: {
+                disabled: false,
                 csrf_token: "",
-                "search": "",
-                result: [],
+                search: "",
                 store: [],
+                store2: [],
                 filtered: [],
+                imgStore: [],
                 newTicket: {
+                    "id": "",
+                    "author": this.username,
                     "title": "",
                     "body": "",
                     "closed": false,
+                    "file": null,
                 },
             },
             methods: {
-                searchTicket: function() {
+                getAllTickets: function() {
                     axios({
                         method: 'get',
                         url: '/ticket/',
                         dataType: 'json',
-                    }).then(response => this.store = response.data);
+                    }).then(response => this.store2 = response.data.results);
                 },
                 searchFilter: function(item) {
                     return item.body.includes(this.search);
                 },
                 getSearch: function() {
+                    axios({
+                        method: 'get',
+                        url: '/ticket/',
+                        dataType: 'json',
+                    }).then(response => this.store = response.data.results);
                     this.filtered = this.store;
                     this.filtered = this.filtered.filter(this.searchFilter);
                 },
-                createTicket: function() {
+                textInsert: function(item) {
+                    this.newTicket.file = item.file;
+                    this.newTicket.closed = item.closed;
+                    this.newTicket.author = item.author;
+                    this.newTicket.title = item.title;
+                    this.newTicket.body = item.body;
+                    this.newTicket.id = item.id;
+                },
+                createTicket() {
+                    let formData = new FormData();
+                    formData.append('id', this.newTicket.id);
+                    formData.append('author', this.newTicket.author);
+                    formData.append('title', this.newTicket.title);
+                    formData.append('body', this.newTicket.body);
+                    formData.append('file', this.newTicket.file);
+                    formData.append('closed', this.newTicket.closed);
+                    axios.post('/ticket/',
+                        formData, {
+                            headers: {
+                            "Content-Disposition": 'file; filename="' + this.newTicket.file + '"',
+                            'Content-Type': 'multipart/form-data',
+                            'X-CSRFToken': this.csrf_token,
+                            }
+                        }
+                        ).then(function() {
+                            console.log('success');
+                        })
+                        .catch(function() {
+                            console.log('fail');
+                        });
+                    },
+                submitFile() {
+                    let formData = new FormData();
+                    formData.append('file', this.file);
+                    axios.put('/upload/',
+                        formData,
+                        {
+                        headers: {
+                            "Content-Disposition": 'file; filename="' + this.newTicket.file + '"',
+                            'Content-Type': 'multipart/form-data',
+                            'X-CSRFToken': this.csrf_token,
+                        }
+                    }
+                    ).then(function() {
+                            this.newTicket = {
+                            "title": '',
+                            "body": '',
+                        }
+                    })
+                    .catch(function() {
+                        console.log('fail');
+                    });
+                },
+                handleFileUpload(){
+                    this.newTicket.file = document.getElementById('file').files[0].name;
+                },
+                updateTicket: function(item) {
                     axios({
-                        method: 'post',
-                        url: '/ticket/',
+                        method: 'put',
+                        url: `/ticket/${this.newTicket.id}/`,
                         data: this.newTicket,
                         dataType: 'json',
                         headers: {
@@ -106,10 +329,15 @@
                         },
                     }).then(response => {
                         this.newTicket = {
-                            "search": "",
-                            "title": "",
-                            "body": "",
-                            "closed": "",
+                            "id": this.newTicket.id,
+                            "author": this.newTicket.author,
+                            "title": this.newTicket.title,
+                            "body": this.newTicket.body,
+                            "file": this.newTicket.file,
+                            "closed": this.newTicket.closed,
+                            "title": '',
+                            "body": '',
+                            "file": null,
                         }
                     });
                 },

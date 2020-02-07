@@ -1,0 +1,8 @@
+{% extends 'events/base.html'%}
+{% block content %}
+    {% for event in events %}
+    <h2>{{ event.band }}</h2>
+    <h2>{{ event.venue }}</h2>
+    <h2>{{ event.city }}</h2>
+    {% endfor %}
+{% endblock content %}
