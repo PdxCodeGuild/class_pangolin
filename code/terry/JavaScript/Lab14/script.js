@@ -32,7 +32,7 @@ let vm = new Vue({
                 url: 'https://randomuser.me/api/',
                 dataType: 'json',
                 params: {
-                    results: 5000
+                    results: 1000
                 },
             }).then(response => this.store = response.data.results);
         },

@@ -6,17 +6,17 @@ from string import ascii_lowercase
 #def rot_loop ():
 
 user_input = "hello"
-#input('What prase would you like to encode? :  ')
-#user_input = list(user_input)
-#print (user_input)
-#for i in range(len(user_input)):
-#print(ascii_lowercase.index (user_input)
-# x = ''
+# input('What prase would you like to encode? :  ')
+# user_input = list(user_input)
+# print (user_input)
+# for i in range(len(user_input)):
+# print(ascii_lowercase.index (user_input)
+# # x = ''
 # if x in (user_input):
 #     print (ascii_lowercase.index (user_input) + 13 % 26)
 new = []
 for letter in user_input:
-    new.append (ascii_lowercase.index (letter))
+    new.append (ascii_lowercase.index(letter))
 # print (user_input)
 new_list = [x+13 for x in new]
 
@@ -24,10 +24,16 @@ final_list = [x % 26 for x in new_list]
 
 letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
+final_num= []
+for number in final_list:
+    final_num.append(ascii_lowercase.index)
 print (new)
 print (new_list)
+print(final_num)
 print (final_list)
-print (letters.index(final_list)) #ask about this 
+
+# print (letters.index(final_list)) 
+#ask about this 
 
     #user_input2 = [new] + 13
    # user_input2 = int(new) % 26

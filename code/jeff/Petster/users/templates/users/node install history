@@ -1,0 +1,189 @@
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+jeff@:Petster$ pipenv shell
+Launching subshell in virtual environment…
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+jeff@:Petster$  . /Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/bin/activate
+(Petster) jeff@:Petster$ ls
+Pipfile      Pipfile.lock db.sqlite3   fetch        manage.py    petster      users
+(Petster) jeff@:Petster$ python manage.py startapp apis
+(Petster) jeff@:Petster$ python manage.py createsuperuser
+Username (leave blank to use 'jeff'): admin
+Error: That username is already taken.
+Username (leave blank to use 'jeff'):      
+Email address: jeff@site.com
+Password: Password (again): 
+Traceback (most recent call last):
+  File "manage.py", line 21, in <module>
+    main()  File "manage.py", line 17, in main
+    execute_from_command_line(sys.argv)
+  File "/Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/lib/python3.8/site-packages/django/core/management/__init__.py", line 381, in execute_from_command_line
+    utility.execute()
+  File "/Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/lib/python3.8/site-packages/django/core/management/__init__.py", line 375, in execute
+    self.fetch_command(subcommand).run_from_argv(self.argv)
+  File "/Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/lib/python3.8/site-packages/django/core/management/base.py", line 323, in run_from_argv
+    self.execute(*args, **cmd_options)
+  File "/Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/lib/python3.8/site-packages/django/contrib/auth/management/commands/createsuperuser.py", line 61, in execute
+    return super().execute(*args, **options)
+  File "/Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/lib/python3.8/site-packages/django/core/management/base.py", line 364, in execute
+    output = self.handle(*args, **options)
+  File "/Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/lib/python3.8/site-packages/django/contrib/auth/management/commands/createsuperuser.py", line 156, in handle
+    self.UserModel._default_manager.db_manager(database).create_superuser(**user_data)
+  File "/Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/lib/python3.8/site-packages/django/contrib/auth/models.py", line 162, in create_superuser
+    return self._create_user(username, email, password, **extra_fields)
+  File "/Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/lib/python3.8/site-packages/django/contrib/auth/models.py", line 145, in _create_user
+    user.save(using=self._db)
+  File "/Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/lib/python3.8/site-packages/django/contrib/auth/base_user.py", line 66, in save
+    super().save(*args, **kwargs)
+  File "/Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/lib/python3.8/site-packages/django/db/models/base.py", line 740, in save
+    self.save_base(using=using, force_insert=force_insert,
+  File "/Users/jeff/.local/share/virtualenvs/Petster-wlPdHUdE/lib/python3.8/site-packages/django/db/models/base.py", line 788, in save_base
+(Petster) jeff@:Petster$ vue init webpack frontend
+
+? Project name petster_frontend
+? Project description A Vue.js project
+? Author Jeff <jsportland@gmail.com>
+? Vue build standalone
+? Install vue-router? Yes
+? Use ESLint to lint your code? Yes
+? Pick an ESLint preset Standard
+? Set up unit tests No
+? Setup e2e tests with Nightwatch? No
+? Should we run `npm install` for you after the project has been created? (recommended) npm
+
+   vue-cli · Generated "frontend".
+
+
+# Installing project dependencies ...
+# ========================
+
+npm WARN deprecated extract-text-webpack-plugin@3.0.2: Deprecated. Please use https://github.com/webpack-contrib/mini-css-ex
+tract-plugin
+npm WARN deprecated browserslist@2.11.3: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
+npm WARN deprecated bfj-node4@5.3.1: Switch to the `bfj` package for fixes and new features!
+npm WARN deprecated core-js@2.6.11: core-js@<3 is no longer maintained and not recommended for usage due to the number of is
+sues. Please, upgrade your dependencies to the actual version of core-js@3.
+npm WARN deprecated browserslist@1.7.7: Browserslist 2 could fail on reading Browserslist >3.0 config used in other tools.
+npm WARN deprecated circular-json@0.3.3: CircularJSON is in maintenance only, flatted is its successor.
+
+> fsevents@1.2.11 install /Users/jeff/class_pangolin/code/jeff/Petster/frontend/node_modules/fsevents
+> node-gyp rebuild
+
+No receipt for 'com.apple.pkg.CLTools_Executables' found at '/'.
+
+No receipt for 'com.apple.pkg.DeveloperToolsCLILeo' found at '/'.
+
+No receipt for 'com.apple.pkg.DeveloperToolsCLI' found at '/'.
+
+gyp: No Xcode or CLT version detected!
+gyp ERR! configure error 
+gyp ERR! stack Error: `gyp` failed with exit code: 1
+gyp ERR! stack     at ChildProcess.onCpExit (/usr/local/lib/node_modules/npm/node_modules/node-gyp/lib/configure.js:351:16)
+gyp ERR! stack     at ChildProcess.emit (events.js:321:20)
+gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:275:12)
+gyp ERR! System Darwin 19.2.0
+gyp ERR! command "/usr/local/Cellar/node/13.6.0/bin/node" "/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js" "rebuild"
+gyp ERR! cwd /Users/jeff/class_pangolin/code/jeff/Petster/frontend/node_modules/fsevents
+gyp ERR! node -v v13.6.0
+gyp ERR! node-gyp -v v5.0.5
+gyp ERR! not ok 
+
+> core-js@2.6.11 postinstall /Users/jeff/class_pangolin/code/jeff/Petster/frontend/node_modules/core-js
+> node -e "try{require('./postinstall')}catch(e){}"
+
+Thank you for using core-js ( https://github.com/zloirock/core-js ) for polyfilling JavaScript standard library!
+
+The project needs your help! Please consider supporting of core-js on Open Collective or Patreon: 
+> https://opencollective.com/core-js 
+> https://www.patreon.com/zloirock 
+
+Also, the author of core-js ( https://github.com/zloirock ) is looking for a good job -)
+
+
+> ejs@2.7.4 postinstall /Users/jeff/class_pangolin/code/jeff/Petster/frontend/node_modules/ejs
+> node ./postinstall.js
+
+Thank you for installing EJS: built with the Jake JavaScript build tool (https://jakejs.com/)
+
+
+> uglifyjs-webpack-plugin@0.4.6 postinstall /Users/jeff/class_pangolin/code/jeff/Petster/frontend/node_modules/webpack/node_modules/uglifyjs-webpack-plugin
+> node lib/post_install.js
+
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.11 (node_modules/fsevents):
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.11 install: `node-gyp rebuild`
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: Exit status 1
+
+added 1323 packages from 707 contributors and audited 12486 packages in 39.952s
+
+24 packages are looking for funding
+  run `npm fund` for details
+
+found 13 vulnerabilities (1 low, 8 moderate, 4 high)
+  run `npm audit fix` to fix them, or `npm audit` for details
+
+
+Running eslint --fix to comply with chosen preset rules...
+# ========================
+
+
+> petster_frontend@1.0.0 lint /Users/jeff/class_pangolin/code/jeff/Petster/frontend
+> eslint --ext .js,.vue src "--fix"
+
+
+# Project initialization finished!
+# ========================
+
+To get started:
+
+  cd frontend
+  npm run dev
+  
+Documentation can be found at https://vuejs-templates.github.io/webpack
+
+
+(Petster) jeff@:Petster$ npm audit fix
+npm ERR! code EAUDITNOPJSON
+npm ERR! audit No package.json found: Cannot audit a project without a package.json
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/jeff/.npm/_logs/2020-01-20T19_02_56_672Z-debug.log
+(Petster) jeff@:Petster$ npm install -g npm@latest
+/usr/local/bin/npm -> /usr/local/lib/node_modules/npm/bin/npm-cli.js
+/usr/local/bin/npx -> /usr/local/lib/node_modules/npm/bin/npx-cli.js
+npm ERR! code EEXIST
+npm ERR! syscall symlink
+npm ERR! path ../../../lib/node_modules/npm/man/man1/npm-access.1
+npm ERR! dest /usr/local/share/man/man1/npm-access.1
+npm ERR! errno -17
+npm ERR! EEXIST: file already exists, symlink '../../../lib/node_modules/npm/man/man1/npm-access.1' -> '/usr/local/share/man/man1/npm-access.1'
+npm ERR! File exists: /usr/local/share/man/man1/npm-access.1
+npm ERR! Remove the existing file and try again, or run npm
+npm ERR! with --force to overwrite files recklessly.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/jeff/.npm/_logs/2020-01-20T19_07_22_925Z-debug.log
+(Petster) jeff@:Petster$ npm init
+bash: /usr/local/bin/npm: No such file or directory
+(Petster) jeff@:Petster$ ls
+Pipfile      apis         fetch        manage.py    petster
+Pipfile.lock db.sqlite3   frontend     media        users
+(Petster) jeff@:Petster$ cd frontend
+(Petster) jeff@:frontend$ npm init
+bash: /usr/local/bin/npm: No such file or directory
+(Petster) jeff@:frontend$ ls
+README.md         config            node_modules      package.json      static
+build             index.html        package-lock.json src
+(Petster) jeff@:frontend$ npm run dev
+bash: /usr/local/bin/npm: No such file or directory
+(Petster) jeff@:frontend$ npm -v
+bash: /usr/local/bin/npm: No such file or directory
+(Petster) jeff@:frontend$ vue -v
+error: unknown option `-v'
+(Petster) jeff@:frontend$ vue --version
+2.9.6
+(Petster) jeff@:frontend$ 

@@ -43,8 +43,8 @@ class Game:
         move_x = int(input("What is the x value of the spot you want to move?"))
         move_y = int(input('What is the y value of the spot you want to move?'))
         if self.board[move_y][move_x] == 'X' or self.board[move_y][move_x] == 'O':
-            return print("Not a valid move. Cheaters lose.  Goodbye")
-        
+            print("Not a valid move. Cheaters lose.  Goodbye")
+
         return move_y,move_x
     def get(self, *args):
         '''Game.get method takes in a tuple of x,y coordinates on the game board to check if the space is still free to take.'''

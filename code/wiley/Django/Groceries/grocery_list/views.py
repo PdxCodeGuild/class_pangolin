@@ -26,6 +26,8 @@ def item(request, GroceryItem_id):
 
 def add_item(request):
     item_name = request.POST["add_item"]
+    if item_name == "":
+        item_name = "You forgot something"
     GroceryItem.objects.create(text_description=item_name, date_created=timezone.now())
     return HttpResponseRedirect(reverse('grocery_list:index'))
 

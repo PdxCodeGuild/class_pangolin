@@ -1,0 +1,21 @@
+{% extends 'events/base.html'%}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row min-vh-100" id="guitar">
+  <div class="w-25 mx-auto main-head">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group text-light">
+        <legend class="border-bottom mb-4 text-light">Login</legend>
+        {{ form|crispy }}
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-light" type="submit">Login</button>
+      </div>
+    </form>
+    <div class="border-top pt-3 text-light">
+      <small class="text-light">Need an account? <a href="{% url 'register' %}" class="ml-2 text-light">Signup</a></small>
+    </div>
+  </div>
+</div>
+{% endblock content %}

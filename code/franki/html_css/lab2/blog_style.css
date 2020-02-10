@@ -1,0 +1,22 @@
+body{
+    background-image: radial-gradient(turquoise, magenta);
+}
+h1,h2,h3,h4,h5,h6 {
+    color: black;
+    font-family: 'Raleway', sans-serif;
+}
+.menu-container > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: black;
+    background-color: white;
+    padding:20px 0;
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+}
+
+p{
+    color: black;
+    font-family: 'Raleway', sans-serif;
+}

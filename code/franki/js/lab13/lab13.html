@@ -17,17 +17,17 @@
         <div class="row">
           <div class="col-md-6 col-md-offset-3">
             <div class="lead-form">
-              <h1 class="text-center">Fill Out This Form</h1>
+              <h1 class="text-center">Get Quotes</h1>
               <hr />
               <div class="row">
                 <div class="col-md-6">
-                  <input type="text" class="form-control" id="input" placeholder="Search for Quotes" v-model="searchTerm">
-                  <quote-detail><quote-detail
+                  <input type="text" class="form-control" id="input" placeholder="Search for Quotes">
+                  <qdetail></qdetail>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <button class="btn btn-primary btn-block" id="submit-form">Submit</button>
+                  <button class="btn btn-primary btn-block" id="submit-form" @click.prevent="searchQuotes">Submit</button>
                 </div>
               </div>
             </div><!-- end of .lead-form -->
@@ -40,30 +40,5 @@
   <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
   <script src="https://unpkg.com/axios@0.12.0/dist/axios.min.js"></script>
   <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
-
-  <script>
-    var app = new Vue({
-      el: '#app'
-      data: {
-        searchTerm: '',
-        searchResults: '',
-      },
-      methods: {
-        lookupQuotes: function() {
-          axios.get('https://favqs.com/api/quotes/' + searchTerm)
-            .then(function(response) {
-              this.
-            })
-            headers: {
-            Authorization: 'Token token="bd63119890a30d433148e0c9297b6c54"'
-        },
-        params: {
-            filter: searchTerm 
-        }
-          })
-        }
-      }
-      }
-    })
-  </script>
+  <script src="lab13.js"></script>
 </html>

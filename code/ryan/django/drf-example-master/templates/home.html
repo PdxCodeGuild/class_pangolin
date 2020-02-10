@@ -1,0 +1,79 @@
+{% csrf_token %}
+{% if user.is_authenticated %}
+<h1>Welcome {{ user.username }}!</h1>
+<p><a href="{% url 'logout' %}">Logout</a><p>
+{% else %}
+<h1>Welcome, visitor!</h1>
+<p>You are not logged in. <a href="{% url 'login' %}">Login</a> <a href="{% url 'users:signup' %}">Sign Up</a></p>
+{% endif %}
+
+<div id="app">
+    <ul>
+        <li v-for="student in students">
+            <h2>
+                [[ student.first_name ]] [[ student.last_name ]]
+            </h2>
+        </li>
+    </ul>
+    {% if user.is_authenticated %}
+    <h2>Add New Student</h2>
+    <input v-model="newStudent.first_name" type="text" placeholder="First Name">
+    <input v-model="newStudent.last_name" type="text" placeholder="Last Name">
+    <input v-model="newStudent.cohort" type="text" placeholder="Cohort">
+    <input v-model="newStudent.favorite_topic" type="text" placeholder="Favorite Topic">
+    <input v-model="newStudent.favorite_teacher" type="text" placeholder="Favorite Teacher">
+    <input v-model="newStudent.capstone" type="text" placeholder="Capstone URL">
+    <button @click="addStudent">Add Student</button>
+    {% endif %}
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        delimiters: ['[[',']]'],
+        data: {
+            students: [],
+            newStudent: {
+                "first_name": "",
+                "last_name": "",
+                "cohort": "",
+                "favorite_topic": "",
+                "favorite_teacher": "",
+                "capstone": ""
+            }
+        },
+        methods: {
+            getStudents() {
+                axios({
+                    method: "get",
+                    url: "apis/v1/"
+                }).then(response => this.students = response.data);
+            },
+            addStudent() {
+                axios({
+                    method: "post",
+                    url: "apis/v1/",
+                    data: this.newStudent,
+                    headers: {
+                        "X-CSRFToken": this.csrf_token
+                        }
+                    }).then(response => {
+                        this.newStudent = {
+                            "first_name": "",
+                            "last_name": "",
+                            "cohort": "",
+                            "favorite_topic": "",
+                            "favorite_teacher": "",
+                            "capstone": ""
+                        }
+                        this.getStudents();
+                })
+            }
+        },
+        mounted: function() {
+            this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value;
+            this.getStudents();
+        }
+    })
+</script>
