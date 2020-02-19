@@ -1,0 +1,24 @@
+body {
+    background-color: lightblue;
+}
+* {
+    font-family: 'Raleway', sans-serif
+}
+h1 {
+    font-family:  'Raleway', sans-serif;
+}
+
+p {
+    font-family:  'Raleway', sans-serif;
+    font-size: 16px;
+}
+blockquote {
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+}
+div {
+    width: 600px;
+    border: 5px solid red;
+    padding: 10px;
+    margin: 10px;
+  }

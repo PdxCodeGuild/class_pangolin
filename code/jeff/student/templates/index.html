@@ -1,0 +1,49 @@
+{% csrf_token %}
+
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Django Lab 6</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link href='https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/cosmo/bootstrap.min.css' rel='stylesheet'>
+
+    <link href='css/main.css' rel='stylesheet'>
+</head>
+
+<body>
+    {% if user.is_authenticated %}
+    <h1>Welcome {{ user.username }}!</h1>
+    <p><a href="{% url 'logout' %}">Logout</a></p>
+    {% endif %}
+    <h2>Student List</h2>
+
+    <div id="app">
+        <div>
+            {% if students %}
+            <ul>
+                {% for student in students %}
+                <li>
+                    <a href="{{student.url}}">{{ student.name }}</a> <button>Hey!</button>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No students available.</p>
+            {% endif %}
+
+        </div>
+        <div>
+            <select v-model="newPost.author">
+        <option v-for="user in users" :value="user.id">[[ user.username ]]</option>
+      </select><br>
+            <input type="text" v-model="newPost.title" placeholder="title"><br>
+            <textarea v-model="newPost.body" placeholder="body"></textarea><br>
+            <button @click="postPost">Post</button>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+html,body {
+    height: 100%;
+}
+
+h1, .locals {
+    color:  rgba(198, 175, 21, 1); 
+}
+
+body {
+    font-family: 'Montserrat', sans-serif!important;
+    background: linear-gradient(
+        rgba(0, 0, 0, .6),
+        rgba(0, 0, 0, .6)
+    ),
+    url('guitar.jpg')center/cover no-repeat fixed;
+}
+
+.title-underline {
+    width: 75%;
+    height: 3px;
+    margin: 0 auto;
+    opacity: .5;
+  }
+
+.card-body {
+    opacity: .8;
+}
+
+.main-head {
+    opacity: .9;
+}
+ 
+img {
+    display: block;
+    object-fit: cover;
+    height: 300px!important;
+}
+
+
+
+.div-head, button {
+    opacity: .8;
+}
+
+  

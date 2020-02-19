@@ -11,6 +11,7 @@ body {
 
 img {
   max-width: 100%;
+  margin: auto;
 }
 
 .main {
@@ -26,7 +27,7 @@ img {
 
 header, .footer, .main {
 margin: 8px auto;
-width: 760px;
+width: 800px;
   
 padding: 12px;
 
@@ -40,7 +41,7 @@ background-color: #000099;
 
 
 #app {
-  width: 760px;
+  width: 800px;
   margin: auto;
 }
 
@@ -48,5 +49,5 @@ p {
   color: white;
   font-family: 'Fjord One', serif;
   font-size: 24px;
-  text-shadow: 2px 2px 2px black;
+  text-shadow: 2px 3px 2px black;
 }

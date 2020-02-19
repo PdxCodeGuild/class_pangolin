@@ -1,0 +1,112 @@
+{% csrf_token %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Lab 6 - Django REST w/Vue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+        padding: 10px;
+        color: #0F4C81;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: beige;
+        }
+
+        select {
+        margin: 4px;
+        }
+
+        input {
+        margin: 2px;
+        font-size: large;
+        }
+
+        button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: medium;
+        border-radius: 6px;
+    }
+</style>
+</head>
+<body>
+<div id="app">
+{% if user.is_authenticated %}
+<h1>Welcome {{ user.username }}!</h1>
+<p><a href="{% url 'logout' %}">Logout</a><p>
+<input type="text" v-model="newStudent.first_name" placeholder="First Name"><br>
+<input type="text" v-model="newStudent.last_name" placeholder="Last Name"><br>
+<input type="text" v-model="newStudent.cohort" placeholder="Cohort"><br>
+<input type="text" v-model="newStudent.favorite_topic" placeholder="Favorite Topic"><br>
+<input type="text" v-model="newStudent.favorite_teacher" placeholder="Favorite Teacher"><br>
+<input type="text" v-model="newStudent.capstone" placeholder="http:// Capstone URL"><br>
+<p v-if="result.length > 0">
+<ul>
+<p id="result"></p>
+<li v-for="person in result">[[ person.first_name ]]&nbsp;[[ person.last_name ]]</li>
+</ul>
+</p>
+<button id="button" v-on:click="getUsers">Load Students</button>
+<button id="button" v-on:click="postUsers">Create Students</button>
+{% else %}
+<h1>Welcome, visitor!</h1>
+<p>You are not logged in.</p>
+
+<p><a href="{% url 'login' %}">Login</a>&nbsp;&nbsp;<a href="{% url 'users:signup' %}">Sign Up</a></p>
+{% endif %}
+</div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+    window.csrf_token = "{{ csrf_token }}"
+    let vm = new Vue({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        data: {
+            csrf_token: "",
+            result: [],
+            newStudent: {
+                "first_name": "",
+                "last_name": "",
+                "cohort": "",
+                "favorite_topic": "",
+                "favorite_teacher": "",
+                "capstone": ""
+            },    
+        },    
+        methods: {
+            getUsers: function() {
+                axios({
+                    method: 'get',
+                    url: '/students/v1/v1/',
+                    dataType: 'json',
+                }).then(response => this.result = response.data);
+            },
+            postUsers: function() {
+                axios({
+                    method: 'post',
+                    url: '/students/v1/v1/',
+                    data: this.newStudent,
+                    dataType: 'json',
+                    headers: {
+                        "X-CSRFToken": this.csrf_token
+                    },
+                }).then(response => {
+                    this.newStudent = {
+                        "first_name": "",
+                        "last_name": "",
+                        "cohort": "",
+                        "favorite_topic": "",
+                        "favorite_teacher": "",
+                        "capstone": ""
+                    }
+                });
+            },
+        },
+        mounted: function() {
+            this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value;
+        },
+    });
+    </script>
+</body>
+</html>

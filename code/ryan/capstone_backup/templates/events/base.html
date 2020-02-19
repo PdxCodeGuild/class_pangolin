@@ -1,0 +1,205 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/latest/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-REHJTs1r2ErKBuJB0fCK99gCYsVjwxHrSU0N7I1zl9vZbggVJXRMsv/sLlOAGb4M" crossorigin="anonymous">
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'events/main.css' %}">
+
+    <title>myJam</title>
+  </head>
+  <!-- body -->
+<body>
+{% csrf_token %}
+  <div id="background">
+    <!-- main container -->
+    <div id="app" class="container-fluid min-vh-100">
+      <div class="row text-center div-head mb-5">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-md-4 text-center">
+          <a href="{% url 'events-home' %}" class="navbar-brand mr-0">
+            <h1 class="display-1 main-head">myJam</h1>
+          </a>
+          <div class="d-flex flex-column justify-content-center text-center">
+            {% if user.is_authenticated %}
+              <h6>
+                <a class="text-light p-0 nav-link" href="{% url 'profile' %}">Welcome, {{ user.username }}</a>
+              </h6>
+            <a href="{% url 'create' %}" class="p-0 nav-link text-light main-head"> <p class="locals">Add concert to Locals</p></a>
+            {% endif %}
+        </div>
+            {% if user.is_authenticated %}
+            <div class="navbar">
+              <a href="{% url 'logout' %}" class="nav-link p-0 main-head mx-auto"><h6 class="text-light">Logout</h6>
+              </a>
+            {% else %}
+            <div class="d-flex justify-content-center navbar">
+              <a href="{% url 'login' %}" class="nav-link mr-3 p-0 main-head"><h6 class="text-light">Login</h6>
+              </a>
+            <a href="{% url 'register' %}" class="nav-link p-0 title-color"><h6 class="text-light main-head">Signup!</h6>
+            </a>
+            {% endif %}
+          </div>
+          <div class="title-underline bg-primary"></div>
+        </div>
+        <div class="col-sm-4 navbar mx-auto d-flex justify-content-center">
+          <a href="{% url 'locals' %}" class="nav-link p-0">
+            <h2 class="locals main-head">LocalsOnly</h2>
+          </a>
+        </div>
+      </div>
+      {% block content %}    
+      {% endblock content %} 
+    </div>
+  </div>
+
+
+    <!-- Optional JavaScript -->
+  
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- vue -->
+    <script src="https://unpkg.com/vue"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <script>
+    Vue.component('concert-info', {
+      props: ['event'],
+      delimiters: ['[[' , ']]'],
+      template: `
+          <div class="col-sm-6 col-lg-4 mx-auto mb-5 mt-5 text-center text-light">
+            <div class="title-underline bg-primary mb-1"></div>
+            <img :src="[[ event.images[0].url ]]" class="w-100 card-img-top img-fluid" alt="Responsive image">
+            <div class="card-body bg-dark mb-1">
+              <a v-if="event._embedded.attractions[0].externalLinks" class="text-light nav-link p-0" :href="[[ event._embedded.attractions[0].externalLinks.homepage[0].url ]]"><h4 class="mt-3"> [[ event.name ]] </h4></a>
+              <h4 class="mt-3" v-else="">[[ event.name ]]</h4>
+              <div class="title-underline bg-primary mb-3"></div>
+              <a :href="[[ event.url ]]" class="nav-link text-light">
+              <h4 class="mb-0"> [[event._embedded.venues[0].name]] </h4>
+              </a>
+              <p class="mb-0"> [[event._embedded.venues[0].address.line1]] </p>
+              <p class="mb-0">
+                [[event._embedded.venues[0].city.name]] , [[event._embedded.venues[0].state.stateCode]]
+              </p>
+              <p class="mb-0"> [[event.dates.start.localDate]] </p>
+              <p> [[event.dates.start.localTime]] </p>
+            </div>
+            <div class="title-underline bg-primary mt-0"></div>
+          </div>
+      `    
+      ,
+    })
+
+    Vue.component('local-event',{
+      props: ['event'],
+      delimiters: ['[[' , ']]'],
+      template: `
+          <div class="col-sm-6 col-lg-4 force-height mx-auto text-center mt-5 mb-5 text-light">
+            <div class="title-underline bg-primary mb-1"></div>
+              <img :src="[[ event.image ]]" class="w-100 card-img-top img-fluid" alt="Responsive image">
+            <div class="card-body bg-dark mb-1">
+              <a class="text-light nav-link p-0" v-if="event.url" :href="[[ event.url ]]"><h4 class="mt-3"> [[ event.band ]] </h4></a>
+              <h4 class="mt-3" v-else=""> [[ event.band ]] </h4>
+              <div class="title-underline bg-primary mb-3"></div>
+              <p v-if="event.body"><em>"[[ event.body ]]"</em></p>
+              <h4 class="mb-0"> [[event.venue]] </h4>
+              <p class="mb-0"> [[event.street_address]] </p>
+              <p class="mb-0">
+                [[event.city]] , [[event.state]]
+              </p>
+              <p class="mb-0"> [[event.date]] </p>
+              <p> [[event.time]] </p>
+              <p> [[event.price]] </p>
+            </div>
+            <div class="title-underline bg-primary mb-1"></div>
+          </div>
+      ` 
+    })
+
+    let vm = new Vue({
+      el: '#app',
+      delimiters: ['[[' , ']]'],
+      data: {
+        events: null,
+        localEvents: [],
+        cityState: '',
+        city: '',
+        state: '',
+        startDate: null,
+        endDate: null,
+      },
+      methods: {
+        getEvents: function() {
+          axios({
+            method: 'get',
+            params: {
+              apikey: 'ZAfftX5BnSjZ7ipPGzYzNZ7ObbVKzTh9',
+              city: this.city,
+              stateCode: this.state,
+              size: 50,
+              classificationName: 'Music',
+              localDate: this.startDate,
+              // startDateTime: '2020-01-20T00:00:00Z',
+              // endDateTime: '2020-01-26T:00:00Z',
+              sort: 'date,asc'
+
+            },
+            url: 'https://app.ticketmaster.com/discovery/v2/events',
+          }).then(response => {
+            this.events = response.data._embedded.events
+          })
+        },  
+        citySearch: function() {
+          let split = this.city.split(", ")
+          this.city = split[0];
+          this.state = split[1];
+          this.getEvents();
+        },
+        getLocals: function() {
+            axios({
+              method: 'GET',
+              url: "/apis/v1/",
+              headers: {
+                "X-CSRFToken": this.csrf_token
+              }              
+            }).then(response => this.localEvents = response.data);
+        },
+      },
+      computed: {
+        filterLocals: function() {
+          return this.localEvents.filter((localEvent) => {
+            return localEvent.city.match(this.city)
+          })
+        }
+      },
+      mounted: function() {
+        this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value;
+        this.getEvents();
+        this.getLocals();
+      },
+    });  
+  </script>
+  <script>
+    function activatePlacesSearch() {
+      var options = {
+        types: ['(cities)'],
+      }  
+      var input = document.getElementById('autocomplete');
+      var auto = new google.maps.places.Autocomplete(input, options);
+    }
+  </script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?&libraries=places&callback=activatePlacesSearch"></script>
+</body>
+</html>

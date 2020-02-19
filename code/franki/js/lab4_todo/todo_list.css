@@ -159,11 +159,11 @@ form {
 .new-task-creator .create {
     color: var(--clr-primary);
 }
-
+/* 
 [type="checkbox"] {
     opacity: 0;
     position: absolute;
-}
+} */
 
 .task label {
     display: flex-inline;

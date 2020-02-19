@@ -1,0 +1,30 @@
+{% extends 'events/base.html'%}
+{% block content %}
+  <div class="row my-5">
+    {% for event in events %}
+    <div class="col-sm-6 col-lg-4 mx-auto text-center mt-5 mb-5 text-light">
+      <div class="title-underline bg-primary mb-1"></div>
+        <img src=" {{event.image.url}} " class="card-img-top w-100 img-fluid" alt="Responsive image">
+      <div class="card-body bg-dark mb-1">
+        <h4 class="mt-3">  {{event.band}}  </h4>
+        <div class="title-underline bg-primary mb-3"></div>
+        <p><em>"{{event.body}}"</em></p>
+        <h4 class="mb-0"> {{event.venue}} </h4>
+        <p class="mb-0"> {{event.street_address}} </p>
+        <p class="mb-0">
+          {{event.city}} , {{event.state}}
+        </p>
+        <p class="mb-0"> {{event.date}} </p>
+        <p> {{event.time}} </p>
+        <p> {{event.price}} </p>
+        <div class="d-flex flex-row justify-content-end">
+        <a href="{% url 'update' event.id %}" class="nav-link text-primary"><p>Edit</p></a>
+        <a href="{% url 'delete' event.id %}" class="nav-link text-danger"><p>Delete</p></a>
+        </div>
+      </div>
+      <div class="title-underline bg-primary mb-1"></div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock content %}
+        
