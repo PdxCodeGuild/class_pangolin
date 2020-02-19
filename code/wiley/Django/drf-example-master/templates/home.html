@@ -53,14 +53,14 @@
               capstone: "",
           },
       },
-      methods: {
-          getStudents() {
-              axios({
-                  method: "get",
-                  url: "/api/students/",
-              }).then(res => {this.students = res.data.results; console.log(this.students)}) //check response format, might be buggy
-          },
-          createStudent() {
+    methods: {
+        getStudents() {
+            axios({
+                method: 'get',
+                url: 'http://127.0.0.1:8000/api/students/',
+            }).then(response => {this.studentList = response.data});
+        },
+        createStudent() {
               axios({
                   method: "post",
                   url: "/api/students/",
